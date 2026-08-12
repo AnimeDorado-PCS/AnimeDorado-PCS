@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<title>ANIME DORADO</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    user-select:none;
+}
+
+
+/* ==================================================
+   APP
+================================================== */
+
+#app{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    background:#000;
+}
+
+
+/* ==================================================
+   SCREEN
+================================================== */
+
+.screen{
+    position:absolute;
+    inset:0;
+    display:none;
+    overflow:hidden;
+}
+
+.screen.active{
+    display:block;
+}
+
+
+/* ==================================================
+   GAME FRAME
+================================================== */
+
+.game-frame{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:1536px;
+    height:864px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transform-origin:center center;
+
+}
+
+
+/* ==================================================
+   BACKGROUND
+================================================== */
+
+#gameBackground{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:864px;
+
+    display:block;
+
+    object-fit:fill;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+}
+
+
+/* ==================================================
+   BUTTON LAYER
+================================================== */
+
+#buttonLayer{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:864px;
+
+    pointer-events:none;
+}
+
+
+/* ==================================================
+   BUTTON
+================================================== */
+
+.game-button{
+
+    position:absolute;
+
+    border:none;
+
+    background:transparent;
+
+    border-radius:18px;
+
+    outline:none;
+
+    cursor:default;
+
+    pointer-events:none;
+}
+
+
+/* ==================================================
+   KHI MỞ TÍNH NĂNG
+================================================== */
+
+.game-button.enabled{
+
+    pointer-events:auto;
+
+    cursor:pointer;
+}
+
+.game-button.enabled:active{
+
+    background:
+        rgba(255,215,70,.14);
+
+    box-shadow:
+        inset 0 0 0 2px
+        rgba(255,215,70,.45);
+}
+
+
+/* ==================================================
+   POSITIONS
+================================================== */
+
+/* Hồ sơ */
+
+.btn-profile{
+
+    left:18px;
+    top:15px;
+
+    width:430px;
+    height:130px;
+}
+
+
+/* Vàng */
+
+.btn-gold{
+
+    left:565px;
+    top:8px;
+
+    width:285px;
+    height:75px;
+}
+
+
+/* Ruby */
+
+.btn-ruby{
+
+    left:875px;
+    top:8px;
+
+    width:275px;
+    height:75px;
+}
+
+
+/* Lập nhóm */
+
+.btn-lapnhom{
+
+    left:35px;
+    bottom:8px;
+
+    width:145px;
+    height:125px;
+}
+
+
+/* Nâng cấp */
+
+.btn-nangcap{
+
+    left:245px;
+    bottom:8px;
+
+    width:145px;
+    height:125px;
+}
+
+
+/* Rút nhân vật */
+
+.btn-rutnhanvat{
+
+    left:450px;
+    bottom:8px;
+
+    width:160px;
+    height:125px;
+}
+
+
+/* Cửa hàng */
+
+.btn-cuahang{
+
+    left:650px;
+    bottom:8px;
+
+    width:160px;
+    height:125px;
+}
+
+
+/* Bắt đầu */
+
+.btn-batdau{
+
+    right:0;
+    bottom:0;
+
+    width:430px;
+    height:175px;
+
+    border-radius:
+        55px 0 0 0;
+}
+
+
+/* ==================================================
+   OTHER SCREEN
+================================================== */
+
+.placeholder-screen{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #294268 0%,
+            #101827 55%,
+            #020408 100%
+        );
+
+    color:white;
+}
+
+
+.placeholder-box{
+
+    width:min(
+        520px,
+        88vw
+    );
+
+    padding:30px;
+
+    border:
+        1px solid
+        rgba(255,215,100,.35);
+
+    border-radius:20px;
+
+    background:
+        rgba(0,0,0,.42);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.55);
+}
+
+
+.placeholder-box h1{
+
+    color:#ffd65a;
+
+    margin-bottom:10px;
+
+}
+
+
+.placeholder-box p{
+
+    color:#bbc4d2;
+
+    line-height:1.5;
+
+}
+
+
+.back-button{
+
+    margin-top:22px;
+
+    width:180px;
+    height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b8790a,
+            #ffd65a
+        );
+
+    color:#1b1304;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+
+/* ==================================================
+   MOBILE / TV / LANDSCAPE SCALE
+================================================== */
+
+@media (orientation:landscape){
+
+    .game-frame{
+
+        transform:
+            translate(-50%,-50%)
+            scale(
+                min(
+                    100vw / 1536,
+                    100vh / 864
+                )
+            );
+
+    }
+
+}
+
+
+/*
+   Vì CSS không thể dùng min()
+   với phép chia px theo kiểu trên
+   trong mọi trình duyệt cũ,
+   JavaScript bên dưới sẽ tự scale.
+*/
+
+
+</style>
+</head>
+
+
+<body>
+
+<div id="app">
+
+
+    <!-- =================================================
+         HOME SCREEN
+    ================================================= -->
+
+    <section
+        id="homeScreen"
+        class="screen active">
+
+
+        <div
+            id="gameFrame"
+            class="game-frame">
+
+
+            <!-- NỀN -->
+
+            <img
+                id="gameBackground"
+                src="./nemgame.png"
+                alt="ANIME DORADO">
+
+
+            <!-- =========================================
+                 NÚT
+            ========================================== -->
+
+            <div
+                id="buttonLayer">
+
+
+                <!-- PROFILE -->
+
+                <button
+                    class="game-button btn-profile"
+                    data-feature="profile"
+                    aria-label="Hồ sơ">
+                </button>
+
+
+                <!-- GOLD -->
+
+                <button
+                    class="game-button btn-gold"
+                    data-feature="gold"
+                    aria-label="Vàng">
+                </button>
+
+
+                <!-- RUBY -->
+
+                <button
+                    class="game-button btn-ruby"
+                    data-feature="ruby"
+                    aria-label="Ruby">
+                </button>
+
+
+                <!-- LẬP NHÓM -->
+
+                <button
+                    class="game-button btn-lapnhom"
+                    data-feature="lapnhom"
+                    aria-label="Lập nhóm">
+                </button>
+
+
+                <!-- NÂNG CẤP -->
+
+                <button
+                    class="game-button btn-nangcap"
+                    data-feature="nangcap"
+                    aria-label="Nâng cấp">
+                </button>
+
+
+                <!-- RÚT NHÂN VẬT -->
+
+                <button
+                    class="game-button btn-rutnhanvat"
+                    data-feature="rutnhanvat"
+                    aria-label="Rút nhân vật">
+                </button>
+
+
+                <!-- CỬA HÀNG -->
+
+                <button
+                    class="game-button btn-cuahang"
+                    data-feature="cuahang"
+                    aria-label="Cửa hàng">
+                </button>
+
+
+                <!-- BẮT ĐẦU -->
+
+                <button
+                    class="game-button btn-batdau"
+                    data-feature="batdau"
+                    aria-label="Bắt đầu">
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREEN LẬP NHÓM
+    ================================================= -->
+
+    <section
+        id="lapnhomScreen"
+        class="screen">
+
+        <div
+            class="placeholder-screen">
+
+            <div
+                class="placeholder-box">
+
+                <h1>
+                    LẬP NHÓM
+                </h1>
+
+                <p>
+                    Màn hình này đang được thiết kế.
+                    <br>
+                    Sau này bấm Lập nhóm sẽ chuyển
+                    sang đây mà không tải lại trang.
+                </p>
+
+                <button
+                    class="back-button"
+                    onclick="showScreen('homeScreen')">
+
+                    ← QUAY LẠI
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREEN NÂNG CẤP
+    ================================================= -->
+
+    <section
+        id="nangcapScreen"
+        class="screen">
+
+        <div
+            class="placeholder-screen">
+
+            <div
+                class="placeholder-box">
+
+                <h1>
+                    NÂNG CẤP
+                </h1>
+
+                <p>
+                    Màn hình nâng cấp chưa thiết kế.
+                </p>
+
+                <button
+                    class="back-button"
+                    onclick="showScreen('homeScreen')">
+
+                    ← QUAY LẠI
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREEN RÚT NHÂN VẬT
+    ================================================= -->
+
+    <section
+        id="rutnhanvatScreen"
+        class="screen">
+
+        <div
+            class="placeholder-screen">
+
+            <div
+                class="placeholder-box">
+
+                <h1>
+                    RÚT NHÂN VẬT
+                </h1>
+
+                <p>
+                    Màn hình rút nhân vật chưa thiết kế.
+                </p>
+
+                <button
+                    class="back-button"
+                    onclick="showScreen('homeScreen')">
+
+                    ← QUAY LẠI
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREEN CỬA HÀNG
+    ================================================= -->
+
+    <section
+        id="cuahangScreen"
+        class="screen">
+
+        <div
+            class="placeholder-screen">
+
+            <div
+                class="placeholder-box">
+
+                <h1>
+                    CỬA HÀNG
+                </h1>
+
+                <p>
+                    Màn hình cửa hàng chưa thiết kế.
+                </p>
+
+                <button
+                    class="back-button"
+                    onclick="showScreen('homeScreen')">
+
+                    ← QUAY LẠI
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SCREEN BẮT ĐẦU
+    ================================================= -->
+
+    <section
+        id="batdauScreen"
+        class="screen">
+
+        <div
+            class="placeholder-screen">
+
+            <div
+                class="placeholder-box">
+
+                <h1>
+                    BẮT ĐẦU
+                </h1>
+
+                <p>
+                    Màn hình chiến đấu sẽ được làm sau.
+                </p>
+
+                <button
+                    class="back-button"
+                    onclick="showScreen('homeScreen')">
+
+                    ← QUAY LẠI
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   KÍCH THƯỚC THIẾT KẾ
+================================================== */
+
+const DESIGN_WIDTH =
+    1536;
+
+const DESIGN_HEIGHT =
+    864;
+
+
+/* ==================================================
+   SCALE GAME
+================================================== */
+
+function scaleGame(){
+
+    const frame =
+        document.getElementById(
+            "gameFrame"
+        );
+
+
+    const screenWidth =
+        window.innerWidth;
+
+    const screenHeight =
+        window.innerHeight;
+
+
+    const scale =
+        Math.min(
+
+            screenWidth /
+            DESIGN_WIDTH,
+
+            screenHeight /
+            DESIGN_HEIGHT
+
+        );
+
+
+    frame.style.transform =
+        "translate(-50%,-50%) " +
+        "scale(" +
+        scale +
+        ")";
+
+}
+
+
+/* ==================================================
+   HIỂN THỊ SCREEN
+   Đây là phần quan trọng nhất.
+   
+   KHÔNG reload trang.
+   Chỉ đổi screen.
+================================================== */
+
+function showScreen(
+    screenId
+){
+
+    const screens =
+        document.querySelectorAll(
+            ".screen"
+        );
+
+
+    screens.forEach(
+        function(screen){
+
+            screen.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    const target =
+        document.getElementById(
+            screenId
+        );
+
+
+    if(target){
+
+        target.classList.add(
+            "active"
+        );
+
+    }
+
+
+    scaleGame();
+
+}
+
+
+/* ==================================================
+   NÚT GAME
+================================================== */
+
+const buttons =
+    document.querySelectorAll(
+        ".game-button"
+    );
+
+
+buttons.forEach(
+    function(button){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                /*
+                   HIỆN TẠI CÁC NÚT ĐANG KHÓA
+                   nên đoạn này chỉ là hệ thống
+                   chuẩn bị sẵn cho sau này.
+                */
+
+                const feature =
+                    button.dataset.feature;
+
+
+                if(
+                    feature ===
+                    "lapnhom"
+                ){
+
+                    showScreen(
+                        "lapnhomScreen"
+                    );
+
+                }
+
+
+                else if(
+                    feature ===
+                    "nangcap"
+                ){
+
+                    showScreen(
+                        "nangcapScreen"
+                    );
+
+                }
+
+
+                else if(
+                    feature ===
+                    "rutnhanvat"
+                ){
+
+                    showScreen(
+                        "rutnhanvatScreen"
+                    );
+
+                }
+
+
+                else if(
+                    feature ===
+                    "cuahang"
+                ){
+
+                    showScreen(
+                        "cuahangScreen"
+                    );
+
+                }
+
+
+                else if(
+                    feature ===
+                    "batdau"
+                ){
+
+                    showScreen(
+                        "batdauScreen"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* ==================================================
+   MỞ TÍNH NĂNG
+   Sau này chỉ cần gọi:
+   
+   enableFeature("lapnhom")
+   
+   là nút Lập nhóm bấm được.
+================================================== */
+
+function enableFeature(
+    feature
+){
+
+    const button =
+        document.querySelector(
+            '[data-feature="' +
+            feature +
+            '"]'
+        );
+
+
+    if(button){
+
+        button.classList.add(
+            "enabled"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   TẠM THỜI:
+   KHÔNG MỞ NÚT NÀO
+   
+   Khi bạn thiết kế xong mục nào,
+   chỉ cần bật đúng dòng.
+================================================== */
+
+
+/*
+enableFeature("lapnhom");
+enableFeature("nangcap");
+enableFeature("rutnhanvat");
+enableFeature("cuahang");
+enableFeature("batdau");
+*/
+
+
+/* ==================================================
+   XOAY MÀN HÌNH
+================================================== */
+
+window.addEventListener(
+    "resize",
+    scaleGame
+);
+
+
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        setTimeout(
+            scaleGame,
+            250
+        );
+
+    }
+);
+
+
+/* ==================================================
+   START
+================================================== */
+
+scaleGame();
+
+</script>
+
+</body>
+</html>
