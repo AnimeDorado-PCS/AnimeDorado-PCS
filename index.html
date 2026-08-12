@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1,
-               maximum-scale=1,
-               user-scalable=no">
+      initial-scale=1,
+      maximum-scale=1,
+      user-scalable=no">
 
 <title>ANIME DORADO</title>
 
@@ -20,32 +22,55 @@
 }
 
 html,body{
+
     width:100%;
     height:100%;
+
     overflow:hidden;
+
     background:#000;
-    font-family:Arial,Helvetica,sans-serif;
-    color:white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:#fff;
+
 }
 
 button{
+
     font:inherit;
-}
 
-.screen{
-    position:absolute;
-    inset:0;
-    display:none;
-    overflow:hidden;
-}
-
-.screen.active{
-    display:block;
 }
 
 
 /* ==================================================
-   MỞ TRẢI NGHIỆM
+   SCREEN
+================================================== */
+
+.screen{
+
+    position:absolute;
+
+    inset:0;
+
+    display:none;
+
+    overflow:hidden;
+
+}
+
+.screen.active{
+
+    display:block;
+
+}
+
+
+/* ==================================================
+   LANDING
 ================================================== */
 
 #landingScreen{
@@ -75,7 +100,7 @@ button{
         90vw
     );
 
-    padding:34px;
+    padding:35px;
 
     text-align:center;
 
@@ -87,6 +112,10 @@ button{
 
     background:
         rgba(0,0,0,.45);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.55);
 
 }
 
@@ -105,8 +134,6 @@ button{
     margin-top:10px;
 
     color:#c8cedb;
-
-    line-height:1.5;
 
 }
 
@@ -178,16 +205,7 @@ button{
 
     display:block;
 
-    user-select:none;
-
-    -webkit-user-drag:none;
-
 }
-
-
-/* ==================================================
-   NÚT ẨN
-================================================== */
 
 .button-layer{
 
@@ -207,14 +225,14 @@ button{
 
     background:transparent;
 
-    cursor:pointer;
-
     pointer-events:auto;
+
+    cursor:pointer;
 
 }
 
 
-/* Hồ sơ */
+/* HOME BUTTONS */
 
 .btn-profile{
 
@@ -226,9 +244,6 @@ button{
 
 }
 
-
-/* Vàng */
-
 .btn-gold{
 
     left:565px;
@@ -238,9 +253,6 @@ button{
     height:75px;
 
 }
-
-
-/* Ruby */
 
 .btn-ruby{
 
@@ -252,9 +264,6 @@ button{
 
 }
 
-
-/* Lập nhóm */
-
 .btn-lapnhom{
 
     left:35px;
@@ -264,9 +273,6 @@ button{
     height:125px;
 
 }
-
-
-/* Nâng cấp */
 
 .btn-nangcap{
 
@@ -278,9 +284,6 @@ button{
 
 }
 
-
-/* Rút nhân vật */
-
 .btn-rutnhanvat{
 
     left:450px;
@@ -291,9 +294,6 @@ button{
 
 }
 
-
-/* Cửa hàng */
-
 .btn-cuahang{
 
     left:650px;
@@ -303,9 +303,6 @@ button{
     height:125px;
 
 }
-
-
-/* Bắt đầu */
 
 .btn-batdau{
 
@@ -329,108 +326,308 @@ button{
 
     background:
         radial-gradient(
-            circle at center,
-            #243a5e 0%,
-            #0d1320 58%,
-            #020305 100%
+            circle at 50% 15%,
+            #304c76 0%,
+            #121b2c 45%,
+            #05080e 100%
         );
 
     overflow:auto;
 
 }
 
-.team{
+.team-page{
 
-    width:min(
-        960px,
-        94vw
-    );
+    width:
+        min(
+            1100px,
+            94vw
+        );
 
     min-height:100%;
 
     margin:auto;
 
     padding:
-        20px
+        18px
         0
-        30px;
+        35px;
 
 }
 
-.team-top{
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.team-header{
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
 
-}
+    justify-content:space-between;
 
-.team-title{
+    gap:15px;
 
-    font-size:28px;
-
-    font-weight:900;
-
-    color:#ffd65a;
+    margin-bottom:15px;
 
 }
 
 .back-button{
 
+    width:48px;
+
+    height:48px;
+
     border:none;
 
-    border-radius:11px;
+    border-radius:14px;
 
-    padding:
-        11px
-        15px;
-
-    background:#202a3a;
+    background:
+        rgba(0,0,0,.35);
 
     color:white;
+
+    font-size:22px;
+
+}
+
+.team-header-title{
+
+    flex:1;
+
+    text-align:center;
+
+}
+
+.team-header-title h1{
+
+    font-size:27px;
+
+    color:#ffd65a;
+
+}
+
+.team-header-title p{
+
+    margin-top:3px;
+
+    font-size:12px;
+
+    color:#aeb7c6;
+
+}
+
+.header-space{
+
+    width:48px;
+
+}
+
+
+/* ==================================================
+   TEAM SLOTS
+================================================== */
+
+.team-panel{
+
+    border:
+        1px solid
+        rgba(255,214,90,.25);
+
+    border-radius:22px;
+
+    padding:15px;
+
+    background:
+        rgba(0,0,0,.3);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.25);
+
+}
+
+.panel-title{
+
+    color:#ffd65a;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    margin-bottom:12px;
+
+}
+
+.team-slots{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:10px;
+
+}
+
+.team-slot{
+
+    position:relative;
+
+    aspect-ratio:1/1;
+
+    min-height:80px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.05),
+            rgba(0,0,0,.3)
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+}
+
+.team-slot.selected{
+
+    border:
+        2px solid
+        #ffd65a;
+
+    box-shadow:
+        0 0 18px
+        rgba(255,214,90,.2);
+
+}
+
+.team-slot.empty::before{
+
+    content:"+";
+
+    font-size:31px;
+
+    color:#657084;
+
+}
+
+.slot-number{
+
+    position:absolute;
+
+    left:7px;
+
+    top:6px;
+
+    font-size:11px;
+
+    color:#858ea0;
+
+    z-index:3;
+
+}
+
+.slot-image{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+}
+
+.slot-name{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    right:0;
+
+    padding:5px 2px;
+
+    background:
+        rgba(0,0,0,.65);
+
+    text-align:center;
+
+    font-size:10px;
 
     font-weight:bold;
 
 }
 
-.team-grid{
+
+/* ==================================================
+   CHARACTER AREA
+================================================== */
+
+.character-layout{
 
     display:grid;
 
     grid-template-columns:
-        minmax(300px,420px)
+        minmax(280px,480px)
         1fr;
 
-    gap:18px;
+    gap:15px;
 
-    margin-top:18px;
+    margin-top:15px;
 
 }
 
-.card{
+.character-view{
 
     border:
         1px solid
         rgba(255,214,90,.22);
 
-    border-radius:20px;
+    border-radius:22px;
 
     background:
-        rgba(0,0,0,.35);
+        radial-gradient(
+            circle at center,
+            rgba(83,115,163,.25),
+            rgba(0,0,0,.35)
+        );
+
+    overflow:hidden;
 
 }
 
-.character-card{
+.character-top{
 
-    padding:12px;
+    padding:
+        14px
+        15px
+        0;
+
+    text-align:center;
 
 }
 
 .character-name{
-
-    text-align:center;
 
     font-size:23px;
 
@@ -440,93 +637,272 @@ button{
 
 .character-rarity{
 
-    text-align:center;
+    display:inline-block;
+
+    margin-top:5px;
+
+    padding:
+        5px
+        10px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,214,90,.12);
 
     color:#ffd65a;
 
-    margin-top:4px;
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+.character-canvas-wrap{
+
+    height:380px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 
 }
 
 #characterCanvas{
 
-    display:block;
-
     width:100%;
 
     max-width:420px;
 
-    height:auto;
+    height:100%;
 
-    margin:auto;
-
-}
-
-.skill-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:8px;
+    object-fit:contain;
 
 }
 
-.skill-button{
 
-    min-height:46px;
+/* ==================================================
+   CHARACTER INFO
+================================================== */
 
-    border:none;
+.info-panel{
 
-    border-radius:11px;
+    border:
+        1px solid
+        rgba(255,214,90,.22);
+
+    border-radius:22px;
 
     background:
-        linear-gradient(
-            135deg,
-            #5a3707,
-            #c88915
-        );
+        rgba(0,0,0,.3);
 
-    color:white;
-
-    font-weight:900;
+    padding:17px;
 
 }
 
-.info-card{
-
-    padding:18px;
-
-}
-
-.info-card h2{
+.info-title{
 
     color:#ffd65a;
 
-    margin-bottom:12px;
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-bottom:14px;
 
 }
 
-.stat{
+.stat-row{
 
     display:flex;
 
     justify-content:space-between;
 
-    padding:10px 0;
+    align-items:center;
+
+    padding:
+        11px
+        2px;
 
     border-bottom:
         1px solid
-        rgba(255,255,255,.08);
-
-    color:#ccd2df;
+        rgba(255,255,255,.07);
 
 }
 
-.stat b{
+.stat-label{
 
-    color:white;
+    color:#9ea8b8;
+
+}
+
+.stat-value{
+
+    font-weight:bold;
+
+}
+
+.equip-button{
+
+    width:100%;
+
+    min-height:52px;
+
+    margin-top:16px;
+
+    border:none;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a96f08,
+            #ffd65a
+        );
+
+    color:#1b1304;
+
+    font-weight:900;
+
+}
+
+.remove-button{
+
+    width:100%;
+
+    min-height:44px;
+
+    margin-top:9px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:12px;
+
+    background:
+        rgba(0,0,0,.25);
+
+    color:#dbe0e8;
+
+    font-weight:bold;
+
+}
+
+
+/* ==================================================
+   CHARACTER LIST
+================================================== */
+
+.character-list-panel{
+
+    margin-top:15px;
+
+    border:
+        1px solid
+        rgba(255,214,90,.22);
+
+    border-radius:22px;
+
+    padding:15px;
+
+    background:
+        rgba(0,0,0,.3);
+
+}
+
+.list-title{
+
+    color:#ffd65a;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    margin-bottom:11px;
+
+}
+
+.character-list{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:10px;
+
+}
+
+.character-card{
+
+    position:relative;
+
+    min-height:140px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.11);
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.06),
+            rgba(0,0,0,.3)
+        );
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+}
+
+.character-card.active{
+
+    border:
+        2px solid
+        #ffd65a;
+
+}
+
+.character-card img{
+
+    width:100%;
+
+    height:100px;
+
+    object-fit:contain;
+
+    display:block;
+
+}
+
+.character-card-name{
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-top:3px;
+
+}
+
+.character-card-level{
+
+    text-align:center;
+
+    font-size:10px;
+
+    color:#97a2b2;
+
+    margin-top:3px;
 
 }
 
@@ -579,7 +955,7 @@ button{
 
 .error-box h1{
 
-    font-size:58px;
+    font-size:60px;
 
     color:#ffd65a;
 
@@ -587,25 +963,25 @@ button{
 
 .error-box p{
 
-    margin-top:10px;
+    margin-top:12px;
 
-    color:#bbc4d2;
+    color:#b8c1d0;
 
     line-height:1.5;
 
 }
 
-.error-box button{
+.error-back{
 
     margin-top:20px;
 
-    min-width:180px;
+    width:180px;
 
-    min-height:48px;
+    height:48px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:11px;
 
     background:
         linear-gradient(
@@ -633,9 +1009,22 @@ button{
 
     }
 
-    .team-grid{
+    .character-layout{
 
         grid-template-columns:1fr;
+
+    }
+
+    .character-canvas-wrap{
+
+        height:320px;
+
+    }
+
+    .character-list{
+
+        grid-template-columns:
+            repeat(3,1fr);
 
     }
 
@@ -649,7 +1038,7 @@ button{
 
 
 <!-- ==================================================
-     MỞ TRẢI NGHIỆM
+     LANDING
 ================================================== -->
 
 <section
@@ -663,9 +1052,7 @@ button{
         </div>
 
         <div class="landing-text">
-
-            Game web • nhân vật • lập nhóm • chiến đấu
-
+            GAME EXPERIENCE
         </div>
 
         <button
@@ -697,8 +1084,7 @@ button{
 
         <img
             id="gameBackground"
-            src="./nengame.png"
-            alt="ANIME DORADO">
+            src="./nengame.png">
 
 
         <div class="button-layer">
@@ -724,7 +1110,7 @@ button{
 
             <button
                 class="game-button btn-lapnhom"
-                data-route="lapnhom">
+                id="openTeam">
             </button>
 
 
@@ -754,7 +1140,9 @@ button{
 
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -768,118 +1156,162 @@ button{
     class="screen">
 
 
-    <div class="team">
+    <div class="team-page">
 
 
-        <div class="team-top">
+        <!-- HEADER -->
 
-            <div class="team-title">
-                LẬP NHÓM
-            </div>
+        <div class="team-header">
 
 
             <button
                 class="back-button"
-                id="backHome">
+                id="teamBack">
 
-                ← QUAY LẠI
+                ←
 
             </button>
+
+
+            <div class="team-header-title">
+
+                <h1>
+                    LẬP NHÓM
+                </h1>
+
+                <p>
+                    TRANG BỊ ĐỘI HÌNH
+                </p>
+
+            </div>
+
+
+            <div class="header-space"></div>
+
 
         </div>
 
 
-        <div class="team-grid">
+        <!-- ==================================================
+             ĐỘI HÌNH
+        ================================================== -->
+
+        <div class="team-panel">
+
+
+            <div class="panel-title">
+
+                ĐỘI HÌNH CỦA BẠN
+
+            </div>
+
+
+            <div
+                class="team-slots"
+                id="teamSlots">
+
+
+                <div
+                    class="team-slot empty selected"
+                    data-slot="0">
+
+                    <span class="slot-number">
+                        1
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="team-slot empty"
+                    data-slot="1">
+
+                    <span class="slot-number">
+                        2
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="team-slot empty"
+                    data-slot="2">
+
+                    <span class="slot-number">
+                        3
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="team-slot empty"
+                    data-slot="3">
+
+                    <span class="slot-number">
+                        4
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="team-slot empty"
+                    data-slot="4">
+
+                    <span class="slot-number">
+                        5
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==================================================
+             CHARACTER + INFO
+        ================================================== -->
+
+        <div class="character-layout">
 
 
             <!-- NHÂN VẬT -->
 
-            <div>
+            <div class="character-view">
 
 
-                <div
-                    class="card character-card">
+                <div class="character-top">
 
+                    <div
+                        class="character-name"
+                        id="selectedName">
 
-                    <div class="character-name">
                         Superman
+
                     </div>
 
 
                     <div
                         class="character-rarity">
 
-                        SSR • Lv.1
+                        SSR
 
                     </div>
 
+                </div>
+
+
+                <div class="character-canvas-wrap">
 
                     <canvas
                         id="characterCanvas"
                         width="420"
                         height="420">
                     </canvas>
-
-
-                    <div class="skill-grid">
-
-
-                        <button
-                            class="skill-button"
-                            data-animation="idle">
-
-                            IDLE
-
-                        </button>
-
-
-                        <button
-                            class="skill-button"
-                            data-animation="run">
-
-                            CHẠY
-
-                        </button>
-
-
-                        <button
-                            class="skill-button"
-                            data-animation="attack">
-
-                            ĐÁNH THƯỜNG
-
-                        </button>
-
-
-                        <button
-                            class="skill-button"
-                            data-animation="skill1">
-
-                            SKILL 1
-
-                        </button>
-
-
-                        <button
-                            class="skill-button"
-                            data-animation="skill2">
-
-                            SKILL 2
-
-                        </button>
-
-
-                        <button
-                            class="skill-button"
-                            data-animation="skill3">
-
-                            SKILL 3
-
-                        </button>
-
-
-                    </div>
-
 
                 </div>
 
@@ -889,62 +1321,142 @@ button{
 
             <!-- THÔNG TIN -->
 
-            <div
-                class="card info-card">
+            <div class="info-panel">
 
 
-                <h2>
+                <div class="info-title">
+
                     THÔNG TIN NHÂN VẬT
-                </h2>
-
-
-                <div class="stat">
-
-                    <span>HP</span>
-
-                    <b>1000</b>
 
                 </div>
 
 
-                <div class="stat">
+                <div class="stat-row">
 
-                    <span>ATK</span>
+                    <span class="stat-label">
+                        Cấp
+                    </span>
 
-                    <b>120</b>
+                    <span
+                        class="stat-value"
+                        id="infoLevel">
+
+                        Lv.1
+
+                    </span>
+
+                </div>
+
+
+                <div class="stat-row">
+
+                    <span class="stat-label">
+                        HP
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="infoHp">
+
+                        1000
+
+                    </span>
 
                 </div>
 
 
-                <div class="stat">
+                <div class="stat-row">
 
-                    <span>DEF</span>
+                    <span class="stat-label">
+                        ATK
+                    </span>
 
-                    <b>80</b>
+                    <span
+                        class="stat-value"
+                        id="infoAtk">
+
+                        120
+
+                    </span>
 
                 </div>
 
 
-                <div class="stat">
+                <div class="stat-row">
 
-                    <span>Tốc độ đánh</span>
+                    <span class="stat-label">
+                        DEF
+                    </span>
 
-                    <b>1.2s</b>
+                    <span
+                        class="stat-value"
+                        id="infoDef">
+
+                        80
+
+                    </span>
 
                 </div>
+
+
+                <button
+                    class="equip-button"
+                    id="equipButton">
+
+                    TRANG BỊ
+
+                </button>
+
+
+                <button
+                    class="remove-button"
+                    id="removeButton">
+
+                    THÁO NHÂN VẬT
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==================================================
+             KHO NHÂN VẬT
+        ================================================== -->
+
+        <div class="character-list-panel">
+
+
+            <div class="list-title">
+
+                NHÂN VẬT CỦA BẠN
+
+            </div>
+
+
+            <div
+                class="character-list"
+                id="characterList">
 
 
                 <div
-                    style="
-                        margin-top:20px;
-                        color:#c8cedb;
-                        line-height:1.5;
-                    ">
+                    class="character-card active"
+                    data-character="superman">
 
-                    Superman đã có trong đội.
-                    <br>
-                    Bạn có thể thử toàn bộ animation
-                    bằng các nút bên trái.
+                    <img
+                        src="./characters/superman/sprite.png"
+                        alt="Superman">
+
+                    <div class="character-card-name">
+                        Superman
+                    </div>
+
+                    <div class="character-card-level">
+                        SSR • Lv.1
+                    </div>
 
                 </div>
 
@@ -972,27 +1484,23 @@ button{
 
     <div class="error-box">
 
-
         <h1>
             404
         </h1>
 
-
-        <p
-            id="errorText">
+        <p id="errorText">
+            Trang chưa được tạo.
         </p>
 
-
         <button
+            class="error-back"
             id="errorBack">
 
             ← QUAY LẠI
 
         </button>
 
-
     </div>
-
 
 </section>
 
@@ -1000,24 +1508,40 @@ button{
 <script>
 
 /* ==================================================
-   NHÂN VẬT
+   DỮ LIỆU NHÂN VẬT
 ================================================== */
 
-const superman = {
+const characters = {
 
-    image:
-        "./characters/superman/sprite.png",
+    superman:{
 
-    fps:10
+        id:"superman",
+
+        name:"Superman",
+
+        rarity:"SSR",
+
+        level:1,
+
+        hp:1000,
+
+        atk:120,
+
+        def:80,
+
+        image:
+            "./characters/superman/sprite.png"
+
+    }
 
 };
 
 
 /* ==================================================
-   ANIMATION
+   ANIMATION NHÂN VẬT
 ================================================== */
 
-class Character {
+class CharacterAnimation{
 
 
     constructor(){
@@ -1037,60 +1561,17 @@ class Character {
             new Image();
 
 
+        this.image.onload =
+            () => {
+
+                this.draw();
+
+            };
+
+
         this.image.src =
-            superman.image;
+            characters.superman.image;
 
-
-        /*
-           30 frame:
-
-           01-04 IDLE
-           05-08 RUN
-           17-20 ATTACK
-           21-24 SKILL 1
-           25-28 SKILL 2
-           29-30 SKILL 3
-        */
-
-        this.animations = {
-
-            idle:{
-                frames:[0,1,2,3],
-                loop:true
-            },
-
-            run:{
-                frames:[4,5,6,7],
-                loop:true
-            },
-
-            attack:{
-                frames:[16,17,18,19],
-                loop:false
-            },
-
-            skill1:{
-                frames:[20,21,22,23],
-                loop:false
-            },
-
-            skill2:{
-                frames:[24,25,26,27],
-                loop:false
-            },
-
-            skill3:{
-                frames:[28,29],
-                loop:false
-            }
-
-        };
-
-
-        /*
-           Vùng 30 frame
-           theo ảnh bạn gửi
-        */
 
         this.frames = [
 
@@ -1134,65 +1615,21 @@ class Character {
         ];
 
 
-        this.animation =
-            "idle";
+        this.idleFrames =
+            [0,1,2,3];
 
 
-        this.frameIndex =
+        this.index =
             0;
 
 
         this.lastTime =
             performance.now();
-
-
-        this.running =
-            true;
-
-
-        this.image.onload =
-            () => {
-
-                this.draw();
-
-            };
 
 
         requestAnimationFrame(
             this.loop.bind(this)
         );
-
-    }
-
-
-    play(name){
-
-        if(
-            !this.animations[name]
-        ){
-
-            return;
-
-        }
-
-
-        this.animation =
-            name;
-
-
-        this.frameIndex =
-            0;
-
-
-        this.running =
-            true;
-
-
-        this.lastTime =
-            performance.now();
-
-
-        this.draw();
 
     }
 
@@ -1208,27 +1645,12 @@ class Character {
         }
 
 
-        const animation =
-            this.animations[
-                this.animation
-            ];
-
-
-        const number =
-            animation.frames[
-                this.frameIndex
-            ];
-
-
         const frame =
-            this.frames[number];
-
-
-        if(!frame){
-
-            return;
-
-        }
+            this.frames[
+                this.idleFrames[
+                    this.index
+                ]
+            ];
 
 
         const ctx =
@@ -1243,20 +1665,12 @@ class Character {
         );
 
 
-        const padding =
-            10;
-
-
         const scale =
             Math.min(
 
-                (this.canvas.width -
-                    padding * 2)
-                    / frame.w,
+                380 / frame.w,
 
-                (this.canvas.height -
-                    padding * 2)
-                    / frame.h
+                380 / frame.h
 
             );
 
@@ -1301,80 +1715,29 @@ class Character {
     loop(time){
 
         if(
-            this.running
+            time -
+            this.lastTime
+            >
+            150
         ){
 
-            const animation =
-                this.animations[
-                    this.animation
-                ];
-
-
-            const delay =
-                1000 /
-                superman.fps;
-
+            this.index++;
 
             if(
-                time -
-                this.lastTime
-                >=
-                delay
+                this.index >=
+                this.idleFrames.length
             ){
 
-                this.frameIndex++;
-
-
-                this.lastTime =
-                    time;
-
-
-                if(
-                    this.frameIndex
-                    >=
-                    animation.frames.length
-                ){
-
-                    if(
-                        animation.loop
-                    ){
-
-                        this.frameIndex =
-                            0;
-
-                    }
-                    else{
-
-                        this.frameIndex =
-                            animation.frames.length - 1;
-
-
-                        this.running =
-                            false;
-
-
-                        setTimeout(
-
-                            () => {
-
-                                this.play(
-                                    "idle"
-                                );
-
-                            },
-
-                            100
-
-                        );
-
-                    }
-
-                }
-
-
-                this.draw();
+                this.index=0;
 
             }
+
+
+            this.lastTime =
+                time;
+
+
+            this.draw();
 
         }
 
@@ -1389,39 +1752,34 @@ class Character {
 
 
 /* ==================================================
-   MÀN HÌNH
+   STATE
 ================================================== */
 
-const landingScreen =
-    document.getElementById(
-        "landingScreen"
-    );
+let selectedCharacter =
+    characters.superman;
 
 
-const homeScreen =
-    document.getElementById(
-        "homeScreen"
-    );
+let selectedSlot =
+    0;
 
 
-const lapnhomScreen =
-    document.getElementById(
-        "lapnhomScreen"
-    );
+let team = [
+
+    null,
+    null,
+    null,
+    null,
+    null
+
+];
 
 
-const errorScreen =
-    document.getElementById(
-        "errorScreen"
-    );
-
-
-let character =
+let animation =
     null;
 
 
 /* ==================================================
-   HIỆN MÀN HÌNH
+   HIỆN SCREEN
 ================================================== */
 
 function showScreen(
@@ -1433,7 +1791,6 @@ function showScreen(
             ".screen"
         )
         .forEach(
-
             function(item){
 
                 item.classList.remove(
@@ -1441,7 +1798,6 @@ function showScreen(
                 );
 
             }
-
         );
 
 
@@ -1449,40 +1805,6 @@ function showScreen(
         "active"
     );
 
-
-    scaleGame();
-
-}
-
-
-/* ==================================================
-   SCALE
-================================================== */
-
-function scaleGame(){
-
-    const frame =
-        document.getElementById(
-            "gameFrame"
-        );
-
-
-    const scale =
-        Math.min(
-
-            window.innerWidth /
-            1536,
-
-            window.innerHeight /
-            864
-
-        );
-
-
-    frame.style.transform =
-        "translate(-50%,-50%) scale(" +
-        scale +
-        ")";
 
 }
 
@@ -1495,172 +1817,105 @@ document
     .getElementById(
         "experienceButton"
     )
-    .onclick = function(){
+    .onclick =
+    function(){
 
         showScreen(
-            homeScreen
+            document.getElementById(
+                "homeScreen"
+            )
         );
 
     };
 
 
 /* ==================================================
-   MỞ LẬP NHÓM
-================================================== */
-
-document
-    .querySelector(
-        ".btn-lapnhom"
-    )
-    .onclick = function(){
-
-        showScreen(
-            lapnhomScreen
-        );
-
-
-        if(
-            !character
-        ){
-
-            character =
-                new Character();
-
-        }
-        else{
-
-            character.play(
-                "idle"
-            );
-
-        }
-
-    };
-
-
-/* ==================================================
-   CÁC NÚT KHÁC
-================================================== */
-
-document
-    .querySelectorAll(
-        ".game-button"
-    )
-    .forEach(
-
-        function(button){
-
-            button.addEventListener(
-                "click",
-                function(){
-
-                    const route =
-                        button.dataset.route;
-
-
-                    if(
-                        route ===
-                        "lapnhom"
-                    ){
-
-                        return;
-
-                    }
-
-
-                    show404(
-                        route
-                    );
-
-                }
-            );
-
-        }
-
-    );
-
-
-/* ==================================================
-   404
-================================================== */
-
-function show404(
-    route
-){
-
-    showScreen(
-        errorScreen
-    );
-
-
-    document
-        .getElementById(
-            "errorText"
-        )
-        .innerHTML =
-        "Trang <b>/" +
-        route +
-        "</b> chưa được tạo.";
-
-}
-
-
-/* ==================================================
-   QUAY LẠI
+   LẬP NHÓM
 ================================================== */
 
 document
     .getElementById(
-        "backHome"
+        "openTeam"
     )
-    .onclick = function(){
+    .onclick =
+    function(){
 
         showScreen(
-            homeScreen
+            document.getElementById(
+                "lapnhomScreen"
+            )
         );
+
+
+        if(!animation){
+
+            animation =
+                new CharacterAnimation();
+
+        }
 
     };
 
 
+/* ==================================================
+   QUAY LẠI HOME
+================================================== */
+
 document
     .getElementById(
-        "errorBack"
+        "teamBack"
     )
-    .onclick = function(){
+    .onclick =
+    function(){
 
         showScreen(
-            homeScreen
+            document.getElementById(
+                "homeScreen"
+            )
         );
 
     };
 
 
 /* ==================================================
-   NÚT ANIMATION
+   CHỌN Ô ĐỘI HÌNH
 ================================================== */
 
 document
     .querySelectorAll(
-        "[data-animation]"
+        ".team-slot"
     )
     .forEach(
 
-        function(button){
+        function(slot){
 
-            button.onclick =
+            slot.onclick =
                 function(){
 
-                    if(
-                        character
-                    ){
-
-                        character.play(
-
-                            button.dataset.animation
-
+                    selectedSlot =
+                        Number(
+                            slot.dataset.slot
                         );
 
-                    }
+
+                    document
+                        .querySelectorAll(
+                            ".team-slot"
+                        )
+                        .forEach(
+                            function(s){
+
+                                s.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
+                    slot.classList.add(
+                        "selected"
+                    );
 
                 };
 
@@ -1670,29 +1925,342 @@ document
 
 
 /* ==================================================
-   SCALE
+   CHỌN NHÂN VẬT
 ================================================== */
 
-window.addEventListener(
-    "resize",
-    scaleGame
-);
+document
+    .querySelectorAll(
+        ".character-card"
+    )
+    .forEach(
+
+        function(card){
+
+            card.onclick =
+                function(){
+
+                    const id =
+                        card.dataset.character;
 
 
-window.addEventListener(
-    "orientationchange",
+                    selectedCharacter =
+                        characters[id];
+
+
+                    document
+                        .querySelectorAll(
+                            ".character-card"
+                        )
+                        .forEach(
+                            function(c){
+
+                                c.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    card.classList.add(
+                        "active"
+                    );
+
+
+                    updateCharacterInfo();
+
+                };
+
+        }
+
+    );
+
+
+/* ==================================================
+   CẬP NHẬT THÔNG TIN
+================================================== */
+
+function updateCharacterInfo(){
+
+    document
+        .getElementById(
+            "selectedName"
+        )
+        .textContent =
+        selectedCharacter.name;
+
+
+    document
+        .getElementById(
+            "infoLevel"
+        )
+        .textContent =
+        "Lv." +
+        selectedCharacter.level;
+
+
+    document
+        .getElementById(
+            "infoHp"
+        )
+        .textContent =
+        selectedCharacter.hp;
+
+
+    document
+        .getElementById(
+            "infoAtk"
+        )
+        .textContent =
+        selectedCharacter.atk;
+
+
+    document
+        .getElementById(
+            "infoDef"
+        )
+        .textContent =
+        selectedCharacter.def;
+
+}
+
+
+/* ==================================================
+   TRANG BỊ
+================================================== */
+
+document
+    .getElementById(
+        "equipButton"
+    )
+    .onclick =
     function(){
 
-        setTimeout(
-            scaleGame,
-            200
+        team[
+            selectedSlot
+        ] =
+        selectedCharacter.id;
+
+
+        renderTeam();
+
+    };
+
+
+/* ==================================================
+   THÁO
+================================================== */
+
+document
+    .getElementById(
+        "removeButton"
+    )
+    .onclick =
+    function(){
+
+        team[
+            selectedSlot
+        ] =
+        null;
+
+
+        renderTeam();
+
+    };
+
+
+/* ==================================================
+   VẼ ĐỘI HÌNH
+================================================== */
+
+function renderTeam(){
+
+    const slots =
+        document
+            .querySelectorAll(
+                ".team-slot"
+            );
+
+
+    slots.forEach(
+
+        function(slot){
+
+            const index =
+                Number(
+                    slot.dataset.slot
+                );
+
+
+            const id =
+                team[index];
+
+
+            const oldImage =
+                slot.querySelector(
+                    ".slot-image"
+                );
+
+
+            const oldName =
+                slot.querySelector(
+                    ".slot-name"
+                );
+
+
+            if(oldImage){
+
+                oldImage.remove();
+
+            }
+
+
+            if(oldName){
+
+                oldName.remove();
+
+            }
+
+
+            slot.classList.remove(
+                "empty"
+            );
+
+
+            if(!id){
+
+                slot.classList.add(
+                    "empty"
+                );
+
+                return;
+
+            }
+
+
+            const char =
+                characters[id];
+
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+
+            image.className =
+                "slot-image";
+
+
+            image.src =
+                char.image;
+
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+
+            name.className =
+                "slot-name";
+
+
+            name.textContent =
+                char.name;
+
+
+            slot.appendChild(
+                image
+            );
+
+
+            slot.appendChild(
+                name
+            );
+
+        }
+
+    );
+
+}
+
+
+/* ==================================================
+   NÚT KHÁC
+================================================== */
+
+document
+    .querySelectorAll(
+        ".game-button[data-route]"
+    )
+    .forEach(
+
+        function(button){
+
+            if(
+                button.id ===
+                "openTeam"
+            ){
+
+                return;
+
+            }
+
+
+            button.onclick =
+                function(){
+
+                    showScreen(
+                        document.getElementById(
+                            "errorScreen"
+                        )
+                    );
+
+
+                    document
+                        .getElementById(
+                            "errorText"
+                        )
+                        .innerHTML =
+                        "Trang <b>/" +
+                        button.dataset.route +
+                        "</b> chưa được tạo.";
+
+                };
+
+        }
+
+    );
+
+
+/* ==================================================
+   404 BACK
+================================================== */
+
+document
+    .getElementById(
+        "errorBack"
+    )
+    .onclick =
+    function(){
+
+        showScreen(
+            document.getElementById(
+                "homeScreen"
+            )
         );
 
-    }
-);
+    };
 
 
-scaleGame();
+/* ==================================================
+   START
+================================================== */
+
+updateCharacterInfo();
+
+renderTeam();
 
 </script>
 
