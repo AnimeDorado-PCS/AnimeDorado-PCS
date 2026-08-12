@@ -2,16 +2,16 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
+               initial-scale=1,
+               maximum-scale=1,
                user-scalable=no">
 
-<title>AnimeDorado</title>
+<title>ANIME DORADO</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -19,1018 +19,1680 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html,body{
     width:100%;
     height:100%;
     overflow:hidden;
     background:#000;
-}
-
-body{
     font-family:Arial,Helvetica,sans-serif;
+    color:white;
 }
 
-/* =========================================
-   HOME
-========================================= */
+button{
+    font:inherit;
+}
 
-#home{
-    position:fixed;
+.screen{
+    position:absolute;
     inset:0;
+    display:none;
     overflow:hidden;
-    background:#000;
 }
 
-/* =========================================
-   SPACE IMAGE
-========================================= */
-
-#space{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    transform:
-        translate(-50%,-50%)
-        scale(1.02);
-
-    animation:
-        spaceMove 16s
-        ease-in-out
-        infinite alternate;
-
-    will-change:transform;
-
-    user-select:none;
-    -webkit-user-drag:none;
+.screen.active{
+    display:block;
 }
 
-@keyframes spaceMove{
 
-    0%{
-        transform:
-            translate(-50%,-50%)
-            scale(1.02)
-            translate3d(0,0,0);
-    }
+/* ==================================================
+   MỞ TRẢI NGHIỆM
+================================================== */
 
-    50%{
-        transform:
-            translate(-49.6%,-50.4%)
-            scale(1.055)
-            translate3d(-7px,4px,0);
-    }
-
-    100%{
-        transform:
-            translate(-50.2%,-49.7%)
-            scale(1.04)
-            translate3d(7px,-4px,0);
-    }
-}
-
-/* =========================================
-   OVERLAY
-========================================= */
-
-.dark{
-    position:absolute;
-    inset:0;
+#landingScreen{
 
     background:
         radial-gradient(
-            circle at 50% 44%,
-            rgba(30,140,255,.08),
-            rgba(0,0,0,.63)
+            circle at center,
+            #294268 0%,
+            #101827 55%,
+            #020408 100%
         );
 
-    pointer-events:none;
 }
 
-/* =========================================
-   GLOW
-========================================= */
+.landing-box{
 
-.glow{
     position:absolute;
 
     left:50%;
     top:50%;
-
-    width:46vmax;
-    height:46vmax;
 
     transform:
         translate(-50%,-50%);
 
-    border-radius:50%;
+    width:min(
+        560px,
+        90vw
+    );
+
+    padding:34px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        rgba(255,214,90,.35);
+
+    border-radius:24px;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(45,120,255,.12),
-            transparent 68%
-        );
+        rgba(0,0,0,.45);
 
-    filter:blur(22px);
-
-    animation:
-        glowPulse 5s
-        ease-in-out
-        infinite;
-
-    pointer-events:none;
 }
 
-@keyframes glowPulse{
+.landing-title{
 
-    0%,100%{
-        opacity:.45;
-        transform:
-            translate(-50%,-50%)
-            scale(.95);
-    }
+    font-size:42px;
 
-    50%{
-        opacity:.9;
-        transform:
-            translate(-50%,-50%)
-            scale(1.08);
-    }
+    font-weight:900;
+
+    color:#ffd65a;
+
 }
 
-/* =========================================
-   STARS
-========================================= */
+.landing-text{
 
-.stars{
-    position:absolute;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
+    margin-top:10px;
+
+    color:#c8cedb;
+
+    line-height:1.5;
+
 }
 
-.star{
-    position:absolute;
+.experience-button{
 
-    width:2px;
-    height:2px;
+    margin-top:25px;
 
-    background:#fff;
+    min-width:240px;
 
-    border-radius:50%;
+    min-height:58px;
 
-    opacity:.55;
-
-    animation:
-        starFloat linear infinite;
-}
-
-@keyframes starFloat{
-
-    0%{
-        transform:
-            translate3d(0,30px,0)
-            scale(.7);
-
-        opacity:.15;
-    }
-
-    50%{
-        opacity:1;
-    }
-
-    100%{
-        transform:
-            translate3d(22px,-140px,0)
-            scale(1.4);
-
-        opacity:0;
-    }
-}
-
-/* =========================================
-   TOP BUTTONS
-========================================= */
-
-.top-button{
-    position:absolute;
-
-    top:20px;
-
-    width:54px;
-    height:54px;
-
-    border:1px solid
-        rgba(130,190,255,.8);
+    border:none;
 
     border-radius:14px;
 
     background:
-        rgba(0,15,45,.5);
+        linear-gradient(
+            135deg,
+            #b8790a,
+            #ffd65a
+        );
 
-    color:#fff;
+    color:#1b1304;
 
-    font-size:24px;
+    font-weight:900;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+}
 
-    box-shadow:
-        0 0 12px rgba(50,130,255,.25);
 
-    backdrop-filter:blur(5px);
+/* ==================================================
+   HOME
+================================================== */
+
+#homeScreen{
+
+    background:#000;
+
+}
+
+.game-frame{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:1536px;
+    height:864px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transform-origin:center center;
+
+}
+
+#gameBackground{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:864px;
+
+    object-fit:fill;
+
+    display:block;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+}
+
+
+/* ==================================================
+   NÚT ẨN
+================================================== */
+
+.button-layer{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+}
+
+.game-button{
+
+    position:absolute;
+
+    border:none;
+
+    background:transparent;
 
     cursor:pointer;
 
-    z-index:20;
+    pointer-events:auto;
+
 }
 
-.top-button:active{
-    transform:scale(.93);
+
+/* Hồ sơ */
+
+.btn-profile{
+
+    left:18px;
+    top:15px;
+
+    width:430px;
+    height:130px;
+
 }
 
-#soundButton{
-    left:20px;
+
+/* Vàng */
+
+.btn-gold{
+
+    left:565px;
+    top:8px;
+
+    width:285px;
+    height:75px;
+
 }
 
-#settingsButton{
-    right:20px;
+
+/* Ruby */
+
+.btn-ruby{
+
+    left:875px;
+    top:8px;
+
+    width:275px;
+    height:75px;
+
 }
 
-/* =========================================
-   LOGO
-========================================= */
 
-.logo{
-    position:absolute;
+/* Lập nhóm */
 
-    left:50%;
-    top:13%;
+.btn-lapnhom{
 
-    width:92%;
+    left:35px;
+    bottom:8px;
 
-    transform:
-        translateX(-50%);
+    width:145px;
+    height:125px;
+
+}
+
+
+/* Nâng cấp */
+
+.btn-nangcap{
+
+    left:245px;
+    bottom:8px;
+
+    width:145px;
+    height:125px;
+
+}
+
+
+/* Rút nhân vật */
+
+.btn-rutnhanvat{
+
+    left:450px;
+    bottom:8px;
+
+    width:160px;
+    height:125px;
+
+}
+
+
+/* Cửa hàng */
+
+.btn-cuahang{
+
+    left:650px;
+    bottom:8px;
+
+    width:160px;
+    height:125px;
+
+}
+
+
+/* Bắt đầu */
+
+.btn-batdau{
+
+    right:0;
+    bottom:0;
+
+    width:430px;
+    height:175px;
+
+    border-radius:
+        55px 0 0 0;
+
+}
+
+
+/* ==================================================
+   LẬP NHÓM
+================================================== */
+
+#lapnhomScreen{
+
+    background:
+        radial-gradient(
+            circle at center,
+            #243a5e 0%,
+            #0d1320 58%,
+            #020305 100%
+        );
+
+    overflow:auto;
+
+}
+
+.team{
+
+    width:min(
+        960px,
+        94vw
+    );
+
+    min-height:100%;
+
+    margin:auto;
+
+    padding:
+        20px
+        0
+        30px;
+
+}
+
+.team-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.team-title{
+
+    font-size:28px;
+
+    font-weight:900;
+
+    color:#ffd65a;
+
+}
+
+.back-button{
+
+    border:none;
+
+    border-radius:11px;
+
+    padding:
+        11px
+        15px;
+
+    background:#202a3a;
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+.team-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(300px,420px)
+        1fr;
+
+    gap:18px;
+
+    margin-top:18px;
+
+}
+
+.card{
+
+    border:
+        1px solid
+        rgba(255,214,90,.22);
+
+    border-radius:20px;
+
+    background:
+        rgba(0,0,0,.35);
+
+}
+
+.character-card{
+
+    padding:12px;
+
+}
+
+.character-name{
 
     text-align:center;
 
-    animation:
-        logoFloat 4s
-        ease-in-out
-        infinite alternate;
+    font-size:23px;
 
-    z-index:10;
+    font-weight:900;
+
 }
 
-@keyframes logoFloat{
+.character-rarity{
 
-    from{
-        transform:
-            translateX(-50%)
-            translateY(0);
-    }
+    text-align:center;
 
-    to{
-        transform:
-            translateX(-50%)
-            translateY(-7px);
-    }
+    color:#ffd65a;
+
+    margin-top:4px;
+
 }
 
-.logo h1{
-    font-size:
-        clamp(
-            38px,
-            7vw,
-            84px
-        );
+#characterCanvas{
 
-    font-weight:1000;
-
-    letter-spacing:
-        clamp(
-            3px,
-            .8vw,
-            10px
-        );
-
-    color:#fff;
-
-    text-shadow:
-        0 0 8px rgba(120,150,255,.9),
-        0 0 22px rgba(90,70,255,.85),
-        0 0 45px rgba(70,110,255,.7);
-}
-
-.logo h2{
-    margin-top:9px;
-
-    font-size:
-        clamp(
-            13px,
-            2.2vw,
-            24px
-        );
-
-    letter-spacing:
-        clamp(
-            2px,
-            .4vw,
-            6px
-        );
-
-    color:#79dbff;
-
-    text-shadow:
-        0 0 12px rgba(0,190,255,.9);
-}
-
-/* =========================================
-   PLAY AREA
-========================================= */
-
-.play-area{
-    position:absolute;
-
-    left:50%;
-
-    bottom:13%;
-
-    transform:
-        translateX(-50%);
+    display:block;
 
     width:100%;
 
-    text-align:center;
+    max-width:420px;
 
-    z-index:10;
+    height:auto;
+
+    margin:auto;
+
 }
 
-.play-button{
+.skill-grid{
 
-    width:
-        min(
-            360px,
-            72vw
-        );
+    display:grid;
 
-    height:
-        min(
-            82px,
-            13vw
-        );
+    grid-template-columns:
+        repeat(2,1fr);
 
-    min-height:60px;
+    gap:8px;
 
-    border:
-        2px solid
-        #a984ff;
+}
 
-    border-radius:18px;
+.skill-button{
+
+    min-height:46px;
+
+    border:none;
+
+    border-radius:11px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(104,40,255,.96),
-            rgba(23,112,255,.96)
+            #5a3707,
+            #c88915
         );
 
-    color:#fff;
-
-    font-size:
-        clamp(
-            21px,
-            4vw,
-            34px
-        );
+    color:white;
 
     font-weight:900;
 
-    letter-spacing:2px;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 0 12px rgba(120,75,255,.9),
-        0 0 32px rgba(75,90,255,.7),
-        inset 0 0 18px
-        rgba(255,255,255,.15);
-
-    animation:
-        buttonPulse 2.2s
-        ease-in-out
-        infinite;
-
-    transition:.2s;
 }
 
-@keyframes buttonPulse{
+.info-card{
 
-    0%,100%{
-        box-shadow:
-            0 0 12px rgba(120,75,255,.9),
-            0 0 30px rgba(75,90,255,.55),
-            inset 0 0 18px
-            rgba(255,255,255,.15);
-    }
+    padding:18px;
 
-    50%{
-        box-shadow:
-            0 0 20px rgba(160,110,255,1),
-            0 0 50px rgba(80,110,255,.9),
-            inset 0 0 25px
-            rgba(255,255,255,.2);
-    }
 }
 
-.play-button:active{
-    transform:scale(.95);
+.info-card h2{
+
+    color:#ffd65a;
+
+    margin-bottom:12px;
+
 }
 
-.subtitle{
+.stat{
 
-    margin-top:13px;
+    display:flex;
 
-    color:#9fe2ff;
+    justify-content:space-between;
 
-    font-size:
-        clamp(
-            10px,
-            1.8vw,
-            15px
+    padding:10px 0;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+    color:#ccd2df;
+
+}
+
+.stat b{
+
+    color:white;
+
+}
+
+
+/* ==================================================
+   404
+================================================== */
+
+#errorScreen{
+
+    background:
+        radial-gradient(
+            circle at center,
+            #263b5c 0%,
+            #101827 55%,
+            #020408 100%
         );
 
-    letter-spacing:3px;
-
-    text-shadow:
-        0 0 8px
-        rgba(0,150,255,.8);
 }
 
-/* =========================================
-   FOOTER
-========================================= */
-
-.footer{
+.error-box{
 
     position:absolute;
 
     left:50%;
-    bottom:3%;
+    top:50%;
 
     transform:
-        translateX(-50%);
+        translate(-50%,-50%);
 
-    color:
-        rgba(255,255,255,.42);
+    width:min(
+        520px,
+        88vw
+    );
 
-    font-size:10px;
+    padding:30px;
 
-    letter-spacing:2px;
+    text-align:center;
 
-    white-space:nowrap;
+    border:
+        1px solid
+        rgba(255,215,100,.35);
 
-    z-index:10;
-}
+    border-radius:20px;
 
-/* =========================================
-   LANDSCAPE
-========================================= */
-
-@media (orientation:landscape){
-
-    .logo{
-        top:10%;
-    }
-
-    .play-area{
-        bottom:10%;
-    }
-
-    .play-button{
-        width:290px;
-        height:64px;
-        min-height:0;
-        font-size:26px;
-    }
-
-    .subtitle{
-        margin-top:8px;
-        font-size:11px;
-    }
-
-    .footer{
-        display:none;
-    }
+    background:
+        rgba(0,0,0,.45);
 
 }
 
-/* =========================================
-   LANDSCAPE MÀN HÌNH RẤT THẤP
-========================================= */
+.error-box h1{
 
-@media (orientation:landscape) and (max-height:500px){
+    font-size:58px;
 
-    .top-button{
-        width:46px;
-        height:46px;
-        top:12px;
+    color:#ffd65a;
+
+}
+
+.error-box p{
+
+    margin-top:10px;
+
+    color:#bbc4d2;
+
+    line-height:1.5;
+
+}
+
+.error-box button{
+
+    margin-top:20px;
+
+    min-width:180px;
+
+    min-height:48px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b8790a,
+            #ffd65a
+        );
+
+    color:#1b1304;
+
+    font-weight:bold;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:760px){
+
+    .landing-title{
+
+        font-size:32px;
+
     }
 
-    #soundButton{
-        left:12px;
-    }
+    .team-grid{
 
-    #settingsButton{
-        right:12px;
-    }
+        grid-template-columns:1fr;
 
-    .logo{
-        top:5%;
-    }
-
-    .logo h1{
-        font-size:
-            clamp(
-                30px,
-                7vh,
-                58px
-            );
-    }
-
-    .logo h2{
-        font-size:12px;
-        margin-top:4px;
-    }
-
-    .play-area{
-        bottom:5%;
-    }
-
-    .play-button{
-        width:260px;
-        height:54px;
-        font-size:21px;
-    }
-
-    .subtitle{
-        margin-top:5px;
-        font-size:9px;
     }
 
 }
 
-/* =========================================
-   DỌC
-========================================= */
-
-@media (orientation:portrait){
-
-    .logo{
-        top:12%;
-    }
-
-    .play-area{
-        bottom:12%;
-    }
-
-}
-
-/* =========================================
-   MÁY RẤT NHỎ
-========================================= */
-
-@media (max-width:380px){
-
-    .logo h1{
-        font-size:31px;
-    }
-
-    .logo h2{
-        font-size:11px;
-    }
-
-    .play-button{
-        height:60px;
-        font-size:19px;
-    }
-}
 </style>
 </head>
 
+
 <body>
 
-<div id="home">
 
-    <!-- ẢNH NỀN -->
-    <img
-        id="space"
-        src="./space.jpeg"
-        alt="Space">
+<!-- ==================================================
+     MỞ TRẢI NGHIỆM
+================================================== -->
 
+<section
+    id="landingScreen"
+    class="screen active">
 
-    <div class="dark"></div>
+    <div class="landing-box">
 
-    <div class="glow"></div>
-
-
-    <!-- SAO -->
-    <div
-        class="stars"
-        id="stars">
-    </div>
-
-
-    <!-- NÚT ÂM THANH -->
-    <button
-        id="soundButton"
-        class="top-button"
-        type="button"
-        onclick="toggleSound()">
-
-        🔊
-
-    </button>
-
-
-    <!-- NÚT CÀI ĐẶT -->
-    <button
-        id="settingsButton"
-        class="top-button"
-        type="button">
-
-        ⚙️
-
-    </button>
-
-
-    <!-- LOGO -->
-
-    <div class="logo">
-
-        <h1>
+        <div class="landing-title">
             ANIME DORADO
-        </h1>
+        </div>
 
-        <h2>
-            ANIME ADVENTURE
-        </h2>
+        <div class="landing-text">
 
-    </div>
+            Game web • nhân vật • lập nhóm • chiến đấu
 
-
-    <!-- PLAY -->
-
-    <div class="play-area">
+        </div>
 
         <button
-            id="playButton"
-            class="play-button"
-            type="button"
-            onclick="playGame()">
+            class="experience-button"
+            id="experienceButton">
 
-            ★ &nbsp; CHƠI THỬ &nbsp; ★
+            MỞ TRẢI NGHIỆM
 
         </button>
 
-        <div class="subtitle">
+    </div>
 
-            BẮT ĐẦU HÀNH TRÌNH CỦA BẠN
+</section>
+
+
+<!-- ==================================================
+     HOME
+================================================== -->
+
+<section
+    id="homeScreen"
+    class="screen">
+
+
+    <div
+        id="gameFrame"
+        class="game-frame">
+
+
+        <img
+            id="gameBackground"
+            src="./nengame.png"
+            alt="ANIME DORADO">
+
+
+        <div class="button-layer">
+
+
+            <button
+                class="game-button btn-profile"
+                data-route="profile">
+            </button>
+
+
+            <button
+                class="game-button btn-gold"
+                data-route="gold">
+            </button>
+
+
+            <button
+                class="game-button btn-ruby"
+                data-route="ruby">
+            </button>
+
+
+            <button
+                class="game-button btn-lapnhom"
+                data-route="lapnhom">
+            </button>
+
+
+            <button
+                class="game-button btn-nangcap"
+                data-route="nangcap">
+            </button>
+
+
+            <button
+                class="game-button btn-rutnhanvat"
+                data-route="rutnhanvat">
+            </button>
+
+
+            <button
+                class="game-button btn-cuahang"
+                data-route="cuahang">
+            </button>
+
+
+            <button
+                class="game-button btn-batdau"
+                data-route="batdau">
+            </button>
+
 
         </div>
 
     </div>
 
+</section>
 
-    <div class="footer">
 
-        ANIME DORADO © 2026
+<!-- ==================================================
+     LẬP NHÓM
+================================================== -->
+
+<section
+    id="lapnhomScreen"
+    class="screen">
+
+
+    <div class="team">
+
+
+        <div class="team-top">
+
+            <div class="team-title">
+                LẬP NHÓM
+            </div>
+
+
+            <button
+                class="back-button"
+                id="backHome">
+
+                ← QUAY LẠI
+
+            </button>
+
+        </div>
+
+
+        <div class="team-grid">
+
+
+            <!-- NHÂN VẬT -->
+
+            <div>
+
+
+                <div
+                    class="card character-card">
+
+
+                    <div class="character-name">
+                        Superman
+                    </div>
+
+
+                    <div
+                        class="character-rarity">
+
+                        SSR • Lv.1
+
+                    </div>
+
+
+                    <canvas
+                        id="characterCanvas"
+                        width="420"
+                        height="420">
+                    </canvas>
+
+
+                    <div class="skill-grid">
+
+
+                        <button
+                            class="skill-button"
+                            data-animation="idle">
+
+                            IDLE
+
+                        </button>
+
+
+                        <button
+                            class="skill-button"
+                            data-animation="run">
+
+                            CHẠY
+
+                        </button>
+
+
+                        <button
+                            class="skill-button"
+                            data-animation="attack">
+
+                            ĐÁNH THƯỜNG
+
+                        </button>
+
+
+                        <button
+                            class="skill-button"
+                            data-animation="skill1">
+
+                            SKILL 1
+
+                        </button>
+
+
+                        <button
+                            class="skill-button"
+                            data-animation="skill2">
+
+                            SKILL 2
+
+                        </button>
+
+
+                        <button
+                            class="skill-button"
+                            data-animation="skill3">
+
+                            SKILL 3
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- THÔNG TIN -->
+
+            <div
+                class="card info-card">
+
+
+                <h2>
+                    THÔNG TIN NHÂN VẬT
+                </h2>
+
+
+                <div class="stat">
+
+                    <span>HP</span>
+
+                    <b>1000</b>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span>ATK</span>
+
+                    <b>120</b>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span>DEF</span>
+
+                    <b>80</b>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span>Tốc độ đánh</span>
+
+                    <b>1.2s</b>
+
+                </div>
+
+
+                <div
+                    style="
+                        margin-top:20px;
+                        color:#c8cedb;
+                        line-height:1.5;
+                    ">
+
+                    Superman đã có trong đội.
+                    <br>
+                    Bạn có thể thử toàn bộ animation
+                    bằng các nút bên trái.
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
 
     </div>
 
 
-    <!--
-      NHẠC NỀN
+</section>
 
-      Đặt file music.mp3 cùng thư mục
-      với index.html.
-    -->
 
-    <audio
-        id="music"
-        src="./music.mp3"
-        loop
-        preload="auto">
-    </audio>
+<!-- ==================================================
+     404
+================================================== -->
 
-</div>
+<section
+    id="errorScreen"
+    class="screen">
+
+
+    <div class="error-box">
+
+
+        <h1>
+            404
+        </h1>
+
+
+        <p
+            id="errorText">
+        </p>
+
+
+        <button
+            id="errorBack">
+
+            ← QUAY LẠI
+
+        </button>
+
+
+    </div>
+
+
+</section>
 
 
 <script>
 
-/* =========================================
-   TẠO SAO
-========================================= */
+/* ==================================================
+   NHÂN VẬT
+================================================== */
 
-const stars =
-    document.getElementById(
-        "stars"
-    );
+const superman = {
 
-for(
-    let i = 0;
-    i < 60;
-    i++
-){
+    image:
+        "./characters/superman/sprite.png",
 
-    const star =
-        document.createElement(
-            "div"
-        );
+    fps:10
 
-    star.className =
-        "star";
-
-    star.style.left =
-        Math.random()*100 +
-        "%";
-
-    star.style.top =
-        Math.random()*100 +
-        "%";
-
-    const size =
-        Math.random()*2 + 1;
-
-    star.style.width =
-        size + "px";
-
-    star.style.height =
-        size + "px";
-
-    star.style.animationDuration =
-        (4 + Math.random()*8) +
-        "s";
-
-    star.style.animationDelay =
-        (-Math.random()*8) +
-        "s";
-
-    stars.appendChild(
-        star
-    );
-}
+};
 
 
-/* =========================================
-   ÂM THANH
-========================================= */
+/* ==================================================
+   ANIMATION
+================================================== */
 
-const music =
-    document.getElementById(
-        "music"
-    );
-
-const soundButton =
-    document.getElementById(
-        "soundButton"
-    );
+class Character {
 
 
-let soundOn =
-    localStorage.getItem(
-        "animeDoradoSound"
-    ) !== "off";
+    constructor(){
 
-
-function updateSoundButton(){
-
-    soundButton.textContent =
-        soundOn
-        ? "🔊"
-        : "🔇";
-}
-
-
-async function startMusic(){
-
-    if(!soundOn){
-        return;
-    }
-
-    try{
-
-        music.volume =
-            0.45;
-
-        await music.play();
-
-    }catch(error){
-
-        /*
-          Trình duyệt có thể chặn
-          autoplay trước khi người dùng
-          chạm màn hình.
-        */
-
-        console.log(
-            "Autoplay blocked"
-        );
-
-    }
-}
-
-
-function toggleSound(){
-
-    soundOn =
-        !soundOn;
-
-    localStorage.setItem(
-        "animeDoradoSound",
-        soundOn
-        ? "on"
-        : "off"
-    );
-
-
-    if(soundOn){
-
-        music.volume =
-            0.45;
-
-        music.play()
-            .catch(
-                function(){}
+        this.canvas =
+            document.getElementById(
+                "characterCanvas"
             );
 
-    }else{
+        this.ctx =
+            this.canvas.getContext(
+                "2d"
+            );
 
-        music.pause();
+
+        this.image =
+            new Image();
+
+
+        this.image.src =
+            superman.image;
+
+
+        /*
+           30 frame:
+
+           01-04 IDLE
+           05-08 RUN
+           17-20 ATTACK
+           21-24 SKILL 1
+           25-28 SKILL 2
+           29-30 SKILL 3
+        */
+
+        this.animations = {
+
+            idle:{
+                frames:[0,1,2,3],
+                loop:true
+            },
+
+            run:{
+                frames:[4,5,6,7],
+                loop:true
+            },
+
+            attack:{
+                frames:[16,17,18,19],
+                loop:false
+            },
+
+            skill1:{
+                frames:[20,21,22,23],
+                loop:false
+            },
+
+            skill2:{
+                frames:[24,25,26,27],
+                loop:false
+            },
+
+            skill3:{
+                frames:[28,29],
+                loop:false
+            }
+
+        };
+
+
+        /*
+           Vùng 30 frame
+           theo ảnh bạn gửi
+        */
+
+        this.frames = [
+
+            {x:20,y:90,w:120,h:160},
+            {x:150,y:90,w:125,h:160},
+            {x:280,y:90,w:125,h:160},
+            {x:410,y:90,w:125,h:160},
+
+            {x:515,y:75,w:165,h:180},
+            {x:660,y:75,w:165,h:180},
+            {x:800,y:75,w:165,h:180},
+            {x:940,y:75,w:190,h:190},
+
+            {x:10,y:340,w:145,h:190},
+            {x:135,y:335,w:145,h:190},
+            {x:260,y:330,w:155,h:190},
+            {x:385,y:335,w:150,h:195},
+
+            {x:495,y:330,w:175,h:195},
+            {x:640,y:325,w:180,h:200},
+            {x:790,y:325,w:180,h:205},
+            {x:940,y:320,w:200,h:210},
+
+            {x:5,y:610,w:155,h:205},
+            {x:140,y:605,w:155,h:205},
+            {x:255,y:605,w:180,h:210},
+            {x:390,y:600,w:160,h:220},
+
+            {x:510,y:600,w:170,h:210},
+            {x:650,y:590,w:190,h:220},
+            {x:805,y:590,w:190,h:230},
+            {x:945,y:585,w:190,h:240},
+
+            {x:0,y:875,w:180,h:235},
+            {x:120,y:865,w:220,h:245},
+            {x:245,y:865,w:200,h:245},
+            {x:360,y:855,w:210,h:260},
+            {x:530,y:850,w:270,h:270},
+            {x:740,y:845,w:390,h:290}
+
+        ];
+
+
+        this.animation =
+            "idle";
+
+
+        this.frameIndex =
+            0;
+
+
+        this.lastTime =
+            performance.now();
+
+
+        this.running =
+            true;
+
+
+        this.image.onload =
+            () => {
+
+                this.draw();
+
+            };
+
+
+        requestAnimationFrame(
+            this.loop.bind(this)
+        );
 
     }
 
 
-    updateSoundButton();
-}
+    play(name){
 
+        if(
+            !this.animations[name]
+        ){
 
-/*
-  Lần đầu người chơi chạm vào màn hình
-  thì cố gắng bật nhạc.
-*/
-
-document.addEventListener(
-    "pointerdown",
-    function(){
-
-        if(soundOn){
-
-            startMusic();
+            return;
 
         }
 
-    },
-    {
-        once:true
-    }
-);
+
+        this.animation =
+            name;
 
 
-updateSoundButton();
+        this.frameIndex =
+            0;
 
 
-/* =========================================
-   CHƠI THỬ
-========================================= */
+        this.running =
+            true;
 
-function playGame(){
 
-    /*
-       Bấm nút = chắc chắn có tương tác
-       nên có thể phát nhạc nếu chưa phát.
-    */
+        this.lastTime =
+            performance.now();
 
-    if(soundOn){
 
-        music.volume =
-            0.45;
-
-        music.play()
-            .catch(
-                function(){}
-            );
+        this.draw();
 
     }
 
 
-    const home =
-        document.getElementById(
-            "home"
+    draw(){
+
+        if(
+            !this.image.complete
+        ){
+
+            return;
+
+        }
+
+
+        const animation =
+            this.animations[
+                this.animation
+            ];
+
+
+        const number =
+            animation.frames[
+                this.frameIndex
+            ];
+
+
+        const frame =
+            this.frames[number];
+
+
+        if(!frame){
+
+            return;
+
+        }
+
+
+        const ctx =
+            this.ctx;
+
+
+        ctx.clearRect(
+            0,
+            0,
+            this.canvas.width,
+            this.canvas.height
         );
 
-    home.style.transition =
-        "opacity .6s ease";
 
-    home.style.opacity =
-        "0";
+        const padding =
+            10;
 
 
-    setTimeout(
-        function(){
+        const scale =
+            Math.min(
 
-            window.location.href =
-                "./giaodien.html";
+                (this.canvas.width -
+                    padding * 2)
+                    / frame.w,
 
-        },
-        600
-    );
+                (this.canvas.height -
+                    padding * 2)
+                    / frame.h
+
+            );
+
+
+        const width =
+            frame.w * scale;
+
+
+        const height =
+            frame.h * scale;
+
+
+        const x =
+            (this.canvas.width -
+                width) / 2;
+
+
+        const y =
+            (this.canvas.height -
+                height) / 2;
+
+
+        ctx.drawImage(
+
+            this.image,
+
+            frame.x,
+            frame.y,
+            frame.w,
+            frame.h,
+
+            x,
+            y,
+            width,
+            height
+
+        );
+
+    }
+
+
+    loop(time){
+
+        if(
+            this.running
+        ){
+
+            const animation =
+                this.animations[
+                    this.animation
+                ];
+
+
+            const delay =
+                1000 /
+                superman.fps;
+
+
+            if(
+                time -
+                this.lastTime
+                >=
+                delay
+            ){
+
+                this.frameIndex++;
+
+
+                this.lastTime =
+                    time;
+
+
+                if(
+                    this.frameIndex
+                    >=
+                    animation.frames.length
+                ){
+
+                    if(
+                        animation.loop
+                    ){
+
+                        this.frameIndex =
+                            0;
+
+                    }
+                    else{
+
+                        this.frameIndex =
+                            animation.frames.length - 1;
+
+
+                        this.running =
+                            false;
+
+
+                        setTimeout(
+
+                            () => {
+
+                                this.play(
+                                    "idle"
+                                );
+
+                            },
+
+                            100
+
+                        );
+
+                    }
+
+                }
+
+
+                this.draw();
+
+            }
+
+        }
+
+
+        requestAnimationFrame(
+            this.loop.bind(this)
+        );
+
+    }
+
 }
 
 
-/* =========================================
-   KIỂM TRA SPACE.JPEG
-========================================= */
+/* ==================================================
+   MÀN HÌNH
+================================================== */
+
+const landingScreen =
+    document.getElementById(
+        "landingScreen"
+    );
+
+
+const homeScreen =
+    document.getElementById(
+        "homeScreen"
+    );
+
+
+const lapnhomScreen =
+    document.getElementById(
+        "lapnhomScreen"
+    );
+
+
+const errorScreen =
+    document.getElementById(
+        "errorScreen"
+    );
+
+
+let character =
+    null;
+
+
+/* ==================================================
+   HIỆN MÀN HÌNH
+================================================== */
+
+function showScreen(
+    screen
+){
+
+    document
+        .querySelectorAll(
+            ".screen"
+        )
+        .forEach(
+
+            function(item){
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
+
+        );
+
+
+    screen.classList.add(
+        "active"
+    );
+
+
+    scaleGame();
+
+}
+
+
+/* ==================================================
+   SCALE
+================================================== */
+
+function scaleGame(){
+
+    const frame =
+        document.getElementById(
+            "gameFrame"
+        );
+
+
+    const scale =
+        Math.min(
+
+            window.innerWidth /
+            1536,
+
+            window.innerHeight /
+            864
+
+        );
+
+
+    frame.style.transform =
+        "translate(-50%,-50%) scale(" +
+        scale +
+        ")";
+
+}
+
+
+/* ==================================================
+   MỞ TRẢI NGHIỆM
+================================================== */
 
 document
-.getElementById("space")
-.addEventListener(
-    "error",
-    function(){
+    .getElementById(
+        "experienceButton"
+    )
+    .onclick = function(){
 
-        document.body.innerHTML = `
+        showScreen(
+            homeScreen
+        );
 
-        <div style="
-            width:100%;
-            height:100%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            background:#05070d;
-            color:white;
-            text-align:center;
-            padding:30px;
-            font-family:Arial;
-        ">
+    };
 
-            <div>
 
-                <h2>
-                    Không tìm thấy space.jpeg
-                </h2>
+/* ==================================================
+   MỞ LẬP NHÓM
+================================================== */
 
-                <p style="
-                    margin-top:12px;
-                    color:#999;
-                ">
+document
+    .querySelector(
+        ".btn-lapnhom"
+    )
+    .onclick = function(){
 
-                    Hãy upload file
-                    <b>space.jpeg</b>
-                    cùng thư mục với
-                    <b>index.html</b>.
+        showScreen(
+            lapnhomScreen
+        );
 
-                </p>
 
-            </div>
+        if(
+            !character
+        ){
 
-        </div>
+            character =
+                new Character();
 
-        `;
+        }
+        else{
 
-    }
+            character.play(
+                "idle"
+            );
+
+        }
+
+    };
+
+
+/* ==================================================
+   CÁC NÚT KHÁC
+================================================== */
+
+document
+    .querySelectorAll(
+        ".game-button"
+    )
+    .forEach(
+
+        function(button){
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    const route =
+                        button.dataset.route;
+
+
+                    if(
+                        route ===
+                        "lapnhom"
+                    ){
+
+                        return;
+
+                    }
+
+
+                    show404(
+                        route
+                    );
+
+                }
+            );
+
+        }
+
+    );
+
+
+/* ==================================================
+   404
+================================================== */
+
+function show404(
+    route
+){
+
+    showScreen(
+        errorScreen
+    );
+
+
+    document
+        .getElementById(
+            "errorText"
+        )
+        .innerHTML =
+        "Trang <b>/" +
+        route +
+        "</b> chưa được tạo.";
+
+}
+
+
+/* ==================================================
+   QUAY LẠI
+================================================== */
+
+document
+    .getElementById(
+        "backHome"
+    )
+    .onclick = function(){
+
+        showScreen(
+            homeScreen
+        );
+
+    };
+
+
+document
+    .getElementById(
+        "errorBack"
+    )
+    .onclick = function(){
+
+        showScreen(
+            homeScreen
+        );
+
+    };
+
+
+/* ==================================================
+   NÚT ANIMATION
+================================================== */
+
+document
+    .querySelectorAll(
+        "[data-animation]"
+    )
+    .forEach(
+
+        function(button){
+
+            button.onclick =
+                function(){
+
+                    if(
+                        character
+                    ){
+
+                        character.play(
+
+                            button.dataset.animation
+
+                        );
+
+                    }
+
+                };
+
+        }
+
+    );
+
+
+/* ==================================================
+   SCALE
+================================================== */
+
+window.addEventListener(
+    "resize",
+    scaleGame
 );
 
-
-/* =========================================
-   GIỮ GIAO DIỆN ĐÚNG KHI XOAY MÀN HÌNH
-========================================= */
 
 window.addEventListener(
     "orientationchange",
     function(){
 
-        window.setTimeout(
-            function(){
-
-                window.dispatchEvent(
-                    new Event("resize")
-                );
-
-            },
-            300
+        setTimeout(
+            scaleGame,
+            200
         );
 
     }
 );
+
+
+scaleGame();
 
 </script>
 
