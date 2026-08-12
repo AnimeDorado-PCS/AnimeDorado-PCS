@@ -5,9 +5,9 @@
 
 <meta name="viewport"
       content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
 
 <title>AnimeDorado</title>
 
@@ -28,27 +28,22 @@ body{
 }
 
 body{
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 /* =========================================
-   MÀN HÌNH
+   HOME
 ========================================= */
 
 #home{
     position:fixed;
     inset:0;
-
     overflow:hidden;
-
     background:#000;
 }
 
 /* =========================================
-   ẢNH KHÔNG GIAN
+   SPACE IMAGE
 ========================================= */
 
 #space{
@@ -67,18 +62,15 @@ body{
         scale(1.02);
 
     animation:
-        spaceMove 14s
+        spaceMove 16s
         ease-in-out
         infinite alternate;
 
-    will-change:
-        transform;
+    will-change:transform;
 
     user-select:none;
     -webkit-user-drag:none;
 }
-
-/* Chuyển động camera rất nhẹ */
 
 @keyframes spaceMove{
 
@@ -91,22 +83,21 @@ body{
 
     50%{
         transform:
-            translate(-49.5%,-50.5%)
-            scale(1.07)
-            translate3d(-8px,5px,0);
+            translate(-49.6%,-50.4%)
+            scale(1.055)
+            translate3d(-7px,4px,0);
     }
 
     100%{
         transform:
-            translate(-50%,-49.5%)
+            translate(-50.2%,-49.7%)
             scale(1.04)
-            translate3d(8px,-5px,0);
+            translate3d(7px,-4px,0);
     }
-
 }
 
 /* =========================================
-   LỚP TỐI / ÁNH SÁNG
+   OVERLAY
 ========================================= */
 
 .dark{
@@ -115,16 +106,16 @@ body{
 
     background:
         radial-gradient(
-            circle at 50% 42%,
-            rgba(30,160,255,.05),
-            rgba(0,0,0,.58)
+            circle at 50% 44%,
+            rgba(30,140,255,.08),
+            rgba(0,0,0,.63)
         );
 
     pointer-events:none;
 }
 
 /* =========================================
-   HÀO QUANG
+   GLOW
 ========================================= */
 
 .glow{
@@ -133,11 +124,8 @@ body{
     left:50%;
     top:50%;
 
-    width:45vw;
-    height:45vw;
-
-    min-width:280px;
-    min-height:280px;
+    width:46vmax;
+    height:46vmax;
 
     transform:
         translate(-50%,-50%);
@@ -147,11 +135,11 @@ body{
     background:
         radial-gradient(
             circle,
-            rgba(40,130,255,.10),
+            rgba(45,120,255,.12),
             transparent 68%
         );
 
-    filter:blur(18px);
+    filter:blur(22px);
 
     animation:
         glowPulse 5s
@@ -164,7 +152,7 @@ body{
 @keyframes glowPulse{
 
     0%,100%{
-        opacity:.5;
+        opacity:.45;
         transform:
             translate(-50%,-50%)
             scale(.95);
@@ -176,19 +164,17 @@ body{
             translate(-50%,-50%)
             scale(1.08);
     }
-
 }
 
 /* =========================================
-   SAO BAY
+   STARS
 ========================================= */
 
 .stars{
     position:absolute;
     inset:0;
-
-    pointer-events:none;
     overflow:hidden;
+    pointer-events:none;
 }
 
 .star{
@@ -197,23 +183,21 @@ body{
     width:2px;
     height:2px;
 
-    background:white;
+    background:#fff;
 
     border-radius:50%;
 
-    opacity:.5;
+    opacity:.55;
 
     animation:
-        starFloat
-        linear
-        infinite;
+        starFloat linear infinite;
 }
 
 @keyframes starFloat{
 
     0%{
         transform:
-            translate3d(0,20px,0)
+            translate3d(0,30px,0)
             scale(.7);
 
         opacity:.15;
@@ -225,16 +209,61 @@ body{
 
     100%{
         transform:
-            translate3d(
-                25px,
-                -120px,
-                0
-            )
+            translate3d(22px,-140px,0)
             scale(1.4);
 
         opacity:0;
     }
+}
 
+/* =========================================
+   TOP BUTTONS
+========================================= */
+
+.top-button{
+    position:absolute;
+
+    top:20px;
+
+    width:54px;
+    height:54px;
+
+    border:1px solid
+        rgba(130,190,255,.8);
+
+    border-radius:14px;
+
+    background:
+        rgba(0,15,45,.5);
+
+    color:#fff;
+
+    font-size:24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 0 12px rgba(50,130,255,.25);
+
+    backdrop-filter:blur(5px);
+
+    cursor:pointer;
+
+    z-index:20;
+}
+
+.top-button:active{
+    transform:scale(.93);
+}
+
+#soundButton{
+    left:20px;
+}
+
+#settingsButton{
+    right:20px;
 }
 
 /* =========================================
@@ -245,19 +274,21 @@ body{
     position:absolute;
 
     left:50%;
-    top:15%;
+    top:13%;
+
+    width:92%;
 
     transform:
         translateX(-50%);
 
     text-align:center;
 
-    width:90%;
-
     animation:
         logoFloat 4s
         ease-in-out
         infinite alternate;
+
+    z-index:10;
 }
 
 @keyframes logoFloat{
@@ -271,18 +302,16 @@ body{
     to{
         transform:
             translateX(-50%)
-            translateY(-8px);
+            translateY(-7px);
     }
-
 }
 
 .logo h1{
-
     font-size:
         clamp(
             38px,
             7vw,
-            82px
+            84px
         );
 
     font-weight:1000;
@@ -297,82 +326,89 @@ body{
     color:#fff;
 
     text-shadow:
-        0 0 8px #7d8cff,
-        0 0 22px #5a50ff,
-        0 0 45px rgba(70,110,255,.8);
-
+        0 0 8px rgba(120,150,255,.9),
+        0 0 22px rgba(90,70,255,.85),
+        0 0 45px rgba(70,110,255,.7);
 }
 
 .logo h2{
-
-    margin-top:8px;
+    margin-top:9px;
 
     font-size:
         clamp(
-            14px,
-            2.5vw,
-            25px
+            13px,
+            2.2vw,
+            24px
         );
 
-    letter-spacing:5px;
+    letter-spacing:
+        clamp(
+            2px,
+            .4vw,
+            6px
+        );
 
-    color:#76d7ff;
+    color:#79dbff;
 
     text-shadow:
-        0 0 12px #00bfff;
-
+        0 0 12px rgba(0,190,255,.9);
 }
 
 /* =========================================
-   NÚT CHƠI
+   PLAY AREA
 ========================================= */
 
 .play-area{
     position:absolute;
 
     left:50%;
-    bottom:14%;
+
+    bottom:13%;
 
     transform:
         translateX(-50%);
 
+    width:100%;
+
     text-align:center;
 
-    width:100%;
+    z-index:10;
 }
 
 .play-button{
 
     width:
         min(
-            330px,
+            360px,
             72vw
         );
 
     height:
         min(
-            80px,
-            14vw
+            82px,
+            13vw
         );
 
     min-height:60px;
 
-    border:2px solid #a984ff;
+    border:
+        2px solid
+        #a984ff;
 
     border-radius:18px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(101,42,255,.95),
-            rgba(22,115,255,.95)
+            rgba(104,40,255,.96),
+            rgba(23,112,255,.96)
         );
 
-    color:white;
+    color:#fff;
 
     font-size:
         clamp(
-            20px,
+            21px,
             4vw,
             34px
         );
@@ -381,13 +417,13 @@ body{
 
     letter-spacing:2px;
 
+    cursor:pointer;
+
     box-shadow:
-        0 0 12px #6e4cff,
-        0 0 30px rgba(77,80,255,.7),
+        0 0 12px rgba(120,75,255,.9),
+        0 0 32px rgba(75,90,255,.7),
         inset 0 0 18px
         rgba(255,255,255,.15);
-
-    cursor:pointer;
 
     animation:
         buttonPulse 2.2s
@@ -401,94 +437,43 @@ body{
 
     0%,100%{
         box-shadow:
-            0 0 12px #6e4cff,
-            0 0 30px rgba(77,80,255,.55),
+            0 0 12px rgba(120,75,255,.9),
+            0 0 30px rgba(75,90,255,.55),
             inset 0 0 18px
             rgba(255,255,255,.15);
     }
 
     50%{
         box-shadow:
-            0 0 20px #9f70ff,
-            0 0 50px rgba(77,100,255,.9),
+            0 0 20px rgba(160,110,255,1),
+            0 0 50px rgba(80,110,255,.9),
             inset 0 0 25px
             rgba(255,255,255,.2);
     }
-
 }
 
 .play-button:active{
-
-    transform:
-        scale(.95);
-
+    transform:scale(.95);
 }
-
-/* =========================================
-   DÒNG PHỤ
-========================================= */
 
 .subtitle{
 
-    margin-top:14px;
+    margin-top:13px;
 
-    color:#9fdfff;
+    color:#9fe2ff;
 
     font-size:
         clamp(
-            11px,
-            2vw,
+            10px,
+            1.8vw,
             15px
         );
 
     letter-spacing:3px;
 
     text-shadow:
-        0 0 8px #008cff;
-
-}
-
-/* =========================================
-   ICON GÓC
-========================================= */
-
-.corner{
-
-    position:absolute;
-
-    top:18px;
-
-    width:53px;
-    height:53px;
-
-    border:
-        1px solid
-        rgba(120,180,255,.7);
-
-    border-radius:14px;
-
-    background:
-        rgba(0,20,60,.45);
-
-    color:white;
-
-    font-size:24px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    backdrop-filter:
-        blur(5px);
-
-}
-
-.left-icon{
-    left:18px;
-}
-
-.right-icon{
-    right:18px;
+        0 0 8px
+        rgba(0,150,255,.8);
 }
 
 /* =========================================
@@ -500,13 +485,13 @@ body{
     position:absolute;
 
     left:50%;
-    bottom:3.5%;
+    bottom:3%;
 
     transform:
         translateX(-50%);
 
     color:
-        rgba(255,255,255,.45);
+        rgba(255,255,255,.42);
 
     font-size:10px;
 
@@ -514,42 +499,130 @@ body{
 
     white-space:nowrap;
 
+    z-index:10;
 }
 
 /* =========================================
-   ĐIỆN THOẠI DỌC
+   LANDSCAPE
 ========================================= */
 
-@media(max-width:600px){
+@media (orientation:landscape){
 
     .logo{
-        top:12%;
+        top:10%;
     }
 
     .play-area{
-        bottom:13%;
+        bottom:10%;
     }
 
-}
-
-/* =========================================
-   MÀN HÌNH THẤP
-========================================= */
-
-@media(max-height:500px){
-
-    .logo{
-        top:7%;
+    .play-button{
+        width:290px;
+        height:64px;
+        min-height:0;
+        font-size:26px;
     }
 
-    .play-area{
-        bottom:8%;
+    .subtitle{
+        margin-top:8px;
+        font-size:11px;
     }
 
     .footer{
         display:none;
     }
 
+}
+
+/* =========================================
+   LANDSCAPE MÀN HÌNH RẤT THẤP
+========================================= */
+
+@media (orientation:landscape) and (max-height:500px){
+
+    .top-button{
+        width:46px;
+        height:46px;
+        top:12px;
+    }
+
+    #soundButton{
+        left:12px;
+    }
+
+    #settingsButton{
+        right:12px;
+    }
+
+    .logo{
+        top:5%;
+    }
+
+    .logo h1{
+        font-size:
+            clamp(
+                30px,
+                7vh,
+                58px
+            );
+    }
+
+    .logo h2{
+        font-size:12px;
+        margin-top:4px;
+    }
+
+    .play-area{
+        bottom:5%;
+    }
+
+    .play-button{
+        width:260px;
+        height:54px;
+        font-size:21px;
+    }
+
+    .subtitle{
+        margin-top:5px;
+        font-size:9px;
+    }
+
+}
+
+/* =========================================
+   DỌC
+========================================= */
+
+@media (orientation:portrait){
+
+    .logo{
+        top:12%;
+    }
+
+    .play-area{
+        bottom:12%;
+    }
+
+}
+
+/* =========================================
+   MÁY RẤT NHỎ
+========================================= */
+
+@media (max-width:380px){
+
+    .logo h1{
+        font-size:31px;
+    }
+
+    .logo h2{
+        font-size:11px;
+    }
+
+    .play-button{
+        height:60px;
+        font-size:19px;
+    }
 }
 </style>
 </head>
@@ -558,17 +631,15 @@ body{
 
 <div id="home">
 
-    <!-- ẢNH SPACE.JPEG -->
+    <!-- ẢNH NỀN -->
     <img
         id="space"
         src="./space.jpeg"
         alt="Space">
 
 
-    <!-- TỐI NỀN -->
     <div class="dark"></div>
 
-    <!-- HÀO QUANG -->
     <div class="glow"></div>
 
 
@@ -579,17 +650,31 @@ body{
     </div>
 
 
-    <!-- ICON -->
-    <div class="corner left-icon">
-        🔊
-    </div>
+    <!-- NÚT ÂM THANH -->
+    <button
+        id="soundButton"
+        class="top-button"
+        type="button"
+        onclick="toggleSound()">
 
-    <div class="corner right-icon">
+        🔊
+
+    </button>
+
+
+    <!-- NÚT CÀI ĐẶT -->
+    <button
+        id="settingsButton"
+        class="top-button"
+        type="button">
+
         ⚙️
-    </div>
+
+    </button>
 
 
     <!-- LOGO -->
+
     <div class="logo">
 
         <h1>
@@ -603,11 +688,14 @@ body{
     </div>
 
 
-    <!-- CHƠI -->
+    <!-- PLAY -->
+
     <div class="play-area">
 
         <button
+            id="playButton"
             class="play-button"
+            type="button"
             onclick="playGame()">
 
             ★ &nbsp; CHƠI THỬ &nbsp; ★
@@ -615,15 +703,34 @@ body{
         </button>
 
         <div class="subtitle">
+
             BẮT ĐẦU HÀNH TRÌNH CỦA BẠN
+
         </div>
 
     </div>
 
 
     <div class="footer">
+
         ANIME DORADO © 2026
+
     </div>
+
+
+    <!--
+      NHẠC NỀN
+
+      Đặt file music.mp3 cùng thư mục
+      với index.html.
+    -->
+
+    <audio
+        id="music"
+        src="./music.mp3"
+        loop
+        preload="auto">
+    </audio>
 
 </div>
 
@@ -631,7 +738,7 @@ body{
 <script>
 
 /* =========================================
-   TẠO SAO NGẪU NHIÊN
+   TẠO SAO
 ========================================= */
 
 const stars =
@@ -639,10 +746,9 @@ const stars =
         "stars"
     );
 
-
 for(
     let i = 0;
-    i < 55;
+    i < 60;
     i++
 ){
 
@@ -654,19 +760,16 @@ for(
     star.className =
         "star";
 
-
     star.style.left =
-        Math.random() * 100 +
+        Math.random()*100 +
         "%";
-
 
     star.style.top =
-        Math.random() * 100 +
+        Math.random()*100 +
         "%";
 
-
     const size =
-        Math.random() * 2 + 1;
+        Math.random()*2 + 1;
 
     star.style.width =
         size + "px";
@@ -674,16 +777,13 @@ for(
     star.style.height =
         size + "px";
 
-
     star.style.animationDuration =
-        (4 + Math.random() * 8) +
+        (4 + Math.random()*8) +
         "s";
-
 
     star.style.animationDelay =
-        (-Math.random() * 8) +
+        (-Math.random()*8) +
         "s";
-
 
     stars.appendChild(
         star
@@ -692,20 +792,154 @@ for(
 
 
 /* =========================================
-   NÚT CHƠI
+   ÂM THANH
+========================================= */
+
+const music =
+    document.getElementById(
+        "music"
+    );
+
+const soundButton =
+    document.getElementById(
+        "soundButton"
+    );
+
+
+let soundOn =
+    localStorage.getItem(
+        "animeDoradoSound"
+    ) !== "off";
+
+
+function updateSoundButton(){
+
+    soundButton.textContent =
+        soundOn
+        ? "🔊"
+        : "🔇";
+}
+
+
+async function startMusic(){
+
+    if(!soundOn){
+        return;
+    }
+
+    try{
+
+        music.volume =
+            0.45;
+
+        await music.play();
+
+    }catch(error){
+
+        /*
+          Trình duyệt có thể chặn
+          autoplay trước khi người dùng
+          chạm màn hình.
+        */
+
+        console.log(
+            "Autoplay blocked"
+        );
+
+    }
+}
+
+
+function toggleSound(){
+
+    soundOn =
+        !soundOn;
+
+    localStorage.setItem(
+        "animeDoradoSound",
+        soundOn
+        ? "on"
+        : "off"
+    );
+
+
+    if(soundOn){
+
+        music.volume =
+            0.45;
+
+        music.play()
+            .catch(
+                function(){}
+            );
+
+    }else{
+
+        music.pause();
+
+    }
+
+
+    updateSoundButton();
+}
+
+
+/*
+  Lần đầu người chơi chạm vào màn hình
+  thì cố gắng bật nhạc.
+*/
+
+document.addEventListener(
+    "pointerdown",
+    function(){
+
+        if(soundOn){
+
+            startMusic();
+
+        }
+
+    },
+    {
+        once:true
+    }
+);
+
+
+updateSoundButton();
+
+
+/* =========================================
+   CHƠI THỬ
 ========================================= */
 
 function playGame(){
+
+    /*
+       Bấm nút = chắc chắn có tương tác
+       nên có thể phát nhạc nếu chưa phát.
+    */
+
+    if(soundOn){
+
+        music.volume =
+            0.45;
+
+        music.play()
+            .catch(
+                function(){}
+            );
+
+    }
+
 
     const home =
         document.getElementById(
             "home"
         );
 
-
     home.style.transition =
         "opacity .6s ease";
-
 
     home.style.opacity =
         "0";
@@ -720,61 +954,83 @@ function playGame(){
         },
         600
     );
-
 }
 
 
 /* =========================================
-   KIỂM TRA ẢNH
+   KIỂM TRA SPACE.JPEG
 ========================================= */
 
 document
-    .getElementById("space")
-    .addEventListener(
-        "error",
-        function(){
+.getElementById("space")
+.addEventListener(
+    "error",
+    function(){
 
-            document.body.innerHTML = `
+        document.body.innerHTML = `
 
-                <div style="
-                    width:100%;
-                    height:100%;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    background:#05070d;
-                    color:white;
-                    text-align:center;
-                    padding:30px;
-                    font-family:Arial;
+        <div style="
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#05070d;
+            color:white;
+            text-align:center;
+            padding:30px;
+            font-family:Arial;
+        ">
+
+            <div>
+
+                <h2>
+                    Không tìm thấy space.jpeg
+                </h2>
+
+                <p style="
+                    margin-top:12px;
+                    color:#999;
                 ">
 
-                    <div>
+                    Hãy upload file
+                    <b>space.jpeg</b>
+                    cùng thư mục với
+                    <b>index.html</b>.
 
-                        <h2>
-                            Không tìm thấy space.jpeg
-                        </h2>
+                </p>
 
-                        <p style="
-                            margin-top:12px;
-                            color:#999;
-                        ">
+            </div>
 
-                            Hãy upload file
-                            <b>space.jpeg</b>
-                            vào cùng thư mục với
-                            <b>index.html</b>.
+        </div>
 
-                        </p>
+        `;
 
-                    </div>
+    }
+);
 
-                </div>
 
-            `;
+/* =========================================
+   GIỮ GIAO DIỆN ĐÚNG KHI XOAY MÀN HÌNH
+========================================= */
 
-        }
-    );
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        window.setTimeout(
+            function(){
+
+                window.dispatchEvent(
+                    new Event("resize")
+                );
+
+            },
+            300
+        );
+
+    }
+);
 
 </script>
 
