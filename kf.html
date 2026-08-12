@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Superman - Keyframe Animations</title>
+    <title>Superman - Keyframe Chiến Đấu & Bay</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            background: linear-gradient(180deg, #0a0f1e 0%, #1a2a40 100%);
+            background: #0a0f1e;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -20,10 +20,8 @@
             justify-content: center;
             font-family: Arial, sans-serif;
             overflow: hidden;
-            user-select: none;
         }
 
-        /* Khu vực chiến đấu */
         #stage {
             position: relative;
             width: 90vw;
@@ -32,103 +30,46 @@
             max-height: 600px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
-            background: radial-gradient(ellipse at center, rgba(30, 60, 90, 0.5) 0%, rgba(5, 15, 30, 0.9) 100%);
+            background: radial-gradient(ellipse at center, #1e3c5a 0%, #050f1e 100%);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             margin: 20px auto;
+            overflow: hidden;
             cursor: default;
         }
 
-        /* Superman container */
+        /* Khung chứa nhân vật – kích thước khớp với frame gốc, sẽ scale nhỏ lại */
         #superman {
             position: absolute;
-            width: 120px;
-            height: 120px;
-            left: 50%;
-            bottom: 10%;
-            transform: translate(-50%, 0);
-            transition: none; /* sẽ dùng JS để di chuyển mượt */
+            width: 384px;   /* frame width */
+            height: 939px;  /* frame height tấn công, mặc định */
+            transform: scale(0.35); /* thu nhỏ vừa màn hình */
+            transform-origin: top left;
+            background-repeat: no-repeat;
+            background-size: 1536px 939px; /* kích thước sprite tấn công */
+            background-position: 0 0;
+            image-rendering: auto;
             z-index: 10;
+            /* animation sẽ gán bằng class */
         }
 
-        #superman img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
-            /* Idle animation mặc định */
-            animation: floatIdle 3s ease-in-out infinite;
+        /* Animation tấn công: chạy 4 frame trong 0.4s, 1 lần */
+        @keyframes attackAnim {
+            0%   { background-position: 0 0; }
+            100% { background-position: -1536px 0; }
         }
 
-        @keyframes floatIdle {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        /* Animation bay: chạy 4 frame liên tục */
+        @keyframes flyAnim {
+            0%   { background-position: 0 0; }
+            100% { background-position: -1536px 0; }
         }
 
-        /* Animation khi đi bộ (lắc lư + nhún) */
-        #superman.walking img {
-            animation: walkCycle 0.4s ease-in-out infinite;
+        .attacking {
+            animation: attackAnim 0.4s steps(4) forwards;
         }
 
-        @keyframes walkCycle {
-            0% { transform: rotate(-3deg) translateY(0); }
-            50% { transform: rotate(3deg) translateY(-3px); }
-            100% { transform: rotate(-3deg) translateY(0); }
-        }
-
-        /* Animation khi bay */
-        #superman.flying img {
-            animation: flyFloat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes flyFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        /* Animation đấm: lao tới + rung */
-        #superman.punching img {
-            animation: punchForward 0.3s ease-out forwards, shake 0.1s ease-in-out 0.15s 3;
-        }
-
-        @keyframes punchForward {
-            0% { transform: scale(1) translateX(0); }
-            40% { transform: scale(1.2) translateX(40px); filter: brightness(1.4) drop-shadow(0 0 20px gold); }
-            100% { transform: scale(1) translateX(0); filter: brightness(1) drop-shadow(0 10px 10px rgba(0,0,0,0.5)); }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-4px); }
-            75% { transform: translateX(4px); }
-        }
-
-        /* Sóng xung kích khi đấm */
-        .shockwave {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(255, 215, 0, 0.8);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: shockwaveEffect 0.5s ease-out forwards;
-            z-index: 20;
-        }
-
-        @keyframes shockwaveEffect {
-            0% {
-                width: 20px;
-                height: 20px;
-                opacity: 1;
-                margin-left: -10px;
-                margin-top: -10px;
-            }
-            100% {
-                width: 140px;
-                height: 140px;
-                opacity: 0;
-                margin-left: -70px;
-                margin-top: -70px;
-            }
+        .flying {
+            animation: flyAnim 0.6s steps(4) infinite;
         }
 
         /* Điều khiển */
@@ -136,7 +77,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin: 15px 20px;
+            margin: 10px 20px;
             z-index: 30;
         }
 
@@ -169,112 +110,168 @@
             text-align: center;
             margin: 10px;
         }
+
+        /* Sóng xung kích khi đấm (tùy chọn) */
+        .shockwave {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 215, 0, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: shockwaveEffect 0.5s ease-out forwards;
+            z-index: 20;
+        }
+
+        @keyframes shockwaveEffect {
+            0% {
+                width: 20px;
+                height: 20px;
+                opacity: 1;
+                margin-left: -10px;
+                margin-top: -10px;
+            }
+            100% {
+                width: 140px;
+                height: 140px;
+                opacity: 0;
+                margin-left: -70px;
+                margin-top: -70px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="info">
-        ← → : Di chuyển &nbsp;|&nbsp; ↑ : Bay lên &nbsp;|&nbsp; ↓ : Hạ xuống &nbsp;|&nbsp; SPACE / Nút : Đấm
+        ← → : Di chuyển (tự động bay) &nbsp;|&nbsp; SPACE hoặc Nút : Đấm
     </div>
 
     <div id="stage">
-        <div id="superman">
-            <!-- Ảnh Superman từ link bạn cung cấp -->
-            <img src="https://i.postimg.cc/CLqTGxNQ/superman.png" alt="Superman">
-        </div>
+        <div id="superman"></div>
     </div>
 
     <div class="controls">
         <button class="punch-btn" id="punchButton">💥 ĐẤM</button>
-        <button id="flyToggle">🦸 BAY / DỪNG</button>
     </div>
 
     <script>
         (function() {
-            // ----- Phần tử DOM -----
             const superman = document.getElementById('superman');
             const stage = document.getElementById('stage');
-            const img = superman.querySelector('img');
 
-            // ----- Trạng thái -----
-            let x = stage.clientWidth / 2;           // tọa độ tâm của superman
-            let y = stage.clientHeight * 0.85;       // bottom position (tính từ trên xuống)
-            const speed = 5;                         // tốc độ di chuyển (px/frame)
-            const flySpeed = 4;
-            let isPunching = false;
-            let isFlying = false;
-            let keys = { left: false, right: false, up: false, down: false };
+            // --- Thông số sprite ---
+            const ATTACK_SPRITE = 'https://i.postimg.cc/VLTzTyt5/20260812-191849.png';
+            const FLY_SPRITE = 'https://i.postimg.cc/7ZWX0Vpr/20260812-191835.png';
 
-            // ----- Cập nhật vị trí mỗi frame -----
+            const FRAME_WIDTH = 384;            // pixel
+            const ATTACK_FRAME_HEIGHT = 939;
+            const FLY_FRAME_HEIGHT = 688;
+            const ATTACK_TOTAL_WIDTH = 1536;
+            const FLY_TOTAL_WIDTH = 1536;
+
+            const SCALE = 0.35;                 // tỉ lệ hiển thị
+
+            // --- Trạng thái ---
+            let x = stage.clientWidth / 2;       // vị trí tâm (pixel trước scale)
+            let y = stage.clientHeight * 0.7;    // top position
+            let isAttacking = false;
+            let isFlying = false;                // đang di chuyển/bay
+            let facingRight = true;
+            let keys = { left: false, right: false };
+
+            // --- Cập nhật sprite hiện tại (idle hoặc fly) ---
+            function setIdleSprite() {
+                superman.style.backgroundImage = `url('${ATTACK_SPRITE}')`;
+                superman.style.width = FRAME_WIDTH + 'px';
+                superman.style.height = ATTACK_FRAME_HEIGHT + 'px';
+                superman.style.backgroundSize = ATTACK_TOTAL_WIDTH + 'px ' + ATTACK_FRAME_HEIGHT + 'px';
+                superman.style.backgroundPosition = '0 0';
+                superman.classList.remove('attacking', 'flying');
+            }
+
+            function setFlySprite() {
+                superman.style.backgroundImage = `url('${FLY_SPRITE}')`;
+                superman.style.width = FRAME_WIDTH + 'px';
+                superman.style.height = FLY_FRAME_HEIGHT + 'px';
+                superman.style.backgroundSize = FLY_TOTAL_WIDTH + 'px ' + FLY_FRAME_HEIGHT + 'px';
+                superman.style.backgroundPosition = '0 0';
+                superman.classList.remove('attacking');
+                superman.classList.add('flying');
+            }
+
+            // --- Di chuyển ---
             function updatePosition() {
-                // Di chuyển trái/phải
                 if (keys.left) {
-                    x -= speed;
-                    superman.classList.add('walking');
+                    x -= 5;
+                    facingRight = false;
+                    if (!isFlying && !isAttacking) {
+                        setFlySprite();
+                        isFlying = true;
+                    }
                 } else if (keys.right) {
-                    x += speed;
-                    superman.classList.add('walking');
+                    x += 5;
+                    facingRight = true;
+                    if (!isFlying && !isAttacking) {
+                        setFlySprite();
+                        isFlying = true;
+                    }
                 } else {
-                    superman.classList.remove('walking');
+                    if (isFlying && !isAttacking) {
+                        setIdleSprite();
+                        isFlying = false;
+                    }
                 }
 
-                // Bay lên/xuống
-                if (keys.up) {
-                    isFlying = true;
-                    superman.classList.add('flying');
-                    y -= flySpeed;
-                } else if (keys.down) {
-                    isFlying = true;
-                    superman.classList.add('flying');
-                    y += flySpeed;
-                } else {
-                    isFlying = false;
-                    superman.classList.remove('flying');
-                }
-
-                // Giới hạn trong sân khấu
-                const halfW = superman.offsetWidth / 2;
-                const halfH = superman.offsetHeight / 2;
+                // Giới hạn trong stage (tính theo kích thước thực sau scale)
+                const halfW = (FRAME_WIDTH * SCALE) / 2;
+                const halfH = (isFlying ? FLY_FRAME_HEIGHT : ATTACK_FRAME_HEIGHT) * SCALE / 2;
                 x = Math.max(halfW, Math.min(stage.clientWidth - halfW, x));
                 y = Math.max(halfH, Math.min(stage.clientHeight - halfH, y));
 
                 superman.style.left = x + 'px';
                 superman.style.top = y + 'px';
-                // Lật mặt nếu đi ngược hướng
-                if (keys.left) {
-                    img.style.transform = 'scaleX(-1)';
-                } else if (keys.right) {
-                    img.style.transform = 'scaleX(1)';
-                }
-                // Khi đang đấm thì không override transform (để animation tự lo)
-                if (!isPunching) {
-                    // Reset transform nếu không di chuyển và không bay
-                    if (!keys.left && !keys.right) {
-                        img.style.transform = '';
-                    }
+                // Lật mặt nếu cần (dùng transform scaleX kết hợp với scale gốc)
+                if (!facingRight) {
+                    superman.style.transform = `scale(${SCALE}) scaleX(-1)`;
+                } else {
+                    superman.style.transform = `scale(${SCALE}) scaleX(1)`;
                 }
 
                 requestAnimationFrame(updatePosition);
             }
 
-            // ----- Animation đấm -----
+            // --- Tấn công ---
             function punch() {
-                if (isPunching) return;
-                isPunching = true;
+                if (isAttacking) return;
+                isAttacking = true;
 
-                // Thêm class để chạy keyframe
-                superman.classList.add('punching');
+                // Dừng bay nếu có, chuyển sang sprite tấn công
+                superman.classList.remove('flying');
+                superman.style.backgroundImage = `url('${ATTACK_SPRITE}')`;
+                superman.style.width = FRAME_WIDTH + 'px';
+                superman.style.height = ATTACK_FRAME_HEIGHT + 'px';
+                superman.style.backgroundSize = ATTACK_TOTAL_WIDTH + 'px ' + ATTACK_FRAME_HEIGHT + 'px';
+                superman.style.backgroundPosition = '0 0';
+                superman.classList.add('attacking');
 
-                // Tạo sóng xung kích tại vị trí hiện tại
+                // Hiệu ứng sóng xung kích
                 createShockwave(x, y);
 
-                // Sau khi animation kết thúc, gỡ class
-                const onPunchEnd = () => {
-                    superman.classList.remove('punching');
-                    isPunching = false;
-                    // Dọn dẹp listener
-                    img.removeEventListener('animationend', onPunchEnd);
+                // Kết thúc tấn công sau animation
+                const onAttackEnd = () => {
+                    superman.classList.remove('attacking');
+                    isAttacking = false;
+                    // Quay về trạng thái trước đó (idle hoặc bay nếu đang giữ phím)
+                    if (keys.left || keys.right) {
+                        setFlySprite();
+                        isFlying = true;
+                    } else {
+                        setIdleSprite();
+                        isFlying = false;
+                    }
+                    superman.removeEventListener('animationend', onAttackEnd);
                 };
-                img.addEventListener('animationend', onPunchEnd);
+                superman.addEventListener('animationend', onAttackEnd);
             }
 
             function createShockwave(px, py) {
@@ -283,45 +280,39 @@
                 wave.style.left = px + 'px';
                 wave.style.top = py + 'px';
                 stage.appendChild(wave);
-                wave.addEventListener('animationend', () => {
-                    wave.remove();
-                });
+                wave.addEventListener('animationend', () => wave.remove());
             }
 
-            // ----- Sự kiện bàn phím -----
+            // --- Sự kiện phím ---
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') { keys.left = true; e.preventDefault(); }
-                if (e.key === 'ArrowRight') { keys.right = true; e.preventDefault(); }
-                if (e.key === 'ArrowUp') { keys.up = true; e.preventDefault(); }
-                if (e.key === 'ArrowDown') { keys.down = true; e.preventDefault(); }
-                if (e.key === ' ' || e.code === 'Space') {
+                if (e.key === 'ArrowLeft') {
+                    keys.left = true;
+                    e.preventDefault();
+                } else if (e.key === 'ArrowRight') {
+                    keys.right = true;
+                    e.preventDefault();
+                } else if (e.key === ' ' || e.code === 'Space') {
                     e.preventDefault();
                     punch();
                 }
             });
 
             document.addEventListener('keyup', (e) => {
-                if (e.key === 'ArrowLeft') { keys.left = false; e.preventDefault(); }
-                if (e.key === 'ArrowRight') { keys.right = false; e.preventDefault(); }
-                if (e.key === 'ArrowUp') { keys.up = false; e.preventDefault(); }
-                if (e.key === 'ArrowDown') { keys.down = false; e.preventDefault(); }
-            });
-
-            // ----- Nút bấm trên màn hình (hỗ trợ mobile) -----
-            document.getElementById('punchButton').addEventListener('click', punch);
-            document.getElementById('flyToggle').addEventListener('click', () => {
-                isFlying = !isFlying;
-                if (isFlying) {
-                    superman.classList.add('flying');
-                } else {
-                    superman.classList.remove('flying');
+                if (e.key === 'ArrowLeft') {
+                    keys.left = false;
+                    e.preventDefault();
+                } else if (e.key === 'ArrowRight') {
+                    keys.right = false;
+                    e.preventDefault();
                 }
             });
 
-            // ----- Khởi tạo vị trí -----
+            document.getElementById('punchButton').addEventListener('click', punch);
+
+            // --- Khởi tạo ---
+            setIdleSprite();
             superman.style.left = x + 'px';
             superman.style.top = y + 'px';
-            // Bắt đầu vòng lặp game
             requestAnimationFrame(updatePosition);
         })();
     </script>
