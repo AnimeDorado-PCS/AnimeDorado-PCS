@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1,
+      maximum-scale=1,
+      user-scalable=no">
+
+<title>ANIME DORADO - Nhân vật</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+    background:#07131a;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+#background{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+    opacity:.9;
+}
+
+#shade{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.18),
+            rgba(0,0,0,.42)
+        );
+    pointer-events:none;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+#app{
+    position:relative;
+    z-index:2;
+    min-height:100vh;
+    padding-bottom:30px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    min-height:72px;
+    padding:10px 14px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back{
+    width:46px;
+    height:46px;
+
+    flex:0 0 46px;
+
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:13px;
+
+    background:rgba(0,0,0,.3);
+
+    color:#fff;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.title{
+    flex:1;
+}
+
+.title h1{
+    font-size:clamp(22px,6vw,34px);
+    font-weight:900;
+    text-shadow:0 3px 8px #000;
+}
+
+.title p{
+    margin-top:4px;
+    color:#aeb8c5;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-wrap{
+    width:min(1100px,94vw);
+    margin:0 auto 14px;
+}
+
+.search{
+    width:100%;
+    height:46px;
+
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:13px;
+
+    padding:0 15px;
+
+    outline:none;
+
+    background:
+        rgba(0,0,0,.28);
+
+    color:#fff;
+
+    font-size:14px;
+}
+
+.search::placeholder{
+    color:#a8b2bf;
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+.filters{
+    width:min(1100px,94vw);
+    margin:0 auto 12px;
+
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+}
+
+.filter{
+    flex:0 0 auto;
+
+    height:36px;
+
+    padding:0 13px;
+
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+
+    background:rgba(0,0,0,.25);
+
+    color:#d8dee6;
+
+    font-size:11px;
+    font-weight:900;
+}
+
+.filter.active{
+    background:
+        linear-gradient(
+            135deg,
+            #e3b33b,
+            #9b600a
+        );
+
+    color:#201405;
+
+    border-color:#ffd65a;
+}
+
+
+/* =========================
+   CHARACTER COUNT
+========================= */
+
+.top-info{
+    width:min(1100px,94vw);
+    margin:0 auto 9px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    color:#c3ccd7;
+
+    font-size:11px;
+}
+
+.top-info strong{
+    color:#ffd65a;
+}
+
+
+/* =========================
+   CHARACTER GRID
+========================= */
+
+.character-grid{
+    width:min(1100px,94vw);
+    margin:0 auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(
+                150px,
+                1fr
+            )
+        );
+
+    gap:11px;
+}
+
+
+/* =========================
+   CHARACTER CARD
+========================= */
+
+.character-card{
+    position:relative;
+
+    min-height:210px;
+
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.075),
+            rgba(0,0,0,.32)
+        );
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    transition:
+        transform .14s ease,
+        border-color .14s ease;
+}
+
+.character-card:active{
+    transform:scale(.97);
+}
+
+.character-card:hover{
+    border-color:rgba(255,214,90,.45);
+}
+
+
+/* rarity */
+
+.rarity{
+    position:absolute;
+
+    left:7px;
+    top:7px;
+
+    z-index:5;
+
+    padding:4px 7px;
+
+    border-radius:8px;
+
+    background:
+        rgba(0,0,0,.58);
+
+    color:#ffd65a;
+
+    font-size:9px;
+    font-weight:900;
+}
+
+
+/* level */
+
+.level{
+    position:absolute;
+
+    right:7px;
+    top:7px;
+
+    z-index:5;
+
+    padding:4px 7px;
+
+    border-radius:8px;
+
+    background:
+        rgba(0,0,0,.58);
+
+    color:#fff;
+
+    font-size:9px;
+    font-weight:900;
+}
+
+
+/* image */
+
+.character-image{
+    width:100%;
+    height:145px;
+
+    display:block;
+
+    object-fit:contain;
+}
+
+
+/* bottom */
+
+.card-bottom{
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    padding:9px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.9)
+        );
+}
+
+.character-name{
+    font-size:14px;
+    font-weight:900;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.character-id{
+    margin-top:3px;
+
+    color:#9aa5b4;
+
+    font-size:9px;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    width:min(1100px,94vw);
+    margin:30px auto;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    border:1px dashed rgba(255,255,255,.18);
+    border-radius:17px;
+
+    background:rgba(0,0,0,.22);
+
+    color:#9ea8b6;
+
+    display:none;
+}
+
+
+/* =========================
+   DETAIL MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:15px;
+
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(7px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    position:relative;
+
+    width:min(
+        520px,
+        92vw
+    );
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    border:
+        1px solid
+        rgba(255,214,90,.35);
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #1e2935,
+            #0b1118
+        );
+
+    padding:20px;
+}
+
+.modal-close{
+    position:absolute;
+
+    right:12px;
+    top:12px;
+
+    width:38px;
+    height:38px;
+
+    border:0;
+    border-radius:10px;
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+    font-size:20px;
+}
+
+.modal-image{
+    width:180px;
+    height:180px;
+
+    display:block;
+
+    margin:8px auto;
+
+    object-fit:contain;
+}
+
+.modal-name{
+    text-align:center;
+
+    font-size:26px;
+    font-weight:900;
+
+    color:#ffd65a;
+}
+
+.modal-rarity{
+    text-align:center;
+
+    margin-top:4px;
+
+    color:#b7c1cf;
+
+    font-size:12px;
+}
+
+.modal-stats{
+    margin-top:18px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
+}
+
+.modal-stat{
+    padding:10px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.05);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#aab4c1;
+
+    font-size:12px;
+}
+
+.modal-stat strong{
+    color:#fff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .character-grid{
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0,1fr)
+            );
+    }
+
+    .character-card{
+        min-height:185px;
+    }
+
+    .character-image{
+        height:125px;
+    }
+
+}
+
+@media(max-width:370px){
+
+    .character-grid{
+        gap:7px;
+    }
+
+    .character-card{
+        min-height:170px;
+    }
+
+    .character-image{
+        height:110px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<img
+    id="background"
+    src="./nennhom.png"
+    alt="ANIME DORADO">
+
+
+<div id="shade"></div>
+
+
+<div id="app">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <button
+            class="back"
+            id="backButton">
+
+            ←
+
+        </button>
+
+
+        <div class="title">
+
+            <h1>
+                NHÂN VẬT
+            </h1>
+
+            <p>
+                ANIME DORADO
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-wrap">
+
+        <input
+            id="search"
+            class="search"
+            type="search"
+            placeholder="Tìm nhân vật...">
+
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div class="filters">
+
+
+        <button
+            class="filter active"
+            data-filter="all">
+
+            TẤT CẢ
+
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="SSR">
+
+            SSR
+
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="SR">
+
+            SR
+
+        </button>
+
+
+        <button
+            class="filter"
+            data-filter="R">
+
+            R
+
+        </button>
+
+
+    </div>
+
+
+    <!-- INFO -->
+
+    <div class="top-info">
+
+        <span>
+            NHÂN VẬT ĐÃ MỞ
+        </span>
+
+        <strong id="count">
+            3
+        </strong>
+
+    </div>
+
+
+    <!-- CHARACTER GRID -->
+
+    <div
+        id="characterGrid"
+        class="character-grid">
+    </div>
+
+
+    <!-- EMPTY -->
+
+    <div
+        id="empty"
+        class="empty">
+
+        Không tìm thấy nhân vật.
+
+    </div>
+
+
+</div>
+
+
+<!-- DETAIL -->
+
+<div
+    id="modal"
+    class="modal">
+
+
+    <div class="modal-box">
+
+
+        <button
+            class="modal-close"
+            id="closeModal">
+
+            ×
+
+        </button>
+
+
+        <img
+            id="modalImage"
+            class="modal-image"
+            src=""
+            alt="">
+
+
+        <div
+            id="modalName"
+            class="modal-name">
+        </div>
+
+
+        <div
+            id="modalRarity"
+            class="modal-rarity">
+        </div>
+
+
+        <div class="modal-stats">
+
+
+            <div class="modal-stat">
+                <span>Lv</span>
+                <strong id="modalLevel">1</strong>
+            </div>
+
+
+            <div class="modal-stat">
+                <span>HP</span>
+                <strong id="modalHp">0</strong>
+            </div>
+
+
+            <div class="modal-stat">
+                <span>ATK</span>
+                <strong id="modalAtk">0</strong>
+            </div>
+
+
+            <div class="modal-stat">
+                <span>DEF</span>
+                <strong id="modalDef">0</strong>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DANH SÁCH NHÂN VẬT
+   Chỉ cần thêm nhân vật ở đây.
+========================================================= */
+
+const characters = [
+
+    {
+        id:"superman",
+        name:"Superman",
+        rarity:"SSR",
+        level:1,
+        hp:1000,
+        atk:120,
+        def:80,
+        image:"./characters/superman/sprite.png"
+    },
+
+    {
+        id:"luffy",
+        name:"Luffy",
+        rarity:"SSR",
+        level:1,
+        hp:1100,
+        atk:130,
+        def:75,
+        image:"./characters/luffy/sprite.png"
+    },
+
+    {
+        id:"goku",
+        name:"Goku",
+        rarity:"SSR",
+        level:1,
+        hp:1050,
+        atk:145,
+        def:85,
+        image:"./characters/goku/sprite.png"
+    }
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentFilter = "all";
+
+let currentSearch = "";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const grid =
+    document.getElementById(
+        "characterGrid"
+    );
+
+const empty =
+    document.getElementById(
+        "empty"
+    );
+
+const count =
+    document.getElementById(
+        "count"
+    );
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderCharacters(){
+
+    grid.innerHTML = "";
+
+
+    const search =
+        currentSearch
+            .trim()
+            .toLowerCase();
+
+
+    const filtered =
+        characters.filter(
+            function(character){
+
+                const rarityOK =
+                    currentFilter ===
+                    "all" ||
+                    character.rarity ===
+                    currentFilter;
+
+
+                const searchOK =
+                    !search ||
+                    character.name
+                        .toLowerCase()
+                        .includes(search);
+
+
+                return (
+                    rarityOK &&
+                    searchOK
+                );
+
+            }
+        );
+
+
+    count.textContent =
+        filtered.length;
+
+
+    if(
+        filtered.length === 0
+    ){
+
+        empty.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    empty.style.display =
+        "none";
+
+
+    filtered.forEach(
+        function(character){
+
+            const card =
+                document.createElement(
+                    "button"
+                );
+
+
+            card.className =
+                "character-card";
+
+
+            card.dataset.id =
+                character.id;
+
+
+            card.innerHTML = `
+
+                <span class="rarity">
+                    ${character.rarity}
+                </span>
+
+                <span class="level">
+                    Lv.${character.level}
+                </span>
+
+                <img
+                    class="character-image"
+                    src="${character.image}"
+                    alt="${character.name}">
+
+                <span class="card-bottom">
+
+                    <span class="character-name">
+                        ${character.name}
+                    </span>
+
+                    <span class="character-id">
+                        ${character.id}
+                    </span>
+
+                </span>
+            `;
+
+
+            card.addEventListener(
+                "click",
+                function(){
+
+                    openCharacter(
+                        character
+                    );
+
+                }
+            );
+
+
+            grid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   OPEN DETAIL
+========================================================= */
+
+function openCharacter(
+    character
+){
+
+    document
+        .getElementById(
+            "modalImage"
+        )
+        .src =
+        character.image;
+
+
+    document
+        .getElementById(
+            "modalName"
+        )
+        .textContent =
+        character.name;
+
+
+    document
+        .getElementById(
+            "modalRarity"
+        )
+        .textContent =
+        character.rarity;
+
+
+    document
+        .getElementById(
+            "modalLevel"
+        )
+        .textContent =
+        character.level;
+
+
+    document
+        .getElementById(
+            "modalHp"
+        )
+        .textContent =
+        character.hp;
+
+
+    document
+        .getElementById(
+            "modalAtk"
+        )
+        .textContent =
+        character.atk;
+
+
+    document
+        .getElementById(
+            "modalDef"
+        )
+        .textContent =
+        character.def;
+
+
+    document
+        .getElementById(
+            "modal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+function closeModal(){
+
+    document
+        .getElementById(
+            "modal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+document
+    .getElementById(
+        "closeModal"
+    )
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+document
+    .getElementById(
+        "modal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target ===
+                this
+            ){
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+    .getElementById(
+        "search"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            currentSearch =
+                this.value;
+
+            renderCharacters();
+
+        }
+    );
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".filter"
+    )
+    .forEach(
+        function(button){
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    document
+                        .querySelectorAll(
+                            ".filter"
+                        )
+                        .forEach(
+                            function(item){
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    currentFilter =
+                        button.dataset.filter;
+
+
+                    renderCharacters();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+document
+    .getElementById(
+        "backButton"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            window.location.href =
+                "/AnimeDorado-PCS/";
+
+        }
+    );
+
+
+/* =========================================================
+   START
+========================================================= */
+
+renderCharacters();
+
+</script>
+
+</body>
+</html>
