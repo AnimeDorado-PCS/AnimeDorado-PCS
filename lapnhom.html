@@ -779,6 +779,36 @@ img{
         top:64px;
     }
 
+    /* Tăng kích thước slot cho dễ nhìn trên màn hình dọc */
+    .team-grid{
+        gap:6px;
+    }
+
+    .team-slot{
+        border-radius:12px;
+    }
+
+    .slot-number{
+        width:18px;
+        height:18px;
+        font-size:8px;
+    }
+
+    .slot-name{
+        font-size:9px;
+    }
+
+    /* Hero visual không bị cắt */
+    .hero-visual{
+        width:min(150px, 40vw);
+        height:min(150px, 40vw);
+    }
+
+    .hero-visual img{
+        width:90%;
+        height:90%;
+    }
+
 }
 
 /* =========================================================
@@ -890,14 +920,15 @@ img{
         min-height:280px;
     }
 
+    /* Hero visual linh hoạt chiều cao */
     .hero-visual{
-        height:105px;
-        width:105px;
+        height:min(105px, 25vh);
+        width:min(105px, 25vh);
     }
 
     .hero-visual img{
-        width:95px;
-        height:95px;
+        width:90%;
+        height:90%;
     }
 
     .action-button{
@@ -919,6 +950,15 @@ img{
 
     .character-card img{
         height:66px;
+    }
+
+    /* Team slot to hơn một chút khi ngang */
+    .team-grid{
+        gap:6px;
+    }
+
+    .slot-name{
+        font-size:9px;
     }
 
 }
