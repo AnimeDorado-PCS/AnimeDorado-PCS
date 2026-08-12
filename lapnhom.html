@@ -1,1702 +1,287 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
 
-<title>AnimeDorado - Lập nhóm</title>
+<title>Anime Dorado - Lập nhóm</title>
 
 <style>
 
 *{
     box-sizing:border-box;
+}
+
+body{
+
     margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
-}
 
-html,
-body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#000;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    color:white;
-}
-
-
-/* ==================================================
-   APP
-================================================== */
-
-#app{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    background:#000;
-}
-
-
-/* ==================================================
-   KHUNG 1536x864
-================================================== */
-
-#game{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:1536px;
-    height:864px;
-
-    transform:
-        translate(-50%,-50%)
-        scale(1);
-
-    transform-origin:center center;
-}
-
-
-/* ==================================================
-   NỀN
-================================================== */
-
-#background{
-    position:absolute;
-
-    inset:0;
-
-    width:1536px;
-    height:864px;
-
-    object-fit:fill;
-
-    display:block;
-
-    user-select:none;
-    -webkit-user-drag:none;
-}
-
-
-/* lớp tối nhẹ */
-
-.overlay{
-    position:absolute;
-    inset:0;
+    min-height:100vh;
 
     background:
-        rgba(0,0,0,.10);
+        radial-gradient(
+            circle at center,
+            #263b5c,
+            #06080d
+        );
 
-    pointer-events:none;
-}
+    color:white;
 
-
-/* ==================================================
-   TIÊU ĐỀ
-================================================== */
-
-.header{
-    position:absolute;
-
-    left:25px;
-    top:18px;
+    font-family:Arial;
 
     display:flex;
+
+    justify-content:center;
+
     align-items:center;
 
-    z-index:10;
 }
 
-.back{
-    width:58px;
-    height:58px;
 
-    border:2px solid
-        rgba(255,255,255,.7);
+.game{
 
-    border-radius:15px;
+    width:100%;
 
-    background:
-        rgba(0,0,0,.35);
+    max-width:700px;
 
-    color:white;
+    text-align:center;
 
-    font-size:35px;
+    padding:20px;
 
-    cursor:pointer;
 }
+
 
 .title{
-    margin-left:12px;
 
-    font-size:38px;
+    color:#ffd65a;
 
-    font-weight:bold;
-
-    text-shadow:
-        0 3px 7px #000;
-}
-
-
-/* ==================================================
-   ĐỘI HÌNH
-================================================== */
-
-.team-area{
-
-    position:absolute;
-
-    left:50%;
-    top:135px;
-
-    width:1080px;
-
-    transform:
-        translateX(-50%);
-
-}
-
-
-/* chữ */
-
-.team-title{
-
-    text-align:right;
+    font-size:28px;
 
     margin-bottom:10px;
 
-    color:#fff;
-
-    font-size:19px;
-
-    text-shadow:
-        0 2px 5px #000;
 }
 
 
-/* các ô */
+.character-box{
 
-.team{
+    width:100%;
 
-    display:flex;
+    max-width:430px;
 
-    justify-content:center;
-
-    gap:18px;
-
-}
-
-
-/* slot */
-
-.slot{
-
-    position:relative;
-
-    width:195px;
-    height:125px;
-
-    border-radius:15px;
+    margin:auto;
 
     border:2px solid
-        rgba(255,255,255,.28);
+        rgba(255,215,90,.3);
+
+    border-radius:20px;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(44,92,120,.72),
-            rgba(10,38,62,.78)
-        );
-
-    overflow:hidden;
-
-    cursor:pointer;
-
-}
-
-
-/* ô trống */
-
-.slot.empty::before{
-
-    content:"+";
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    color:#ffd873;
-
-    font-size:62px;
-
-}
-
-
-/* ô có nhân vật */
-
-.slot.selected{
-
-    border-color:
-        #ffd05a;
-
-    box-shadow:
-        0 0 0 2px
-        rgba(255,210,70,.18),
-        0 0 20px
-        rgba(255,210,70,.22);
-
-}
-
-
-.slot img{
-
-    width:100%;
-    height:100%;
-
-    object-fit:contain;
-
-    display:block;
-}
-
-
-.slot-name{
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    padding:5px;
-
-    text-align:center;
-
-    font-size:15px;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(0,0,0,.85)
-        );
-}
-
-
-/* ==================================================
-   KHU NHÂN VẬT
-================================================== */
-
-.character-panel{
-
-    position:absolute;
-
-    left:50%;
-    top:315px;
-
-    transform:
-        translateX(-50%);
-
-    width:1170px;
-
-    display:flex;
-
-    gap:20px;
-
-    align-items:flex-start;
-
-}
-
-
-/* ==================================================
-   DANH SÁCH NHÂN VẬT
-================================================== */
-
-.character-list{
-
-    width:740px;
-
-    min-height:280px;
-
-    padding:15px;
-
-    border-radius:18px;
-
-    background:
-        rgba(0,0,0,.27);
-
-    border:
-        1px solid
-        rgba(255,255,255,.18);
-
-}
-
-
-.list-title{
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    margin-bottom:12px;
-
-    text-shadow:
-        0 2px 4px #000;
-}
-
-
-.characters{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(5,1fr);
-
-    gap:12px;
-
-    max-height:240px;
-
-    overflow-y:auto;
-
-    padding-right:4px;
-}
-
-
-/* thẻ */
-
-.character{
-
-    height:105px;
-
-    border-radius:12px;
-
-    border:
-        2px solid
-        rgba(255,255,255,.2);
-
-    background:
-        rgba(5,20,35,.65);
-
-    overflow:hidden;
-
-    cursor:pointer;
-
-    position:relative;
-
-}
-
-
-.character:active{
-
-    transform:scale(.96);
-
-}
-
-
-.character.selected{
-
-    border-color:#ffd45c;
-
-    box-shadow:
-        0 0 15px
-        rgba(255,211,80,.35);
-
-}
-
-
-.character img{
-
-    width:100%;
-    height:78px;
-
-    object-fit:contain;
-
-}
-
-
-.character div{
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    height:27px;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    background:
-        rgba(0,0,0,.75);
-
-    font-size:12px;
-
-}
-
-
-/* ==================================================
-   THÔNG TIN NHÂN VẬT
-================================================== */
-
-.info{
-
-    width:380px;
-
-    min-height:345px;
-
-    padding:16px;
-
-    border-radius:18px;
-
-    background:
-        linear-gradient(
-            160deg,
-            rgba(255,229,174,.97),
-            rgba(181,132,58,.97)
-        );
-
-    border:
-        3px solid
-        #e5b957;
-
-    color:#452808;
-
-    box-shadow:
-        0 15px 35px
         rgba(0,0,0,.45);
 
-    display:none;
+    padding:10px;
 
 }
 
 
-.info.show{
-    display:block;
-}
+#characterCanvas{
 
+    width:100%;
 
-.info-star{
-
-    text-align:center;
-
-    color:#ffd12e;
-
-    font-size:25px;
-
-}
-
-
-.info-name{
-
-    text-align:center;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    margin-top:2px;
-
-}
-
-
-.info-img{
+    max-width:420px;
 
     display:block;
 
-    width:150px;
-    height:135px;
-
-    object-fit:contain;
-
-    margin:5px auto;
+    margin:auto;
 
 }
 
 
-.stat{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    padding:6px 0;
-
-    border-top:
-        1px solid
-        rgba(90,50,10,.22);
-
-    font-size:16px;
-
-}
-
-
-.info-buttons{
-
-    margin-top:10px;
+.buttons{
 
     display:grid;
 
     grid-template-columns:
         repeat(2,1fr);
 
-    gap:7px;
+    gap:10px;
+
+    margin-top:15px;
 
 }
 
 
-.info-button{
+button{
 
-    height:40px;
+    min-height:50px;
 
     border:none;
 
-    border-radius:8px;
+    border-radius:12px;
 
-    background:#e8edf3;
-
-    color:#26313b;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-.info-button:active{
-
-    transform:scale(.97);
-
-}
-
-
-/* ==================================================
-   BOTTOM
-================================================== */
-
-.bottom{
-
-    position:absolute;
-
-    left:50%;
-    bottom:20px;
-
-    transform:
-        translateX(-50%);
-
-    display:flex;
-
-    gap:18px;
-
-}
-
-
-.bottom-button{
-
-    width:205px;
-    height:68px;
-
-    border:none;
-
-    border-radius:16px;
+    background:
+        linear-gradient(
+            135deg,
+            #6d4307,
+            #e2ad32
+        );
 
     color:white;
 
-    font-size:23px;
-
     font-weight:bold;
 
-    cursor:pointer;
+    font-size:14px;
 
 }
 
 
-.draw{
+button:active{
 
-    background:
-        linear-gradient(
-            135deg,
-            #9c39ff,
-            #6237ff
-        );
+    transform:scale(.96);
 
 }
 
 
-.start{
+.back{
 
-    background:
-        linear-gradient(
-            135deg,
-            #278fe9,
-            #1657c8
-        );
+    margin-top:15px;
+
+    background:#202633;
 
 }
-
-
-/* ==================================================
-   POPUP
-================================================== */
-
-#popup{
-
-    position:absolute;
-
-    inset:0;
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    background:
-        rgba(0,0,0,.58);
-
-    z-index:100;
-}
-
-
-#popup.show{
-
-    display:flex;
-
-}
-
-
-.popup-box{
-
-    width:420px;
-
-    max-width:85vw;
-
-    padding:25px;
-
-    border-radius:18px;
-
-    background:
-        linear-gradient(
-            160deg,
-            #182b43,
-            #07101b
-        );
-
-    border:
-        2px solid
-        rgba(255,213,90,.5);
-
-    text-align:center;
-
-}
-
-
-.popup-box h2{
-
-    color:#ffd65b;
-
-    margin-bottom:10px;
-
-}
-
-
-.popup-box p{
-
-    color:#c4ccd7;
-
-    line-height:1.5;
-
-}
-
-
-.popup-box button{
-
-    margin-top:18px;
-
-    width:130px;
-    height:42px;
-
-    border:0;
-
-    border-radius:9px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #bc820e,
-            #ffd45e
-        );
-
-    font-weight:bold;
-
-}
-
-
-/* ==================================================
-   THANH CUỘN
-================================================== */
-
-.characters::-webkit-scrollbar{
-    width:5px;
-}
-
-.characters::-webkit-scrollbar-thumb{
-    background:#d7ad42;
-    border-radius:10px;
-}
-
-
-/* ==================================================
-   SCALE JS ĐẢM NHẬN
-================================================== */
 
 </style>
+
 </head>
+
 
 <body>
 
-<div id="app">
 
-<div id="game">
-
-    <!-- NỀN -->
-    <img
-        id="background"
-        src="./nennhom.png"
-        alt="AnimeDorado">
-
-    <div class="overlay"></div>
+<div class="game">
 
 
-    <!-- =================================================
-         HEADER
-    ================================================= -->
+    <div class="title">
+        ANIME DORADO
+    </div>
 
-    <div class="header">
+
+    <div class="character-box">
+
+        <canvas
+            id="characterCanvas">
+        </canvas>
+
+    </div>
+
+
+    <div class="buttons">
 
         <button
-            class="back"
-            onclick="goBack()">
+            onclick="
+                character.play('idle')
+            ">
 
-            ‹
+            IDLE
 
         </button>
 
-        <div class="title">
-            Lập nhóm
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         ĐỘI HÌNH
-    ================================================= -->
-
-    <div class="team-area">
-
-        <div class="team-title">
-
-            Đội hình:
-            <span id="teamCount">0</span>/5
-
-        </div>
-
-
-        <div
-            id="team"
-            class="team">
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         DANH SÁCH NHÂN VẬT + THÔNG TIN
-    ================================================= -->
-
-    <div class="character-panel">
-
-
-        <div class="character-list">
-
-            <div class="list-title">
-                Nhân vật của bạn
-            </div>
-
-
-            <div
-                id="characters"
-                class="characters">
-
-            </div>
-
-        </div>
-
-
-        <!-- INFO -->
-
-        <div
-            id="info"
-            class="info">
-
-            <div
-                class="info-star">
-                ★
-            </div>
-
-            <div
-                id="infoName"
-                class="info-name">
-            </div>
-
-            <img
-                id="infoImage"
-                class="info-img"
-                src=""
-                alt="">
-
-
-            <div class="stat">
-                <span>Level</span>
-                <strong id="infoLevel"></strong>
-            </div>
-
-            <div class="stat">
-                <span>AP</span>
-                <strong id="infoAP"></strong>
-            </div>
-
-            <div class="stat">
-                <span>HP</span>
-                <strong id="infoHP"></strong>
-            </div>
-
-            <div class="stat">
-                <span>Kiểu tấn công</span>
-                <strong id="infoType"></strong>
-            </div>
-
-
-            <div class="info-buttons">
-
-                <button
-                    class="info-button"
-                    onclick="action('Xuất trận')">
-
-                    Xuất trận
-
-                </button>
-
-                <button
-                    class="info-button"
-                    onclick="action('Rút')">
-
-                    Rút
-
-                </button>
-
-                <button
-                    class="info-button"
-                    onclick="action('Bán')">
-
-                    Bán
-
-                </button>
-
-                <button
-                    class="info-button"
-                    onclick="action('Nâng cấp')">
-
-                    Nâng cấp
-
-                </button>
-
-                <button
-                    class="info-button"
-                    onclick="action('Item')">
-
-                    Item
-
-                </button>
-
-                <button
-                    class="info-button"
-                    onclick="action('Lock')">
-
-                    Lock
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         BOTTOM
-    ================================================= -->
-
-    <div class="bottom">
 
         <button
-            class="bottom-button draw"
-            onclick="draw()">
+            onclick="
+                character.play('run')
+            ">
 
-            🎴 Draw
+            CHẠY
 
         </button>
 
-        <button
-            class="bottom-button start"
-            onclick="startGame()">
 
-            Bắt đầu chơi
+        <button
+            onclick="
+                character.play('normalAttack')
+            ">
+
+            ĐÁNH THƯỜNG
+
+        </button>
+
+
+        <button
+            onclick="
+                character.play('skill1')
+            ">
+
+            SKILL 1
+
+        </button>
+
+
+        <button
+            onclick="
+                character.play('skill2')
+            ">
+
+            SKILL 2
+
+        </button>
+
+
+        <button
+            onclick="
+                character.play('skill3')
+            ">
+
+            SKILL 3
 
         </button>
 
     </div>
 
 
-    <!-- =================================================
-         POPUP
-    ================================================= -->
+    <button
+        class="back"
+        onclick="
+            history.back()
+        ">
 
-    <div id="popup">
+        ← QUAY LẠI
 
-        <div class="popup-box">
+    </button>
 
-            <h2 id="popupTitle">
-                AnimeDorado
-            </h2>
-
-            <p id="popupText">
-            </p>
-
-            <button
-                onclick="closePopup()">
-
-                Đóng
-
-            </button>
-
-        </div>
-
-    </div>
 
 </div>
 
-</div>
+
+<script src="./character.js"></script>
 
 
 <script>
 
-/* =====================================================
-   THÊM NHÂN VẬT Ở ĐÂY
-=====================================================
+const character =
+    new Character({
 
-   Bạn KHÔNG cần đổi tên file.
+        canvas:
+            document.getElementById(
+                "characterCanvas"
+            ),
 
-   Ví dụ GitHub:
+        image:
+            "./characters/superman-30frames.png",
 
-   nhanvat/
-   ├── abc123.png
-   ├── Naruto ảnh.png
-   ├── hero01.jpg
-   └── xYz.png
+        fps:12
 
-   Chỉ cần ghi đúng tên:
-
-===================================================== */
-
-const CHARACTERS = [
-
-    {
-        name: "Nhân vật 1",
-        image: "./nhanvat/abc123.png",
-        level: 1,
-        ap: 100,
-        hp: 300,
-        type: "Vật lý"
-    },
-
-    {
-        name: "Nhân vật 2",
-        image: "./nhanvat/hero01.jpg",
-        level: 1,
-        ap: 120,
-        hp: 350,
-        type: "Phép"
-    },
-
-    {
-        name: "Nhân vật 3",
-        image: "./nhanvat/xYz.png",
-        level: 1,
-        ap: 90,
-        hp: 420,
-        type: "Hỗ trợ"
-    }
-
-];
-
-
-/*
-======================================================
-
-  MUỐN THÊM NHÂN VẬT:
-
-  chỉ thêm:
-
-  {
-      name: "Tên nhân vật",
-      image: "./nhanvat/TÊN_FILE.png",
-      level: 1,
-      ap: 150,
-      hp: 500,
-      type: "Vật lý"
-  },
-
-======================================================
-*/
-
-
-/* =====================================================
-   BIẾN
-===================================================== */
-
-let selectedCharacter = null;
-
-let team = [];
-
-
-/* =====================================================
-   RENDER NHÂN VẬT
-===================================================== */
-
-function renderCharacters(){
-
-    const box =
-        document.getElementById(
-            "characters"
-        );
-
-    box.innerHTML = "";
-
-
-    CHARACTERS.forEach(
-        function(character,index){
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "character";
-
-
-            if(
-                selectedCharacter ===
-                index
-            ){
-
-                card.classList.add(
-                    "selected"
-                );
-
-            }
-
-
-            const img =
-                document.createElement(
-                    "img"
-                );
-
-            img.src =
-                character.image;
-
-            img.alt =
-                character.name;
-
-
-            const name =
-                document.createElement(
-                    "div"
-                );
-
-            name.textContent =
-                character.name;
-
-
-            card.appendChild(img);
-            card.appendChild(name);
-
-
-            card.addEventListener(
-                "click",
-                function(){
-
-                    selectCharacter(
-                        index
-                    );
-
-                }
-            );
-
-
-            box.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   CHỌN NHÂN VẬT
-===================================================== */
-
-function selectCharacter(index){
-
-    selectedCharacter =
-        index;
-
-
-    const character =
-        CHARACTERS[index];
-
-
-    document.getElementById(
-        "info"
-    ).classList.add(
-        "show"
-    );
-
-
-    document.getElementById(
-        "infoName"
-    ).textContent =
-        character.name;
-
-
-    document.getElementById(
-        "infoImage"
-    ).src =
-        character.image;
-
-
-    document.getElementById(
-        "infoLevel"
-    ).textContent =
-        character.level;
-
-
-    document.getElementById(
-        "infoAP"
-    ).textContent =
-        character.ap;
-
-
-    document.getElementById(
-        "infoHP"
-    ).textContent =
-        character.hp;
-
-
-    document.getElementById(
-        "infoType"
-    ).textContent =
-        character.type;
-
-
-    renderCharacters();
-
-}
-
-
-/* =====================================================
-   THÊM NHÂN VẬT VÀO ĐỘI
-===================================================== */
-
-function addToTeam(character){
-
-    if(
-        team.length >= 5
-    ){
-
-        showPopup(
-            "Đội hình đầy",
-            "Bạn chỉ có thể chọn tối đa 5 nhân vật."
-        );
-
-        return;
-
-    }
-
-
-    /*
-      Không cho thêm cùng một
-      nhân vật 2 lần.
-    */
-
-    if(
-        team.includes(character)
-    ){
-
-        showPopup(
-            "Đã có trong đội",
-            character.name +
-            " đã có trong đội hình."
-        );
-
-        return;
-
-    }
-
-
-    team.push(
-        character
-    );
-
-
-    renderTeam();
-
-}
-
-
-/* =====================================================
-   RENDER ĐỘI
-===================================================== */
-
-function renderTeam(){
-
-    const box =
-        document.getElementById(
-            "team"
-        );
-
-    box.innerHTML = "";
-
-
-    /*
-       5 ô đội hình
-    */
-
-    for(
-        let i=0;
-        i<5;
-        i++
-    ){
-
-        const slot =
-            document.createElement(
-                "div"
-            );
-
-
-        slot.className =
-            "slot";
-
-
-        if(
-            team[i]
-        ){
-
-            slot.classList.add(
-                "selected"
-            );
-
-
-            const img =
-                document.createElement(
-                    "img"
-                );
-
-
-            img.src =
-                team[i].image;
-
-
-            img.alt =
-                team[i].name;
-
-
-            const name =
-                document.createElement(
-                    "div"
-                );
-
-
-            name.className =
-                "slot-name";
-
-
-            name.textContent =
-                team[i].name;
-
-
-            slot.appendChild(
-                img
-            );
-
-
-            slot.appendChild(
-                name
-            );
-
-
-            slot.onclick =
-                function(){
-
-                    /*
-                       Bấm nhân vật trong đội
-                       → mở thông tin
-                    */
-
-                    const index =
-                        CHARACTERS.indexOf(
-                            team[i]
-                        );
-
-                    selectCharacter(
-                        index
-                    );
-
-                };
-
-
-        }else{
-
-            slot.classList.add(
-                "empty"
-            );
-
-
-            slot.onclick =
-                function(){
-
-                    if(
-                        selectedCharacter !==
-                        null
-                    ){
-
-                        addToTeam(
-                            CHARACTERS[
-                                selectedCharacter
-                            ]
-                        );
-
-                    }
-
-                };
-
-        }
-
-
-        box.appendChild(
-            slot
-        );
-
-    }
-
-
-    document.getElementById(
-        "teamCount"
-    ).textContent =
-        team.length;
-
-}
-
-
-/* =====================================================
-   ACTION NHÂN VẬT
-===================================================== */
-
-function action(type){
-
-    if(
-        selectedCharacter ===
-        null
-    ){
-
-        return;
-    }
-
-
-    const character =
-        CHARACTERS[
-            selectedCharacter
-        ];
-
-
-    if(
-        type === "Xuất trận"
-    ){
-
-        addToTeam(
-            character
-        );
-
-        return;
-
-    }
-
-
-    if(
-        type === "Rút"
-    ){
-
-        showPopup(
-            "Rút",
-            "Chức năng rút nhân vật sẽ được làm sau."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        type === "Bán"
-    ){
-
-        showPopup(
-            "Bán",
-            "Chức năng bán nhân vật sẽ được làm sau."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        type === "Nâng cấp"
-    ){
-
-        showPopup(
-            "Nâng cấp",
-            "Hệ thống nâng cấp sẽ được làm sau."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        type === "Item"
-    ){
-
-        showPopup(
-            "Item",
-            "Kho item sẽ được làm sau."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        type === "Lock"
-    ){
-
-        showPopup(
-            "Lock",
-            "Khóa nhân vật sẽ được làm sau."
-        );
-
-        return;
-
-    }
-
-}
-
-
-/* =====================================================
-   DRAW
-===================================================== */
-
-function draw(){
-
-    showPopup(
-        "Draw",
-        "Hệ thống rút nhân vật sẽ được làm sau."
-    );
-
-}
-
-
-/* =====================================================
-   BẮT ĐẦU
-===================================================== */
-
-function startGame(){
-
-    if(
-        team.length === 0
-    ){
-
-        showPopup(
-            "Chưa có nhân vật",
-            "Hãy chọn ít nhất một nhân vật vào đội hình."
-        );
-
-        return;
-
-    }
-
-
-    showPopup(
-        "Đội hình sẵn sàng",
-        "Đội của bạn có " +
-        team.length +
-        " nhân vật."
-    );
-
-}
-
-
-/* =====================================================
-   POPUP
-===================================================== */
-
-function showPopup(
-    title,
-    text
-){
-
-    document.getElementById(
-        "popupTitle"
-    ).textContent =
-        title;
-
-
-    document.getElementById(
-        "popupText"
-    ).textContent =
-        text;
-
-
-    document.getElementById(
-        "popup"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-function closePopup(){
-
-    document.getElementById(
-        "popup"
-    ).classList.remove(
-        "show"
-    );
-
-}
-
-
-/* =====================================================
-   QUAY LẠI
-===================================================== */
-
-function goBack(){
-
-    window.location.href =
-        "./giaodien.html";
-
-}
-
-
-/* =====================================================
-   SCALE DỌC / NGANG
-===================================================== */
-
-function scaleGame(){
-
-    const game =
-        document.getElementById(
-            "game"
-        );
-
-
-    const w =
-        window.innerWidth;
-
-    const h =
-        window.innerHeight;
-
-
-    const scale =
-        Math.min(
-            w / 1536,
-            h / 864
-        );
-
-
-    game.style.transform =
-        "translate(-50%,-50%) " +
-        "scale(" +
-        scale +
-        ")";
-
-}
-
-
-window.addEventListener(
-    "resize",
-    scaleGame
-);
-
-
-window.addEventListener(
-    "orientationchange",
-    function(){
-
-        setTimeout(
-            scaleGame,
-            300
-        );
-
-    }
-);
-
-
-/* =====================================================
-   START
-===================================================== */
-
-renderCharacters();
-
-renderTeam();
-
-scaleGame();
+    });
 
 </script>
 
+
 </body>
+
 </html>
