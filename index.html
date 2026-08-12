@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<title>ANIME ELDORIA</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.42),
+            rgba(0,0,0,.72)
+        ),
+        url("./nennhom.jpg")
+        center center /
+        cover no-repeat;
+
+    color:white;
+}
+
+
+/* =====================================
+   KHUNG
+===================================== */
+
+.box{
+
+    width:min(410px,92vw);
+
+    padding:25px;
+
+    border-radius:21px;
+
+    background:
+        rgba(8,13,22,.95);
+
+    border:
+        2px solid
+        rgba(255,213,80,.35);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.65);
+
+}
+
+
+/* =====================================
+   LOGO
+===================================== */
+
+.logo{
+
+    text-align:center;
+
+    margin-bottom:22px;
+
+}
+
+.logo h1{
+
+    color:#ffd65a;
+
+    font-size:33px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    text-shadow:
+        0 3px 0 #684400,
+        0 0 18px
+        rgba(255,210,70,.42);
+
+}
+
+.logo p{
+
+    margin-top:6px;
+
+    color:#9da7b5;
+
+    font-size:12px;
+
+}
+
+
+/* =====================================
+   TABS
+===================================== */
+
+.tabs{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:6px;
+
+    padding:5px;
+
+    margin-bottom:18px;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.05);
+
+}
+
+.tab{
+
+    height:42px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:transparent;
+
+    color:#84909f;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+.tab.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            #b87809,
+            #ffd65b
+        );
+
+    color:#1c1406;
+
+}
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+.message{
+
+    display:none;
+
+    margin-bottom:13px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    line-height:1.4;
+
+}
+
+.message.show{
+
+    display:block;
+
+}
+
+.message.error{
+
+    color:#ffacac;
+
+    background:
+        rgba(255,50,50,.1);
+
+    border:
+        1px solid
+        rgba(255,50,50,.22);
+
+}
+
+.message.success{
+
+    color:#aff1b8;
+
+    background:
+        rgba(50,220,80,.1);
+
+    border:
+        1px solid
+        rgba(50,220,80,.22);
+
+}
+
+
+/* =====================================
+   FORM
+===================================== */
+
+.form{
+
+    display:none;
+
+}
+
+.form.active{
+
+    display:block;
+
+}
+
+.form h2{
+
+    font-size:22px;
+
+    margin-bottom:6px;
+
+}
+
+.description{
+
+    color:#8d98a7;
+
+    font-size:12px;
+
+    margin-bottom:18px;
+
+}
+
+
+/* =====================================
+   INPUT
+===================================== */
+
+.group{
+
+    margin-bottom:14px;
+
+}
+
+.group label{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#d7dce3;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+.group input{
+
+    width:100%;
+
+    height:49px;
+
+    padding:0 13px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:11px;
+
+    outline:none;
+
+    background:
+        rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+.group input:focus{
+
+    border-color:#e0b23f;
+
+    background:
+        rgba(255,255,255,.09);
+
+}
+
+
+/* =====================================
+   PASSWORD
+===================================== */
+
+.password{
+
+    position:relative;
+
+}
+
+.password input{
+
+    padding-right:48px;
+
+}
+
+.eye{
+
+    position:absolute;
+
+    right:4px;
+    top:4px;
+
+    width:40px;
+    height:40px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#aab4c0;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================
+   MAIN BUTTON
+===================================== */
+
+.main-button{
+
+    width:100%;
+
+    height:50px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b87809,
+            #ffd65b
+        );
+
+    color:#1b1303;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+}
+
+.main-button:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.footer{
+
+    margin-top:17px;
+
+    text-align:center;
+
+    color:#5c6675;
+
+    font-size:10px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="box">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        <h1>
+            ANIME ELDORIA
+        </h1>
+
+        <p>
+            Thế giới anime của riêng bạn
+        </p>
+
+    </div>
+
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button
+            id="loginTab"
+            class="tab active"
+            onclick="showForm('login')">
+
+            Đăng nhập
+
+        </button>
+
+
+        <button
+            id="registerTab"
+            class="tab"
+            onclick="showForm('register')">
+
+            Đăng ký
+
+        </button>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div
+        id="message"
+        class="message">
+    </div>
+
+
+    <!-- =================================
+         ĐĂNG NHẬP
+    ================================== -->
+
+    <div
+        id="loginForm"
+        class="form active">
+
+        <h2>
+            Chào mừng trở lại
+        </h2>
+
+        <p class="description">
+            Đăng nhập tài khoản Anime Eldoria
+        </p>
+
+
+        <div class="group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="Email của bạn"
+                autocomplete="email">
+
+        </div>
+
+
+        <div class="group">
+
+            <label>
+                Mật khẩu
+            </label>
+
+            <div class="password">
+
+                <input
+                    id="loginPassword"
+                    type="password"
+                    placeholder="Mật khẩu"
+                    autocomplete="current-password">
+
+                <button
+                    class="eye"
+                    type="button"
+                    onclick="
+                    togglePassword(
+                        'loginPassword',
+                        this
+                    )">
+
+                    👁
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="main-button"
+            onclick="login()">
+
+            ĐĂNG NHẬP
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================
+         ĐĂNG KÝ
+    ================================== -->
+
+    <div
+        id="registerForm"
+        class="form">
+
+        <h2>
+            Tạo tài khoản
+        </h2>
+
+        <p class="description">
+            Tạo tài khoản thật để lưu dữ liệu
+        </p>
+
+
+        <div class="group">
+
+            <label>
+                Tên người chơi
+            </label>
+
+            <input
+                id="registerName"
+                type="text"
+                maxlength="20"
+                placeholder="Tên trong game">
+
+        </div>
+
+
+        <div class="group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="Email của bạn"
+                autocomplete="email">
+
+        </div>
+
+
+        <div class="group">
+
+            <label>
+                Mật khẩu
+            </label>
+
+            <div class="password">
+
+                <input
+                    id="registerPassword"
+                    type="password"
+                    placeholder="Ít nhất 6 ký tự">
+
+                <button
+                    class="eye"
+                    type="button"
+                    onclick="
+                    togglePassword(
+                        'registerPassword',
+                        this
+                    )">
+
+                    👁
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="group">
+
+            <label>
+                Nhập lại mật khẩu
+            </label>
+
+            <div class="password">
+
+                <input
+                    id="registerConfirm"
+                    type="password"
+                    placeholder="Nhập lại mật khẩu">
+
+                <button
+                    class="eye"
+                    type="button"
+                    onclick="
+                    togglePassword(
+                        'registerConfirm',
+                        this
+                    )">
+
+                    👁
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="main-button"
+            onclick="register()">
+
+            TẠO TÀI KHOẢN
+
+        </button>
+
+    </div>
+
+
+    <div class="footer">
+
+        ANIME ELDORIA © 2026
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     FIREBASE
+===================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile
+}
+from
+"https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+
+/* =====================================
+   FIREBASE CONFIG CỦA BẠN
+===================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyBSrpmR_Ti7MRBbot9KO20Qp7eX0FAEXU0",
+
+    authDomain:
+        "animedorado-pcs.firebaseapp.com",
+
+    projectId:
+        "animedorado-pcs",
+
+    storageBucket:
+        "animedorado-pcs.firebasestorage.app",
+
+    messagingSenderId:
+        "1033255200857",
+
+    appId:
+        "1:1033255200857:web:657cfba499ce9ce74aa948",
+
+    measurementId:
+        "G-XTYYNQKMFH"
+
+};
+
+
+/* =====================================
+   KHỞI TẠO
+===================================== */
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+/* =====================================
+   ĐỔI FORM
+===================================== */
+
+window.showForm =
+function(type){
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+    const registerForm =
+        document.getElementById(
+            "registerForm"
+        );
+
+
+    const loginTab =
+        document.getElementById(
+            "loginTab"
+        );
+
+    const registerTab =
+        document.getElementById(
+            "registerTab"
+        );
+
+
+    clearMessage();
+
+
+    if(type === "login"){
+
+        loginForm
+            .classList
+            .add("active");
+
+        registerForm
+            .classList
+            .remove("active");
+
+
+        loginTab
+            .classList
+            .add("active");
+
+        registerTab
+            .classList
+            .remove("active");
+
+    }else{
+
+        registerForm
+            .classList
+            .add("active");
+
+        loginForm
+            .classList
+            .remove("active");
+
+
+        registerTab
+            .classList
+            .add("active");
+
+        loginTab
+            .classList
+            .remove("active");
+
+    }
+
+};
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+function showMessage(
+    text,
+    type
+){
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.textContent =
+        text;
+
+
+    box.className =
+        "message show " +
+        type;
+
+}
+
+
+function clearMessage(){
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.textContent =
+        "";
+
+
+    box.className =
+        "message";
+
+}
+
+
+/* =====================================
+   PASSWORD
+===================================== */
+
+window.togglePassword =
+function(
+    id,
+    button
+){
+
+    const input =
+        document.getElementById(
+            id
+        );
+
+
+    if(
+        input.type ===
+        "password"
+    ){
+
+        input.type =
+            "text";
+
+        button.textContent =
+            "🙈";
+
+    }else{
+
+        input.type =
+            "password";
+
+        button.textContent =
+            "👁";
+
+    }
+
+};
+
+
+/* =====================================
+   ĐĂNG KÝ
+===================================== */
+
+window.register =
+async function(){
+
+    const name =
+        document
+        .getElementById(
+            "registerName"
+        )
+        .value
+        .trim();
+
+
+    const email =
+        document
+        .getElementById(
+            "registerEmail"
+        )
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById(
+            "registerPassword"
+        )
+        .value;
+
+
+    const confirm =
+        document
+        .getElementById(
+            "registerConfirm"
+        )
+        .value;
+
+
+    if(
+        name.length < 2
+    ){
+
+        showMessage(
+            "Tên người chơi phải có ít nhất 2 ký tự.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(
+        !email
+    ){
+
+        showMessage(
+            "Vui lòng nhập email.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(
+        password.length < 6
+    ){
+
+        showMessage(
+            "Mật khẩu phải có ít nhất 6 ký tự.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(
+        password !== confirm
+    ){
+
+        showMessage(
+            "Hai mật khẩu không giống nhau.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    try{
+
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        await updateProfile(
+            userCredential.user,
+            {
+                displayName:
+                    name
+            }
+        );
+
+
+        showMessage(
+            "Đăng ký thành công! Đang vào game...",
+            "success"
+        );
+
+
+        setTimeout(
+            function(){
+
+                window.location.href =
+                    "./giaodien.html";
+
+            },
+            700
+        );
+
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+
+        if(
+            error.code ===
+            "auth/email-already-in-use"
+        ){
+
+            showMessage(
+                "Email này đã được đăng ký.",
+                "error"
+            );
+
+        }else if(
+            error.code ===
+            "auth/invalid-email"
+        ){
+
+            showMessage(
+                "Email không hợp lệ.",
+                "error"
+            );
+
+        }else if(
+            error.code ===
+            "auth/weak-password"
+        ){
+
+            showMessage(
+                "Mật khẩu quá yếu.",
+                "error"
+            );
+
+        }else{
+
+            showMessage(
+                "Không thể đăng ký: " +
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+};
+
+
+/* =====================================
+   ĐĂNG NHẬP
+===================================== */
+
+window.login =
+async function(){
+
+    const email =
+        document
+        .getElementById(
+            "loginEmail"
+        )
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById(
+            "loginPassword"
+        )
+        .value;
+
+
+    if(!email){
+
+        showMessage(
+            "Vui lòng nhập email.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!password){
+
+        showMessage(
+            "Vui lòng nhập mật khẩu.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+
+        showMessage(
+            "Đăng nhập thành công! Đang vào game...",
+            "success"
+        );
+
+
+        setTimeout(
+            function(){
+
+                window.location.href =
+                    "./giaodien.html";
+
+            },
+            700
+        );
+
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+
+        if(
+            error.code ===
+            "auth/invalid-credential"
+        ){
+
+            showMessage(
+                "Email hoặc mật khẩu không đúng.",
+                "error"
+            );
+
+        }else{
+
+            showMessage(
+                "Đăng nhập thất bại: " +
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+};
+
+</script>
+
+</body>
+</html>
