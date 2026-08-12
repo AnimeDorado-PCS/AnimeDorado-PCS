@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 
 <meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width,
-      initial-scale=1,
-      maximum-scale=1,
-      user-scalable=no">
+               initial-scale=1,
+               maximum-scale=1,
+               user-scalable=no">
 
-<title>ANIME DORADO - Lập nhóm</title>
+<title>ANIME DORADO • LẬP NHÓM</title>
 
 <style>
 
-/* ==================================================
+/* =========================================================
    RESET
-================================================== */
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -30,9 +29,12 @@ html,
 body{
     width:100%;
     min-height:100%;
-    background:#000;
-    font-family:Arial,Helvetica,sans-serif;
+    background:#061117;
     color:#fff;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
 body{
@@ -42,23 +44,23 @@ body{
 
 button{
     font:inherit;
+    -webkit-tap-highlight-color:transparent;
 }
 
+img{
+    user-select:none;
+    -webkit-user-drag:none;
+}
 
-/* ==================================================
-   GAME
-================================================== */
+/* =========================================================
+   ROOT
+========================================================= */
 
-#game{
+#app{
     position:relative;
-    width:100%;
     min-height:100vh;
+    overflow:hidden;
 }
-
-
-/* ==================================================
-   NỀN
-================================================== */
 
 #background{
     position:fixed;
@@ -70,1246 +72,1476 @@ button{
     pointer-events:none;
 }
 
-
-/* ==================================================
-   UI
-================================================== */
+#backgroundShade{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.14) 0%,
+            rgba(0,0,0,.05) 30%,
+            rgba(0,20,30,.18) 100%
+        );
+}
 
 #ui{
     position:relative;
     z-index:2;
     width:100%;
     min-height:100vh;
-    padding-bottom:30px;
+    padding-bottom:28px;
 }
 
+/* =========================================================
+   TOP BAR
+========================================================= */
 
-/* ==================================================
-   HEADER
-================================================== */
-
-.header{
+.topbar{
     width:100%;
-    min-height:70px;
-
+    min-height:72px;
+    padding:10px 14px;
     display:flex;
     align-items:center;
-    gap:12px;
-
-    padding:10px 14px;
+    gap:10px;
 }
 
 .back-button{
+    flex:0 0 46px;
     width:46px;
     height:46px;
-    flex:0 0 46px;
-
-    border:1px solid rgba(255,255,255,.5);
-    border-radius:13px;
-
-    background:rgba(0,0,0,.30);
-
+    border:1px solid rgba(255,255,255,.38);
+    border-radius:14px;
+    background:rgba(0,0,0,.28);
     color:#fff;
-    font-size:26px;
-    font-weight:bold;
-
+    font-size:27px;
+    font-weight:700;
     cursor:pointer;
+    backdrop-filter:blur(8px);
 }
 
-.header-title{
-    font-size:clamp(24px,6vw,34px);
-    font-weight:900;
+.page-title{
+    flex:1;
+    min-width:0;
+}
 
-    text-shadow:
-        0 3px 8px rgba(0,0,0,.7);
+.page-title h1{
+    font-size:clamp(22px,6vw,34px);
+    font-weight:900;
+    line-height:1;
+    text-shadow:0 3px 10px rgba(0,0,0,.65);
+}
+
+.page-title p{
+    margin-top:5px;
+    font-size:10px;
+    color:rgba(255,255,255,.72);
+    letter-spacing:1.5px;
 }
 
 .resources{
-    margin-left:auto;
-
     display:flex;
     gap:7px;
+    margin-left:auto;
 }
 
 .resource{
     min-width:88px;
     height:38px;
-
-    padding:0 9px;
-
+    padding:0 10px;
     display:flex;
     align-items:center;
     justify-content:center;
     gap:6px;
-
-    border:1px solid rgba(255,255,255,.22);
+    border:1px solid rgba(255,255,255,.18);
     border-radius:20px;
-
     background:rgba(0,0,0,.28);
-
     color:#fff;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
-
-    backdrop-filter:blur(5px);
+    backdrop-filter:blur(8px);
 }
 
+.resource-icon{
+    font-size:14px;
+}
 
-/* ==================================================
-   COUNT
-================================================== */
+/* =========================================================
+   CONTENT WIDTH
+========================================================= */
 
-.character-count{
-    width:min(1100px,94vw);
-    margin:0 auto 8px;
+.content{
+    width:min(1080px,94vw);
+    margin:0 auto;
+}
 
-    text-align:right;
+/* =========================================================
+   TEAM HEADER
+========================================================= */
 
+.team-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:3px;
+    margin-bottom:9px;
+}
+
+.team-label{
     color:#fff;
-    font-size:13px;
-
-    text-shadow:
-        0 2px 5px #000;
+    font-size:14px;
+    font-weight:900;
+    text-shadow:0 2px 7px #000;
 }
 
-
-/* ==================================================
-   TEAM
-================================================== */
-
-.team-wrap{
-    width:min(1050px,94vw);
-    margin:14px auto 0;
+.team-count{
+    padding:5px 10px;
+    border-radius:14px;
+    background:rgba(0,0,0,.24);
+    color:#ffd65a;
+    font-size:11px;
+    font-weight:900;
+    backdrop-filter:blur(7px);
 }
 
-.team{
+/* =========================================================
+   TEAM SLOTS
+========================================================= */
+
+.team-grid{
     display:grid;
-    grid-template-columns:
-        repeat(5,minmax(0,1fr));
+    grid-template-columns:repeat(5,minmax(0,1fr));
     gap:10px;
 }
 
-.slot{
+.team-slot{
     position:relative;
-
-    width:100%;
-    aspect-ratio:1/1;
     min-width:0;
-
-    border:2px solid rgba(255,255,255,.22);
+    aspect-ratio:1/1;
+    border:1px solid rgba(255,255,255,.17);
     border-radius:15px;
-
     background:
         linear-gradient(
             180deg,
-            rgba(77,157,188,.65),
-            rgba(22,63,86,.75)
+            rgba(75,159,188,.55),
+            rgba(10,45,65,.72)
         );
-
-    overflow:hidden;
-
-    color:#fff;
-    cursor:pointer;
-}
-
-.slot.selected{
-    border:3px solid #ffd65a;
-
     box-shadow:
-        0 0 20px
-        rgba(255,214,90,.40);
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 10px 25px rgba(0,0,0,.22);
+    overflow:hidden;
+    cursor:pointer;
+    color:#fff;
+    transition:transform .14s ease,
+               border-color .14s ease,
+               box-shadow .14s ease;
 }
 
-.slot.empty::before{
-    content:"+";
+.team-slot:active{
+    transform:scale(.97);
+}
 
+.team-slot.selected{
+    border:2px solid #ffd65a;
+    box-shadow:
+        0 0 22px rgba(255,214,90,.25),
+        inset 0 0 14px rgba(255,214,90,.08);
+}
+
+.team-slot.empty::before{
+    content:"+";
     position:absolute;
     inset:0;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    font-size:45px;
     color:#ffd65a;
+    font-size:40px;
+    font-weight:200;
 }
 
 .slot-number{
     position:absolute;
-    left:6px;
-    top:5px;
-
-    z-index:5;
-
+    left:7px;
+    top:6px;
+    z-index:4;
+    width:20px;
+    height:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:rgba(0,0,0,.32);
     color:#dce7ee;
-    font-size:10px;
+    font-size:9px;
+    font-weight:900;
 }
 
 .slot-image{
     width:100%;
     height:100%;
-
-    display:block;
-
     object-fit:contain;
+    display:block;
 }
 
-.slot-name{
+.slot-bottom{
     position:absolute;
     left:0;
     right:0;
     bottom:0;
-
-    z-index:4;
-
-    padding:4px 2px;
-
-    background:rgba(0,0,0,.72);
-
+    z-index:5;
+    padding:7px 4px 5px;
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.82)
+        );
     text-align:center;
+}
 
-    font-size:9px;
+.slot-name{
+    display:block;
+    font-size:10px;
+    font-weight:900;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.slot-status{
+    display:block;
+    margin-top:2px;
+    color:#ffd65a;
+    font-size:8px;
     font-weight:900;
 }
 
+/* =========================================================
+   MAIN CHARACTER SECTION
+========================================================= */
 
-/* ==================================================
-   CHARACTER CARD
-================================================== */
-
-.character-area{
-    width:min(500px,88vw);
-
-    margin:55px auto 0;
-
-    position:relative;
+.hero-section{
+    margin-top:17px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 240px;
+    gap:12px;
+    align-items:stretch;
 }
 
-.character-card{
+.hero-card{
     position:relative;
-
-    min-height:340px;
-
-    padding:20px 18px 15px;
-
-    border:
-        2px solid
-        rgba(255,214,100,.75);
-
-    border-radius:18px;
-
+    min-height:350px;
+    border:1px solid rgba(255,215,100,.38);
+    border-radius:20px;
     background:
         linear-gradient(
             180deg,
-            rgba(242,195,94,.97),
-            rgba(211,148,54,.95)
+            rgba(242,192,91,.96),
+            rgba(205,138,42,.94)
         );
-
-    color:#45220c;
-
     box-shadow:
-        0 20px 45px
-        rgba(0,0,0,.4),
-
-        inset 0 2px 0
-        rgba(255,255,255,.35);
+        0 20px 45px rgba(0,0,0,.34),
+        inset 0 1px 0 rgba(255,255,255,.35);
+    color:#40200a;
+    overflow:visible;
 }
 
-.active-badge{
+.hero-ribbon{
     position:absolute;
-
     left:-7px;
-    top:-11px;
-
-    padding:
-        7px 12px;
-
-    background:#e35e16;
-
+    top:14px;
+    z-index:10;
+    padding:8px 13px;
+    background:#e55e16;
     color:#fff;
-
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
-
     clip-path:
         polygon(
             0 0,
             100% 0,
             84% 100%,
-            0 86%
+            0 88%
         );
 }
 
-.star{
+.hero-star{
     position:absolute;
-
-    top:-15px;
+    top:-14px;
     left:50%;
-
     transform:translateX(-50%);
-
-    width:66px;
-    height:32px;
-
+    width:68px;
+    height:34px;
     border-radius:18px;
-
-    background:#764710;
-    color:#ffd65a;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    font-size:17px;
+    background:#71430f;
+    color:#ffd65a;
+    font-size:18px;
+    box-shadow:0 5px 12px rgba(0,0,0,.25);
 }
 
-.character-name{
+.hero-header{
+    padding:22px 16px 0;
     text-align:center;
+}
 
-    font-size:23px;
+.hero-name{
+    font-size:25px;
     font-weight:900;
 }
 
-.character-rarity{
-    margin-top:3px;
-
-    text-align:center;
-
-    font-size:11px;
-    font-weight:bold;
+.hero-rarity{
+    display:inline-block;
+    margin-top:4px;
+    padding:4px 9px;
+    border-radius:20px;
+    background:rgba(90,45,7,.13);
+    color:#5a2a08;
+    font-size:10px;
+    font-weight:900;
 }
 
-.hero{
-    width:110px;
-    height:110px;
-
-    margin:
-        8px auto 12px;
-
+.hero-visual{
+    width:150px;
+    height:150px;
+    margin:9px auto 8px;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-.hero img{
-    width:100px;
-    height:100px;
-
+.hero-visual img{
+    width:132px;
+    height:132px;
     object-fit:contain;
-
     filter:
         drop-shadow(
-            0 6px 7px
-            rgba(0,0,0,.35)
+            0 8px 8px rgba(0,0,0,.34)
         );
 }
 
-.stats{
+.hero-stats{
+    width:min(390px,88%);
+    margin:0 auto;
     display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:4px 15px;
+    grid-template-columns:1fr 1fr;
+    gap:5px 15px;
 }
 
 .stat{
     display:flex;
-
+    align-items:center;
     justify-content:space-between;
-
     gap:8px;
-
     padding:5px 0;
-
-    border-bottom:
-        1px solid
-        rgba(91,45,9,.18);
-
+    border-bottom:1px solid rgba(89,43,7,.16);
     font-size:12px;
 }
 
 .stat-label{
-    opacity:.7;
+    opacity:.68;
 }
 
 .stat-value{
     font-weight:900;
 }
 
+/* =========================================================
+   SIDE ACTION PANEL
+========================================================= */
 
-/* ==================================================
-   MENU
-================================================== */
-
-.character-menu{
-    position:absolute;
-
-    right:-138px;
-    top:72px;
-
-    width:135px;
-
-    background:#edf2f7;
-
-    border:2px solid #d0d8df;
-
-    border-radius:8px;
-
-    overflow:hidden;
-
-    color:#222;
-
-    box-shadow:
-        0 15px 30px
-        rgba(0,0,0,.4);
-
-    z-index:20;
-
-    display:none;
+.action-card{
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:20px;
+    background:rgba(0,0,0,.28);
+    padding:10px;
+    backdrop-filter:blur(8px);
 }
 
-.character-menu button{
-    width:100%;
-    height:46px;
-
-    border:0;
-    border-bottom:
-        1px solid #c9d1d8;
-
-    background:#edf2f7;
-
-    color:#27313b;
-
-    font-size:14px;
-}
-
-.character-menu button:first-child{
-    background:#ffb800;
-    color:#fff;
+.action-card-title{
+    padding:5px 4px 8px;
+    color:#ffd65a;
+    font-size:12px;
     font-weight:900;
+    text-align:center;
 }
 
-.character-menu button:last-child{
-    border-bottom:0;
-}
-
-
-/* ==================================================
-   INVENTORY
-================================================== */
-
-.inventory{
-    width:min(1050px,94vw);
-
-    margin:
-        25px auto 0;
-}
-
-.inventory-title{
-    margin-bottom:9px;
-
-    color:#fff;
-
-    font-size:15px;
-    font-weight:900;
-
-    text-shadow:
-        0 2px 5px #000;
-}
-
-.characters{
+.action-list{
     display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(90px,1fr)
-        );
-
-    gap:8px;
+    gap:7px;
 }
 
-.character-card-small{
-    min-height:125px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.28);
-
-    border-radius:12px;
-
+.action-button{
+    width:100%;
+    min-height:45px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:11px;
     background:
-        rgba(0,0,0,.26);
-
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.09),
+            rgba(0,0,0,.22)
+        );
     color:#fff;
-
-    overflow:hidden;
-
+    font-size:12px;
+    font-weight:900;
     cursor:pointer;
 }
 
-.character-card-small.active{
-    border:
-        2px solid
-        #ffd65a;
+.action-button.primary{
+    background:
+        linear-gradient(
+            135deg,
+            #f4c842,
+            #b96d0a
+        );
+    color:#1b1304;
 }
 
-.character-card-small.equipped{
-    opacity:.5;
+.action-button.danger{
+    background:
+        linear-gradient(
+            180deg,
+            rgba(170,40,40,.8),
+            rgba(83,17,17,.8)
+        );
 }
 
-.character-card-small img{
+/* =========================================================
+   INVENTORY
+========================================================= */
+
+.inventory-panel{
+    margin-top:13px;
+    padding:13px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:18px;
+    background:rgba(0,0,0,.25);
+    backdrop-filter:blur(7px);
+}
+
+.inventory-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:9px;
+}
+
+.inventory-title{
+    color:#fff;
+    font-size:14px;
+    font-weight:900;
+    text-shadow:0 2px 6px #000;
+}
+
+.inventory-sub{
+    color:#b7c0cc;
+    font-size:10px;
+}
+
+.inventory-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(96px,1fr)
+        );
+    gap:8px;
+}
+
+.character-card{
+    position:relative;
+    min-height:128px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:13px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.07),
+            rgba(0,0,0,.24)
+        );
+    color:#fff;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.character-card.active{
+    border:2px solid #ffd65a;
+    box-shadow:
+        0 0 16px rgba(255,214,90,.18);
+}
+
+.character-card.equipped{
+    opacity:.58;
+}
+
+.character-card img{
     width:100%;
-    height:82px;
-
+    height:84px;
     object-fit:contain;
     display:block;
 }
 
-.card-name{
+.character-card-name{
     display:block;
-
-    text-align:center;
-
-    font-size:10px;
-    font-weight:900;
-}
-
-.card-rarity{
-    display:block;
-
     margin-top:2px;
-
     text-align:center;
-
-    color:#ffd65a;
-
-    font-size:8px;
-}
-
-
-/* ==================================================
-   BOTTOM
-================================================== */
-
-.bottom{
-    width:min(600px,94vw);
-
-    margin:
-        25px auto 30px;
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:10px;
-}
-
-.bottom button{
-    min-width:145px;
-    min-height:54px;
-
-    border:
-        2px solid
-        rgba(255,255,255,.45);
-
-    border-radius:15px;
-
-    color:#fff;
-
-    font-size:15px;
+    font-size:11px;
     font-weight:900;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
 
+.character-card-rarity{
+    display:block;
+    margin-top:3px;
+    text-align:center;
+    color:#ffd65a;
+    font-size:9px;
+    font-weight:900;
+}
+
+.equipped-mark{
+    position:absolute;
+    top:6px;
+    right:6px;
+    padding:3px 5px;
+    border-radius:8px;
+    background:rgba(0,0,0,.58);
+    color:#ffd65a;
+    font-size:8px;
+    font-weight:900;
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.character-menu{
+    position:absolute;
+    right:-143px;
+    top:70px;
+    width:138px;
+    padding:5px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;
+    background:
+        rgba(16,25,33,.96);
     box-shadow:
-        0 8px 15px
-        rgba(0,0,0,.3);
+        0 18px 35px rgba(0,0,0,.4);
+    backdrop-filter:blur(10px);
+    z-index:50;
+    display:none;
 }
 
-.draw{
+.character-menu.show{
+    display:block;
+}
+
+.menu-button{
+    width:100%;
+    height:41px;
+    border:0;
+    border-radius:8px;
+    background:transparent;
+    color:#fff;
+    text-align:left;
+    padding:0 11px;
+    font-size:12px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.menu-button:active{
+    background:rgba(255,255,255,.09);
+}
+
+.menu-button.primary{
+    background:
+        linear-gradient(
+            135deg,
+            #e4af24,
+            #9c600a
+        );
+    color:#1c1305;
+}
+
+.menu-button.close{
+    color:#aeb8c6;
+}
+
+/* =========================================================
+   BOTTOM ACTIONS
+========================================================= */
+
+.bottom-actions{
+    width:min(620px,94vw);
+    margin:15px auto 0;
+    display:grid;
+    grid-template-columns:1fr 1.35fr;
+    gap:9px;
+}
+
+.bottom-button{
+    min-height:55px;
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:15px;
+    color:#fff;
+    font-size:14px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 8px 18px rgba(0,0,0,.28);
+}
+
+.bottom-button.draw{
     background:
         linear-gradient(
             180deg,
-            #9d52ff,
-            #6531c4
+            #9b55ff,
+            #5f2eb9
         );
 }
 
-.start{
+.bottom-button.start{
     background:
         linear-gradient(
             180deg,
-            #62c7ff,
-            #2682cd
+            #61caff,
+            #207bc8
         );
 }
 
+/* =========================================================
+   TOAST
+========================================================= */
 
-/* ==================================================
-   MOBILE
-================================================== */
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:22px;
+    transform:
+        translateX(-50%)
+        translateY(20px);
+    z-index:100;
+    padding:10px 15px;
+    border-radius:12px;
+    background:rgba(8,13,18,.92);
+    border:1px solid rgba(255,214,90,.28);
+    color:#fff;
+    font-size:11px;
+    font-weight:900;
+    opacity:0;
+    pointer-events:none;
+    transition:.22s ease;
+}
 
-@media(max-width:700px){
+.toast.show{
+    opacity:1;
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* =========================================================
+   MOBILE PORTRAIT
+========================================================= */
+
+@media (orientation:portrait){
 
     .resources{
         display:none;
     }
 
-    .header{
-        padding:8px 10px;
+    .hero-section{
+        grid-template-columns:1fr;
     }
 
-    .header-title{
-        font-size:25px;
+    .action-card{
+        order:2;
     }
 
-    .team{
-        gap:5px;
+    .action-list{
+        grid-template-columns:
+            repeat(3,1fr);
     }
 
-    .slot{
-        border-radius:10px;
-    }
-
-    .slot.empty::before{
-        font-size:30px;
-    }
-
-    .slot-name{
-        font-size:7px;
-    }
-
-    .character-area{
-        margin-top:45px;
+    .action-button{
+        min-height:42px;
+        font-size:11px;
     }
 
     .character-menu{
         right:0;
         top:64px;
-        width:122px;
     }
 
 }
 
-@media(max-width:430px){
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width:430px){
+
+    .content{
+        width:calc(100% - 14px);
+    }
+
+    .topbar{
+        padding:8px 9px;
+    }
+
+    .back-button{
+        width:43px;
+        height:43px;
+        flex-basis:43px;
+    }
+
+    .page-title h1{
+        font-size:23px;
+    }
+
+    .team-grid{
+        gap:5px;
+    }
+
+    .team-slot{
+        border-radius:10px;
+    }
+
+    .slot-number{
+        width:17px;
+        height:17px;
+        font-size:8px;
+    }
+
+    .slot-name{
+        font-size:8px;
+    }
+
+    .hero-card{
+        min-height:325px;
+    }
+
+    .hero-visual{
+        width:120px;
+        height:120px;
+    }
+
+    .hero-visual img{
+        width:105px;
+        height:105px;
+    }
+
+    .bottom-actions{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .bottom-button{
+        min-height:50px;
+        font-size:12px;
+    }
+
+}
+
+/* =========================================================
+   LANDSCAPE PHONE
+========================================================= */
+
+@media (
+    orientation:landscape
+) and (max-height:520px){
+
+    #ui{
+        padding-bottom:15px;
+    }
+
+    .topbar{
+        min-height:58px;
+        padding:6px 10px;
+    }
+
+    .back-button{
+        width:40px;
+        height:40px;
+        flex-basis:40px;
+        font-size:22px;
+    }
+
+    .page-title h1{
+        font-size:22px;
+    }
+
+    .page-title p{
+        display:none;
+    }
+
+    .hero-section{
+        grid-template-columns:
+            minmax(0,1fr)
+            210px;
+    }
+
+    .hero-card{
+        min-height:280px;
+    }
+
+    .hero-visual{
+        height:105px;
+        width:105px;
+    }
+
+    .hero-visual img{
+        width:95px;
+        height:95px;
+    }
+
+    .action-button{
+        min-height:37px;
+        font-size:10px;
+    }
+
+    .inventory-grid{
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(82px,1fr)
+            );
+    }
 
     .character-card{
-        min-height:310px;
+        min-height:105px;
     }
 
-    .hero{
-        width:100px;
-        height:100px;
-    }
-
-    .hero img{
-        width:90px;
-        height:90px;
-    }
-
-    .stats{
-        font-size:11px;
-    }
-
-    .bottom button{
-        min-width:125px;
-        font-size:13px;
+    .character-card img{
+        height:66px;
     }
 
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<div id="game">
-
-
-<!-- NỀN -->
-
-<img
-    id="background"
-    src="./nennhom.png"
-    alt="Nền Lập Nhóm">
-
-
-<div id="ui">
-
-
-<!-- ==================================================
-     HEADER
-================================================== -->
-
-<header class="header">
-
-
-<button
-    id="backButton"
-    class="back-button">
-
-    ←
-
-</button>
-
-
-<div class="header-title">
-    Lập nhóm
-</div>
-
-
-<div class="resources">
-
-    <div class="resource">
-        🪙 0
-    </div>
-
-    <div class="resource">
-        💎 665
-    </div>
-
-    <div class="resource">
-        🪙 700000
-    </div>
-
-    <div class="resource">
-        BP 0
-    </div>
-
-</div>
-
-
-</header>
-
-
-
-<!-- ==================================================
-     COUNT
-================================================== -->
-
-<div class="character-count">
-
-    My Characters :
-
-    <b id="characterCount">
-        3/30
-    </b>
-
-</div>
-
-
-
-<!-- ==================================================
-     TEAM
-================================================== -->
-
-<section class="team-wrap">
-
-
-<div
-    id="team"
-    class="team">
-
-
-<button
-    class="slot empty selected"
-    data-slot="0">
-
-    <span class="slot-number">
-        1
-    </span>
-
-</button>
-
-
-<button
-    class="slot empty"
-    data-slot="1">
-
-    <span class="slot-number">
-        2
-    </span>
-
-</button>
-
-
-<button
-    class="slot empty"
-    data-slot="2">
-
-    <span class="slot-number">
-        3
-    </span>
-
-</button>
-
-
-<button
-    class="slot empty"
-    data-slot="3">
-
-    <span class="slot-number">
-        4
-    </span>
-
-</button>
-
-
-<button
-    class="slot empty"
-    data-slot="4">
-
-    <span class="slot-number">
-        5
-    </span>
-
-</button>
-
-
-</div>
-
-</section>
-
-
-
-<!-- ==================================================
-     NHÂN VẬT CHÍNH
-================================================== -->
-
-<section class="character-area">
-
-
-<div
-    id="characterCard"
-    class="character-card">
-
-
-<div class="active-badge">
-    Act.
-</div>
-
-
-<div class="star">
-    ★
-</div>
-
-
-<div
-    id="characterName"
-    class="character-name">
-
-    Superman
-
-</div>
-
-
-<div
-    id="characterRarity"
-    class="character-rarity">
-
-    SSR
-
-</div>
-
-
-<div class="hero">
+<div id="app">
 
     <img
-        id="heroImage"
-        src="./characters/superman/sprite.png"
-        alt="Superman">
+        id="background"
+        src="./nennhom.png"
+        alt="ANIME DORADO">
 
-</div>
+    <div id="backgroundShade"></div>
 
+    <div id="ui">
 
-<div class="stats">
+        <!-- =============================================
+             TOP BAR
+        ============================================== -->
 
+        <header class="topbar">
 
-<div class="stat">
+            <button
+                id="backButton"
+                class="back-button"
+                aria-label="Quay lại">
 
-<span class="stat-label">
-    Lv.
-</span>
+                ←
 
-<span
-    id="statLevel"
-    class="stat-value">
-    1/20
-</span>
+            </button>
 
-</div>
+            <div class="page-title">
 
+                <h1>LẬP NHÓM</h1>
 
-<div class="stat">
+                <p>TRANG BỊ ĐỘI HÌNH</p>
 
-<span class="stat-label">
-    EXP
-</span>
+            </div>
 
-<span class="stat-value">
-    0%
-</span>
+            <div class="resources">
 
-</div>
+                <div class="resource">
+                    <span class="resource-icon">🪙</span>
+                    <span>0</span>
+                </div>
 
+                <div class="resource">
+                    <span class="resource-icon">💎</span>
+                    <span>665</span>
+                </div>
 
-<div class="stat">
+                <div class="resource">
+                    <span class="resource-icon">🪙</span>
+                    <span>700000</span>
+                </div>
 
-<span class="stat-label">
-    AP
-</span>
+            </div>
 
-<span class="stat-value">
-    30
-</span>
+        </header>
 
-</div>
 
+        <main class="content">
 
-<div class="stat">
+            <!-- =========================================
+                 TEAM
+            ========================================== -->
 
-<span class="stat-label">
-    HP
-</span>
+            <div class="team-head">
 
-<span
-    id="statHp"
-    class="stat-value">
-    1000
-</span>
+                <div class="team-label">
+                    ĐỘI HÌNH CỦA BẠN
+                </div>
 
-</div>
+                <div
+                    id="teamCount"
+                    class="team-count">
 
+                    0 / 5
 
-<div class="stat">
+                </div>
 
-<span class="stat-label">
-    ATK
-</span>
+            </div>
 
-<span
-    id="statAtk"
-    class="stat-value">
-    120
-</span>
 
-</div>
+            <div
+                id="teamGrid"
+                class="team-grid">
 
+                <button
+                    class="team-slot empty selected"
+                    data-slot="0">
 
-<div class="stat">
+                    <span class="slot-number">1</span>
 
-<span class="stat-label">
-    DEF
-</span>
+                </button>
 
-<span
-    id="statDef"
-    class="stat-value">
-    80
-</span>
+                <button
+                    class="team-slot empty"
+                    data-slot="1">
 
-</div>
+                    <span class="slot-number">2</span>
 
+                </button>
 
-</div>
+                <button
+                    class="team-slot empty"
+                    data-slot="2">
 
+                    <span class="slot-number">3</span>
 
-<!-- MENU -->
+                </button>
 
-<div
-    id="characterMenu"
-    class="character-menu">
+                <button
+                    class="team-slot empty"
+                    data-slot="3">
 
+                    <span class="slot-number">4</span>
 
-<button
-    onclick="menuAction('draw')">
-    Rút
-</button>
+                </button>
 
+                <button
+                    class="team-slot empty"
+                    data-slot="4">
 
-<button
-    onclick="menuAction('sell')">
-    Bán
-</button>
+                    <span class="slot-number">5</span>
 
+                </button>
 
-<button
-    onclick="menuAction('upgrade')">
-    Nâng cấp
-</button>
+            </div>
 
 
-<button
-    onclick="menuAction('item')">
-    Item
-</button>
+            <!-- =========================================
+                 MAIN CHARACTER
+            ========================================== -->
 
+            <section class="hero-section">
 
-<button
-    onclick="menuAction('lock')">
-    Lock
-</button>
 
+                <div
+                    id="heroCard"
+                    class="hero-card">
 
-<button
-    onclick="closeMenu()">
-    Đóng
-</button>
+                    <div class="hero-ribbon">
+                        ĐANG CHỌN
+                    </div>
 
+                    <div class="hero-star">
+                        ★
+                    </div>
 
-</div>
 
+                    <div class="hero-header">
 
-</div>
+                        <div
+                            id="heroName"
+                            class="hero-name">
 
+                            Superman
 
-</section>
+                        </div>
 
+                        <div
+                            id="heroRarity"
+                            class="hero-rarity">
 
+                            SSR • Lv.1
 
-<!-- ==================================================
-     KHO 3 NHÂN VẬT
-================================================== -->
+                        </div>
 
-<section class="inventory">
+                    </div>
 
 
-<div class="inventory-title">
+                    <div class="hero-visual">
 
-    Nhân vật của bạn
+                        <img
+                            id="heroImage"
+                            src="./characters/superman/sprite.png"
+                            alt="Superman">
 
-</div>
+                    </div>
 
 
-<div
-    id="characters"
-    class="characters">
+                    <div class="hero-stats">
 
+                        <div class="stat">
+                            <span class="stat-label">
+                                LV
+                            </span>
+                            <span
+                                id="statLevel"
+                                class="stat-value">
+                                1
+                            </span>
+                        </div>
 
-<!-- SUPERMAN -->
+                        <div class="stat">
+                            <span class="stat-label">
+                                EXP
+                            </span>
+                            <span
+                                id="statExp"
+                                class="stat-value">
+                                0%
+                            </span>
+                        </div>
 
-<button
-    class="character-card-small active"
-    data-id="superman">
+                        <div class="stat">
+                            <span class="stat-label">
+                                HP
+                            </span>
+                            <span
+                                id="statHP"
+                                class="stat-value">
+                                1000
+                            </span>
+                        </div>
 
+                        <div class="stat">
+                            <span class="stat-label">
+                                ATK
+                            </span>
+                            <span
+                                id="statATK"
+                                class="stat-value">
+                                120
+                            </span>
+                        </div>
 
-<img
-    src="./characters/superman/sprite.png"
-    alt="Superman">
+                        <div class="stat">
+                            <span class="stat-label">
+                                DEF
+                            </span>
+                            <span
+                                id="statDEF"
+                                class="stat-value">
+                                80
+                            </span>
+                        </div>
 
+                        <div class="stat">
+                            <span class="stat-label">
+                                AP
+                            </span>
+                            <span
+                                id="statAP"
+                                class="stat-value">
+                                30
+                            </span>
+                        </div>
 
-<span class="card-name">
-    Superman
-</span>
+                    </div>
 
 
-<span class="card-rarity">
-    SSR • Lv.1
-</span>
+                    <!-- CHARACTER MENU -->
 
+                    <div
+                        id="characterMenu"
+                        class="character-menu">
 
-</button>
+                        <button
+                            class="menu-button primary"
+                            data-menu="equip">
 
+                            Trang bị
 
+                        </button>
 
-<!-- LUFFY -->
+                        <button
+                            class="menu-button"
+                            data-menu="upgrade">
 
-<button
-    class="character-card-small"
-    data-id="luffy">
+                            Nâng cấp
 
+                        </button>
 
-<img
-    src="./characters/luffy/sprite.png"
-    alt="Luffy">
+                        <button
+                            class="menu-button"
+                            data-menu="info">
 
+                            Chi tiết
 
-<span class="card-name">
-    Luffy
-</span>
+                        </button>
 
+                        <button
+                            class="menu-button"
+                            data-menu="lock">
 
-<span class="card-rarity">
-    SSR • Lv.1
-</span>
+                            Khóa nhân vật
 
+                        </button>
 
-</button>
+                        <button
+                            class="menu-button close"
+                            data-menu="close">
 
+                            Đóng
 
+                        </button>
 
-<!-- GOKU -->
+                    </div>
 
-<button
-    class="character-card-small"
-    data-id="goku">
+                </div>
 
 
-<img
-    src="./characters/goku/sprite.png"
-    alt="Goku">
+                <!-- =====================================
+                     ACTIONS
+                ====================================== -->
 
+                <aside class="action-card">
 
-<span class="card-name">
-    Goku
-</span>
+                    <div class="action-card-title">
+                        THAO TÁC
+                    </div>
 
+                    <div class="action-list">
 
-<span class="card-rarity">
-    SSR • Lv.1
-</span>
+                        <button
+                            class="action-button primary"
+                            id="equipButton">
 
+                            TRANG BỊ
 
-</button>
+                        </button>
 
+                        <button
+                            class="action-button"
+                            id="detailButton">
 
-</div>
+                            CHI TIẾT
 
+                        </button>
 
-</section>
+                        <button
+                            class="action-button"
+                            id="upgradeButton">
 
+                            NÂNG CẤP
 
+                        </button>
 
-<!-- ==================================================
-     BOTTOM
-================================================== -->
+                        <button
+                            class="action-button"
+                            id="lockButton">
 
-<div class="bottom">
+                            KHÓA
 
+                        </button>
 
-<button
-    class="draw"
-    onclick="menuAction('draw')">
+                        <button
+                            class="action-button danger"
+                            id="removeButton">
 
-    🎴 DRAW
+                            THÁO
 
-</button>
+                        </button>
 
+                    </div>
 
-<button
-    class="start"
-    onclick="startGame()">
+                </aside>
 
-    BẮT ĐẦU
+            </section>
 
-</button>
 
+            <!-- =========================================
+                 INVENTORY
+            ========================================== -->
 
-</div>
+            <section class="inventory-panel">
 
+                <div class="inventory-head">
 
-</div>
+                    <div class="inventory-title">
+                        NHÂN VẬT CỦA BẠN
+                    </div>
+
+                    <div class="inventory-sub">
+                        3 nhân vật
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="inventoryGrid"
+                    class="inventory-grid">
+
+
+                    <!-- SUPERMAN -->
+
+                    <button
+                        class="character-card active"
+                        data-character-id="superman">
+
+                        <img
+                            src="./characters/superman/sprite.png"
+                            alt="Superman">
+
+                        <span class="character-card-name">
+                            Superman
+                        </span>
+
+                        <span class="character-card-rarity">
+                            SSR • Lv.1
+                        </span>
+
+                    </button>
+
+
+                    <!-- LUFFY -->
+
+                    <button
+                        class="character-card"
+                        data-character-id="luffy">
+
+                        <img
+                            src="./characters/luffy/sprite.png"
+                            alt="Luffy">
+
+                        <span class="character-card-name">
+                            Luffy
+                        </span>
+
+                        <span class="character-card-rarity">
+                            SSR • Lv.1
+                        </span>
+
+                    </button>
+
+
+                    <!-- GOKU -->
+
+                    <button
+                        class="character-card"
+                        data-character-id="goku">
+
+                        <img
+                            src="./characters/goku/sprite.png"
+                            alt="Goku">
+
+                        <span class="character-card-name">
+                            Goku
+                        </span>
+
+                        <span class="character-card-rarity">
+                            SSR • Lv.1
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 BOTTOM
+            ========================================== -->
+
+            <div class="bottom-actions">
+
+                <button
+                    id="drawButton"
+                    class="bottom-button draw">
+
+                    🎴 DRAW NHÂN VẬT
+
+                </button>
+
+                <button
+                    id="startButton"
+                    class="bottom-button start">
+
+                    BẮT ĐẦU
+
+                </button>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <div
+        id="toast"
+        class="toast">
+
+        Đã cập nhật
+
+    </div>
 
 </div>
 
 
 <script>
 
-/* ==================================================
-   3 NHÂN VẬT
-================================================== */
+/* =========================================================
+   DATA
+========================================================= */
 
 const characters = {
 
     superman:{
-
         id:"superman",
-
         name:"Superman",
-
         rarity:"SSR",
-
         level:1,
-
+        exp:0,
         hp:1000,
-
         atk:120,
-
         def:80,
-
-        image:
-            "./characters/superman/sprite.png"
-
+        ap:30,
+        image:"./characters/superman/sprite.png"
     },
-
 
     luffy:{
-
         id:"luffy",
-
         name:"Luffy",
-
         rarity:"SSR",
-
         level:1,
-
+        exp:0,
         hp:1100,
-
         atk:130,
-
         def:75,
-
-        image:
-            "./characters/luffy/sprite.png"
-
+        ap:30,
+        image:"./characters/luffy/sprite.png"
     },
 
-
     goku:{
-
         id:"goku",
-
         name:"Goku",
-
         rarity:"SSR",
-
         level:1,
-
+        exp:0,
         hp:1050,
-
         atk:145,
-
         def:85,
-
-        image:
-            "./characters/goku/sprite.png"
-
+        ap:30,
+        image:"./characters/goku/sprite.png"
     }
 
 };
 
 
-/* ==================================================
-   TEAM
-================================================== */
+/* =========================================================
+   STATE
+========================================================= */
 
 let team = [
-
     null,
     null,
     null,
     null,
     null
-
 ];
-
 
 let selectedSlot = 0;
 
+let selectedCharacterId = "superman";
 
-let selectedCharacter =
-    "superman";
-
-
-let locked = false;
+let characterLocked = false;
 
 
-/* ==================================================
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function getCharacter(id){
+
+    return characters[id] || null;
+
+}
+
+function findCharacterSlot(id){
+
+    return team.indexOf(id);
+
+}
+
+function saveTeam(){
+
+    localStorage.setItem(
+        "animeDoradoTeam",
+        JSON.stringify(team)
+    );
+
+}
+
+function showToast(text){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = text;
+
+    toast.classList.add("show");
+
+    clearTimeout(
+        showToast.timer
+    );
+
+    showToast.timer =
+        setTimeout(
+            function(){
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            1500
+        );
+
+}
+
+
+/* =========================================================
    LOAD TEAM
-================================================== */
+========================================================= */
 
 function loadTeam(){
 
@@ -1321,14 +1553,20 @@ function loadTeam(){
             );
 
         if(!saved){
+
             return;
+
         }
 
-        const data =
+        const parsed =
             JSON.parse(saved);
 
-        if(!Array.isArray(data)){
+        if(
+            !Array.isArray(parsed)
+        ){
+
             return;
+
         }
 
         const clean = [
@@ -1349,22 +1587,26 @@ function loadTeam(){
         ){
 
             const id =
-                data[i];
+                parsed[i];
 
             if(
                 !characters[id]
             ){
+
                 continue;
+
             }
 
             /*
-             * 1 nhân vật chỉ xuất hiện 1 lần.
+             * Chống 1 nhân vật xuất hiện
+             * ở nhiều ô.
              */
-
             if(
                 used.has(id)
             ){
+
                 continue;
+
             }
 
             used.add(id);
@@ -1374,8 +1616,7 @@ function loadTeam(){
 
         }
 
-        team =
-            clean;
+        team = clean;
 
     }
     catch(error){
@@ -1393,146 +1634,253 @@ function loadTeam(){
 }
 
 
-/* ==================================================
-   SAVE
-================================================== */
+/* =========================================================
+   SELECT SLOT
+========================================================= */
 
-function saveTeam(){
+function selectSlot(index){
 
-    localStorage.setItem(
-        "animeDoradoTeam",
-        JSON.stringify(team)
+    if(
+        index < 0 ||
+        index > 4
+    ){
+
+        return;
+
+    }
+
+    selectedSlot = index;
+
+    document
+        .querySelectorAll(".team-slot")
+        .forEach(
+            function(slot){
+
+                slot.classList.toggle(
+                    "selected",
+                    Number(
+                        slot.dataset.slot
+                    ) === index
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   SELECT CHARACTER
+========================================================= */
+
+function selectCharacter(id){
+
+    const character =
+        getCharacter(id);
+
+    if(!character){
+
+        return;
+
+    }
+
+    selectedCharacterId =
+        id;
+
+    updateHero();
+
+    updateInventory();
+
+}
+
+
+/* =========================================================
+   UPDATE HERO
+========================================================= */
+
+function updateHero(){
+
+    const character =
+        getCharacter(
+            selectedCharacterId
+        );
+
+    if(!character){
+
+        return;
+
+    }
+
+    document
+        .getElementById("heroName")
+        .textContent =
+        character.name;
+
+    document
+        .getElementById("heroRarity")
+        .textContent =
+        character.rarity +
+        " • Lv." +
+        character.level;
+
+    document
+        .getElementById("heroImage")
+        .src =
+        character.image;
+
+    document
+        .getElementById("statLevel")
+        .textContent =
+        character.level;
+
+    document
+        .getElementById("statExp")
+        .textContent =
+        character.exp + "%";
+
+    document
+        .getElementById("statHP")
+        .textContent =
+        character.hp;
+
+    document
+        .getElementById("statATK")
+        .textContent =
+        character.atk;
+
+    document
+        .getElementById("statDEF")
+        .textContent =
+        character.def;
+
+    document
+        .getElementById("statAP")
+        .textContent =
+        character.ap;
+
+}
+
+
+/* =========================================================
+   EQUIP
+   1 CHARACTER = 1 SLOT
+========================================================= */
+
+function equipSelected(){
+
+    const character =
+        getCharacter(
+            selectedCharacterId
+        );
+
+    if(!character){
+
+        return;
+
+    }
+
+    const oldSlot =
+        findCharacterSlot(
+            character.id
+        );
+
+    /*
+     * Đang ở chính slot.
+     */
+    if(
+        oldSlot === selectedSlot
+    ){
+
+        showToast(
+            character.name +
+            " đã ở ô này"
+        );
+
+        renderTeam();
+
+        return;
+
+    }
+
+    /*
+     * Đã nằm ở ô khác:
+     * xóa ô cũ trước.
+     */
+    if(
+        oldSlot !== -1
+    ){
+
+        team[oldSlot] = null;
+
+    }
+
+    /*
+     * Gắn vào ô mới.
+     * Một slot chỉ chứa một nhân vật.
+     */
+    team[selectedSlot] =
+        character.id;
+
+    saveTeam();
+
+    renderTeam();
+
+    showToast(
+        character.name +
+        " đã được trang bị"
     );
 
 }
 
 
-/* ==================================================
-   TÌM VỊ TRÍ NHÂN VẬT
-================================================== */
+/* =========================================================
+   REMOVE
+========================================================= */
 
-function findCharacterSlot(id){
+function removeSelected(){
 
-    return team.indexOf(id);
+    const oldSlot =
+        findCharacterSlot(
+            selectedCharacterId
+        );
+
+    if(
+        oldSlot === -1
+    ){
+
+        showToast(
+            "Nhân vật chưa được trang bị"
+        );
+
+        return;
+
+    }
+
+    team[oldSlot] = null;
+
+    saveTeam();
+
+    renderTeam();
+
+    showToast(
+        "Đã tháo nhân vật"
+    );
 
 }
 
 
-/* ==================================================
-   CHỌN SLOT
-================================================== */
-
-document
-    .querySelectorAll(".slot")
-    .forEach(
-        function(slot){
-
-            slot.addEventListener(
-                "click",
-                function(){
-
-                    selectedSlot =
-                        Number(
-                            slot.dataset.slot
-                        );
-
-                    document
-                        .querySelectorAll(".slot")
-                        .forEach(
-                            function(item){
-
-                                item.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-                    slot.classList.add(
-                        "selected"
-                    );
-
-                    const id =
-                        team[
-                            selectedSlot
-                        ];
-
-                    if(id){
-
-                        selectedCharacter =
-                            id;
-
-                        updateCharacter();
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-/* ==================================================
-   CHỌN NHÂN VẬT
-================================================== */
-
-document
-    .querySelectorAll(
-        ".character-card-small"
-    )
-    .forEach(
-        function(card){
-
-            card.addEventListener(
-                "click",
-                function(){
-
-                    selectedCharacter =
-                        card.dataset.id;
-
-                    document
-                        .querySelectorAll(
-                            ".character-card-small"
-                        )
-                        .forEach(
-                            function(item){
-
-                                item.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-                    card.classList.add(
-                        "active"
-                    );
-
-                    updateCharacter();
-
-                    openMenu();
-
-                }
-            );
-
-        }
-    );
-
-
-/* ==================================================
+/* =========================================================
    RENDER TEAM
-================================================== */
+========================================================= */
 
 function renderTeam(){
 
     const slots =
         document.querySelectorAll(
-            ".slot"
+            ".team-slot"
         );
 
-    let count =
-        0;
+    let count = 0;
 
     slots.forEach(
         function(slot){
@@ -1545,14 +1893,17 @@ function renderTeam(){
             const id =
                 team[index];
 
+            /*
+             * Xóa nội dung cũ.
+             */
             slot
                 .querySelectorAll(
-                    ".slot-image,.slot-name"
+                    ".slot-image,.slot-bottom"
                 )
                 .forEach(
-                    function(item){
+                    function(node){
 
-                        item.remove();
+                        node.remove();
 
                     }
                 );
@@ -1572,7 +1923,7 @@ function renderTeam(){
             }
 
             const character =
-                characters[id];
+                getCharacter(id);
 
             if(!character){
 
@@ -1590,9 +1941,7 @@ function renderTeam(){
             count++;
 
             const image =
-                document.createElement(
-                    "img"
-                );
+                document.createElement("img");
 
             image.className =
                 "slot-image";
@@ -1603,10 +1952,14 @@ function renderTeam(){
             image.alt =
                 character.name;
 
+            const bottom =
+                document.createElement("div");
+
+            bottom.className =
+                "slot-bottom";
+
             const name =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("span");
 
             name.className =
                 "slot-name";
@@ -1614,50 +1967,75 @@ function renderTeam(){
             name.textContent =
                 character.name;
 
-            slot.appendChild(
-                image
-            );
+            const status =
+                document.createElement("span");
 
-            slot.appendChild(
-                name
-            );
+            status.className =
+                "slot-status";
+
+            status.textContent =
+                "TRANG BỊ";
+
+            bottom.appendChild(name);
+
+            bottom.appendChild(status);
+
+            slot.appendChild(image);
+
+            slot.appendChild(bottom);
 
         }
     );
 
-
     document
-        .getElementById(
-            "characterCount"
-        )
+        .getElementById("teamCount")
         .textContent =
-        count + "/30";
-
+        count + " / 5";
 
     updateInventory();
+
+    saveTeam();
 
 }
 
 
-/* ==================================================
-   UPDATE INVENTORY
-================================================== */
+/* =========================================================
+   INVENTORY
+========================================================= */
 
 function updateInventory(){
 
     document
         .querySelectorAll(
-            ".character-card-small"
+            ".character-card"
         )
         .forEach(
             function(card){
 
                 const id =
-                    card.dataset.id;
+                    card.dataset.characterId;
+
+                card.classList.toggle(
+                    "active",
+                    id ===
+                    selectedCharacterId
+                );
 
                 card.classList.remove(
                     "equipped"
                 );
+
+                card
+                    .querySelectorAll(
+                        ".equipped-mark"
+                    )
+                    .forEach(
+                        function(mark){
+
+                            mark.remove();
+
+                        }
+                    );
 
                 if(
                     findCharacterSlot(id)
@@ -1668,6 +2046,21 @@ function updateInventory(){
                         "equipped"
                     );
 
+                    const mark =
+                        document.createElement(
+                            "span"
+                        );
+
+                    mark.className =
+                        "equipped-mark";
+
+                    mark.textContent =
+                        "ĐÃ TRANG BỊ";
+
+                    card.appendChild(
+                        mark
+                    );
+
                 }
 
             }
@@ -1676,112 +2069,42 @@ function updateInventory(){
 }
 
 
-/* ==================================================
-   HIỆN THÔNG TIN
-================================================== */
-
-function updateCharacter(){
-
-    const character =
-        characters[
-            selectedCharacter
-        ];
-
-    if(!character){
-
-        return;
-
-    }
-
-    document
-        .getElementById(
-            "characterName"
-        )
-        .textContent =
-        character.name;
-
-    document
-        .getElementById(
-            "characterRarity"
-        )
-        .textContent =
-        character.rarity;
-
-    document
-        .getElementById(
-            "heroImage"
-        )
-        .src =
-        character.image;
-
-    document
-        .getElementById(
-            "statLevel"
-        )
-        .textContent =
-        character.level +
-        "/20";
-
-    document
-        .getElementById(
-            "statHp"
-        )
-        .textContent =
-        character.hp;
-
-    document
-        .getElementById(
-            "statAtk"
-        )
-        .textContent =
-        character.atk;
-
-    document
-        .getElementById(
-            "statDef"
-        )
-        .textContent =
-        character.def;
-
-}
-
-
-/* ==================================================
+/* =========================================================
    MENU
-================================================== */
-
-const characterCard =
-    document.getElementById(
-        "characterCard"
-    );
+========================================================= */
 
 const characterMenu =
     document.getElementById(
         "characterMenu"
     );
 
+const heroCard =
+    document.getElementById(
+        "heroCard"
+    );
 
 function openMenu(){
 
-    characterMenu.style.display =
-        "block";
+    characterMenu.classList.add(
+        "show"
+    );
 
 }
-
 
 function closeMenu(){
 
-    characterMenu.style.display =
-        "none";
+    characterMenu.classList.remove(
+        "show"
+    );
 
 }
-
 
 function toggleMenu(){
 
     if(
-        characterMenu.style.display ===
-        "block"
+        characterMenu.classList.contains(
+            "show"
+        )
     ){
 
         closeMenu();
@@ -1796,7 +2119,11 @@ function toggleMenu(){
 }
 
 
-characterCard.addEventListener(
+/*
+ * Bấm thẻ nhân vật:
+ * menu mở / đóng.
+ */
+heroCard.addEventListener(
     "click",
     function(event){
 
@@ -1810,107 +2137,281 @@ characterCard.addEventListener(
 
         }
 
-        openMenu();
+        toggleMenu();
 
     }
 );
 
 
-/* ==================================================
-   MENU ACTION
-================================================== */
-
-function menuAction(action){
-
-    closeMenu();
-
-
-    if(
-        action ===
-        "draw"
-    ){
-
-        alert(
-            "Hệ thống Rút nhân vật sẽ làm sau."
-        );
-
-    }
-
-
-    if(
-        action ===
-        "sell"
-    ){
-
-        alert(
-            "Hệ thống Bán sẽ làm sau."
-        );
-
-    }
-
-
-    if(
-        action ===
-        "upgrade"
-    ){
-
-        window.location.href =
-            "/AnimeDorado-PCS/nangcap.html";
-
-    }
-
-
-    if(
-        action ===
-        "item"
-    ){
-
-        alert(
-            "Hệ thống Item sẽ làm sau."
-        );
-
-    }
-
-
-    if(
-        action ===
-        "lock"
-    ){
-
-        locked =
-            !locked;
-
-        alert(
-            locked
-                ? "Đã khóa nhân vật."
-                : "Đã mở khóa nhân vật."
-        );
-
-    }
-
-}
-
-
-/* ==================================================
-   START
-================================================== */
-
-function startGame(){
-
-    window.location.href =
-        "/AnimeDorado-PCS/batdau.html";
-
-}
-
-
-/* ==================================================
-   HOME
-================================================== */
+/* =========================================================
+   INVENTORY CLICK
+========================================================= */
 
 document
-    .getElementById(
-        "backButton"
+    .querySelectorAll(
+        ".character-card"
     )
+    .forEach(
+        function(card){
+
+            card.addEventListener(
+                "click",
+                function(){
+
+                    selectCharacter(
+                        card.dataset.characterId
+                    );
+
+                    openMenu();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   TEAM SLOT CLICK
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".team-slot"
+    )
+    .forEach(
+        function(slot){
+
+            slot.addEventListener(
+                "click",
+                function(){
+
+                    selectSlot(
+                        Number(
+                            slot.dataset.slot
+                        )
+                    );
+
+                    const id =
+                        team[
+                            selectedSlot
+                        ];
+
+                    if(id){
+
+                        selectCharacter(
+                            id
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SIDE ACTION BUTTONS
+========================================================= */
+
+document
+    .getElementById("equipButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            equipSelected();
+
+        }
+    );
+
+document
+    .getElementById("removeButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            removeSelected();
+
+        }
+    );
+
+document
+    .getElementById("detailButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            openMenu();
+
+            showToast(
+                "Mở Chi tiết nhân vật"
+            );
+
+        }
+    );
+
+document
+    .getElementById("upgradeButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            closeMenu();
+
+            window.location.href =
+                "/AnimeDorado-PCS/nangcap.html";
+
+        }
+    );
+
+document
+    .getElementById("lockButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            characterLocked =
+                !characterLocked;
+
+            this.textContent =
+                characterLocked
+                    ? "ĐÃ KHÓA"
+                    : "KHÓA";
+
+            showToast(
+                characterLocked
+                    ? "Đã khóa nhân vật"
+                    : "Đã mở khóa nhân vật"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   MENU ACTIONS
+========================================================= */
+
+document
+    .querySelectorAll(
+        "[data-menu]"
+    )
+    .forEach(
+        function(button){
+
+            button.addEventListener(
+                "click",
+                function(){
+
+                    const action =
+                        button.dataset.menu;
+
+                    if(
+                        action ===
+                        "equip"
+                    ){
+
+                        equipSelected();
+
+                    }
+
+                    if(
+                        action ===
+                        "upgrade"
+                    ){
+
+                        window.location.href =
+                            "/AnimeDorado-PCS/nangcap.html";
+
+                    }
+
+                    if(
+                        action ===
+                        "info"
+                    ){
+
+                        showToast(
+                            "Chi tiết nhân vật"
+                        );
+
+                    }
+
+                    if(
+                        action ===
+                        "lock"
+                    ){
+
+                        characterLocked =
+                            !characterLocked;
+
+                        showToast(
+                            characterLocked
+                                ? "Đã khóa nhân vật"
+                                : "Đã mở khóa nhân vật"
+                        );
+
+                    }
+
+                    if(
+                        action ===
+                        "close"
+                    ){
+
+                        closeMenu();
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   DRAW
+========================================================= */
+
+document
+    .getElementById("drawButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            showToast(
+                "Hệ thống Draw sẽ được làm sau"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document
+    .getElementById("startButton")
+    .addEventListener(
+        "click",
+        function(){
+
+            window.location.href =
+                "/AnimeDorado-PCS/batdau.html";
+
+        }
+    );
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+document
+    .getElementById("backButton")
     .addEventListener(
         "click",
         function(){
@@ -1922,44 +2423,19 @@ document
     );
 
 
-/* ==================================================
+/* =========================================================
    INIT
-================================================== */
+========================================================= */
 
 loadTeam();
 
-renderTeam();
+selectSlot(0);
 
-updateCharacter();
+selectCharacter("superman");
+
+renderTeam();
 
 </script>
 
 </body>
 </html>
-
-GitHub phải có đúng cấu trúc
-
-AnimeDorado-PCS/
-├── index.html
-├── lapnhom.html
-├── nennhom.png
-│
-└── characters/
-    ├── superman/
-    │   └── sprite.png
-    │
-    ├── luffy/
-    │   └── sprite.png
-    │
-    └── goku/
-        └── sprite.png
-
-Trong đó:
-
-Superman → ./characters/superman/sprite.png
-Luffy    → ./characters/luffy/sprite.png
-Goku     → ./characters/goku/sprite.png
-
-Phần đội hình có 5 ô và dùng ID riêng cho từng nhân vật. Ví dụ Superman đang ở ô 1, bạn chọn ô 4 rồi chọn Superman và trang bị thì Superman được chuyển từ ô 1 sang ô 4, không bị nhân đôi.
-
-Lần này mình cũng để nhân vật chính nhỏ trong thẻ, không chiếm hết màn hình như trước.
