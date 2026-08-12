@@ -7,49 +7,33 @@
 
 <meta name="viewport"
       content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+               initial-scale=1,
+               maximum-scale=1,
+               user-scalable=no">
 
 <title>ANIME DORADO</title>
-
 
 <style>
 
 /* =========================================================
-   ANIME DORADO
-   CORE INDEX
-   ========================================================= */
-
-
-/* =========================================================
    RESET
-   ========================================================= */
+========================================================= */
 
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
     -webkit-tap-highlight-color:transparent;
-
 }
 
 html,
 body{
 
     width:100%;
-
     height:100%;
 
     margin:0;
-
     padding:0;
-
-    overflow:hidden;
 
     background:#000;
 
@@ -64,37 +48,16 @@ body{
 
 body{
 
-    user-select:none;
-
-    -webkit-user-select:none;
-
-}
-
-button{
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    -webkit-tap-highlight-color:
-        transparent;
-
-}
-
-img{
+    overflow:hidden;
 
     user-select:none;
 
-    -webkit-user-drag:none;
-
 }
-
 
 
 /* =========================================================
    APP
-   ========================================================= */
+========================================================= */
 
 #app{
 
@@ -103,7 +66,6 @@ img{
     inset:0;
 
     width:100%;
-
     height:100%;
 
     overflow:hidden;
@@ -113,10 +75,9 @@ img{
 }
 
 
-
 /* =========================================================
-   SCREEN SYSTEM
-   ========================================================= */
+   SCREEN
+========================================================= */
 
 .screen{
 
@@ -125,12 +86,9 @@ img{
     inset:0;
 
     width:100%;
-
     height:100%;
 
     display:none;
-
-    overflow:hidden;
 
 }
 
@@ -141,64 +99,23 @@ img{
 }
 
 
-
-/* =========================================================
-   COMMON
-   ========================================================= */
-
-.hidden{
-
-    display:none !important;
-
-}
-
-.no-pointer{
-
-    pointer-events:none !important;
-
-}
-
-.clickable{
-
-    cursor:pointer;
-
-}
-
-.center{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-
-
 /* =========================================================
    LANDING
-   ========================================================= */
+========================================================= */
 
 #landingScreen{
 
     background:
-
         radial-gradient(
-
             circle at center,
-
             #294268 0%,
-
             #101827 55%,
-
             #020408 100%
-
         );
 
 }
 
-.landing-wrapper{
+.landing-wrap{
 
     position:absolute;
 
@@ -217,84 +134,35 @@ img{
 .landing-box{
 
     width:min(
-
         560px,
-
         92vw
-
     );
 
-    padding:36px 28px;
+    padding:35px 28px;
 
     text-align:center;
 
     border:
-
         1px solid
-
-        rgba(
-
-            255,
-
-            214,
-
-            90,
-
-            .35
-
-        );
+        rgba(255,214,90,.35);
 
     border-radius:24px;
 
     background:
-
-        rgba(
-
-            0,
-
-            0,
-
-            0,
-
-            .45
-
-        );
+        rgba(0,0,0,.46);
 
     box-shadow:
-
-        0 24px 80px
-
-        rgba(
-
-            0,
-
-            0,
-
-            0,
-
-            .6
-
-        );
+        0 24px 70px
+        rgba(0,0,0,.6);
 
 }
 
 .brand-title{
 
     font-size:
-
-        clamp(
-
-            30px,
-
-            8vw,
-
-            46px
-
-        );
+        clamp(30px,8vw,46px);
 
     font-weight:900;
-
-    letter-spacing:1px;
 
     color:#ffd65a;
 
@@ -302,24 +170,19 @@ img{
 
 .brand-subtitle{
 
-    margin-top:9px;
+    margin-top:8px;
 
-    color:#c4cbd8;
-
-    font-size:14px;
+    color:#c5ccd8;
 
 }
 
 .experience-button{
 
-    margin-top:27px;
+    margin-top:25px;
 
     width:min(
-
         270px,
-
-        82vw
-
+        80vw
     );
 
     height:58px;
@@ -329,15 +192,10 @@ img{
     border-radius:14px;
 
     background:
-
         linear-gradient(
-
             135deg,
-
             #b8790a,
-
             #ffd65a
-
         );
 
     color:#1b1304;
@@ -349,10 +207,9 @@ img{
 }
 
 
-
 /* =========================================================
    HOME
-   ========================================================= */
+========================================================= */
 
 #homeScreen{
 
@@ -365,28 +222,16 @@ img{
     position:absolute;
 
     left:50%;
-
     top:50%;
 
     width:1536px;
-
     height:864px;
 
     transform:
-
-        translate(
-
-            -50%,
-
-            -50%
-
-        )
-
+        translate(-50%,-50%)
         scale(1);
 
-    transform-origin:
-
-        center center;
+    transform-origin:center center;
 
 }
 
@@ -395,11 +240,9 @@ img{
     position:absolute;
 
     left:0;
-
     top:0;
 
     width:1536px;
-
     height:864px;
 
     object-fit:fill;
@@ -408,7 +251,7 @@ img{
 
 }
 
-.home-button-layer{
+.home-buttons{
 
     position:absolute;
 
@@ -434,38 +277,17 @@ img{
 
 }
 
-.home-button:active{
-
-    background:
-
-        rgba(
-
-            255,
-
-            214,
-
-            90,
-
-            .08
-
-        );
-
-}
-
-
 
 /* =========================================================
-   HOME BUTTON POSITIONS
-   ========================================================= */
+   HOME POSITIONS
+========================================================= */
 
 .home-profile{
 
     left:18px;
-
     top:15px;
 
     width:430px;
-
     height:130px;
 
 }
@@ -473,11 +295,9 @@ img{
 .home-gold{
 
     left:565px;
-
     top:8px;
 
     width:285px;
-
     height:75px;
 
 }
@@ -485,11 +305,9 @@ img{
 .home-ruby{
 
     left:875px;
-
     top:8px;
 
     width:275px;
-
     height:75px;
 
 }
@@ -497,11 +315,9 @@ img{
 .home-team{
 
     left:35px;
-
     bottom:8px;
 
     width:145px;
-
     height:125px;
 
 }
@@ -509,11 +325,9 @@ img{
 .home-upgrade{
 
     left:245px;
-
     bottom:8px;
 
     width:145px;
-
     height:125px;
 
 }
@@ -521,11 +335,9 @@ img{
 .home-pull{
 
     left:450px;
-
     bottom:8px;
 
     width:160px;
-
     height:125px;
 
 }
@@ -533,11 +345,9 @@ img{
 .home-shop{
 
     left:650px;
-
     bottom:8px;
 
     width:160px;
-
     height:125px;
 
 }
@@ -545,31 +355,20 @@ img{
 .home-start{
 
     right:0;
-
     bottom:0;
 
     width:430px;
-
     height:175px;
 
     border-radius:
-
-        55px
-
-        0
-
-        0
-
-        0;
+        55px 0 0 0;
 
 }
 
 
-
 /* =========================================================
-   GENERIC GAME PAGE
-   Dùng làm khung cho các hệ thống sau
-   ========================================================= */
+   COMMON PAGE
+========================================================= */
 
 .game-page{
 
@@ -577,26 +376,16 @@ img{
 
     inset:0;
 
-    width:100%;
-
-    height:100%;
-
     overflow-y:auto;
 
     overflow-x:hidden;
 
     background:
-
         radial-gradient(
-
             circle at 50% 5%,
-
             #304c76 0%,
-
             #121b2c 48%,
-
             #05080e 100%
-
         );
 
     -webkit-overflow-scrolling:touch;
@@ -606,38 +395,22 @@ img{
 .page-inner{
 
     width:min(
-
-        1180px,
-
+        1100px,
         94vw
-
     );
 
     min-height:100%;
 
-    margin:0 auto;
+    margin:auto;
 
     padding:
-
-        14px
-
+        12px
         0
-
-        36px;
+        30px;
 
 }
 
-
-
-/* =========================================================
-   PAGE HEADER
-   ========================================================= */
-
 .page-header{
-
-    width:100%;
-
-    min-height:52px;
 
     display:flex;
 
@@ -645,20 +418,18 @@ img{
 
     gap:10px;
 
-    margin-bottom:14px;
+    min-height:50px;
+
+    margin-bottom:12px;
 
 }
 
 .page-back{
 
     flex:
-
-        0 0
-
-        44px;
+        0 0 44px;
 
     width:44px;
-
     height:44px;
 
     border:0;
@@ -666,24 +437,11 @@ img{
     border-radius:13px;
 
     background:
-
-        rgba(
-
-            0,
-
-            0,
-
-            0,
-
-            .35
-
-        );
+        rgba(0,0,0,.35);
 
     color:#fff;
 
     font-size:21px;
-
-    font-weight:bold;
 
     cursor:pointer;
 
@@ -699,19 +457,10 @@ img{
 
 .page-title h1{
 
-    font-size:
-
-        clamp(
-
-            21px,
-
-            6vw,
-
-            30px
-
-        );
-
     color:#ffd65a;
+
+    font-size:
+        clamp(21px,6vw,30px);
 
     font-weight:900;
 
@@ -724,254 +473,53 @@ img{
     color:#aeb7c6;
 
     font-size:
-
-        clamp(
-
-            9px,
-
-            2.6vw,
-
-            12px
-
-        );
+        clamp(9px,2.5vw,12px);
 
 }
 
 .page-right{
 
     flex:
-
-        0 0
-
-        44px;
-
-    width:44px;
+        0 0 44px;
 
 }
 
 
-
 /* =========================================================
-   COMMON PANEL
-   ========================================================= */
+   PANEL
+========================================================= */
 
-.game-panel{
+.panel{
 
     width:100%;
 
     border:
-
         1px solid
-
-        rgba(
-
-            255,
-
-            214,
-
-            90,
-
-            .22
-
-        );
+        rgba(255,214,90,.22);
 
     border-radius:18px;
 
     background:
-
-        rgba(
-
-            0,
-
-            0,
-
-            0,
-
-            .28
-
-        );
+        rgba(0,0,0,.29);
 
     box-shadow:
-
-        0 16px 45px
-
-        rgba(
-
-            0,
-
-            0,
-
-            0,
-
-            .2
-
-        );
+        0 15px 45px
+        rgba(0,0,0,.2);
 
 }
-
 
 
 /* =========================================================
-   HOME / PROFILE BASE
-   ========================================================= */
+   SIMPLE SCREEN
+========================================================= */
 
-.profile-layout{
-
-    display:grid;
-
-    grid-template-columns:
-
-        minmax(
-
-            260px,
-
-            400px
-
-        )
-
-        1fr;
-
-    gap:14px;
-
-}
-
-.profile-card{
-
-    padding:18px;
-
-    text-align:center;
-
-}
-
-.profile-avatar{
-
-    width:160px;
-
-    height:160px;
-
-    margin:0 auto 14px;
-
-    border-radius:50%;
-
-    border:
-
-        2px solid
-
-        rgba(
-
-            255,
-
-            214,
-
-            90,
-
-            .35
-
-        );
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            .04
-
-        );
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:#7f899b;
-
-}
-
-.profile-name{
-
-    font-size:22px;
-
-    font-weight:900;
-
-}
-
-.profile-level{
-
-    margin-top:5px;
-
-    color:#ffd65a;
-
-}
-
-.profile-info{
+.simple-panel{
 
     padding:18px;
 
 }
 
-.info-row{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:12px;
-
-    padding:11px 0;
-
-    border-bottom:
-
-        1px solid
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            .07
-
-        );
-
-}
-
-.info-label{
-
-    color:#9fa9b8;
-
-}
-
-.info-value{
-
-    color:#fff;
-
-    font-weight:900;
-
-}
-
-
-
-/* =========================================================
-   RESOURCE / EMPTY SYSTEM
-   ========================================================= */
-
-.resource-panel{
-
-    padding:18px;
-
-}
-
-.resource-title{
+.simple-title{
 
     color:#ffd65a;
 
@@ -979,107 +527,445 @@ img{
 
     font-weight:900;
 
-    margin-bottom:12px;
+    margin-bottom:10px;
 
 }
 
-.resource-grid{
+.simple-text{
 
-    display:grid;
+    color:#bec7d5;
 
-    grid-template-columns:
-
-        repeat(
-
-            2,
-
-            minmax(
-
-                0,
-
-                1fr
-
-            )
-
-        );
-
-    gap:10px;
+    line-height:1.5;
 
 }
 
-.resource-box{
 
-    min-height:100px;
+/* =========================================================
+   LẬP NHÓM
+========================================================= */
 
-    border:
+.team-panel{
 
-        1px solid
+    padding:14px;
 
-        rgba(
+}
 
-            255,
-
-            255,
-
-            255,
-
-            .09
-
-        );
-
-    border-radius:14px;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            .04
-
-        );
+.team-heading{
 
     display:flex;
 
-    flex-direction:column;
-
     align-items:center;
 
-    justify-content:center;
+    justify-content:space-between;
+
+    margin-bottom:10px;
 
 }
 
-.resource-name{
+.team-heading-title{
 
-    color:#9fa9b8;
+    color:#ffd65a;
+
+    font-size:15px;
+
+    font-weight:900;
+
+}
+
+.team-count{
+
+    color:#9ea8b7;
 
     font-size:12px;
 
 }
 
-.resource-value{
+.team-slots{
 
-    margin-top:5px;
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,minmax(0,1fr));
+
+    gap:8px;
+
+}
+
+.team-slot{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.05),
+            rgba(0,0,0,.25)
+        );
 
     color:#fff;
 
-    font-size:22px;
+    overflow:hidden;
+
+    cursor:pointer;
+
+}
+
+.team-slot.selected{
+
+    border:
+        2px solid
+        #ffd65a;
+
+    box-shadow:
+        0 0 17px
+        rgba(255,214,90,.16);
+
+}
+
+.slot-number{
+
+    position:absolute;
+
+    left:6px;
+    top:5px;
+
+    z-index:5;
+
+    color:#8b95a6;
+
+    font-size:9px;
+
+}
+
+.slot-plus{
+
+    font-size:28px;
+
+    color:#657083;
+
+}
+
+.team-slot:not(.empty)
+.slot-plus{
+
+    display:none;
+
+}
+
+.team-slot-image{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
+
+}
+
+.team-slot-name{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    z-index:4;
+
+    padding:4px 2px;
+
+    background:
+        rgba(0,0,0,.7);
+
+    text-align:center;
+
+    font-size:9px;
 
     font-weight:900;
 
 }
 
 
+/* =========================================================
+   SELECTED CHARACTER
+========================================================= */
+
+.selected-panel{
+
+    margin-top:12px;
+
+    padding:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:14px;
+
+}
+
+.selected-info{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+.selected-name{
+
+    font-size:21px;
+
+    font-weight:900;
+
+}
+
+.selected-rarity{
+
+    display:inline-block;
+
+    margin-top:4px;
+
+    padding:
+        4px
+        8px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,214,90,.1);
+
+    color:#ffd65a;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+.selected-stats{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px 14px;
+
+    margin-top:9px;
+
+    color:#9da7b7;
+
+    font-size:11px;
+
+}
+
+.selected-stats b{
+
+    color:#fff;
+
+}
+
+.selected-actions{
+
+    width:145px;
+
+    flex:0 0 145px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+
+}
+
+.equip-button,
+.remove-button{
+
+    width:100%;
+
+    min-height:44px;
+
+    border-radius:11px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+}
+
+.equip-button{
+
+    border:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a96f08,
+            #ffd65a
+        );
+
+    color:#1b1304;
+
+}
+
+.remove-button{
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        rgba(0,0,0,.25);
+
+    color:#dbe0e8;
+
+}
+
 
 /* =========================================================
-   PLACEHOLDER
-   ========================================================= */
+   INVENTORY
+========================================================= */
 
-.placeholder-page{
+.inventory-panel{
+
+    margin-top:12px;
+
+    padding:14px;
+
+}
+
+.inventory-title{
+
+    color:#ffd65a;
+
+    font-size:15px;
+
+    font-weight:900;
+
+    margin-bottom:10px;
+
+}
+
+.inventory{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(95px,1fr)
+        );
+
+    gap:8px;
+
+}
+
+.inventory-card{
+
+    min-height:126px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    color:#fff;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+}
+
+.inventory-card.active{
+
+    border:
+        2px solid
+        #ffd65a;
+
+}
+
+.inventory-card.equipped{
+
+    opacity:.55;
+
+}
+
+.inventory-card img{
+
+    width:100%;
+
+    height:83px;
+
+    display:block;
+
+    object-fit:contain;
+
+}
+
+.inventory-name{
+
+    display:block;
+
+    text-align:center;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+.inventory-rarity{
+
+    display:block;
+
+    margin-top:3px;
+
+    text-align:center;
+
+    color:#ffd65a;
+
+    font-size:9px;
+
+}
+
+
+/* =========================================================
+   404
+========================================================= */
+
+#errorScreen{
+
+    background:
+        radial-gradient(
+            circle at center,
+            #263b5c 0%,
+            #101827 55%,
+            #020408 100%
+        );
+
+}
+
+.error-center{
 
     position:absolute;
 
@@ -1093,30 +979,13 @@ img{
 
     padding:20px;
 
-    background:
-
-        radial-gradient(
-
-            circle at center,
-
-            #263b5c 0%,
-
-            #101827 55%,
-
-            #020408 100%
-
-        );
-
 }
 
-.placeholder-box{
+.error-box{
 
     width:min(
-
-        560px,
-
-        92vw
-
+        500px,
+        90vw
     );
 
     padding:30px;
@@ -1124,70 +993,39 @@ img{
     text-align:center;
 
     border:
-
         1px solid
-
-        rgba(
-
-            255,
-
-            214,
-
-            90,
-
-            .25
-
-        );
+        rgba(255,214,90,.28);
 
     border-radius:20px;
 
     background:
-
-        rgba(
-
-            0,
-
-            0,
-
-            0,
-
-            .42
-
-        );
+        rgba(0,0,0,.45);
 
 }
 
-.placeholder-box h1{
+.error-box h1{
 
     color:#ffd65a;
 
-    font-size:54px;
+    font-size:58px;
 
 }
 
-.placeholder-box h2{
-
-    margin-top:7px;
-
-    font-size:20px;
-
-}
-
-.placeholder-box p{
+.error-box p{
 
     margin-top:10px;
 
-    color:#bac3d0;
+    color:#bdc6d4;
 
     line-height:1.5;
 
 }
 
-.placeholder-back{
+.error-back{
 
     margin-top:20px;
 
-    min-width:180px;
+    width:180px;
 
     height:48px;
 
@@ -1196,15 +1034,10 @@ img{
     border-radius:11px;
 
     background:
-
         linear-gradient(
-
             135deg,
-
             #b8790a,
-
             #ffd65a
-
         );
 
     color:#1b1304;
@@ -1214,16 +1047,31 @@ img{
 }
 
 
-
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
+   MOBILE
+========================================================= */
 
-@media(max-width:760px){
+@media(max-width:600px){
 
-    .profile-layout{
+    .selected-panel{
 
-        grid-template-columns:1fr;
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .selected-actions{
+
+        width:100%;
+
+        flex:0 0 auto;
+
+        display:grid;
+
+        grid-template-columns:
+            1fr
+            1fr;
 
     }
 
@@ -1233,11 +1081,26 @@ img{
 
     .page-inner{
 
-        width:calc(
+        width:
+            calc(100% - 16px);
 
-            100% - 16px
+    }
 
-        );
+    .team-slots{
+
+        gap:5px;
+
+    }
+
+    .team-slot{
+
+        border-radius:10px;
+
+    }
+
+    .slot-plus{
+
+        font-size:23px;
 
     }
 
@@ -1254,7 +1117,6 @@ img{
 <div id="app">
 
 
-
 <!-- ======================================================
      LANDING
 ====================================================== -->
@@ -1263,25 +1125,17 @@ img{
     id="landingScreen"
     class="screen active">
 
-
-    <div class="landing-wrapper">
+    <div class="landing-wrap">
 
         <div class="landing-box">
 
-
             <div class="brand-title">
-
                 ANIME DORADO
-
             </div>
-
 
             <div class="brand-subtitle">
-
                 GAME EXPERIENCE
-
             </div>
-
 
             <button
                 id="experienceButton"
@@ -1291,11 +1145,9 @@ img{
 
             </button>
 
-
         </div>
 
     </div>
-
 
 </section>
 
@@ -1309,20 +1161,16 @@ img{
     id="homeScreen"
     class="screen">
 
-
     <div
         id="gameFrame"
         class="game-frame">
-
 
         <img
             id="gameBackground"
             src="./nengame.png"
             alt="ANIME DORADO">
 
-
-        <div
-            class="home-button-layer">
+        <div class="home-buttons">
 
 
             <button
@@ -1383,9 +1231,7 @@ img{
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1399,15 +1245,11 @@ img{
     id="profileScreen"
     class="screen">
 
-
     <div class="game-page">
-
 
         <div class="page-inner">
 
-
             <div class="page-header">
-
 
                 <button
                     class="page-back"
@@ -1417,124 +1259,34 @@ img{
 
                 </button>
 
-
                 <div class="page-title">
 
-                    <h1>
-                        HỒ SƠ
-                    </h1>
+                    <h1>HỒ SƠ</h1>
 
-                    <p>
-                        NGƯỜI CHƠI
-                    </p>
+                    <p>NGƯỜI CHƠI</p>
 
                 </div>
-
 
                 <div class="page-right"></div>
 
-
             </div>
 
 
-            <div class="profile-layout">
+            <div class="panel simple-panel">
 
-
-                <div
-                    class="game-panel profile-card">
-
-
-                    <div class="profile-avatar">
-
-                        ANIME
-
-                    </div>
-
-
-                    <div class="profile-name">
-
-                        TÊN NGƯỜI CHƠI
-
-                    </div>
-
-
-                    <div class="profile-level">
-
-                        Lv.1
-
-                    </div>
-
-
+                <div class="simple-title">
+                    HỒ SƠ NGƯỜI CHƠI
                 </div>
 
-
-                <div
-                    class="game-panel profile-info">
-
-
-                    <div class="info-row">
-
-                        <span class="info-label">
-                            Cấp độ
-                        </span>
-
-                        <span class="info-value">
-                            1
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span class="info-label">
-                            EXP
-                        </span>
-
-                        <span class="info-value">
-                            0 / 100
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span class="info-label">
-                            Nhân vật
-                        </span>
-
-                        <span class="info-value">
-                            1
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-row">
-
-                        <span class="info-label">
-                            Đội hình
-                        </span>
-
-                        <span class="info-value">
-                            0 / 5
-                        </span>
-
-                    </div>
-
-
+                <div class="simple-text">
+                    Phần hồ sơ sẽ được phát triển sau.
                 </div>
-
 
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1542,23 +1294,18 @@ img{
 
 <!-- ======================================================
      LẬP NHÓM
-     ĐỂ TRỐNG CHỨC NĂNG CHI TIẾT
-     SẼ CODE SAU
 ====================================================== -->
 
 <section
     id="lapnhomScreen"
     class="screen">
 
-
     <div class="game-page">
-
 
         <div class="page-inner">
 
 
             <div class="page-header">
-
 
                 <button
                     class="page-back"
@@ -1568,62 +1315,249 @@ img{
 
                 </button>
 
-
                 <div class="page-title">
 
-                    <h1>
-                        LẬP NHÓM
-                    </h1>
+                    <h1>LẬP NHÓM</h1>
 
-                    <p>
-                        TRANG BỊ ĐỘI HÌNH
-                    </p>
+                    <p>TRANG BỊ ĐỘI HÌNH</p>
 
                 </div>
 
-
                 <div class="page-right"></div>
-
 
             </div>
 
 
-            <div
-                class="game-panel resource-panel">
+            <!-- ĐỘI HÌNH -->
 
+            <div class="panel team-panel">
 
-                <div class="resource-title">
+                <div class="team-heading">
 
-                    KHU VỰC LẬP NHÓM
+                    <span class="team-heading-title">
+                        ĐỘI HÌNH CỦA BẠN
+                    </span>
+
+                    <span
+                        id="teamCount"
+                        class="team-count">
+
+                        0 / 5
+
+                    </span>
 
                 </div>
 
 
-                <p
-                    style="
-                        color:#bfc8d6;
-                        line-height:1.5;
-                    ">
+                <div
+                    id="teamSlots"
+                    class="team-slots">
 
-                    Khung lập nhóm đã được tạo.
-                    <br>
-                    Phần trang bị nhân vật,
-                    5 vị trí đội hình,
-                    kho nhân vật,
-                    thông tin chỉ số và hệ thống
-                    chọn nhân vật sẽ được thêm sau.
 
-                </p>
+                    <button
+                        class="team-slot empty selected"
+                        data-slot="0">
 
+                        <span class="slot-number">
+                            1
+                        </span>
+
+                        <span class="slot-plus">
+                            +
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="team-slot empty"
+                        data-slot="1">
+
+                        <span class="slot-number">
+                            2
+                        </span>
+
+                        <span class="slot-plus">
+                            +
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="team-slot empty"
+                        data-slot="2">
+
+                        <span class="slot-number">
+                            3
+                        </span>
+
+                        <span class="slot-plus">
+                            +
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="team-slot empty"
+                        data-slot="3">
+
+                        <span class="slot-number">
+                            4
+                        </span>
+
+                        <span class="slot-plus">
+                            +
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="team-slot empty"
+                        data-slot="4">
+
+                        <span class="slot-number">
+                            5
+                        </span>
+
+                        <span class="slot-plus">
+                            +
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- NHÂN VẬT ĐANG CHỌN -->
+
+            <div
+                class="panel selected-panel">
+
+                <div class="selected-info">
+
+                    <div
+                        id="selectedName"
+                        class="selected-name">
+
+                        Superman
+
+                    </div>
+
+                    <div
+                        id="selectedRarity"
+                        class="selected-rarity">
+
+                        SSR
+
+                    </div>
+
+                    <div class="selected-stats">
+
+                        <span>
+                            HP:
+                            <b id="selectedHp">
+                                1000
+                            </b>
+                        </span>
+
+                        <span>
+                            ATK:
+                            <b id="selectedAtk">
+                                120
+                            </b>
+                        </span>
+
+                        <span>
+                            DEF:
+                            <b id="selectedDef">
+                                80
+                            </b>
+                        </span>
+
+                        <span>
+                            Lv:
+                            <b id="selectedLevel">
+                                1
+                            </b>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="selected-actions">
+
+                    <button
+                        id="equipButton"
+                        class="equip-button">
+
+                        TRANG BỊ
+
+                    </button>
+
+
+                    <button
+                        id="removeButton"
+                        class="remove-button">
+
+                        THÁO
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- KHO -->
+
+            <div
+                class="panel inventory-panel">
+
+                <div class="inventory-title">
+                    NHÂN VẬT CỦA BẠN
+                </div>
+
+
+                <div
+                    id="inventory"
+                    class="inventory">
+
+
+                    <button
+                        class="inventory-card active"
+                        data-character="superman">
+
+                        <img
+                            src="./characters/superman/sprite.png"
+                            alt="Superman">
+
+                        <span class="inventory-name">
+                            Superman
+                        </span>
+
+                        <span class="inventory-rarity">
+                            SSR • Lv.1
+                        </span>
+
+                    </button>
+
+
+                </div>
 
             </div>
 
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1637,15 +1571,11 @@ img{
     id="nangcapScreen"
     class="screen">
 
-
     <div class="game-page">
-
 
         <div class="page-inner">
 
-
             <div class="page-header">
-
 
                 <button
                     class="page-back"
@@ -1655,61 +1585,35 @@ img{
 
                 </button>
 
-
                 <div class="page-title">
 
-                    <h1>
-                        NÂNG CẤP
-                    </h1>
+                    <h1>NÂNG CẤP</h1>
 
-                    <p>
-                        CƯỜNG HÓA NHÂN VẬT
-                    </p>
+                    <p>CƯỜNG HÓA NHÂN VẬT</p>
 
                 </div>
-
 
                 <div class="page-right"></div>
 
-
             </div>
 
 
-            <div
-                class="game-panel resource-panel">
+            <div class="panel simple-panel">
 
-
-                <div class="resource-title">
-
-                    HỆ THỐNG NÂNG CẤP
-
+                <div class="simple-title">
+                    NÂNG CẤP
                 </div>
 
-
-                <p
-                    style="
-                        color:#bfc8d6;
-                        line-height:1.5;
-                    ">
-
-                    Khung Nâng cấp đã được chuẩn bị.
-                    Phần chọn nhân vật,
-                    cấp độ,
-                    EXP,
-                    vật phẩm và chi phí
-                    sẽ được code sau.
-
-                </p>
-
+                <div class="simple-text">
+                    Trang Nâng cấp đã được tạo.
+                    Phần nâng cấp nhân vật sẽ được code tiếp tại đây.
+                </div>
 
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1723,15 +1627,11 @@ img{
     id="rutnhanvatScreen"
     class="screen">
 
-
     <div class="game-page">
-
 
         <div class="page-inner">
 
-
             <div class="page-header">
-
 
                 <button
                     class="page-back"
@@ -1741,60 +1641,34 @@ img{
 
                 </button>
 
-
                 <div class="page-title">
 
-                    <h1>
-                        RÚT NHÂN VẬT
-                    </h1>
+                    <h1>RÚT NHÂN VẬT</h1>
 
-                    <p>
-                        SUMMON
-                    </p>
+                    <p>SUMMON</p>
 
                 </div>
-
 
                 <div class="page-right"></div>
 
-
             </div>
 
 
-            <div
-                class="game-panel resource-panel">
+            <div class="panel simple-panel">
 
-
-                <div class="resource-title">
-
-                    HỆ THỐNG RÚT
-
+                <div class="simple-title">
+                    RÚT NHÂN VẬT
                 </div>
 
-
-                <p
-                    style="
-                        color:#bfc8d6;
-                        line-height:1.5;
-                    ">
-
-                    Khung Rút nhân vật đã được chuẩn bị.
-                    Phần banner,
-                    tỷ lệ,
-                    hiệu ứng rút,
-                    vé và nhân vật sẽ được code sau.
-
-                </p>
-
+                <div class="simple-text">
+                    Hệ thống Rút nhân vật sẽ được code tiếp tại đây.
+                </div>
 
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1808,15 +1682,11 @@ img{
     id="cuahangScreen"
     class="screen">
 
-
     <div class="game-page">
-
 
         <div class="page-inner">
 
-
             <div class="page-header">
-
 
                 <button
                     class="page-back"
@@ -1826,61 +1696,34 @@ img{
 
                 </button>
 
-
                 <div class="page-title">
 
-                    <h1>
-                        CỬA HÀNG
-                    </h1>
+                    <h1>CỬA HÀNG</h1>
 
-                    <p>
-                        SHOP
-                    </p>
+                    <p>SHOP</p>
 
                 </div>
-
 
                 <div class="page-right"></div>
 
-
             </div>
 
 
-            <div
-                class="game-panel resource-panel">
+            <div class="panel simple-panel">
 
-
-                <div class="resource-title">
-
+                <div class="simple-title">
                     CỬA HÀNG
-
                 </div>
 
-
-                <p
-                    style="
-                        color:#bfc8d6;
-                        line-height:1.5;
-                    ">
-
-                    Khung Cửa hàng đã được chuẩn bị.
-                    Phần danh mục,
-                    vật phẩm,
-                    giá,
-                    mua bán và số dư
-                    sẽ được code sau.
-
-                </p>
-
+                <div class="simple-text">
+                    Hệ thống Cửa hàng sẽ được code tiếp tại đây.
+                </div>
 
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1894,15 +1737,11 @@ img{
     id="batdauScreen"
     class="screen">
 
-
     <div class="game-page">
-
 
         <div class="page-inner">
 
-
             <div class="page-header">
-
 
                 <button
                     class="page-back"
@@ -1912,85 +1751,52 @@ img{
 
                 </button>
 
-
                 <div class="page-title">
 
-                    <h1>
-                        BẮT ĐẦU
-                    </h1>
+                    <h1>BẮT ĐẦU</h1>
 
-                    <p>
-                        CHIẾN ĐẤU
-                    </p>
+                    <p>CHIẾN ĐẤU</p>
 
                 </div>
-
 
                 <div class="page-right"></div>
 
-
             </div>
 
 
-            <div
-                class="game-panel resource-panel">
+            <div class="panel simple-panel">
 
-
-                <div class="resource-title">
-
-                    KHU VỰC CHIẾN ĐẤU
-
+                <div class="simple-title">
+                    CHIẾN ĐẤU
                 </div>
 
-
-                <p
-                    style="
-                        color:#bfc8d6;
-                        line-height:1.5;
-                    ">
-
-                    Đây sẽ là nơi bắt đầu trận chiến.
-                    Map,
-                    quái,
-                    nhân vật,
-                    HP,
-                    damage,
-                    animation và skill
-                    sẽ được code sau.
-
-                </p>
-
+                <div class="simple-text">
+                    Hệ thống chiến đấu sẽ được code tiếp tại đây.
+                </div>
 
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </section>
 
 
 
 <!-- ======================================================
-     VÀNG
+     GOLD
 ====================================================== -->
 
 <section
     id="goldScreen"
     class="screen">
 
-
     <div class="game-page">
-
 
         <div class="page-inner">
 
-
             <div class="page-header">
-
 
                 <button
                     class="page-back"
@@ -2000,86 +1806,35 @@ img{
 
                 </button>
 
-
                 <div class="page-title">
 
-                    <h1>
-                        VÀNG
-                    </h1>
+                    <h1>VÀNG</h1>
 
-                    <p>
-                        TÀI NGUYÊN
-                    </p>
+                    <p>TÀI NGUYÊN</p>
 
                 </div>
-
 
                 <div class="page-right"></div>
 
-
             </div>
 
 
-            <div
-                class="game-panel resource-panel">
+            <div class="panel simple-panel">
 
-
-                <div class="resource-grid">
-
-
-                    <div
-                        class="resource-box">
-
-
-                        <div class="resource-name">
-
-                            VÀNG
-
-                        </div>
-
-
-                        <div class="resource-value">
-
-                            0
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div
-                        class="resource-box">
-
-
-                        <div class="resource-name">
-
-                            RUBY
-
-                        </div>
-
-
-                        <div class="resource-value">
-
-                            0
-
-                        </div>
-
-
-                    </div>
-
-
+                <div class="simple-title">
+                    VÀNG
                 </div>
 
+                <div class="simple-text">
+                    Số vàng hiện tại:
+                    <b>0</b>
+                </div>
 
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -2093,15 +1848,11 @@ img{
     id="rubyScreen"
     class="screen">
 
-
     <div class="game-page">
-
 
         <div class="page-inner">
 
-
             <div class="page-header">
-
 
                 <button
                     class="page-back"
@@ -2111,65 +1862,35 @@ img{
 
                 </button>
 
-
                 <div class="page-title">
 
-                    <h1>
-                        RUBY
-                    </h1>
+                    <h1>RUBY</h1>
 
-                    <p>
-                        TÀI NGUYÊN
-                    </p>
+                    <p>TÀI NGUYÊN</p>
 
                 </div>
-
 
                 <div class="page-right"></div>
 
-
             </div>
 
 
-            <div
-                class="game-panel resource-panel">
+            <div class="panel simple-panel">
 
-
-                <div class="resource-grid">
-
-
-                    <div
-                        class="resource-box">
-
-
-                        <div class="resource-name">
-
-                            RUBY
-
-                        </div>
-
-
-                        <div class="resource-value">
-
-                            0
-
-                        </div>
-
-
-                    </div>
-
-
+                <div class="simple-title">
+                    RUBY
                 </div>
 
+                <div class="simple-text">
+                    Số Ruby hiện tại:
+                    <b>0</b>
+                </div>
 
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -2183,51 +1904,29 @@ img{
     id="errorScreen"
     class="screen">
 
+    <div class="error-center">
 
-    <div class="placeholder-page">
+        <div class="error-box">
 
+            <h1>404</h1>
 
-        <div class="placeholder-box">
-
-
-            <h1>
-                404
-            </h1>
-
-
-            <h2
-                id="errorTitle">
-
-                KHÔNG TÌM THẤY
-
-            </h2>
-
-
-            <p
-                id="errorText">
-
-                Trang chưa được tạo.
-
+            <p id="errorText">
+                Không tìm thấy trang.
             </p>
 
-
             <button
-                class="placeholder-back"
+                class="error-back"
                 data-back-home>
 
                 ← QUAY LẠI
 
             </button>
 
-
         </div>
-
 
     </div>
 
-
 </section>
-
 
 
 </div>
@@ -2237,64 +1936,66 @@ img{
 <script>
 
 /* =========================================================
-   ANIME DORADO
-   CORE GAME ENGINE
-   ========================================================= */
+   BASE PATH
+   GitHub Pages của bạn:
+   /AnimeDorado-PCS/
+========================================================= */
+
+const BASE_PATH =
+    "/AnimeDorado-PCS/";
 
 
 /* =========================================================
-   DESIGN SIZE
-   ========================================================= */
+   ROUTES
+========================================================= */
 
-const DESIGN_WIDTH =
-    1536;
+const ROUTES = {
 
-const DESIGN_HEIGHT =
-    864;
+    "":
+        "landingScreen",
 
+    "game":
+        "homeScreen",
+
+    "profile":
+        "profileScreen",
+
+    "lapnhom":
+        "lapnhomScreen",
+
+    "nangcap":
+        "nangcapScreen",
+
+    "rutnhanvat":
+        "rutnhanvatScreen",
+
+    "cuahang":
+        "cuahangScreen",
+
+    "batdau":
+        "batdauScreen",
+
+    "gold":
+        "goldScreen",
+
+    "ruby":
+        "rubyScreen"
+
+};
 
 
 /* =========================================================
-   GAME STATE
-   Sau này các hệ thống sẽ dùng chung state này.
-   ========================================================= */
+   GAME DATA
+========================================================= */
 
 const gameState = {
 
-    player:{
-
-        name:"",
-
-        level:1,
-
-        exp:0,
-
-        maxExp:100
-
-    },
-
-
-    resources:{
-
-        gold:0,
-
-        ruby:0
-
-    },
-
-
-    team:[
-
+    teamSlots:[
         null,
-
         null,
-
         null,
-
         null,
-
         null
-
     ],
 
 
@@ -2310,15 +2011,11 @@ const gameState = {
 
             level:1,
 
-            exp:0,
-
             hp:1000,
 
             atk:120,
 
-            def:80,
-
-            owned:true
+            def:80
 
         }
 
@@ -2327,73 +2024,66 @@ const gameState = {
 };
 
 
-
 /* =========================================================
-   ROUTE
-   Không reload.
-   ========================================================= */
+   GET CURRENT ROUTE
+========================================================= */
 
-const ROUTES = {
+function getRoute(){
 
-    home:
-        "homeScreen",
-
-    profile:
-        "profileScreen",
-
-    lapnhom:
-        "lapnhomScreen",
-
-    nangcap:
-        "nangcapScreen",
-
-    rutnhanvat:
-        "rutnhanvatScreen",
-
-    cuahang:
-        "cuahangScreen",
-
-    batdau:
-        "batdauScreen",
-
-    gold:
-        "goldScreen",
-
-    ruby:
-        "rubyScreen"
-
-};
+    let path =
+        window.location.pathname;
 
 
+    if(
+        path.startsWith(
+            BASE_PATH
+        )
+    ){
 
-/* =========================================================
-   GET SCREEN
-   ========================================================= */
-
-function getScreen(
-    route
-){
-
-    const id =
-        ROUTES[route];
-
-    if(!id){
-
-        return null;
+        path =
+            path.slice(
+                BASE_PATH.length
+            );
 
     }
 
-    return document.getElementById(
-        id
+
+    path =
+        path
+            .replace(
+                /^\/+/,
+                ""
+            )
+            .replace(
+                /\/+$/,
+                ""
+            );
+
+
+    return path;
+
+}
+
+
+/* =========================================================
+   URL
+========================================================= */
+
+function routeUrl(
+    route
+){
+
+    return (
+        BASE_PATH +
+        route
     );
 
 }
 
 
-
 /* =========================================================
    HIDE ALL
-   ========================================================= */
+========================================================= */
 
 function hideAllScreens(){
 
@@ -2402,7 +2092,6 @@ function hideAllScreens(){
             ".screen"
         )
         .forEach(
-
             function(screen){
 
                 screen.classList.remove(
@@ -2410,29 +2099,46 @@ function hideAllScreens(){
                 );
 
             }
-
         );
 
 }
 
 
-
 /* =========================================================
    SHOW ROUTE
-   ========================================================= */
+========================================================= */
 
 function showRoute(
     route,
-    pushHistory = true
+    changeUrl = true
 ){
 
-    const screen =
-        getScreen(
+    const screenId =
+        ROUTES[route];
+
+
+    if(
+        !screenId
+    ){
+
+        show404(
             route
         );
 
+        return;
 
-    if(!screen){
+    }
+
+
+    const screen =
+        document.getElementById(
+            screenId
+        );
+
+
+    if(
+        !screen
+    ){
 
         show404(
             route
@@ -2452,7 +2158,7 @@ function showRoute(
 
 
     if(
-        pushHistory
+        changeUrl
     ){
 
         history.pushState(
@@ -2461,7 +2167,7 @@ function showRoute(
                     route
             },
             "",
-            createRouteUrl(
+            routeUrl(
                 route
             )
         );
@@ -2471,63 +2177,14 @@ function showRoute(
 
     if(
         route ===
-        "home"
+        "game"
     ){
 
         scaleGame();
 
     }
 
-
 }
-
-
-
-/* =========================================================
-   CREATE URL
-   Không ép tên miền.
-   Tự chạy đúng trong repo GitHub Pages.
-   ========================================================= */
-
-function createRouteUrl(
-    route
-){
-
-    const current =
-        window.location.pathname;
-
-
-    const parts =
-        current
-            .split("/")
-            .filter(
-                Boolean
-            );
-
-
-    /*
-       Giữ path GitHub Pages:
-
-       /AnimeDorado-PCS/
-    */
-
-    if(
-        parts.length > 0
-    ){
-
-        return "/" +
-            parts[0] +
-            "/" +
-            route;
-
-    }
-
-
-    return "/" +
-        route;
-
-}
-
 
 
 /* =========================================================
@@ -2541,23 +2198,13 @@ function show404(
     hideAllScreens();
 
 
-    const error =
-        document.getElementById(
-            "errorScreen"
-        );
-
-
-    error.classList.add(
-        "active"
-    );
-
-
     document
         .getElementById(
-            "errorTitle"
+            "errorScreen"
         )
-        .textContent =
-        route.toUpperCase();
+        .classList.add(
+            "active"
+        );
 
 
     document
@@ -2565,16 +2212,15 @@ function show404(
             "errorText"
         )
         .innerHTML =
-        "Khu vực <b>/" +
+        "Trang <b>/" +
         route +
-        "</b> chưa được code.";
+        "</b> chưa được tạo.";
 
 }
 
 
-
 /* =========================================================
-   HOME SCALE
+   SCALE HOME
 ========================================================= */
 
 function scaleGame(){
@@ -2592,22 +2238,14 @@ function scaleGame(){
     }
 
 
-    const width =
-        window.innerWidth;
-
-
-    const height =
-        window.innerHeight;
-
-
     const scale =
         Math.min(
 
-            width /
-                DESIGN_WIDTH,
+            window.innerWidth /
+            1536,
 
-            height /
-                DESIGN_HEIGHT
+            window.innerHeight /
+            864
 
         );
 
@@ -2621,9 +2259,8 @@ function scaleGame(){
 }
 
 
-
 /* =========================================================
-   OPEN EXPERIENCE
+   EXPERIENCE
 ========================================================= */
 
 document
@@ -2635,13 +2272,11 @@ document
         function(){
 
             showRoute(
-                "home"
+                "game"
             );
 
         }
-
     );
-
 
 
 /* =========================================================
@@ -2653,7 +2288,6 @@ document
         ".home-button"
     )
     .forEach(
-
         function(button){
 
             button.addEventListener(
@@ -2669,17 +2303,14 @@ document
                     );
 
                 }
-
             );
 
         }
-
     );
 
 
-
 /* =========================================================
-   BACK BUTTONS
+   BACK BUTTON
 ========================================================= */
 
 document
@@ -2687,7 +2318,6 @@ document
         "[data-back-home]"
     )
     .forEach(
-
         function(button){
 
             button.addEventListener(
@@ -2695,17 +2325,14 @@ document
                 function(){
 
                     showRoute(
-                        "home"
+                        "game"
                     );
 
                 }
-
             );
 
         }
-
     );
-
 
 
 /* =========================================================
@@ -2716,42 +2343,8 @@ window.addEventListener(
     "popstate",
     function(){
 
-        const pathname =
-            window.location.pathname;
-
-
-        const parts =
-            pathname
-                .split("/")
-                .filter(
-                    Boolean
-                );
-
-
-        let route =
-            "home";
-
-
-        if(
-            parts.length >= 2
-        ){
-
-            route =
-                parts[
-                    parts.length - 1
-                ];
-
-        }
-
-
-        if(
-            !ROUTES[route]
-        ){
-
-            route =
-                "home";
-
-        }
+        const route =
+            getRoute();
 
 
         showRoute(
@@ -2760,13 +2353,11 @@ window.addEventListener(
         );
 
     }
-
 );
 
 
-
 /* =========================================================
-   RESIZE
+   HOME SCALE
 ========================================================= */
 
 window.addEventListener(
@@ -2778,40 +2369,887 @@ window.addEventListener(
     }
 );
 
-
-
-/* =========================================================
-   ORIENTATION
-========================================================= */
-
 window.addEventListener(
     "orientationchange",
     function(){
 
         setTimeout(
-            function(){
-
-                scaleGame();
-
-            },
+            scaleGame,
             250
         );
 
     }
-
 );
 
 
+/* =========================================================
+   TEAM
+   1 CHARACTER = 1 SLOT
+========================================================= */
+
+let selectedSlot = 0;
+
+let selectedCharacter =
+    "superman";
+
 
 /* =========================================================
-   STARTUP
+   LOAD TEAM
 ========================================================= */
+
+function loadTeam(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                "animeDoradoTeam"
+            );
+
+
+        if(
+            !saved
+        ){
+
+            return;
+
+        }
+
+
+        const data =
+            JSON.parse(
+                saved
+            );
+
+
+        if(
+            !Array.isArray(
+                data
+            )
+        ){
+
+            return;
+
+        }
+
+
+        const clean =
+            [
+                null,
+                null,
+                null,
+                null,
+                null
+            ];
+
+
+        const used =
+            new Set();
+
+
+        for(
+            let i = 0;
+            i < 5;
+            i++
+        ){
+
+            const id =
+                data[i];
+
+
+            if(
+                typeof id !==
+                "string"
+            ){
+
+                continue;
+
+            }
+
+
+            if(
+                !gameState.characters[id]
+            ){
+
+                continue;
+
+            }
+
+
+            /*
+             * CHỐNG TRÙNG:
+             * 1 ID chỉ xuất hiện 1 lần.
+             */
+
+            if(
+                used.has(id)
+            ){
+
+                continue;
+
+            }
+
+
+            used.add(id);
+
+            clean[i] =
+                id;
+
+        }
+
+
+        gameState.teamSlots =
+            clean;
+
+    }
+    catch(
+        error
+    ){
+
+        gameState.teamSlots =
+            [
+                null,
+                null,
+                null,
+                null,
+                null
+            ];
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE TEAM
+========================================================= */
+
+function saveTeam(){
+
+    try{
+
+        localStorage.setItem(
+
+            "animeDoradoTeam",
+
+            JSON.stringify(
+                gameState.teamSlots
+            )
+
+        );
+
+    }
+    catch(
+        error
+    ){
+
+        console.log(
+            "Không thể lưu đội hình.",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FIND CHARACTER SLOT
+========================================================= */
+
+function findCharacterSlot(
+    characterId
+){
+
+    return gameState.teamSlots.indexOf(
+        characterId
+    );
+
+}
+
+
+/* =========================================================
+   SELECT SLOT
+========================================================= */
+
+function selectSlot(
+    index
+){
+
+    if(
+        index < 0 ||
+        index > 4
+    ){
+
+        return;
+
+    }
+
+
+    selectedSlot =
+        index;
+
+
+    document
+        .querySelectorAll(
+            ".team-slot"
+        )
+        .forEach(
+            function(slot){
+
+                slot.classList.remove(
+                    "selected"
+                );
+
+            }
+        );
+
+
+    const target =
+        document.querySelector(
+            '.team-slot[data-slot="' +
+            index +
+            '"]'
+        );
+
+
+    if(target){
+
+        target.classList.add(
+            "selected"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SELECT CHARACTER
+========================================================= */
+
+function selectCharacter(
+    id
+){
+
+    if(
+        !gameState.characters[id]
+    ){
+
+        return;
+
+    }
+
+
+    selectedCharacter =
+        id;
+
+
+    updateSelectedCharacter();
+
+    updateInventory();
+
+}
+
+
+/* =========================================================
+   UPDATE CHARACTER INFO
+========================================================= */
+
+function updateSelectedCharacter(){
+
+    const character =
+        gameState.characters[
+            selectedCharacter
+        ];
+
+
+    if(
+        !character
+    ){
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "selectedName"
+        )
+        .textContent =
+        character.name;
+
+
+    document
+        .getElementById(
+            "selectedRarity"
+        )
+        .textContent =
+        character.rarity;
+
+
+    document
+        .getElementById(
+            "selectedHp"
+        )
+        .textContent =
+        character.hp;
+
+
+    document
+        .getElementById(
+            "selectedAtk"
+        )
+        .textContent =
+        character.atk;
+
+
+    document
+        .getElementById(
+            "selectedDef"
+        )
+        .textContent =
+        character.def;
+
+
+    document
+        .getElementById(
+            "selectedLevel"
+        )
+        .textContent =
+        character.level;
+
+}
+
+
+/* =========================================================
+   EQUIP CHARACTER
+   QUAN TRỌNG:
+   MỘT NHÂN VẬT CHỈ Ở MỘT Ô
+========================================================= */
+
+function equipSelectedCharacter(){
+
+    const character =
+        gameState.characters[
+            selectedCharacter
+        ];
+
+
+    if(
+        !character
+    ){
+
+        return;
+
+    }
+
+
+    const newSlot =
+        selectedSlot;
+
+
+    /*
+     * Nhân vật đang ở đâu?
+     */
+
+    const oldSlot =
+        findCharacterSlot(
+            character.id
+        );
+
+
+    /*
+     * Đã ở đúng ô rồi.
+     */
+
+    if(
+        oldSlot ===
+        newSlot
+    ){
+
+        renderTeam();
+
+        return;
+
+    }
+
+
+    /*
+     * XÓA KHỎI Ô CŨ.
+     * Đây là phần chống nhân đôi.
+     */
+
+    if(
+        oldSlot !== -1
+    ){
+
+        gameState.teamSlots[
+            oldSlot
+        ] = null;
+
+    }
+
+
+    /*
+     * Ô mới chỉ có một nhân vật.
+     * Nhân vật cũ ở ô đó sẽ bị thay thế.
+     */
+
+    gameState.teamSlots[
+        newSlot
+    ] =
+        character.id;
+
+
+    saveTeam();
+
+    renderTeam();
+
+}
+
+
+/* =========================================================
+   REMOVE
+========================================================= */
+
+function removeSelectedCharacter(){
+
+    const character =
+        gameState.characters[
+            selectedCharacter
+        ];
+
+
+    if(
+        !character
+    ){
+
+        return;
+
+    }
+
+
+    const slot =
+        findCharacterSlot(
+            character.id
+        );
+
+
+    if(
+        slot === -1
+    ){
+
+        return;
+
+    }
+
+
+    gameState.teamSlots[
+        slot
+    ] = null;
+
+
+    saveTeam();
+
+    renderTeam();
+
+}
+
+
+/* =========================================================
+   RENDER TEAM
+========================================================= */
+
+function renderTeam(){
+
+    const slots =
+        document.querySelectorAll(
+            ".team-slot"
+        );
+
+
+    let count =
+        0;
+
+
+    slots.forEach(
+        function(slot){
+
+            const index =
+                Number(
+                    slot.dataset.slot
+                );
+
+
+            const characterId =
+                gameState.teamSlots[
+                    index
+                ];
+
+
+            slot
+                .querySelectorAll(
+                    ".team-slot-image, .team-slot-name"
+                )
+                .forEach(
+                    function(element){
+
+                        element.remove();
+
+                    }
+                );
+
+
+            slot.classList.remove(
+                "empty"
+            );
+
+
+            if(
+                !characterId
+            ){
+
+                slot.classList.add(
+                    "empty"
+                );
+
+                return;
+
+            }
+
+
+            const character =
+                gameState.characters[
+                    characterId
+                ];
+
+
+            if(
+                !character
+            ){
+
+                gameState.teamSlots[
+                    index
+                ] = null;
+
+                slot.classList.add(
+                    "empty"
+                );
+
+                return;
+
+            }
+
+
+            count++;
+
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+
+            image.className =
+                "team-slot-image";
+
+
+            image.src =
+                "./characters/" +
+                character.id +
+                "/sprite.png";
+
+
+            image.alt =
+                character.name;
+
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+
+            name.className =
+                "team-slot-name";
+
+
+            name.textContent =
+                character.name;
+
+
+            slot.appendChild(
+                image
+            );
+
+
+            slot.appendChild(
+                name
+            );
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "teamCount"
+        )
+        .textContent =
+        count +
+        " / 5";
+
+
+    updateInventory();
+
+}
+
+
+/* =========================================================
+   UPDATE INVENTORY
+========================================================= */
+
+function updateInventory(){
+
+    document
+        .querySelectorAll(
+            ".inventory-card"
+        )
+        .forEach(
+            function(card){
+
+                const id =
+                    card.dataset.character;
+
+
+                card.classList.remove(
+                    "active"
+                );
+
+                card.classList.remove(
+                    "equipped"
+                );
+
+
+                if(
+                    id ===
+                    selectedCharacter
+                ){
+
+                    card.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                if(
+                    findCharacterSlot(
+                        id
+                    ) !== -1
+                ){
+
+                    card.classList.add(
+                        "equipped"
+                    );
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   SLOT CLICK
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".team-slot"
+    )
+    .forEach(
+        function(slot){
+
+            slot.addEventListener(
+                "click",
+                function(){
+
+                    selectSlot(
+                        Number(
+                            slot.dataset.slot
+                        )
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   CHARACTER CLICK
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".inventory-card"
+    )
+    .forEach(
+        function(card){
+
+            card.addEventListener(
+                "click",
+                function(){
+
+                    selectCharacter(
+                        card.dataset.character
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   EQUIP BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "equipButton"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            equipSelectedCharacter();
+
+        }
+    );
+
+
+/* =========================================================
+   REMOVE BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "removeButton"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            removeSelectedCharacter();
+
+        }
+    );
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+loadTeam();
+
+selectSlot(0);
+
+selectCharacter(
+    "superman"
+);
+
+renderTeam();
 
 scaleGame();
 
+
+/* =========================================================
+   URL STARTUP
+========================================================= */
+
+(function(){
+
+    const route =
+        getRoute();
+
+
+    /*
+     * Nếu mở:
+     * https://animedorado-pcs.github.io/AnimeDorado-PCS/
+     *
+     * thì hiện landing.
+     */
+
+    if(
+        route === ""
+    ){
+
+        showRoute(
+            "",
+            false
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * game
+     */
+
+    if(
+        ROUTES[route]
+    ){
+
+        showRoute(
+            route,
+            false
+        );
+
+        return;
+
+    }
+
+
+    show404(
+        route
+    );
+
+})();
 
 </script>
 
 
 </body>
 </html>
+
+Cấu trúc ảnh
+
+Bạn giữ đúng:
+
+AnimeDorado-PCS/
+│
+├── index.html
+├── nengame.png
+│
+└── characters/
+    └── superman/
+        └── sprite.png
+
+Bản này không cần "lapnhom.html" cho phần Lập nhóm hiện tại.
+
+Khi bạn bấm Nâng cấp, URL sẽ đổi thành:
+
+"https://animedorado-pcs.github.io/AnimeDorado-PCS/nangcap"
+
+và giao diện Nâng cấp bên trong "index.html" hiện ra không reload.
+
+Lưu ý quan trọng: GitHub Pages vẫn có thể trả 404 nếu bạn gõ "/nangcap" trực tiếp vào thanh địa chỉ hoặc F5 tại URL đó, vì server GitHub Pages chưa có thư mục "nangcap". Còn bấm nút từ game thì code trên không reload và không bị 404. Khi tới bước làm Nâng cấp, mình sẽ tạo cấu trúc "nangcap/index.html" phù hợp để URL đó cũng tồn tại thật.
