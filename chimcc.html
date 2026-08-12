@@ -2,209 +2,177 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>🐧 Chim cánh cụt chạy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chim Cánh Cụt El Dorado</title>
     <style>
-        body {
+        * {
             margin: 0;
-            height: 100vh;
-            background: #d9edf7;
-            overflow: hidden;
-            font-family: sans-serif;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            /* Nền rừng vàng El Dorado */
+            background: linear-gradient(180deg, #1a3c2e 0%, #2e5a1e 50%, #e6b800 100%);
+            position: relative;
+        }
+
+        /* Hiệu ứng ánh vàng lấp lánh */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
         #penguin {
-            position: fixed;
+            position: absolute;
+            width: 80px;
+            height: 80px;
             font-size: 64px;
-            left: 100px;
-            top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-origin: center;
+            transition: transform 0.2s ease;
             cursor: pointer;
             user-select: none;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
             z-index: 10;
-            transition: filter 0.2s;
-            filter: drop-shadow(0 6px 6px rgba(0,0,0,0.35));
         }
-        .left {
-            transform: scaleX(-1);
-        }
-        .info {
-            position: fixed;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(6px);
-            border-radius: 24px;
-            padding: 8px 20px;
-            font-size: 14px;
-            color: #2c4b6b;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-            z-index: 20;
+
+        /* Nền thêm vàng rơi nhẹ */
+        .gold-dust {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(255, 215, 0, 0.6) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.15;
             pointer-events: none;
-        }
-        .footprint {
-            position: fixed;
-            font-size: 20px;
-            opacity: 0.7;
-            pointer-events: none;
-            z-index: 5;
-            animation: fadeFoot 1.2s ease-out forwards;
-        }
-        @keyframes fadeFoot {
-            0% { opacity: 0.9; transform: scale(0.5) rotate(0deg); }
-            100% { opacity: 0; transform: scale(0.2) rotate(40deg) translateY(18px); }
+            z-index: 1;
         }
     </style>
 </head>
 <body>
+    <div class="gold-dust"></div>
+    <div id="penguin">🐧</div>
 
-<div id="penguin">🐧</div>
-<div class="info">🖱️ Click chim: đổi hướng | Click nền: tăng tốc | Tốc độ: <span id="speedVal">3.0</span></div>
+    <script>
+        (function () {
+            const penguin = document.getElementById('penguin');
+            const SIZE = 80; // kích thước thực của box chim
 
-<script>
-(function() {
-    const penguin = document.getElementById('penguin');
-    const speedSpan = document.getElementById('speedVal');
-    const body = document.body;
+            let x, y;           // vị trí hiện tại (px)
+            let dx, dy;        // vận tốc (px/frame)
+            let lastTimestamp = 0;
+            let directionChangeTimer = 0;
+            const DIRECTION_CHANGE_INTERVAL = 1500; // 1.5 giây đổi hướng một lần
 
-    let vw = window.innerWidth;
-    let vh = window.innerHeight;
-    const pw = 64;  // xấp xỉ kích thước emoji
-    const ph = 64;
+            // Tạo vector vận tốc ngẫu nhiên (tốc độ từ 2 đến 4 px/frame)
+            function randomVelocity() {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 2 + Math.random() * 2;
+                return {
+                    dx: Math.cos(angle) * speed,
+                    dy: Math.sin(angle) * speed
+                };
+            }
 
-    let x = 300;
-    let y = 300;
-    let baseSpeed = 3.0;
-    let speed = baseSpeed;
-    // Hướng ban đầu ngẫu nhiên
-    let angle = Math.random() * Math.PI * 2;
-    let vx = Math.cos(angle) * speed;
-    let vy = Math.sin(angle) * speed;
-    let facingLeft = vx < 0;
-    let frame = 0;
-    let boostTimer = 0;
+            // Khởi tạo vị trí ngẫu nhiên trong viewport
+            function initPosition() {
+                x = Math.random() * (window.innerWidth - SIZE);
+                y = Math.random() * (window.innerHeight - SIZE);
+                const vel = randomVelocity();
+                dx = vel.dx;
+                dy = vel.dy;
+                penguin.style.left = x + 'px';
+                penguin.style.top = y + 'px';
+            }
 
-    function updateFacing() {
-        if (vx < -0.3 && !facingLeft) {
-            facingLeft = true;
-            penguin.classList.add('left');
-        } else if (vx > 0.3 && facingLeft) {
-            facingLeft = false;
-            penguin.classList.remove('left');
-        }
-    }
+            // Lật mặt chim theo hướng ngang
+            function updateFlip() {
+                if (dx > 0.1) {
+                    penguin.style.transform = 'scaleX(1)';
+                } else if (dx < -0.1) {
+                    penguin.style.transform = 'scaleX(-1)';
+                }
+                // Nếu dx gần 0 (đang đứng yên) thì giữ nguyên hướng cũ
+            }
 
-    function setPos() {
-        penguin.style.left = x + 'px';
-        penguin.style.top = y + 'px';
-    }
+            // Xử lý va chạm biên – nảy ngược lại
+            function checkBounds() {
+                if (x <= 0) {
+                    x = 0;
+                    dx = Math.abs(dx);
+                } else if (x + SIZE >= window.innerWidth) {
+                    x = window.innerWidth - SIZE;
+                    dx = -Math.abs(dx);
+                }
 
-    function createFootprint() {
-        const fp = document.createElement('span');
-        fp.className = 'footprint';
-        fp.textContent = '🐾';
-        const offsetX = facingLeft ? 20 : -20;
-        fp.style.left = (x + pw/2 + offsetX) + 'px';
-        fp.style.top = (y + ph - 10) + 'px';
-        body.appendChild(fp);
-        setTimeout(() => fp.remove(), 1200);
-    }
-
-    function loop() {
-        // Giảm dần boost
-        if (boostTimer > 0) {
-            boostTimer--;
-            if (boostTimer === 0) {
-                speed = baseSpeed;
-                // điều chỉnh lại vận tốc
-                const cur = Math.sqrt(vx*vx + vy*vy);
-                if (cur > speed) {
-                    vx *= speed / cur;
-                    vy *= speed / cur;
+                if (y <= 0) {
+                    y = 0;
+                    dy = Math.abs(dy);
+                } else if (y + SIZE >= window.innerHeight) {
+                    y = window.innerHeight - SIZE;
+                    dy = -Math.abs(dy);
                 }
             }
-        }
 
-        // Di chuyển
-        x += vx;
-        y += vy;
+            // Vòng lặp animation chính (requestAnimationFrame)
+            function animate(timestamp) {
+                if (!lastTimestamp) lastTimestamp = timestamp;
+                const deltaTime = timestamp - lastTimestamp;
+                lastTimestamp = timestamp;
 
-        // Va chạm tường
-        const margin = 4;
-        if (x <= margin) { x = margin; vx = Math.abs(vx); }
-        if (x >= vw - pw - margin) { x = vw - pw - margin; vx = -Math.abs(vx); }
-        if (y <= margin) { y = margin; vy = Math.abs(vy); }
-        if (y >= vh - ph - margin) { y = vh - ph - margin; vy = -Math.abs(vy); }
+                // Cập nhật bộ đếm thời gian đổi hướng
+                directionChangeTimer += deltaTime;
+                if (directionChangeTimer >= DIRECTION_CHANGE_INTERVAL) {
+                    directionChangeTimer = 0;
+                    const vel = randomVelocity();
+                    dx = vel.dx;
+                    dy = vel.dy;
+                }
 
-        updateFacing();
-        setPos();
+                // Di chuyển
+                x += dx;
+                y += dy;
 
-        // Dấu chân mỗi 6 frame khi di chuyển đủ nhanh
-        frame++;
-        if (frame % 6 === 0 && Math.sqrt(vx*vx + vy*vy) > 1.2) {
-            createFootprint();
-        }
+                // Kiểm tra biên
+                checkBounds();
 
-        // Thỉnh thoảng đổi hướng nhẹ tự nhiên
-        if (Math.random() < 0.002) {
-            vx += (Math.random() - 0.5) * 0.9;
-            vy += (Math.random() - 0.5) * 0.9;
-            updateFacing();
-        }
+                // Cập nhật vị trí hiển thị
+                penguin.style.left = x + 'px';
+                penguin.style.top = y + 'px';
 
-        // Hiển thị tốc độ
-        const dispSpeed = Math.sqrt(vx*vx + vy*vy).toFixed(1);
-        speedSpan.textContent = dispSpeed;
+                // Cập nhật lật mặt
+                updateFlip();
 
-        requestAnimationFrame(loop);
-    }
-
-    // Click vào chim: đổi hướng ngẫu nhiên + boost nhẹ
-    penguin.addEventListener('click', function(e) {
-        e.stopPropagation();
-        angle = Math.random() * Math.PI * 2;
-        speed = baseSpeed * 1.4;
-        vx = Math.cos(angle) * speed;
-        vy = Math.sin(angle) * speed;
-        boostTimer = 35;  // khoảng 0.6 giây ở 60fps
-        updateFacing();
-    });
-
-    // Click nền: tăng tốc và hút nhẹ về phía click
-    body.addEventListener('click', function(e) {
-        if (e.target === penguin) return;
-        const dx = e.clientX - (x + pw/2);
-        const dy = e.clientY - (y + ph/2);
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist > 5) {
-            speed = baseSpeed * 2.2;
-            vx += (dx / dist) * speed * 0.5;
-            vy += (dy / dist) * speed * 0.5;
-            // Giới hạn vận tốc tối đa
-            const cur = Math.sqrt(vx*vx + vy*vy);
-            const maxSpeed = speed * 1.8;
-            if (cur > maxSpeed) {
-                vx *= maxSpeed / cur;
-                vy *= maxSpeed / cur;
+                requestAnimationFrame(animate);
             }
-            boostTimer = 45;
-        }
-        updateFacing();
-    });
 
-    // Cập nhật khi resize cửa sổ
-    window.addEventListener('resize', () => {
-        vw = window.innerWidth;
-        vh = window.innerHeight;
-        x = Math.min(Math.max(x, 0), vw - pw);
-        y = Math.min(Math.max(y, 0), vh - ph);
-        setPos();
-    });
+            // Xử lý khi người dùng resize cửa sổ – giữ chim trong khung
+            window.addEventListener('resize', () => {
+                if (x + SIZE > window.innerWidth) x = window.innerWidth - SIZE;
+                if (y + SIZE > window.innerHeight) y = window.innerHeight - SIZE;
+                if (x < 0) x = 0;
+                if (y < 0) y = 0;
+                penguin.style.left = x + 'px';
+                penguin.style.top = y + 'px';
+            });
 
-    // Khởi tạo
-    setPos();
-    updateFacing();
-    requestAnimationFrame(loop);
-})();
-</script>
-
+            // Khởi động
+            initPosition();
+            requestAnimationFrame(animate);
+        })();
+    </script>
 </body>
 </html>
