@@ -5,11 +5,11 @@
 
 <meta name="viewport"
       content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
 
-<title>AnimeDorado - Đăng nhập</title>
+<title>ANIME DORADO</title>
 
 <style>
 *{
@@ -19,58 +19,30 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
     width:100%;
     min-height:100%;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#080b12;
-    color:white;
 }
 
 body{
     min-height:100vh;
     overflow:auto;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#03040b;
+    color:white;
 }
 
-/* =========================
+/* ====================================
    NỀN
-========================= */
-
-#background{
-    position:fixed;
-    inset:0;
-    z-index:0;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #25344d 0%,
-            #111827 45%,
-            #05070b 100%
-        );
-}
-
-#background::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(255,190,70,.18),
-            transparent 35%
-        );
-}
-
-/* =========================
-   CONTAINER
-========================= */
+==================================== */
 
 .page{
-    position:relative;
-    z-index:1;
-
     min-height:100vh;
 
     display:flex;
@@ -78,974 +50,481 @@ body{
     align-items:center;
 
     padding:20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #17214d 0%,
+            #080b1d 48%,
+            #020308 100%
+        );
 }
 
-/* =========================
-   LOGIN BOX
-========================= */
+/* ====================================
+   KHUNG CHÍNH
+==================================== */
 
-.box{
+.game-card{
+
+    position:relative;
+
+    width:min(92vw,600px);
+
+    aspect-ratio:1 / 1;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    border:
+        2px solid
+        rgba(110,190,255,.35);
+
+    background:#050816;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.75),
+        0 0 45px
+        rgba(50,130,255,.18);
+
+}
+
+/* ====================================
+   ẢNH KHÔNG GIAN
+==================================== */
+
+.space-image{
+
+    position:absolute;
+
+    inset:0;
+
     width:100%;
-    max-width:430px;
+    height:100%;
 
-    padding:32px 25px 28px;
+    object-fit:cover;
+
+    object-position:center center;
+
+    display:block;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+    transform:scale(1.03);
+}
+
+/* ====================================
+   LỚP TỐI
+==================================== */
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
 
     background:
         linear-gradient(
-            145deg,
-            rgba(24,32,48,.96),
-            rgba(7,10,17,.97)
+            to bottom,
+            rgba(0,0,0,.08) 0%,
+            rgba(0,0,0,.05) 35%,
+            rgba(0,0,0,.18) 55%,
+            rgba(0,0,0,.78) 100%
         );
 
-    border:1px solid rgba(255,210,100,.28);
-
-    border-radius:18px;
-
-    box-shadow:
-        0 20px 70px rgba(0,0,0,.7),
-        inset 0 1px rgba(255,255,255,.05);
+    pointer-events:none;
 }
 
-/* =========================
+/* ====================================
+   ÁNH SÁNG
+==================================== */
+
+.glow{
+
+    position:absolute;
+
+    width:55%;
+    height:55%;
+
+    right:-10%;
+    bottom:-10%;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,180,255,.22),
+            transparent 70%
+        );
+
+    filter:blur(25px);
+
+    pointer-events:none;
+}
+
+/* ====================================
    LOGO
-========================= */
+==================================== */
 
 .logo{
+
+    position:absolute;
+
+    top:7%;
+
+    left:0;
+    right:0;
+
     text-align:center;
-    margin-bottom:25px;
+
+    z-index:5;
 }
 
 .logo h1{
-    font-size:38px;
-    letter-spacing:3px;
 
-    color:#ffd66b;
+    font-size:
+        clamp(32px,8vw,56px);
+
+    font-weight:900;
+
+    letter-spacing:4px;
+
+    color:#f7fbff;
 
     text-shadow:
-        0 0 10px rgba(255,193,55,.5),
-        0 3px 10px #000;
+        0 0 10px
+        rgba(100,190,255,.9),
+        0 0 30px
+        rgba(120,100,255,.7),
+        0 4px 10px
+        #000;
 }
 
-.logo p{
-    margin-top:6px;
+.logo h2{
 
-    color:#aeb8c9;
+    margin-top:5px;
 
-    font-size:13px;
-    letter-spacing:2px;
+    font-size:
+        clamp(13px,3vw,19px);
+
+    letter-spacing:6px;
+
+    color:#66d8ff;
+
+    text-shadow:
+        0 0 12px
+        rgba(80,200,255,.8);
 }
 
-/* =========================
-   TITLE
-========================= */
+/* ====================================
+   PHI HÀNH GIA
+==================================== */
 
-.title{
+.astronaut-label{
+
+    position:absolute;
+
+    left:6%;
+    bottom:35%;
+
+    z-index:5;
+
+    padding:8px 13px;
+
+    border-radius:20px;
+
+    background:
+        rgba(0,0,0,.42);
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    color:#dcefff;
+
+    font-size:
+        clamp(10px,2.3vw,14px);
+
+    letter-spacing:1px;
+
+    backdrop-filter:blur(6px);
+
+}
+
+/* ====================================
+   PHỤ ĐỀ
+==================================== */
+
+.subtitle{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    bottom:25%;
+
     text-align:center;
-    margin-bottom:20px;
+
+    z-index:5;
+
+    font-size:
+        clamp(11px,2.6vw,16px);
+
+    color:#d8e9ff;
+
+    text-shadow:
+        0 2px 5px #000;
 }
 
-.title h2{
-    font-size:24px;
-}
+/* ====================================
+   NÚT CHƠI
+==================================== */
 
-.title p{
-    color:#8d98aa;
-    font-size:13px;
-    margin-top:6px;
-}
+.play-button{
 
-/* =========================
-   INPUT
-========================= */
+    position:absolute;
 
-.field{
-    margin-bottom:15px;
-}
+    left:50%;
+    bottom:9%;
 
-.field label{
-    display:block;
+    transform:translateX(-50%);
 
-    font-size:13px;
-    color:#c5ccd8;
+    width:60%;
 
-    margin-bottom:7px;
-}
+    min-width:210px;
 
-.field input{
-    width:100%;
-    height:50px;
+    max-width:360px;
 
-    border-radius:10px;
+    height:58px;
 
-    border:1px solid #303b4d;
+    border:2px solid
+        rgba(255,255,255,.75);
 
-    outline:none;
-
-    padding:0 14px;
-
-    color:white;
-    background:#111722;
-
-    font-size:15px;
-
-    transition:.2s;
-}
-
-.field input:focus{
-    border-color:#e3ad3c;
-
-    box-shadow:
-        0 0 0 2px
-        rgba(227,173,60,.12);
-}
-
-.field input::placeholder{
-    color:#657084;
-}
-
-/* =========================
-   BUTTON
-========================= */
-
-.main-button{
-    width:100%;
-    height:52px;
-
-    border:0;
-    border-radius:10px;
+    border-radius:16px;
 
     background:
         linear-gradient(
-            180deg,
-            #ffd96d,
-            #c88c20
+            135deg,
+            #7b32ff,
+            #3158ff,
+            #00b7ff
         );
 
-    color:#181108;
+    color:white;
 
-    font-size:16px;
-    font-weight:bold;
+    font-size:
+        clamp(16px,4vw,25px);
+
+    font-weight:900;
+
+    letter-spacing:2px;
 
     cursor:pointer;
 
     box-shadow:
-        0 5px 20px rgba(214,155,42,.25);
+        0 0 18px
+        rgba(60,150,255,.75),
+        0 7px 20px
+        rgba(0,0,0,.55);
 
-    transition:.15s;
+    z-index:10;
+
+    transition:
+        transform .15s,
+        filter .15s;
 }
 
-.main-button:active{
-    transform:scale(.98);
+.play-button:hover{
+
+    filter:brightness(1.15);
+
 }
 
-.main-button:disabled{
-    opacity:.55;
+.play-button:active{
+
+    transform:
+        translateX(-50%)
+        scale(.96);
+
 }
 
-/* =========================
-   SWITCH
-========================= */
+/* ====================================
+   HẠT SÁNG
+==================================== */
 
-.switch{
-    text-align:center;
+.star{
 
-    margin-top:18px;
+    position:absolute;
 
-    font-size:13px;
+    width:3px;
+    height:3px;
 
-    color:#8994a6;
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+        0 0 8px white;
+
+    opacity:.85;
+
+    animation:
+        twinkle 2.5s infinite alternate;
+
+    z-index:4;
 }
 
-.switch button{
-    border:0;
-    background:none;
-
-    color:#ffd15a;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    font-size:13px;
+.star.s1{
+    top:16%;
+    left:14%;
 }
 
-/* =========================
-   MESSAGE
-========================= */
-
-.message{
-    display:none;
-
-    margin-bottom:15px;
-
-    padding:11px;
-
-    border-radius:8px;
-
-    font-size:13px;
-
-    text-align:center;
+.star.s2{
+    top:26%;
+    right:16%;
 }
 
-.message.error{
-    display:block;
-
-    color:#ffb5b5;
-
-    background:rgba(160,30,30,.18);
-
-    border:1px solid rgba(255,80,80,.2);
+.star.s3{
+    top:42%;
+    left:8%;
 }
 
-.message.success{
-    display:block;
-
-    color:#b8ffc9;
-
-    background:rgba(30,150,70,.15);
-
-    border:1px solid rgba(80,255,120,.2);
+.star.s4{
+    top:12%;
+    right:35%;
 }
 
-/* =========================
-   LOADING
-========================= */
-
-.loading{
-    display:none;
-    text-align:center;
-
-    margin-top:12px;
-
-    color:#9ba7ba;
-    font-size:12px;
+.star.s5{
+    top:52%;
+    right:11%;
 }
 
-/* =========================
-   FOOTER
-========================= */
+@keyframes twinkle{
 
-.footer{
-    text-align:center;
+    from{
+        opacity:.25;
+        transform:scale(.7);
+    }
 
-    margin-top:22px;
+    to{
+        opacity:1;
+        transform:scale(1.3);
+    }
 
-    color:#596476;
-
-    font-size:11px;
 }
+
+/* ====================================
+   MOBILE
+==================================== */
+
+@media(max-width:500px){
+
+    .page{
+        padding:10px;
+    }
+
+    .game-card{
+        width:94vw;
+        border-radius:22px;
+    }
+
+    .play-button{
+        width:68%;
+        min-width:190px;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<div id="background"></div>
-
 <div class="page">
 
-    <div class="box">
+    <div class="game-card">
+
+        <!-- ẢNH PHI HÀNH GIA -->
+        <img
+            class="space-image"
+            src="./space.jpg"
+            alt="AnimeDorado Space">
+
+        <!-- TỐI ẢNH -->
+        <div class="overlay"></div>
+
+        <!-- ÁNH SÁNG -->
+        <div class="glow"></div>
+
+
+        <!-- SAO -->
+        <div class="star s1"></div>
+        <div class="star s2"></div>
+        <div class="star s3"></div>
+        <div class="star s4"></div>
+        <div class="star s5"></div>
+
 
         <!-- LOGO -->
-
         <div class="logo">
-            <h1>ANIMEDORADO</h1>
-            <p>ANIME ADVENTURE</p>
-        </div>
 
+            <h1>
+                ANIME DORADO
+            </h1>
 
-        <!-- TITLE -->
-
-        <div class="title">
-
-            <h2 id="formTitle">
-                Đăng nhập
+            <h2>
+                ANIME ADVENTURE
             </h2>
 
-            <p id="formSubtitle">
-                Chào mừng bạn trở lại
-            </p>
+        </div>
+
+
+        <!-- NHÃN -->
+        <div class="astronaut-label">
+            🚀 SPACE EXPLORER
+        </div>
+
+
+        <!-- PHỤ ĐỀ -->
+        <div class="subtitle">
+
+            Khám phá vũ trụ.
+            <br>
+            Bắt đầu hành trình của bạn.
 
         </div>
 
 
-        <!-- THÔNG BÁO -->
+        <!-- NÚT -->
+        <button
+            class="play-button"
+            onclick="playGame()">
 
-        <div
-            id="message"
-            class="message">
-        </div>
+            ★ &nbsp; CHƠI THỬ &nbsp; ★
 
-
-        <!-- FORM -->
-
-        <form id="authForm">
-
-            <!-- EMAIL -->
-
-            <div class="field">
-
-                <label>
-                    Email
-                </label>
-
-                <input
-                    id="email"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="Nhập email của bạn"
-                    required>
-
-            </div>
-
-
-            <!-- PASSWORD -->
-
-            <div class="field">
-
-                <label>
-                    Mật khẩu
-                </label>
-
-                <input
-                    id="password"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="Nhập mật khẩu"
-                    minlength="6"
-                    required>
-
-            </div>
-
-
-            <!-- CONFIRM PASSWORD -->
-
-            <div
-                class="field"
-                id="confirmField"
-                style="display:none;">
-
-                <label>
-                    Nhập lại mật khẩu
-                </label>
-
-                <input
-                    id="confirmPassword"
-                    type="password"
-                    autocomplete="new-password"
-                    placeholder="Nhập lại mật khẩu"
-                    minlength="6">
-
-            </div>
-
-
-            <!-- BUTTON -->
-
-            <button
-                id="submitButton"
-                class="main-button"
-                type="submit">
-
-                ĐĂNG NHẬP
-
-            </button>
-
-        </form>
-
-
-        <!-- SWITCH -->
-
-        <div class="switch">
-
-            <span id="switchText">
-                Chưa có tài khoản?
-            </span>
-
-            <button
-                id="switchButton"
-                type="button">
-
-                Đăng ký
-
-            </button>
-
-        </div>
-
-
-        <div
-            id="loading"
-            class="loading">
-
-            Đang xử lý...
-
-        </div>
-
-
-        <div class="footer">
-
-            AnimeDorado © 2026
-
-        </div>
+        </button>
 
     </div>
 
 </div>
 
 
-<!-- =========================================
-     SUPABASE
-========================================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
 <script>
 
-/* =========================================
-   SUPABASE CONFIG
-========================================= */
-
-const SUPABASE_URL =
-    "https://mhgxcwplgadwkvcejgjj.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_bukAPz_IlAB5tEVLT1SWUA_7GLDTw-A";
-
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-/* =========================================
-   ELEMENTS
-========================================= */
-
-const authForm =
-    document.getElementById("authForm");
-
-const emailInput =
-    document.getElementById("email");
-
-const passwordInput =
-    document.getElementById("password");
-
-const confirmPasswordInput =
-    document.getElementById("confirmPassword");
-
-const confirmField =
-    document.getElementById("confirmField");
-
-const submitButton =
-    document.getElementById("submitButton");
-
-const switchButton =
-    document.getElementById("switchButton");
-
-const switchText =
-    document.getElementById("switchText");
-
-const formTitle =
-    document.getElementById("formTitle");
-
-const formSubtitle =
-    document.getElementById("formSubtitle");
-
-const message =
-    document.getElementById("message");
-
-const loading =
-    document.getElementById("loading");
-
-
-/* =========================================
-   MODE
-========================================= */
-
-let registerMode = false;
-
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-function showMessage(
-    text,
-    type = "error"
-){
-
-    message.textContent = text;
-
-    message.className =
-        "message " + type;
-
-}
-
-
-function clearMessage(){
-
-    message.textContent = "";
-
-    message.className =
-        "message";
-
-}
-
-
-/* =========================================
-   REGISTER / LOGIN SWITCH
-========================================= */
-
-switchButton.addEventListener(
-    "click",
-    function(){
-
-        registerMode =
-            !registerMode;
-
-        clearMessage();
-
-        if(registerMode){
-
-            formTitle.textContent =
-                "Đăng ký";
-
-            formSubtitle.textContent =
-                "Tạo tài khoản AnimeDorado";
-
-            confirmField.style.display =
-                "block";
-
-            confirmPasswordInput.required =
-                true;
-
-            submitButton.textContent =
-                "TẠO TÀI KHOẢN";
-
-            switchText.textContent =
-                "Đã có tài khoản?";
-
-            switchButton.textContent =
-                "Đăng nhập";
-
-        }else{
-
-            formTitle.textContent =
-                "Đăng nhập";
-
-            formSubtitle.textContent =
-                "Chào mừng bạn trở lại";
-
-            confirmField.style.display =
-                "none";
-
-            confirmPasswordInput.required =
-                false;
-
-            submitButton.textContent =
-                "ĐĂNG NHẬP";
-
-            switchText.textContent =
-                "Chưa có tài khoản?";
-
-            switchButton.textContent =
-                "Đăng ký";
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   LOADING
-========================================= */
-
-function setLoading(state){
-
-    submitButton.disabled =
-        state;
-
-    loading.style.display =
-        state ? "block" : "none";
-
-}
-
-
-/* =========================================
-   REGISTER
-========================================= */
-
-async function register(){
-
-    const email =
-        emailInput.value.trim();
-
-    const password =
-        passwordInput.value;
-
-    const confirmPassword =
-        confirmPasswordInput.value;
-
-
-    if(password.length < 6){
-
-        showMessage(
-            "Mật khẩu phải có ít nhất 6 ký tự."
-        );
-
-        return;
-
-    }
-
-
-    if(password !== confirmPassword){
-
-        showMessage(
-            "Mật khẩu nhập lại không giống nhau."
-        );
-
-        return;
-
-    }
-
-
-    setLoading(true);
-    clearMessage();
-
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient.auth
-            .signUp({
-
-                email: email,
-
-                password: password
-
-            });
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        /*
-          Nếu Supabase đang bật xác nhận email,
-          data.session sẽ chưa có.
-        */
-
-        if(!data.session){
-
-            showMessage(
-                "Đăng ký thành công! Hãy kiểm tra email để xác nhận tài khoản.",
-                "success"
-            );
-
-        }else{
-
-            showMessage(
-                "Đăng ký thành công! Đang vào game...",
-                "success"
-            );
-
-            setTimeout(
-                goToGame,
-                700
-            );
-
-        }
-
-    }catch(error){
-
-        showMessage(
-            getVietnameseError(
-                error
-            )
-        );
-
-    }finally{
-
-        setLoading(false);
-
-    }
-
-}
-
-
-/* =========================================
-   LOGIN
-========================================= */
-
-async function login(){
-
-    const email =
-        emailInput.value.trim();
-
-    const password =
-        passwordInput.value;
-
-
-    setLoading(true);
-    clearMessage();
-
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient.auth
-            .signInWithPassword({
-
-                email: email,
-
-                password: password
-
-            });
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        showMessage(
-            "Đăng nhập thành công! Đang vào game...",
-            "success"
-        );
-
-
-        /*
-           Lưu email để giaodien.html
-           có thể sử dụng sau này.
-        */
-
-        localStorage.setItem(
-            "eldoradoPlayerEmail",
-            email
-        );
-
-
-        setTimeout(
-            goToGame,
-            500
-        );
-
-
-    }catch(error){
-
-        showMessage(
-            getVietnameseError(
-                error
-            )
-        );
-
-    }finally{
-
-        setLoading(false);
-
-    }
-
-}
-
-
-/* =========================================
-   FORM SUBMIT
-========================================= */
-
-authForm.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-
-        if(registerMode){
-
-            await register();
-
-        }else{
-
-            await login();
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   VÀO GAME
-========================================= */
-
-function goToGame(){
+function playGame(){
 
     /*
-      giaodien.html phải nằm cùng thư mục
-      với index.html.
+       Chuyển thẳng sang
+       giao diện game.
     */
 
     window.location.href =
         "./giaodien.html";
-
-}
-
-
-/* =========================================
-   KIỂM TRA ĐÃ ĐĂNG NHẬP
-========================================= */
-
-async function checkExistingSession(){
-
-    try{
-
-        const {
-            data
-        } =
-        await supabaseClient.auth
-            .getSession();
-
-
-        if(
-            data &&
-            data.session
-        ){
-
-            /*
-              Nếu đã đăng nhập từ trước,
-              tự động vào game.
-            */
-
-            window.location.href =
-                "./giaodien.html";
-
-        }
-
-    }catch(error){
-
-        console.log(
-            "Session check:",
-            error
-        );
-
-    }
-
-}
-
-
-checkExistingSession();
-
-
-/* =========================================
-   DỊCH LỖI
-========================================= */
-
-function getVietnameseError(error){
-
-    const msg =
-        (
-            error &&
-            error.message
-        ) ?
-        error.message.toLowerCase()
-        :
-        "";
-
-
-    if(
-        msg.includes(
-            "invalid login credentials"
-        )
-    ){
-
-        return "Email hoặc mật khẩu không đúng.";
-
-    }
-
-
-    if(
-        msg.includes(
-            "email not confirmed"
-        )
-    ){
-
-        return "Email chưa được xác nhận. Hãy kiểm tra hộp thư.";
-
-    }
-
-
-    if(
-        msg.includes(
-            "user already registered"
-        )
-    ){
-
-        return "Email này đã được đăng ký.";
-
-    }
-
-
-    if(
-        msg.includes(
-            "password should be at least"
-        )
-    ){
-
-        return "Mật khẩu phải có ít nhất 6 ký tự.";
-
-    }
-
-
-    if(
-        msg.includes(
-            "unable to validate email"
-        )
-    ){
-
-        return "Email không hợp lệ.";
-
-    }
-
-
-    if(
-        msg.includes(
-            "rate limit"
-        )
-    ){
-
-        return "Bạn thao tác quá nhiều lần. Hãy chờ một chút rồi thử lại.";
-
-    }
-
-
-    if(
-        msg.includes(
-            "network"
-        )
-    ){
-
-        return "Không thể kết nối máy chủ. Kiểm tra Internet.";
-
-    }
-
-
-    return (
-        error &&
-        error.message
-    ) ||
-    "Có lỗi xảy ra. Hãy thử lại.";
 
 }
 
