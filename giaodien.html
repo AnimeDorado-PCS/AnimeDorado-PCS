@@ -1,6 +1,10 @@
+ANIME DORADO — Giao diện Game Web
+
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -13,6 +17,10 @@
 
 <style>
 
+/* ==================================================
+   RESET
+================================================== */
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -20,16 +28,27 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
+
     width:100%;
     height:100%;
+
     overflow:hidden;
+
     background:#000;
+
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     user-select:none;
+
 }
 
 
@@ -38,10 +57,15 @@ body{
 ================================================== */
 
 #app{
+
     position:fixed;
+
     inset:0;
+
     overflow:hidden;
+
     background:#000;
+
 }
 
 
@@ -50,14 +74,21 @@ body{
 ================================================== */
 
 .screen{
+
     position:absolute;
+
     inset:0;
+
     display:none;
+
     overflow:hidden;
+
 }
 
 .screen.active{
+
     display:block;
+
 }
 
 
@@ -105,6 +136,7 @@ body{
     user-select:none;
 
     -webkit-user-drag:none;
+
 }
 
 
@@ -123,11 +155,12 @@ body{
     height:864px;
 
     pointer-events:none;
+
 }
 
 
 /* ==================================================
-   BUTTON
+   NÚT ẨN
 ================================================== */
 
 .game-button{
@@ -142,31 +175,26 @@ body{
 
     outline:none;
 
-    cursor:default;
-
-    pointer-events:none;
-}
-
-
-/* ==================================================
-   KHI MỞ TÍNH NĂNG
-================================================== */
-
-.game-button.enabled{
+    cursor:pointer;
 
     pointer-events:auto;
 
-    cursor:pointer;
+    opacity:1;
+
 }
 
-.game-button.enabled:active{
 
-    background:
-        rgba(255,215,70,.14);
+/*
+   Không hiển thị màu khi chạm.
+   Nút hoàn toàn trong suốt.
+*/
 
-    box-shadow:
-        inset 0 0 0 2px
-        rgba(255,215,70,.45);
+.game-button:active{
+
+    background:transparent;
+
+    box-shadow:none;
+
 }
 
 
@@ -183,6 +211,7 @@ body{
 
     width:430px;
     height:130px;
+
 }
 
 
@@ -195,6 +224,7 @@ body{
 
     width:285px;
     height:75px;
+
 }
 
 
@@ -207,6 +237,7 @@ body{
 
     width:275px;
     height:75px;
+
 }
 
 
@@ -219,6 +250,7 @@ body{
 
     width:145px;
     height:125px;
+
 }
 
 
@@ -231,6 +263,7 @@ body{
 
     width:145px;
     height:125px;
+
 }
 
 
@@ -243,6 +276,7 @@ body{
 
     width:160px;
     height:125px;
+
 }
 
 
@@ -255,6 +289,7 @@ body{
 
     width:160px;
     height:125px;
+
 }
 
 
@@ -270,14 +305,15 @@ body{
 
     border-radius:
         55px 0 0 0;
+
 }
 
 
 /* ==================================================
-   OTHER SCREEN
+   404
 ================================================== */
 
-.placeholder-screen{
+.error-screen{
 
     position:absolute;
 
@@ -294,23 +330,24 @@ body{
     background:
         radial-gradient(
             circle at center,
-            #294268 0%,
+            #263b5c 0%,
             #101827 55%,
             #020408 100%
         );
 
     color:white;
+
 }
 
 
-.placeholder-box{
+.error-box{
 
     width:min(
         520px,
         88vw
     );
 
-    padding:30px;
+    padding:32px;
 
     border:
         1px solid
@@ -319,24 +356,38 @@ body{
     border-radius:20px;
 
     background:
-        rgba(0,0,0,.42);
+        rgba(0,0,0,.45);
 
     box-shadow:
         0 20px 60px
         rgba(0,0,0,.55);
+
 }
 
 
-.placeholder-box h1{
+.error-box h1{
+
+    font-size:56px;
 
     color:#ffd65a;
 
-    margin-bottom:10px;
+    margin-bottom:8px;
 
 }
 
 
-.placeholder-box p{
+.error-box h2{
+
+    font-size:20px;
+
+    color:white;
+
+    margin-bottom:12px;
+
+}
+
+
+.error-box p{
 
     color:#bbc4d2;
 
@@ -370,11 +421,12 @@ body{
     font-weight:bold;
 
     cursor:pointer;
+
 }
 
 
 /* ==================================================
-   MOBILE / TV / LANDSCAPE SCALE
+   MOBILE SCALE
 ================================================== */
 
 @media (orientation:landscape){
@@ -394,26 +446,19 @@ body{
 
 }
 
-
-/*
-   Vì CSS không thể dùng min()
-   với phép chia px theo kiểu trên
-   trong mọi trình duyệt cũ,
-   JavaScript bên dưới sẽ tự scale.
-*/
-
-
 </style>
+
 </head>
 
 
 <body>
 
+
 <div id="app">
 
 
     <!-- =================================================
-         HOME SCREEN
+         HOME
     ================================================= -->
 
     <section
@@ -434,28 +479,28 @@ body{
                 alt="ANIME DORADO">
 
 
-            <!-- =========================================
-                 NÚT
-            ========================================== -->
+            <!-- =================================================
+                 VÙNG NÚT ẨN
+            ================================================= -->
 
             <div
                 id="buttonLayer">
 
 
-                <!-- PROFILE -->
+                <!-- HỒ SƠ -->
 
                 <button
                     class="game-button btn-profile"
-                    data-feature="profile"
+                    data-route="profile"
                     aria-label="Hồ sơ">
                 </button>
 
 
-                <!-- GOLD -->
+                <!-- VÀNG -->
 
                 <button
                     class="game-button btn-gold"
-                    data-feature="gold"
+                    data-route="gold"
                     aria-label="Vàng">
                 </button>
 
@@ -464,7 +509,7 @@ body{
 
                 <button
                     class="game-button btn-ruby"
-                    data-feature="ruby"
+                    data-route="ruby"
                     aria-label="Ruby">
                 </button>
 
@@ -473,7 +518,7 @@ body{
 
                 <button
                     class="game-button btn-lapnhom"
-                    data-feature="lapnhom"
+                    data-route="lapnhom"
                     aria-label="Lập nhóm">
                 </button>
 
@@ -482,7 +527,7 @@ body{
 
                 <button
                     class="game-button btn-nangcap"
-                    data-feature="nangcap"
+                    data-route="nangcap"
                     aria-label="Nâng cấp">
                 </button>
 
@@ -491,7 +536,7 @@ body{
 
                 <button
                     class="game-button btn-rutnhanvat"
-                    data-feature="rutnhanvat"
+                    data-route="rutnhanvat"
                     aria-label="Rút nhân vật">
                 </button>
 
@@ -500,7 +545,7 @@ body{
 
                 <button
                     class="game-button btn-cuahang"
-                    data-feature="cuahang"
+                    data-route="cuahang"
                     aria-label="Cửa hàng">
                 </button>
 
@@ -509,49 +554,10 @@ body{
 
                 <button
                     class="game-button btn-batdau"
-                    data-feature="batdau"
+                    data-route="batdau"
                     aria-label="Bắt đầu">
                 </button>
 
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         SCREEN LẬP NHÓM
-    ================================================= -->
-
-    <section
-        id="lapnhomScreen"
-        class="screen">
-
-        <div
-            class="placeholder-screen">
-
-            <div
-                class="placeholder-box">
-
-                <h1>
-                    LẬP NHÓM
-                </h1>
-
-                <p>
-                    Màn hình này đang được thiết kế.
-                    <br>
-                    Sau này bấm Lập nhóm sẽ chuyển
-                    sang đây mà không tải lại trang.
-                </p>
-
-                <button
-                    class="back-button"
-                    onclick="showScreen('homeScreen')">
-
-                    ← QUAY LẠI
-
-                </button>
 
             </div>
 
@@ -559,153 +565,6 @@ body{
 
     </section>
 
-
-    <!-- =================================================
-         SCREEN NÂNG CẤP
-    ================================================= -->
-
-    <section
-        id="nangcapScreen"
-        class="screen">
-
-        <div
-            class="placeholder-screen">
-
-            <div
-                class="placeholder-box">
-
-                <h1>
-                    NÂNG CẤP
-                </h1>
-
-                <p>
-                    Màn hình nâng cấp chưa thiết kế.
-                </p>
-
-                <button
-                    class="back-button"
-                    onclick="showScreen('homeScreen')">
-
-                    ← QUAY LẠI
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         SCREEN RÚT NHÂN VẬT
-    ================================================= -->
-
-    <section
-        id="rutnhanvatScreen"
-        class="screen">
-
-        <div
-            class="placeholder-screen">
-
-            <div
-                class="placeholder-box">
-
-                <h1>
-                    RÚT NHÂN VẬT
-                </h1>
-
-                <p>
-                    Màn hình rút nhân vật chưa thiết kế.
-                </p>
-
-                <button
-                    class="back-button"
-                    onclick="showScreen('homeScreen')">
-
-                    ← QUAY LẠI
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         SCREEN CỬA HÀNG
-    ================================================= -->
-
-    <section
-        id="cuahangScreen"
-        class="screen">
-
-        <div
-            class="placeholder-screen">
-
-            <div
-                class="placeholder-box">
-
-                <h1>
-                    CỬA HÀNG
-                </h1>
-
-                <p>
-                    Màn hình cửa hàng chưa thiết kế.
-                </p>
-
-                <button
-                    class="back-button"
-                    onclick="showScreen('homeScreen')">
-
-                    ← QUAY LẠI
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         SCREEN BẮT ĐẦU
-    ================================================= -->
-
-    <section
-        id="batdauScreen"
-        class="screen">
-
-        <div
-            class="placeholder-screen">
-
-            <div
-                class="placeholder-box">
-
-                <h1>
-                    BẮT ĐẦU
-                </h1>
-
-                <p>
-                    Màn hình chiến đấu sẽ được làm sau.
-                </p>
-
-                <button
-                    class="back-button"
-                    onclick="showScreen('homeScreen')">
-
-                    ← QUAY LẠI
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
 
 </div>
 
@@ -716,15 +575,13 @@ body{
    KÍCH THƯỚC THIẾT KẾ
 ================================================== */
 
-const DESIGN_WIDTH =
-    1536;
+const DESIGN_WIDTH = 1536;
 
-const DESIGN_HEIGHT =
-    864;
+const DESIGN_HEIGHT = 864;
 
 
 /* ==================================================
-   SCALE GAME
+   SCALE
 ================================================== */
 
 function scaleGame(){
@@ -737,6 +594,7 @@ function scaleGame(){
 
     const screenWidth =
         window.innerWidth;
+
 
     const screenHeight =
         window.innerHeight;
@@ -764,45 +622,145 @@ function scaleGame(){
 
 
 /* ==================================================
-   HIỂN THỊ SCREEN
-   Đây là phần quan trọng nhất.
-   
-   KHÔNG reload trang.
-   Chỉ đổi screen.
+   TẠO 404
 ================================================== */
 
-function showScreen(
-    screenId
-){
+function show404(route){
 
-    const screens =
-        document.querySelectorAll(
-            ".screen"
+    document
+        .querySelectorAll(".screen")
+        .forEach(function(screen){
+
+            screen.classList.remove("active");
+
+        });
+
+
+    let old404 =
+        document.getElementById(
+            "error404"
         );
 
 
-    screens.forEach(
-        function(screen){
+    if(old404){
 
-            screen.classList.remove(
-                "active"
-            );
+        old404.remove();
 
-        }
+    }
+
+
+    const error =
+        document.createElement(
+            "section"
+        );
+
+
+    error.id =
+        "error404";
+
+
+    error.className =
+        "screen active";
+
+
+    error.innerHTML = `
+
+        <div class="error-screen">
+
+            <div class="error-box">
+
+                <h1>404</h1>
+
+                <h2>
+                    Không tìm thấy trang
+                </h2>
+
+                <p>
+                    Trang
+                    <b>/${route}</b>
+                    chưa được tạo.
+                    <br><br>
+                    Hãy tạo trang tương ứng
+                    để mở chức năng này.
+                </p>
+
+                <button
+                    class="back-button"
+                    id="backHomeButton">
+
+                    ← QUAY LẠI
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById("app")
+        .appendChild(error);
+
+
+    document
+        .getElementById("backHomeButton")
+        .addEventListener(
+            "click",
+            function(){
+
+                goHome();
+
+            }
+        );
+
+
+    scaleGame();
+
+}
+
+
+/* ==================================================
+   VỀ HOME
+================================================== */
+
+function goHome(){
+
+    history.pushState(
+        {},
+        "",
+        getBasePath()
     );
 
 
-    const target =
+    document
+        .querySelectorAll(".screen")
+        .forEach(function(screen){
+
+            screen.classList.remove("active");
+
+        });
+
+
+    const home =
         document.getElementById(
-            screenId
+            "homeScreen"
         );
 
 
-    if(target){
+    home.classList.add("active");
 
-        target.classList.add(
-            "active"
+
+    const error =
+        document.getElementById(
+            "error404"
         );
+
+
+    if(error){
+
+        error.remove();
 
     }
 
@@ -813,123 +771,190 @@ function showScreen(
 
 
 /* ==================================================
-   NÚT GAME
+   BASE PATH GITHUB PAGES
 ================================================== */
 
-const buttons =
-    document.querySelectorAll(
-        ".game-button"
-    );
+function getBasePath(){
+
+    const path =
+        window.location.pathname;
 
 
-buttons.forEach(
-    function(button){
-
-        button.addEventListener(
-            "click",
-            function(){
-
-                /*
-                   HIỆN TẠI CÁC NÚT ĐANG KHÓA
-                   nên đoạn này chỉ là hệ thống
-                   chuẩn bị sẵn cho sau này.
-                */
-
-                const feature =
-                    button.dataset.feature;
+    const parts =
+        path.split("/");
 
 
-                if(
-                    feature ===
-                    "lapnhom"
-                ){
+    /*
+       Ví dụ:
 
-                    showScreen(
-                        "lapnhomScreen"
-                    );
+       /AnimeDorado/
+       
+       sẽ giữ lại:
+       
+       /AnimeDorado/
+    */
 
-                }
+    if(
+        parts.length >= 3 &&
+        parts[1] !== ""
+    ){
 
-
-                else if(
-                    feature ===
-                    "nangcap"
-                ){
-
-                    showScreen(
-                        "nangcapScreen"
-                    );
-
-                }
-
-
-                else if(
-                    feature ===
-                    "rutnhanvat"
-                ){
-
-                    showScreen(
-                        "rutnhanvatScreen"
-                    );
-
-                }
-
-
-                else if(
-                    feature ===
-                    "cuahang"
-                ){
-
-                    showScreen(
-                        "cuahangScreen"
-                    );
-
-                }
-
-
-                else if(
-                    feature ===
-                    "batdau"
-                ){
-
-                    showScreen(
-                        "batdauScreen"
-                    );
-
-                }
-
-            }
-        );
+        return "/" + parts[1] + "/";
 
     }
-);
+
+
+    return "/";
+
+}
 
 
 /* ==================================================
-   MỞ TÍNH NĂNG
-   Sau này chỉ cần gọi:
-   
-   enableFeature("lapnhom")
-   
-   là nút Lập nhóm bấm được.
+   TÌM TRANG
 ================================================== */
 
-function enableFeature(
-    feature
-){
+async function openRoute(route){
 
-    const button =
-        document.querySelector(
-            '[data-feature="' +
-            feature +
-            '"]'
+    /*
+       Trang phải có dạng:
+
+       /lapnhom.html
+       /nangcap.html
+       /rutnhanvat.html
+       /cuahang.html
+       /batdau.html
+
+       Không cần sửa nút.
+    */
+
+
+    const base =
+        getBasePath();
+
+
+    const file =
+        base +
+        route +
+        ".html";
+
+
+    try{
+
+        const response =
+            await fetch(
+                file,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+
+        /*
+           Không tồn tại
+        */
+
+        if(!response.ok){
+
+            show404(route);
+
+            history.pushState(
+                {},
+                "",
+                base + route
+            );
+
+            return;
+
+        }
+
+
+        /*
+           Đọc HTML
+        */
+
+        const html =
+            await response.text();
+
+
+        /*
+           Đổi URL nhưng KHÔNG reload
+        */
+
+        history.pushState(
+            {},
+            "",
+            base + route
         );
 
 
-    if(button){
+        /*
+           Tạo màn hình trang
+        */
 
-        button.classList.add(
-            "enabled"
+        document
+            .querySelectorAll(".screen")
+            .forEach(function(screen){
+
+                screen.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+        let page =
+            document.getElementById(
+                "dynamicPage"
+            );
+
+
+        if(!page){
+
+            page =
+                document.createElement(
+                    "section"
+                );
+
+            page.id =
+                "dynamicPage";
+
+            page.className =
+                "screen active";
+
+            document
+                .getElementById("app")
+                .appendChild(page);
+
+        }
+
+
+        page.classList.add(
+            "active"
+        );
+
+
+        page.innerHTML =
+            html;
+
+
+        scaleGame();
+
+
+    }catch(error){
+
+        /*
+           Nếu file chưa tồn tại
+           hoặc fetch lỗi thì 404.
+        */
+
+        show404(route);
+
+
+        history.pushState(
+            {},
+            "",
+            base + route
         );
 
     }
@@ -938,25 +963,191 @@ function enableFeature(
 
 
 /* ==================================================
-   TẠM THỜI:
-   KHÔNG MỞ NÚT NÀO
-   
-   Khi bạn thiết kế xong mục nào,
-   chỉ cần bật đúng dòng.
+   NÚT ẨN
 ================================================== */
 
+document
+    .querySelectorAll(".game-button")
+    .forEach(function(button){
 
-/*
-enableFeature("lapnhom");
-enableFeature("nangcap");
-enableFeature("rutnhanvat");
-enableFeature("cuahang");
-enableFeature("batdau");
-*/
+        button.addEventListener(
+            "click",
+            function(){
+
+                const route =
+                    button.dataset.route;
+
+
+                if(!route){
+
+                    return;
+
+                }
+
+
+                openRoute(route);
+
+            }
+        );
+
+    });
 
 
 /* ==================================================
-   XOAY MÀN HÌNH
+   BACK / FORWARD
+================================================== */
+
+window.addEventListener(
+    "popstate",
+    function(){
+
+        const base =
+            getBasePath();
+
+
+        const current =
+            window.location.pathname;
+
+
+        if(
+            current === base ||
+            current === base.slice(0,-1)
+        ){
+
+            goHome();
+
+            return;
+
+        }
+
+
+        let route =
+            current
+            .replace(base,"")
+            .replace(/^\/+/,"")
+            .replace(/\/+$/,"");
+
+
+        if(!route){
+
+            goHome();
+
+            return;
+
+        }
+
+
+        openRouteWithoutChangingURL(
+            route
+        );
+
+    }
+);
+
+
+/* ==================================================
+   MỞ TRANG KHI NHẤN BACK/FORWARD
+   Không push URL lần nữa
+================================================== */
+
+async function openRouteWithoutChangingURL(route){
+
+    const base =
+        getBasePath();
+
+
+    const file =
+        base +
+        route +
+        ".html";
+
+
+    try{
+
+        const response =
+            await fetch(
+                file,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            show404(route);
+
+            return;
+
+        }
+
+
+        const html =
+            await response.text();
+
+
+        document
+            .querySelectorAll(".screen")
+            .forEach(function(screen){
+
+                screen.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+        let page =
+            document.getElementById(
+                "dynamicPage"
+            );
+
+
+        if(!page){
+
+            page =
+                document.createElement(
+                    "section"
+                );
+
+            page.id =
+                "dynamicPage";
+
+            page.className =
+                "screen";
+
+
+            document
+                .getElementById("app")
+                .appendChild(page);
+
+        }
+
+
+        page.classList.add(
+            "active"
+        );
+
+
+        page.innerHTML =
+            html;
+
+
+        scaleGame();
+
+
+    }catch(error){
+
+        show404(route);
+
+    }
+
+}
+
+
+/* ==================================================
+   SCALE
 ================================================== */
 
 window.addEventListener(
@@ -987,4 +1178,5 @@ scaleGame();
 </script>
 
 </body>
+
 </html>
