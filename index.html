@@ -5,11 +5,11 @@
 
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
 
-<title>ANIME DORADO</title>
+<title>AnimeDorado</title>
 
 <style>
 *{
@@ -22,485 +22,590 @@
 html,
 body{
     width:100%;
-    min-height:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
 }
 
 body{
-    min-height:100vh;
-    overflow:auto;
-
     font-family:
         Arial,
         Helvetica,
         sans-serif;
-
-    background:#03040b;
-    color:white;
 }
 
-/* ====================================
-   NỀN
-==================================== */
+/* =========================================
+   MÀN HÌNH
+========================================= */
 
-.page{
-    min-height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:20px;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #17214d 0%,
-            #080b1d 48%,
-            #020308 100%
-        );
-}
-
-/* ====================================
-   KHUNG CHÍNH
-==================================== */
-
-.game-card{
-
-    position:relative;
-
-    width:min(92vw,600px);
-
-    aspect-ratio:1 / 1;
+#home{
+    position:fixed;
+    inset:0;
 
     overflow:hidden;
 
-    border-radius:28px;
-
-    border:
-        2px solid
-        rgba(110,190,255,.35);
-
-    background:#050816;
-
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.75),
-        0 0 45px
-        rgba(50,130,255,.18);
-
+    background:#000;
 }
 
-/* ====================================
+/* =========================================
    ẢNH KHÔNG GIAN
-==================================== */
+========================================= */
 
-.space-image{
-
+#space{
     position:absolute;
 
-    inset:0;
+    left:50%;
+    top:50%;
 
     width:100%;
     height:100%;
 
     object-fit:cover;
 
-    object-position:center center;
+    transform:
+        translate(-50%,-50%)
+        scale(1.02);
 
-    display:block;
+    animation:
+        spaceMove 14s
+        ease-in-out
+        infinite alternate;
+
+    will-change:
+        transform;
 
     user-select:none;
-
     -webkit-user-drag:none;
-
-    transform:scale(1.03);
 }
 
-/* ====================================
-   LỚP TỐI
-==================================== */
+/* Chuyển động camera rất nhẹ */
 
-.overlay{
+@keyframes spaceMove{
 
+    0%{
+        transform:
+            translate(-50%,-50%)
+            scale(1.02)
+            translate3d(0,0,0);
+    }
+
+    50%{
+        transform:
+            translate(-49.5%,-50.5%)
+            scale(1.07)
+            translate3d(-8px,5px,0);
+    }
+
+    100%{
+        transform:
+            translate(-50%,-49.5%)
+            scale(1.04)
+            translate3d(8px,-5px,0);
+    }
+
+}
+
+/* =========================================
+   LỚP TỐI / ÁNH SÁNG
+========================================= */
+
+.dark{
     position:absolute;
-
     inset:0;
 
     background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.08) 0%,
-            rgba(0,0,0,.05) 35%,
-            rgba(0,0,0,.18) 55%,
-            rgba(0,0,0,.78) 100%
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(30,160,255,.05),
+            rgba(0,0,0,.58)
         );
 
     pointer-events:none;
 }
 
-/* ====================================
-   ÁNH SÁNG
-==================================== */
+/* =========================================
+   HÀO QUANG
+========================================= */
 
 .glow{
-
     position:absolute;
 
-    width:55%;
-    height:55%;
+    left:50%;
+    top:50%;
 
-    right:-10%;
-    bottom:-10%;
+    width:45vw;
+    height:45vw;
+
+    min-width:280px;
+    min-height:280px;
+
+    transform:
+        translate(-50%,-50%);
 
     border-radius:50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(0,180,255,.22),
-            transparent 70%
+            rgba(40,130,255,.10),
+            transparent 68%
         );
 
-    filter:blur(25px);
+    filter:blur(18px);
+
+    animation:
+        glowPulse 5s
+        ease-in-out
+        infinite;
 
     pointer-events:none;
 }
 
-/* ====================================
-   LOGO
-==================================== */
+@keyframes glowPulse{
 
-.logo{
+    0%,100%{
+        opacity:.5;
+        transform:
+            translate(-50%,-50%)
+            scale(.95);
+    }
 
+    50%{
+        opacity:.9;
+        transform:
+            translate(-50%,-50%)
+            scale(1.08);
+    }
+
+}
+
+/* =========================================
+   SAO BAY
+========================================= */
+
+.stars{
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.star{
     position:absolute;
 
-    top:7%;
+    width:2px;
+    height:2px;
 
-    left:0;
-    right:0;
+    background:white;
+
+    border-radius:50%;
+
+    opacity:.5;
+
+    animation:
+        starFloat
+        linear
+        infinite;
+}
+
+@keyframes starFloat{
+
+    0%{
+        transform:
+            translate3d(0,20px,0)
+            scale(.7);
+
+        opacity:.15;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translate3d(
+                25px,
+                -120px,
+                0
+            )
+            scale(1.4);
+
+        opacity:0;
+    }
+
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo{
+    position:absolute;
+
+    left:50%;
+    top:15%;
+
+    transform:
+        translateX(-50%);
 
     text-align:center;
 
-    z-index:5;
+    width:90%;
+
+    animation:
+        logoFloat 4s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes logoFloat{
+
+    from{
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    to{
+        transform:
+            translateX(-50%)
+            translateY(-8px);
+    }
+
 }
 
 .logo h1{
 
     font-size:
-        clamp(32px,8vw,56px);
+        clamp(
+            38px,
+            7vw,
+            82px
+        );
 
-    font-weight:900;
+    font-weight:1000;
 
-    letter-spacing:4px;
+    letter-spacing:
+        clamp(
+            3px,
+            .8vw,
+            10px
+        );
 
-    color:#f7fbff;
+    color:#fff;
 
     text-shadow:
-        0 0 10px
-        rgba(100,190,255,.9),
-        0 0 30px
-        rgba(120,100,255,.7),
-        0 4px 10px
-        #000;
+        0 0 8px #7d8cff,
+        0 0 22px #5a50ff,
+        0 0 45px rgba(70,110,255,.8);
+
 }
 
 .logo h2{
 
-    margin-top:5px;
+    margin-top:8px;
 
     font-size:
-        clamp(13px,3vw,19px);
+        clamp(
+            14px,
+            2.5vw,
+            25px
+        );
 
-    letter-spacing:6px;
+    letter-spacing:5px;
 
-    color:#66d8ff;
+    color:#76d7ff;
 
     text-shadow:
-        0 0 12px
-        rgba(80,200,255,.8);
-}
-
-/* ====================================
-   PHI HÀNH GIA
-==================================== */
-
-.astronaut-label{
-
-    position:absolute;
-
-    left:6%;
-    bottom:35%;
-
-    z-index:5;
-
-    padding:8px 13px;
-
-    border-radius:20px;
-
-    background:
-        rgba(0,0,0,.42);
-
-    border:
-        1px solid
-        rgba(255,255,255,.2);
-
-    color:#dcefff;
-
-    font-size:
-        clamp(10px,2.3vw,14px);
-
-    letter-spacing:1px;
-
-    backdrop-filter:blur(6px);
+        0 0 12px #00bfff;
 
 }
 
-/* ====================================
-   PHỤ ĐỀ
-==================================== */
-
-.subtitle{
-
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    bottom:25%;
-
-    text-align:center;
-
-    z-index:5;
-
-    font-size:
-        clamp(11px,2.6vw,16px);
-
-    color:#d8e9ff;
-
-    text-shadow:
-        0 2px 5px #000;
-}
-
-/* ====================================
+/* =========================================
    NÚT CHƠI
-==================================== */
+========================================= */
 
-.play-button{
-
+.play-area{
     position:absolute;
 
     left:50%;
-    bottom:9%;
+    bottom:14%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    width:60%;
+    text-align:center;
 
-    min-width:210px;
+    width:100%;
+}
 
-    max-width:360px;
+.play-button{
 
-    height:58px;
+    width:
+        min(
+            330px,
+            72vw
+        );
 
-    border:2px solid
-        rgba(255,255,255,.75);
+    height:
+        min(
+            80px,
+            14vw
+        );
 
-    border-radius:16px;
+    min-height:60px;
+
+    border:2px solid #a984ff;
+
+    border-radius:18px;
 
     background:
         linear-gradient(
             135deg,
-            #7b32ff,
-            #3158ff,
-            #00b7ff
+            rgba(101,42,255,.95),
+            rgba(22,115,255,.95)
         );
 
     color:white;
 
     font-size:
-        clamp(16px,4vw,25px);
+        clamp(
+            20px,
+            4vw,
+            34px
+        );
 
     font-weight:900;
 
     letter-spacing:2px;
 
+    box-shadow:
+        0 0 12px #6e4cff,
+        0 0 30px rgba(77,80,255,.7),
+        inset 0 0 18px
+        rgba(255,255,255,.15);
+
     cursor:pointer;
 
-    box-shadow:
-        0 0 18px
-        rgba(60,150,255,.75),
-        0 7px 20px
-        rgba(0,0,0,.55);
+    animation:
+        buttonPulse 2.2s
+        ease-in-out
+        infinite;
 
-    z-index:10;
-
-    transition:
-        transform .15s,
-        filter .15s;
+    transition:.2s;
 }
 
-.play-button:hover{
+@keyframes buttonPulse{
 
-    filter:brightness(1.15);
+    0%,100%{
+        box-shadow:
+            0 0 12px #6e4cff,
+            0 0 30px rgba(77,80,255,.55),
+            inset 0 0 18px
+            rgba(255,255,255,.15);
+    }
+
+    50%{
+        box-shadow:
+            0 0 20px #9f70ff,
+            0 0 50px rgba(77,100,255,.9),
+            inset 0 0 25px
+            rgba(255,255,255,.2);
+    }
 
 }
 
 .play-button:active{
 
     transform:
-        translateX(-50%)
-        scale(.96);
+        scale(.95);
 
 }
 
-/* ====================================
-   HẠT SÁNG
-==================================== */
+/* =========================================
+   DÒNG PHỤ
+========================================= */
 
-.star{
+.subtitle{
+
+    margin-top:14px;
+
+    color:#9fdfff;
+
+    font-size:
+        clamp(
+            11px,
+            2vw,
+            15px
+        );
+
+    letter-spacing:3px;
+
+    text-shadow:
+        0 0 8px #008cff;
+
+}
+
+/* =========================================
+   ICON GÓC
+========================================= */
+
+.corner{
 
     position:absolute;
 
-    width:3px;
-    height:3px;
+    top:18px;
 
-    border-radius:50%;
+    width:53px;
+    height:53px;
 
-    background:white;
+    border:
+        1px solid
+        rgba(120,180,255,.7);
 
-    box-shadow:
-        0 0 8px white;
+    border-radius:14px;
 
-    opacity:.85;
+    background:
+        rgba(0,20,60,.45);
 
-    animation:
-        twinkle 2.5s infinite alternate;
+    color:white;
 
-    z-index:4;
+    font-size:24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    backdrop-filter:
+        blur(5px);
+
 }
 
-.star.s1{
-    top:16%;
-    left:14%;
+.left-icon{
+    left:18px;
 }
 
-.star.s2{
-    top:26%;
-    right:16%;
+.right-icon{
+    right:18px;
 }
 
-.star.s3{
-    top:42%;
-    left:8%;
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer{
+
+    position:absolute;
+
+    left:50%;
+    bottom:3.5%;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        rgba(255,255,255,.45);
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    white-space:nowrap;
+
 }
 
-.star.s4{
-    top:12%;
-    right:35%;
-}
+/* =========================================
+   ĐIỆN THOẠI DỌC
+========================================= */
 
-.star.s5{
-    top:52%;
-    right:11%;
-}
+@media(max-width:600px){
 
-@keyframes twinkle{
-
-    from{
-        opacity:.25;
-        transform:scale(.7);
+    .logo{
+        top:12%;
     }
 
-    to{
-        opacity:1;
-        transform:scale(1.3);
-    }
-
-}
-
-/* ====================================
-   MOBILE
-==================================== */
-
-@media(max-width:500px){
-
-    .page{
-        padding:10px;
-    }
-
-    .game-card{
-        width:94vw;
-        border-radius:22px;
-    }
-
-    .play-button{
-        width:68%;
-        min-width:190px;
+    .play-area{
+        bottom:13%;
     }
 
 }
 
+/* =========================================
+   MÀN HÌNH THẤP
+========================================= */
+
+@media(max-height:500px){
+
+    .logo{
+        top:7%;
+    }
+
+    .play-area{
+        bottom:8%;
+    }
+
+    .footer{
+        display:none;
+    }
+
+}
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<div id="home">
 
-    <div class="game-card">
-
-        <!-- ẢNH PHI HÀNH GIA -->
-        <img
-            class="space-image"
-            src="./space.jpg"
-            alt="AnimeDorado Space">
-
-        <!-- TỐI ẢNH -->
-        <div class="overlay"></div>
-
-        <!-- ÁNH SÁNG -->
-        <div class="glow"></div>
+    <!-- ẢNH SPACE.JPEG -->
+    <img
+        id="space"
+        src="./space.jpeg"
+        alt="Space">
 
 
-        <!-- SAO -->
-        <div class="star s1"></div>
-        <div class="star s2"></div>
-        <div class="star s3"></div>
-        <div class="star s4"></div>
-        <div class="star s5"></div>
+    <!-- TỐI NỀN -->
+    <div class="dark"></div>
+
+    <!-- HÀO QUANG -->
+    <div class="glow"></div>
 
 
-        <!-- LOGO -->
-        <div class="logo">
-
-            <h1>
-                ANIME DORADO
-            </h1>
-
-            <h2>
-                ANIME ADVENTURE
-            </h2>
-
-        </div>
+    <!-- SAO -->
+    <div
+        class="stars"
+        id="stars">
+    </div>
 
 
-        <!-- NHÃN -->
-        <div class="astronaut-label">
-            🚀 SPACE EXPLORER
-        </div>
+    <!-- ICON -->
+    <div class="corner left-icon">
+        🔊
+    </div>
+
+    <div class="corner right-icon">
+        ⚙️
+    </div>
 
 
-        <!-- PHỤ ĐỀ -->
-        <div class="subtitle">
+    <!-- LOGO -->
+    <div class="logo">
 
-            Khám phá vũ trụ.
-            <br>
-            Bắt đầu hành trình của bạn.
+        <h1>
+            ANIME DORADO
+        </h1>
 
-        </div>
+        <h2>
+            ANIME ADVENTURE
+        </h2>
+
+    </div>
 
 
-        <!-- NÚT -->
+    <!-- CHƠI -->
+    <div class="play-area">
+
         <button
             class="play-button"
             onclick="playGame()">
@@ -509,6 +614,15 @@ body{
 
         </button>
 
+        <div class="subtitle">
+            BẮT ĐẦU HÀNH TRÌNH CỦA BẠN
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        ANIME DORADO © 2026
     </div>
 
 </div>
@@ -516,17 +630,151 @@ body{
 
 <script>
 
+/* =========================================
+   TẠO SAO NGẪU NHIÊN
+========================================= */
+
+const stars =
+    document.getElementById(
+        "stars"
+    );
+
+
+for(
+    let i = 0;
+    i < 55;
+    i++
+){
+
+    const star =
+        document.createElement(
+            "div"
+        );
+
+    star.className =
+        "star";
+
+
+    star.style.left =
+        Math.random() * 100 +
+        "%";
+
+
+    star.style.top =
+        Math.random() * 100 +
+        "%";
+
+
+    const size =
+        Math.random() * 2 + 1;
+
+    star.style.width =
+        size + "px";
+
+    star.style.height =
+        size + "px";
+
+
+    star.style.animationDuration =
+        (4 + Math.random() * 8) +
+        "s";
+
+
+    star.style.animationDelay =
+        (-Math.random() * 8) +
+        "s";
+
+
+    stars.appendChild(
+        star
+    );
+}
+
+
+/* =========================================
+   NÚT CHƠI
+========================================= */
+
 function playGame(){
 
-    /*
-       Chuyển thẳng sang
-       giao diện game.
-    */
+    const home =
+        document.getElementById(
+            "home"
+        );
 
-    window.location.href =
-        "./giaodien.html";
+
+    home.style.transition =
+        "opacity .6s ease";
+
+
+    home.style.opacity =
+        "0";
+
+
+    setTimeout(
+        function(){
+
+            window.location.href =
+                "./giaodien.html";
+
+        },
+        600
+    );
 
 }
+
+
+/* =========================================
+   KIỂM TRA ẢNH
+========================================= */
+
+document
+    .getElementById("space")
+    .addEventListener(
+        "error",
+        function(){
+
+            document.body.innerHTML = `
+
+                <div style="
+                    width:100%;
+                    height:100%;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    background:#05070d;
+                    color:white;
+                    text-align:center;
+                    padding:30px;
+                    font-family:Arial;
+                ">
+
+                    <div>
+
+                        <h2>
+                            Không tìm thấy space.jpeg
+                        </h2>
+
+                        <p style="
+                            margin-top:12px;
+                            color:#999;
+                        ">
+
+                            Hãy upload file
+                            <b>space.jpeg</b>
+                            vào cùng thư mục với
+                            <b>index.html</b>.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
 
 </script>
 
