@@ -5,21 +5,19 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width,
-             initial-scale=1,
-             maximum-scale=1,
-             user-scalable=no"
->
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1,
+               maximum-scale=1,
+               user-scalable=no">
 
 <title>ANIME DORADO</title>
 
 <style>
 
-/* =========================================================
+/* ==================================================
    RESET
-========================================================= */
+================================================== */
 
 *{
     box-sizing:border-box;
@@ -30,58 +28,52 @@
 
 html,
 body{
-
     width:100%;
     height:100%;
-
     overflow:hidden;
-
     background:#000;
-
-    color:#fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
 }
 
 body{
-
+    font-family:Arial,Helvetica,sans-serif;
     user-select:none;
-
 }
 
 
-/* =========================================================
+/* ==================================================
    APP
-========================================================= */
+================================================== */
 
 #app{
-
     position:fixed;
-
     inset:0;
-
     width:100%;
     height:100%;
+    overflow:hidden;
+    background:#000;
+}
+
+
+/* ==================================================
+   EXPERIENCE
+================================================== */
+
+#experience{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
 
     overflow:hidden;
 
     background:#000;
-
 }
 
-
-/* =========================================================
-   HOME BACKGROUND
-========================================================= */
-
-#spaceBackground{
-
+.experience-bg{
     position:absolute;
-
     inset:0;
 
     width:100%;
@@ -89,209 +81,320 @@ body{
 
     object-fit:cover;
 
-    display:block;
-
     z-index:0;
 
+    display:block;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
 }
 
-
-/* =========================================================
-   DARK OVERLAY
-========================================================= */
-
-#backgroundOverlay{
-
+.experience-overlay{
     position:absolute;
-
     inset:0;
-
     z-index:1;
 
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.05),
-            rgba(0,0,0,.18)
+            rgba(0,0,0,.06),
+            rgba(0,0,0,.20)
+        );
+}
+
+.experience-glow{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:min(700px,100vw);
+    height:min(500px,75vh);
+
+    transform:translate(-50%,-50%);
+
+    z-index:2;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,220,110,.18) 0%,
+            rgba(255,220,110,.06) 36%,
+            transparent 70%
         );
 
+    filter:blur(12px);
+
     pointer-events:none;
-
 }
 
+.experience-content{
+    position:relative;
 
-/* =========================================================
-   SCREEN
-========================================================= */
+    z-index:5;
 
-.screen{
-
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    display:none;
-
-    overflow:hidden;
-
-}
-
-.screen.active{
-
-    display:block;
-
-}
-
-
-/* =========================================================
-   EXPERIENCE SCREEN
-========================================================= */
-
-#experienceScreen{
-
-    z-index:20;
-
-}
-
-.experience-center{
-
-    position:absolute;
-
-    inset:0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
+    width:min(700px,92vw);
 
     padding:20px;
 
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-.experience-box{
+.game-logo{
+    text-align:center;
 
-    width:min(
-        600px,
-        90vw
-    );
-
-    padding:
-        35px 25px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.18);
-
-    border-radius:26px;
-
-    background:
-        rgba(0,0,0,.38);
-
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.55);
-
-    backdrop-filter:blur(7px);
-
+    filter:
+        drop-shadow(
+            0 8px 18px
+            rgba(0,0,0,.65)
+        );
 }
 
-.experience-title{
+.logo-small{
+    color:#fff;
 
     font-size:
         clamp(
-            34px,
-            8vw,
-            58px
+            14px,
+            3vw,
+            19px
         );
 
-    font-weight:900;
+    letter-spacing:
+        clamp(
+            4px,
+            1vw,
+            8px
+        );
+
+    font-weight:800;
+}
+
+.logo-main{
+    margin-top:-4px;
 
     color:#ffd65a;
 
-    text-shadow:
-        0 4px 15px
-        rgba(0,0,0,.75);
+    font-size:
+        clamp(
+            52px,
+            12vw,
+            92px
+        );
 
+    line-height:.95;
+
+    font-weight:1000;
+
+    letter-spacing:
+        clamp(
+            2px,
+            1vw,
+            6px
+        );
+
+    text-shadow:
+        0 3px 0 #8f5e0c,
+        0 7px 12px rgba(0,0,0,.7);
 }
 
-.experience-subtitle{
+.logo-line{
+    width:min(280px,60vw);
+    height:2px;
 
-    margin-top:8px;
+    margin:13px auto 9px;
 
-    color:#d0d7e1;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffd65a,
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(255,214,90,.55);
+}
+
+.logo-sub{
+    color:rgba(255,255,255,.82);
 
     font-size:
         clamp(
-            12px,
-            3vw,
-            16px
+            8px,
+            2vw,
+            11px
         );
 
+    letter-spacing:3px;
+
+    font-weight:bold;
+}
+
+.welcome-text{
+    margin-top:27px;
+
+    color:rgba(255,255,255,.9);
+
+    font-size:
+        clamp(
+            10px,
+            2.5vw,
+            14px
+        );
+
+    letter-spacing:3px;
+
+    font-weight:bold;
+
+    text-shadow:
+        0 2px 6px #000;
 }
 
 .experience-button{
+    position:relative;
 
-    margin-top:28px;
+    margin-top:18px;
 
-    width:min(
-        300px,
-        82vw
-    );
+    width:min(340px,82vw);
 
-    height:62px;
+    height:68px;
 
     border:
         2px solid
-        rgba(255,255,255,.28);
+        rgba(255,245,190,.85);
 
-    border-radius:17px;
+    border-radius:18px;
+
+    overflow:hidden;
 
     background:
         linear-gradient(
             135deg,
-            #b8790a,
-            #ffd65a
+            #8a5808,
+            #ffd65a 50%,
+            #b77809
         );
 
-    color:#1b1304;
+    color:#211505;
 
-    font-size:17px;
+    font-size:
+        clamp(
+            15px,
+            3.8vw,
+            19px
+        );
 
-    font-weight:900;
-
-    box-shadow:
-        0 12px 30px
-        rgba(0,0,0,.3);
+    font-weight:1000;
 
     cursor:pointer;
 
+    box-shadow:
+        0 8px 24px rgba(0,0,0,.4),
+        0 0 28px rgba(255,214,90,.18),
+        inset 0 2px 0 rgba(255,255,255,.55);
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
 }
 
 .experience-button:active{
-
     transform:scale(.97);
+}
+
+.button-light{
+    position:absolute;
+    top:0;
+    left:-35%;
+
+    width:35%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.55),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    animation:
+        buttonShine 2.8s infinite;
+
+    pointer-events:none;
+}
+
+@keyframes buttonShine{
+
+    0%{
+        left:-40%;
+    }
+
+    45%{
+        left:120%;
+    }
+
+    100%{
+        left:120%;
+    }
 
 }
 
+.button-text{
+    position:relative;
+    z-index:2;
+}
 
-/* =========================================================
+.button-arrow{
+    position:absolute;
+    right:20px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:24px;
+
+    z-index:3;
+}
+
+.version{
+    margin-top:15px;
+
+    color:rgba(255,255,255,.55);
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    text-shadow:0 2px 5px #000;
+}
+
+
+/* ==================================================
    HOME
-========================================================= */
+================================================== */
 
-#homeScreen{
+#home{
+    position:absolute;
+    inset:0;
 
-    z-index:10;
+    display:none;
 
+    background:#000;
 }
 
 #gameFrame{
-
     position:absolute;
 
     left:50%;
@@ -305,124 +408,123 @@ body{
         scale(1);
 
     transform-origin:center center;
+}
 
+#homeBackground{
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:864px;
+
+    display:block;
+
+    object-fit:fill;
+
+    user-select:none;
+    -webkit-user-drag:none;
 }
 
 
-/* =========================================================
-   HOME BUTTONS
-========================================================= */
+/* ==================================================
+   NÚT ẨN HOME
+================================================== */
 
-.home-button{
-
+.game-button{
     position:absolute;
 
     border:0;
 
     background:transparent;
 
-    cursor:pointer;
-
     outline:none;
 
+    cursor:pointer;
 }
 
 
-/* PROFILE */
+/* Hồ sơ */
 
 .btn-profile{
-
     left:18px;
     top:15px;
 
     width:430px;
     height:130px;
-
 }
 
 
-/* GOLD */
+/* Vàng */
 
 .btn-gold{
-
     left:565px;
     top:8px;
 
     width:285px;
     height:75px;
-
 }
 
 
-/* RUBY */
+/* Ruby */
 
 .btn-ruby{
-
     left:875px;
     top:8px;
 
     width:275px;
     height:75px;
-
 }
 
 
-/* LẬP NHÓM */
+/* Lập nhóm */
 
 .btn-lapnhom{
-
     left:35px;
     bottom:8px;
 
     width:145px;
     height:125px;
-
 }
 
 
-/* NÂNG CẤP */
+/* Nâng cấp */
 
 .btn-nangcap{
-
     left:245px;
     bottom:8px;
 
     width:145px;
     height:125px;
-
 }
 
 
-/* RÚT NHÂN VẬT */
+/* Rút nhân vật */
 
 .btn-rutnhanvat{
-
     left:450px;
     bottom:8px;
 
     width:160px;
     height:125px;
-
 }
 
 
-/* CỬA HÀNG */
+/* Cửa hàng */
 
 .btn-cuahang{
-
     left:650px;
     bottom:8px;
 
     width:160px;
     height:125px;
-
 }
 
 
-/* BẮT ĐẦU */
+/* Bắt đầu */
 
 .btn-batdau{
-
     right:0;
     bottom:0;
 
@@ -431,328 +533,58 @@ body{
 
     border-radius:
         55px 0 0 0;
-
 }
 
 
-/* =========================================================
-   INNER FEATURE SCREEN
-========================================================= */
-
-.feature-screen{
-
-    z-index:30;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(57,94,135,.9),
-            rgba(6,12,21,.98) 70%
-        );
-
-}
-
-.feature-inner{
-
-    position:absolute;
-
-    inset:0;
-
-    overflow:auto;
-
-    padding:
-        15px
-        15px
-        35px;
-
-}
-
-.feature-header{
-
-    width:min(
-        1000px,
-        94vw
-    );
-
-    margin:0 auto 18px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-}
-
-.back-button{
-
-    width:46px;
-    height:46px;
-
-    flex:0 0 46px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    border-radius:13px;
-
-    background:
-        rgba(0,0,0,.3);
-
-    color:#fff;
-
-    font-size:25px;
-
-    cursor:pointer;
-
-}
-
-.feature-title{
-
-    flex:1;
-
-    text-align:center;
-
-}
-
-.feature-title h1{
-
-    color:#ffd65a;
-
-    font-size:
-        clamp(
-            22px,
-            6vw,
-            32px
-        );
-
-    font-weight:900;
-
-}
-
-.feature-title p{
-
-    margin-top:4px;
-
-    color:#aeb8c5;
-
-    font-size:10px;
-
-}
-
-.feature-card{
-
-    width:min(
-        1000px,
-        94vw
-    );
-
-    margin:0 auto;
-
-    padding:25px;
-
-    border:
-        1px solid
-        rgba(255,214,90,.2);
-
-    border-radius:20px;
-
-    background:
-        rgba(0,0,0,.3);
-
-    box-shadow:
-        0 20px 50px
-        rgba(0,0,0,.3);
-
-}
-
-.feature-card h2{
-
-    color:#fff;
-
-    font-size:20px;
-
-}
-
-.feature-card p{
-
-    margin-top:10px;
-
-    color:#b9c4d1;
-
-    line-height:1.6;
-
-}
-
-.route-label{
-
-    display:inline-block;
-
-    margin-top:18px;
-
-    padding:
-        8px
-        12px;
-
-    border-radius:10px;
-
-    background:
-        rgba(255,214,90,.1);
-
-    color:#ffd65a;
-
-    font-size:12px;
-
-    font-weight:900;
-
-}
-
-
-/* =========================================================
-   PROFILE / RESOURCE
-========================================================= */
-
-.resource-grid{
-
-    margin-top:20px;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0,1fr)
-        );
-
-    gap:10px;
-
-}
-
-.resource-box{
-
-    min-height:100px;
-
-    padding:15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    border-radius:15px;
-
-    background:
-        rgba(255,255,255,.04);
-
-}
-
-.resource-name{
-
-    color:#98a4b3;
-
-    font-size:11px;
-
-}
-
-.resource-value{
-
-    margin-top:7px;
-
-    color:#fff;
-
-    font-size:24px;
-
-    font-weight:900;
-
-}
-
-
-/* =========================================================
-   404
-========================================================= */
-
-#errorScreen{
-
-    z-index:50;
-
-    background:
-        radial-gradient(
-            circle,
-            #243d58,
-            #05090f
-        );
-
-}
-
-.error-center{
-
-    position:absolute;
-
-    inset:0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    padding:20px;
-
-}
-
-.error-box{
-
-    width:min(
-        500px,
-        90vw
-    );
-
-    padding:30px;
-
-    border-radius:20px;
-
-    background:
-        rgba(0,0,0,.45);
-
-    border:
-        1px solid
-        rgba(255,214,90,.25);
-
-}
-
-.error-box h1{
-
-    font-size:58px;
-
-    color:#ffd65a;
-
-}
-
-.error-box p{
-
-    margin-top:10px;
-
-    color:#c0c9d5;
-
-}
-
-
-/* =========================================================
+/* ==================================================
    MOBILE
-========================================================= */
+================================================== */
 
-@media(max-width:700px){
+@media(
+    max-width:600px
+){
 
-    .feature-inner{
+    .experience-content{
+        padding:14px;
+    }
 
-        padding:
-            10px
-            10px
-            25px;
+    .logo-main{
+        font-size:
+            clamp(
+                48px,
+                16vw,
+                76px
+            );
+    }
 
+    .experience-button{
+        width:min(
+            310px,
+            84vw
+        );
+
+        height:62px;
+    }
+
+}
+
+@media(
+    max-height:520px
+) and (
+    orientation:landscape
+){
+
+    .logo-main{
+        font-size:54px;
+    }
+
+    .welcome-text{
+        margin-top:12px;
+    }
+
+    .experience-button{
+        margin-top:10px;
+        height:55px;
     }
 
 }
@@ -764,624 +596,159 @@ body{
 
 <body>
 
-
 <div id="app">
 
 
-    <!-- =====================================================
-         NỀN
-    ====================================================== -->
+<!-- ==================================================
+     MỞ TRẢI NGHIỆM
+================================================== -->
+
+<section id="experience">
 
     <img
-        id="spaceBackground"
+        class="experience-bg"
         src="./space.png"
         alt="ANIME DORADO">
 
-    <div
-        id="backgroundOverlay">
+    <div class="experience-overlay"></div>
+
+    <div class="experience-glow"></div>
+
+
+    <div class="experience-content">
+
+        <div class="game-logo">
+
+            <div class="logo-small">
+                ANIME
+            </div>
+
+            <div class="logo-main">
+                DORADO
+            </div>
+
+            <div class="logo-line"></div>
+
+            <div class="logo-sub">
+                ADVENTURE • FANTASY • BATTLE
+            </div>
+
+        </div>
+
+
+        <div class="welcome-text">
+            CHÀO MỪNG ĐẾN VỚI
+        </div>
+
+
+        <button
+            id="experienceButton"
+            class="experience-button">
+
+            <span class="button-light"></span>
+
+            <span class="button-text">
+                MỞ TRẢI NGHIỆM
+            </span>
+
+            <span class="button-arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <div class="version">
+            ANIME DORADO
+        </div>
+
     </div>
 
+</section>
 
-    <!-- =====================================================
-         TRẢI NGHIỆM
-    ====================================================== -->
 
-    <section
-        id="experienceScreen"
-        class="screen active">
 
-        <div class="experience-center">
+<!-- ==================================================
+     HOME
+================================================== -->
 
-            <div class="experience-box">
+<section id="home">
 
-                <div class="experience-title">
-                    ANIME DORADO
-                </div>
+    <div id="gameFrame">
 
-                <div class="experience-subtitle">
-                    GAME EXPERIENCE
-                </div>
+        <img
+            id="homeBackground"
+            src="./nengame.png"
+            alt="ANIME DORADO">
 
-                <button
-                    id="experienceButton"
-                    class="experience-button">
 
-                    MỞ TRẢI NGHIỆM
+        <!-- Hồ sơ -->
 
-                </button>
+        <button
+            class="game-button btn-profile"
+            onclick="goToPage('profile')">
+        </button>
 
-            </div>
 
-        </div>
+        <!-- Vàng -->
 
-    </section>
+        <button
+            class="game-button btn-gold"
+            onclick="goToPage('gold')">
+        </button>
 
 
-    <!-- =====================================================
-         HOME
-    ====================================================== -->
+        <!-- Ruby -->
 
-    <section
-        id="homeScreen"
-        class="screen">
+        <button
+            class="game-button btn-ruby"
+            onclick="goToPage('ruby')">
+        </button>
 
-        <div id="gameFrame">
 
+        <!-- Lập nhóm -->
 
-            <!--
-                Nếu space.png của bạn chính là
-                giao diện Home thì đổi dòng src ở đây
-                sang ảnh Home.
-            -->
+        <button
+            class="game-button btn-lapnhom"
+            onclick="goToPage('lapnhom')">
+        </button>
 
-            <img
-                src="./space.png"
-                style="
-                    position:absolute;
-                    inset:0;
-                    width:1536px;
-                    height:864px;
-                    object-fit:fill;
-                "
-                alt="">
 
+        <!-- Nâng cấp -->
 
-            <!-- HỒ SƠ -->
+        <button
+            class="game-button btn-nangcap"
+            onclick="goToPage('nangcap')">
+        </button>
 
-            <button
-                class="home-button btn-profile"
-                data-route="profile"
-                aria-label="Hồ sơ">
-            </button>
 
+        <!-- Rút nhân vật -->
 
-            <!-- VÀNG -->
+        <button
+            class="game-button btn-rutnhanvat"
+            onclick="goToPage('rutnhanvat')">
+        </button>
 
-            <button
-                class="home-button btn-gold"
-                data-route="gold"
-                aria-label="Vàng">
-            </button>
 
+        <!-- Cửa hàng -->
 
-            <!-- RUBY -->
+        <button
+            class="game-button btn-cuahang"
+            onclick="goToPage('cuahang')">
+        </button>
 
-            <button
-                class="home-button btn-ruby"
-                data-route="ruby"
-                aria-label="Ruby">
-            </button>
 
+        <!-- Bắt đầu -->
 
-            <!-- LẬP NHÓM -->
+        <button
+            class="game-button btn-batdau"
+            onclick="goToPage('batdau')">
+        </button>
 
-            <button
-                class="home-button btn-lapnhom"
-                data-route="lapnhom"
-                aria-label="Lập nhóm">
-            </button>
 
+    </div>
 
-            <!-- NÂNG CẤP -->
-
-            <button
-                class="home-button btn-nangcap"
-                data-route="nangcap"
-                aria-label="Nâng cấp">
-            </button>
-
-
-            <!-- RÚT NHÂN VẬT -->
-
-            <button
-                class="home-button btn-rutnhanvat"
-                data-route="rutnhanvat"
-                aria-label="Rút nhân vật">
-            </button>
-
-
-            <!-- CỬA HÀNG -->
-
-            <button
-                class="home-button btn-cuahang"
-                data-route="cuahang"
-                aria-label="Cửa hàng">
-            </button>
-
-
-            <!-- BẮT ĐẦU -->
-
-            <button
-                class="home-button btn-batdau"
-                data-route="batdau"
-                aria-label="Bắt đầu">
-            </button>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         PROFILE
-    ====================================================== -->
-
-    <section
-        id="profileScreen"
-        class="screen feature-screen">
-
-        <div class="feature-inner">
-
-            <div class="feature-header">
-
-                <button
-                    class="back-button"
-                    data-home>
-
-                    ←
-
-                </button>
-
-                <div class="feature-title">
-
-                    <h1>HỒ SƠ</h1>
-
-                    <p>PLAYER PROFILE</p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <h2>
-                    HỒ SƠ NGƯỜI CHƠI
-                </h2>
-
-                <p>
-                    Khu vực hồ sơ của Anime Dorado.
-                </p>
-
-                <span class="route-label">
-                    /profile
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         GOLD
-    ====================================================== -->
-
-    <section
-        id="goldScreen"
-        class="screen feature-screen">
-
-        <div class="feature-inner">
-
-            <div class="feature-header">
-
-                <button
-                    class="back-button"
-                    data-home>
-
-                    ←
-
-                </button>
-
-                <div class="feature-title">
-
-                    <h1>VÀNG</h1>
-
-                    <p>RESOURCE</p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <h2>
-                    VÀNG
-                </h2>
-
-                <div class="resource-grid">
-
-                    <div class="resource-box">
-
-                        <div class="resource-name">
-                            GOLD
-                        </div>
-
-                        <div class="resource-value">
-                            0
-                        </div>
-
-                    </div>
-
-                    <div class="resource-box">
-
-                        <div class="resource-name">
-                            RUBY
-                        </div>
-
-                        <div class="resource-value">
-                            0
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <span class="route-label">
-                    /gold
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         RUBY
-    ====================================================== -->
-
-    <section
-        id="rubyScreen"
-        class="screen feature-screen">
-
-        <div class="feature-inner">
-
-            <div class="feature-header">
-
-                <button
-                    class="back-button"
-                    data-home>
-
-                    ←
-
-                </button>
-
-                <div class="feature-title">
-
-                    <h1>RUBY</h1>
-
-                    <p>RESOURCE</p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <h2>
-                    RUBY
-                </h2>
-
-                <p>
-                    Số Ruby hiện tại: 0
-                </p>
-
-                <span class="route-label">
-                    /ruby
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         CÁC TRANG GAME
-    ====================================================== -->
-
-    <section
-        id="lapnhomScreen"
-        class="screen feature-screen">
-
-        <div class="feature-inner">
-
-            <div class="feature-header">
-
-                <button
-                    class="back-button"
-                    data-home>
-
-                    ←
-
-                </button>
-
-                <div class="feature-title">
-
-                    <h1>LẬP NHÓM</h1>
-
-                    <p>TEAM</p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <h2>
-                    LẬP NHÓM
-                </h2>
-
-                <p>
-                    Đây là khu vực Lập nhóm.
-                    Phần nhân vật và 5 ô đội hình
-                    của bạn sẽ được xây dựng tại đây.
-                </p>
-
-                <span class="route-label">
-                    /lapnhom
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section
-        id="nangcapScreen"
-        class="screen feature-screen">
-
-        <div class="feature-inner">
-
-            <div class="feature-header">
-
-                <button
-                    class="back-button"
-                    data-home>
-
-                    ←
-
-                </button>
-
-                <div class="feature-title">
-
-                    <h1>NÂNG CẤP</h1>
-
-                    <p>UPGRADE</p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <h2>
-                    NÂNG CẤP
-                </h2>
-
-                <p>
-                    Đây là khu vực Nâng cấp.
-                </p>
-
-                <span class="route-label">
-                    /nangcap
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section
-        id="rutnhanvatScreen"
-        class="screen feature-screen">
-
-        <div class="feature-inner">
-
-            <div class="feature-header">
-
-                <button
-                    class="back-button"
-                    data-home>
-
-                    ←
-
-                </button>
-
-                <div class="feature-title">
-
-                    <h1>RÚT NHÂN VẬT</h1>
-
-                    <p>DRAW</p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <h2>
-                    RÚT NHÂN VẬT
-                </h2>
-
-                <p>
-                    Đây là khu vực Rút nhân vật.
-                </p>
-
-                <span class="route-label">
-                    /rutnhanvat
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section
-        id="cuahangScreen"
-        class="screen feature-screen">
-
-        <div class="feature-inner">
-
-            <div class="feature-header">
-
-                <button
-                    class="back-button"
-                    data-home>
-
-                    ←
-
-                </button>
-
-                <div class="feature-title">
-
-                    <h1>CỬA HÀNG</h1>
-
-                    <p>SHOP</p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <h2>
-                    CỬA HÀNG
-                </h2>
-
-                <p>
-                    Đây là khu vực Cửa hàng.
-                </p>
-
-                <span class="route-label">
-                    /cuahang
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section
-        id="batdauScreen"
-        class="screen feature-screen">
-
-        <div class="feature-inner">
-
-            <div class="feature-header">
-
-                <button
-                    class="back-button"
-                    data-home>
-
-                    ←
-
-                </button>
-
-                <div class="feature-title">
-
-                    <h1>BẮT ĐẦU</h1>
-
-                    <p>GAME START</p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <h2>
-                    BẮT ĐẦU
-                </h2>
-
-                <p>
-                    Chuẩn bị vào Chọn Map.
-                </p>
-
-                <span class="route-label">
-                    /batdau
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         404
-    ====================================================== -->
-
-    <section
-        id="errorScreen"
-        class="screen">
-
-        <div class="error-center">
-
-            <div class="error-box">
-
-                <h1>404</h1>
-
-                <p>
-                    Trang không tồn tại.
-                </p>
-
-                <br>
-
-                <button
-                    class="experience-button"
-                    data-home>
-
-                    VỀ TRANG CHỦ
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
+</section>
 
 
 </div>
@@ -1389,257 +756,9 @@ body{
 
 <script>
 
-/* =========================================================
-   ROUTES
-========================================================= */
-
-const routes = {
-
-    home:
-        "homeScreen",
-
-    profile:
-        "profileScreen",
-
-    gold:
-        "goldScreen",
-
-    ruby:
-        "rubyScreen",
-
-    lapnhom:
-        "lapnhomScreen",
-
-    nangcap:
-        "nangcapScreen",
-
-    rutnhanvat:
-        "rutnhanvatScreen",
-
-    cuahang:
-        "cuahangScreen",
-
-    batdau:
-        "batdauScreen"
-
-};
-
-
-/* =========================================================
-   BASE PATH
-========================================================= */
-
-const BASE_PATH =
-    "/AnimeDorado-PCS/";
-
-
-/* =========================================================
-   GET ROUTE FROM URL
-========================================================= */
-
-function getRoute(){
-
-    let path =
-        window.location.pathname;
-
-
-    if(
-        path.startsWith(
-            BASE_PATH
-        )
-    ){
-
-        path =
-            path.slice(
-                BASE_PATH.length
-            );
-
-    }
-
-
-    path =
-        path
-            .replace(
-                /^\/+/,
-                ""
-            )
-            .replace(
-                /\/+$/,
-                ""
-            );
-
-
-    /*
-       Trang gốc
-    */
-
-    if(
-        path === ""
-    ){
-
-        return "home";
-
-    }
-
-
-    return path;
-
-}
-
-
-/* =========================================================
-   HIDE
-========================================================= */
-
-function hideAll(){
-
-    document
-        .querySelectorAll(
-            ".screen"
-        )
-        .forEach(
-            function(screen){
-
-                screen.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   URL
-========================================================= */
-
-function makeUrl(
-    route
-){
-
-    if(
-        route ===
-        "home"
-    ){
-
-        return BASE_PATH;
-
-    }
-
-    return (
-        BASE_PATH +
-        route
-    );
-
-}
-
-
-/* =========================================================
-   SHOW ROUTE
-========================================================= */
-
-function showRoute(
-    route,
-    changeUrl = true
-){
-
-    /*
-       Route không tồn tại
-    */
-
-    if(
-        !routes[route]
-    ){
-
-        show404();
-
-        return;
-
-    }
-
-
-    hideAll();
-
-
-    const screen =
-        document.getElementById(
-            routes[route]
-        );
-
-
-    if(
-        !screen
-    ){
-
-        show404();
-
-        return;
-
-    }
-
-
-    screen.classList.add(
-        "active"
-    );
-
-
-    /*
-       ĐỔI URL
-       KHÔNG RELOAD
-    */
-
-    if(
-        changeUrl
-    ){
-
-        history.pushState(
-            {
-                route:
-                    route
-            },
-            "",
-            makeUrl(
-                route
-            )
-        );
-
-    }
-
-
-    /*
-       Khi vào BẮT ĐẦU,
-       sau này có thể chuyển tiếp
-       sang chonmap.html.
-       
-       Hiện tại không báo lỗi.
-    */
-
-}
-
-
-/* =========================================================
-   404
-========================================================= */
-
-function show404(){
-
-    hideAll();
-
-    document
-        .getElementById(
-            "errorScreen"
-        )
-        .classList.add(
-            "active"
-        );
-
-}
-
-
-/* =========================================================
-   EXPERIENCE
-========================================================= */
+/* ==================================================
+   MỞ GIAO DIỆN
+================================================== */
 
 document
     .getElementById(
@@ -1649,113 +768,99 @@ document
         "click",
         function(){
 
-            showRoute(
-                "home"
-            );
+            document
+                .getElementById(
+                    "experience"
+                )
+                .style.display =
+                "none";
+
+
+            document
+                .getElementById(
+                    "home"
+                )
+                .style.display =
+                "block";
+
+
+            scaleGame();
 
         }
     );
 
 
-/* =========================================================
-   HOME BUTTONS
-========================================================= */
+/* ==================================================
+   ĐƯỜNG DẪN CÁC FILE
+================================================== */
 
-document
-    .querySelectorAll(
-        ".home-button"
-    )
-    .forEach(
-        function(button){
+const pageFiles = {
 
-            button.addEventListener(
-                "click",
-                function(){
+    profile:
+        "profile.html",
 
-                    const route =
-                        button.dataset.route;
+    gold:
+        "gold.html",
 
+    ruby:
+        "ruby.html",
 
-                    /*
-                       BẤM NÚT →
-                       URL ĐỔI NGAY
-                       KHÔNG RELOAD
-                    */
+    lapnhom:
+        "lapnhom.html",
 
-                    showRoute(
-                        route
-                    );
+    nangcap:
+        "nangcap.html",
 
-                }
-            );
+    rutnhanvat:
+        "rutnhanvat.html",
 
-        }
-    );
+    cuahang:
+        "cuahang.html",
+
+    batdau:
+        "batdau.html"
+
+};
 
 
-/* =========================================================
-   BACK HOME
-========================================================= */
+/* ==================================================
+   CHUYỂN TRANG
+   Không hiện 404.
+   Không kiểm tra file.
+   Chỉ đi thẳng tới file.
+================================================== */
 
-document
-    .querySelectorAll(
-        "[data-home]"
-    )
-    .forEach(
-        function(button){
+function goToPage(
+    page
+){
 
-            button.addEventListener(
-                "click",
-                function(){
-
-                    showRoute(
-                        "home"
-                    );
-
-                }
-            );
-
-        }
-    );
+    const file =
+        pageFiles[page];
 
 
-/* =========================================================
-   BACK / FORWARD
-========================================================= */
+    if(!file){
 
-window.addEventListener(
-    "popstate",
-    function(){
-
-        const route =
-            getRoute();
-
-
-        if(
-            routes[route]
-        ){
-
-            showRoute(
-                route,
-                false
-            );
-
-        }
-        else{
-
-            show404();
-
-        }
+        return;
 
     }
-);
 
 
-/* =========================================================
+    /*
+       Dùng pushState để URL đổi trước,
+       sau đó chuyển tới file thật.
+    */
+
+    window.location.href =
+        file;
+
+}
+
+
+/* ==================================================
    SCALE HOME
-========================================================= */
+================================================== */
 
-function scaleHome(){
+function scaleGame(){
 
     const frame =
         document.getElementById(
@@ -1763,34 +868,54 @@ function scaleHome(){
         );
 
 
-    if(!frame){
+    const width =
+        window.innerWidth;
+
+    const height =
+        window.innerHeight;
+
+
+    /*
+       MÀN HÌNH NGANG
+    */
+
+    if(
+        width >= height
+    ){
+
+        const scale =
+            Math.min(
+                width / 1536,
+                height / 864
+            );
+
+
+        frame.style.transform =
+            "translate(-50%,-50%) " +
+            "scale(" +
+            scale +
+            ")";
 
         return;
 
     }
 
 
-    const screenWidth =
-        window.innerWidth;
-
-    const screenHeight =
-        window.innerHeight;
-
+    /*
+       MÀN HÌNH DỌC:
+       vẫn giữ khung game ngang.
+    */
 
     const scale =
         Math.min(
-
-            screenWidth /
-                1536,
-
-            screenHeight /
-                864
-
+            width / 864,
+            height / 1536
         );
 
 
     frame.style.transform =
         "translate(-50%,-50%) " +
+        "rotate(90deg) " +
         "scale(" +
         scale +
         ")";
@@ -1800,50 +925,24 @@ function scaleHome(){
 
 window.addEventListener(
     "resize",
-    scaleHome
+    scaleGame
 );
+
 
 window.addEventListener(
     "orientationchange",
     function(){
 
         setTimeout(
-            scaleHome,
+            scaleGame,
             250
         );
 
     }
 );
 
-
-/* =========================================================
-   START
-========================================================= */
-
-const firstRoute =
-    getRoute();
-
-
-if(
-    routes[firstRoute]
-){
-
-    showRoute(
-        firstRoute,
-        false
-    );
-
-}
-else{
-
-    show404();
-
-}
-
-
-scaleHome();
-
 </script>
 
 </body>
+
 </html>
