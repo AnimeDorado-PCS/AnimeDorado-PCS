@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<title>ANIME DORADO - CHỌN MAP</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+#app{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
+}
+
+
+/* =========================================================
+   GAME FRAME
+   Thiết kế đúng theo ảnh 1536x864
+========================================================= */
+
+#gameFrame{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:1536px;
+    height:864px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transform-origin:center center;
+
+}
+
+
+/* =========================================================
+   NỀN
+========================================================= */
+
+#background{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:864px;
+
+    display:block;
+
+    object-fit:fill;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+}
+
+
+/* =========================================================
+   VÙNG BẤM ẨN
+========================================================= */
+
+.hit{
+
+    position:absolute;
+
+    border:0;
+
+    outline:none;
+
+    background:transparent;
+
+    padding:0;
+
+    margin:0;
+
+    cursor:pointer;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+/* =========================================================
+   QUAY LẠI
+   Vùng trùng với nút ← trong ảnh
+========================================================= */
+
+#backHit{
+
+    left:20px;
+
+    top:15px;
+
+    width:68px;
+
+    height:68px;
+
+}
+
+
+/* =========================================================
+   MODE THƯỜNG
+========================================================= */
+
+#normalHit{
+
+    left:78px;
+
+    top:92px;
+
+    width:170px;
+
+    height:48px;
+
+}
+
+
+/* =========================================================
+   MODE KHÓ
+========================================================= */
+
+#hardModeHit{
+
+    left:245px;
+
+    top:92px;
+
+    width:150px;
+
+    height:48px;
+
+}
+
+
+/* =========================================================
+   MAP 1
+   VƯỜN MÊ CUNG
+
+   Đây là vùng bấm chính.
+   Không có khung đè lên ảnh.
+========================================================= */
+
+#map1Hit{
+
+    left:55px;
+
+    top:215px;
+
+    width:330px;
+
+    height:425px;
+
+}
+
+
+/* =========================================================
+   MAP 2 KHÓA
+========================================================= */
+
+#map2Hit{
+
+    left:350px;
+
+    top:205px;
+
+    width:330px;
+
+    height:280px;
+
+}
+
+
+/* =========================================================
+   MAP 3 KHÓA
+========================================================= */
+
+#map3Hit{
+
+    left:650px;
+
+    top:205px;
+
+    width:460px;
+
+    height:290px;
+
+}
+
+
+/* =========================================================
+   MAP 4 KHÓA
+========================================================= */
+
+#map4Hit{
+
+    left:1110px;
+
+    top:285px;
+
+    width:380px;
+
+    height:370px;
+
+}
+
+
+/* =========================================================
+   NÚT KHÓ Ở DƯỚI
+========================================================= */
+
+#hardButtonHit{
+
+    left:675px;
+
+    top:755px;
+
+    width:180px;
+
+    height:75px;
+
+}
+
+
+/* =========================================================
+   TOUCH EFFECT
+   Không làm thay đổi ảnh.
+========================================================= */
+
+.hit:active{
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .03
+        );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.92);
+
+    min-width:260px;
+
+    max-width:80%;
+
+    padding:
+        15px
+        20px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            214,
+            90,
+            .45
+        );
+
+    border-radius:14px;
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            .78
+        );
+
+    box-shadow:
+        0 15px 50px
+        rgba(
+            0,
+            0,
+            0,
+            .4
+        );
+
+    color:#fff;
+
+    text-align:center;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .18s ease,
+        transform .18s ease;
+
+    z-index:100;
+
+}
+
+
+/* TOAST HIỆN */
+
+#toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media (orientation:landscape){
+
+    #gameFrame{
+
+        transform:
+            translate(-50%,-50%)
+            scale(
+                min(
+                    100vw / 1536,
+                    100vh / 864
+                )
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   MÀN HÌNH DỌC
+   JS sẽ tự scale theo chiều nhỏ hơn.
+========================================================= */
+
+@media (orientation:portrait){
+
+    #gameFrame{
+
+        transform:
+            translate(-50%,-50%)
+            rotate(90deg);
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="app">
+
+
+    <!-- =================================================
+         GAME
+    ================================================= -->
+
+    <div id="gameFrame">
+
+
+        <!-- NỀN CHÍNH -->
+
+        <img
+            id="background"
+            src="./nenchonmap.jpg"
+            alt="CHỌN BẢN ĐỒ">
+
+
+        <!-- =================================================
+             HITBOX QUAY LẠI
+        ================================================= -->
+
+        <button
+            id="backHit"
+            class="hit"
+            aria-label="Quay lại">
+        </button>
+
+
+        <!-- =================================================
+             THƯỜNG / KHÓ
+        ================================================= -->
+
+        <button
+            id="normalHit"
+            class="hit"
+            aria-label="Thường">
+        </button>
+
+
+        <button
+            id="hardModeHit"
+            class="hit"
+            aria-label="Khó">
+        </button>
+
+
+        <!-- =================================================
+             MAP 1
+        ================================================= -->
+
+        <button
+            id="map1Hit"
+            class="hit"
+            aria-label="Vườn mê cung">
+        </button>
+
+
+        <!-- =================================================
+             MAP 2
+        ================================================= -->
+
+        <button
+            id="map2Hit"
+            class="hit"
+            aria-label="Bản đồ 2">
+        </button>
+
+
+        <!-- =================================================
+             MAP 3
+        ================================================= -->
+
+        <button
+            id="map3Hit"
+            class="hit"
+            aria-label="Bản đồ 3">
+        </button>
+
+
+        <!-- =================================================
+             MAP 4
+        ================================================= -->
+
+        <button
+            id="map4Hit"
+            class="hit"
+            aria-label="Bản đồ 4">
+        </button>
+
+
+        <!-- =================================================
+             HARD
+        ================================================= -->
+
+        <button
+            id="hardButtonHit"
+            class="hit"
+            aria-label="Khó">
+        </button>
+
+
+        <!-- =================================================
+             TOAST
+        ================================================= -->
+
+        <div id="toast">
+            Bản đồ này chưa được mở.
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   KÍCH THƯỚC THIẾT KẾ
+========================================================= */
+
+const DESIGN_WIDTH =
+    1536;
+
+const DESIGN_HEIGHT =
+    864;
+
+
+/* =========================================================
+   SCALE
+========================================================= */
+
+function scaleGame(){
+
+    const frame =
+        document.getElementById(
+            "gameFrame"
+        );
+
+
+    const screenWidth =
+        window.innerWidth;
+
+    const screenHeight =
+        window.innerHeight;
+
+
+    /*
+       Với màn hình ngang:
+       vừa chính xác theo ảnh 1536x864.
+    */
+
+    const scale =
+        Math.min(
+
+            screenWidth /
+            DESIGN_WIDTH,
+
+            screenHeight /
+            DESIGN_HEIGHT
+
+        );
+
+
+    /*
+       Nếu ngang
+    */
+
+    if(
+        screenWidth >=
+        screenHeight
+    ){
+
+        frame.style.transform =
+            "translate(-50%,-50%) " +
+            "scale(" +
+            scale +
+            ")";
+
+    }
+
+
+    /*
+       Nếu dọc:
+       xoay toàn bộ màn hình game ngang.
+    */
+
+    else{
+
+        const rotatedScale =
+            Math.min(
+
+                screenHeight /
+                DESIGN_WIDTH,
+
+                screenWidth /
+                DESIGN_HEIGHT
+
+            );
+
+
+        frame.style.transform =
+            "translate(-50%,-50%) " +
+            "rotate(90deg) " +
+            "scale(" +
+            rotatedScale +
+            ")";
+
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer = null;
+
+
+function showToast(
+    message
+){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            function(){
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            1200
+        );
+
+}
+
+
+/* =========================================================
+   QUAY LẠI
+========================================================= */
+
+document
+    .getElementById(
+        "backHit"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            window.location.href =
+                "./index.html";
+
+        }
+    );
+
+
+/* =========================================================
+   NORMAL
+========================================================= */
+
+document
+    .getElementById(
+        "normalHit"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            showToast(
+                "Đang ở chế độ THƯỜNG"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   HARD MODE
+========================================================= */
+
+document
+    .getElementById(
+        "hardModeHit"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            showToast(
+                "Chế độ KHÓ chưa mở"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   MAP 1
+========================================================= */
+
+document
+    .getElementById(
+        "map1Hit"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            /*
+               Lưu map.
+            */
+
+            localStorage.setItem(
+                "mapDaChon",
+                "map1"
+            );
+
+
+            localStorage.setItem(
+                "tenMapDaChon",
+                "Vườn mê cung"
+            );
+
+
+            /*
+               Đi sang chọn stage.
+            */
+
+            window.location.href =
+                "./chonstage.html";
+
+        }
+    );
+
+
+/* =========================================================
+   MAP 2
+========================================================= */
+
+document
+    .getElementById(
+        "map2Hit"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            showToast(
+                "Map 2 chưa mở"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   MAP 3
+========================================================= */
+
+document
+    .getElementById(
+        "map3Hit"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            showToast(
+                "Map 3 chưa mở"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   MAP 4
+========================================================= */
+
+document
+    .getElementById(
+        "map4Hit"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            showToast(
+                "Map 4 chưa mở"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   NÚT KHÓ
+========================================================= */
+
+document
+    .getElementById(
+        "hardButtonHit"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            showToast(
+                "Chế độ khó chưa mở"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    scaleGame
+);
+
+
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        setTimeout(
+            scaleGame,
+            250
+        );
+
+    }
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+scaleGame();
+
+</script>
+
+
+</body>
+
+</html>
