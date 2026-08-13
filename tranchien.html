@@ -1,0 +1,2784 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1,
+      maximum-scale=1,
+      user-scalable=no">
+
+<title>ANIME DORADO - TRẬN CHIẾN</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+button{
+
+    font:inherit;
+
+}
+
+
+/* =====================================================
+   GAME
+===================================================== */
+
+#game{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
+}
+
+
+/* =====================================================
+   KHUNG THIẾT KẾ 1536 x 864
+===================================================== */
+
+#gameFrame{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:1536px;
+    height:864px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transform-origin:center center;
+
+}
+
+
+/* =====================================================
+   NỀN TRẬN CHIẾN
+===================================================== */
+
+#battleBackground{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:864px;
+
+    object-fit:fill;
+
+    display:block;
+
+    z-index:0;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+}
+
+
+/* =====================================================
+   UI TOP
+===================================================== */
+
+.top-ui{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    top:0;
+
+    height:74px;
+
+    z-index:50;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:
+        10px
+        18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.72),
+            rgba(0,0,0,.05)
+        );
+
+}
+
+
+/* WAVE */
+
+.wave-box{
+
+    min-width:180px;
+
+    padding:
+        10px
+        18px;
+
+    border-radius:18px;
+
+    background:
+        rgba(0,0,0,.55);
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    color:white;
+
+}
+
+.wave-small{
+
+    color:#9fdca9;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+.wave-main{
+
+    margin-top:2px;
+
+    font-size:20px;
+
+    font-weight:900;
+
+}
+
+
+/* GOLD */
+
+.gold-box{
+
+    margin-left:auto;
+
+    min-width:165px;
+
+    padding:
+        10px
+        16px;
+
+    border-radius:18px;
+
+    background:
+        rgba(0,0,0,.55);
+
+    border:
+        1px solid
+        rgba(255,214,90,.28);
+
+    color:#ffd65a;
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-weight:900;
+
+}
+
+
+/* =====================================================
+   CHIẾN TRƯỜNG
+===================================================== */
+
+#battleField{
+
+    position:absolute;
+
+    left:0;
+    top:74px;
+
+    width:1536px;
+    height:610px;
+
+    z-index:5;
+
+    overflow:hidden;
+
+}
+
+
+/* =====================================================
+   2 THÁP
+===================================================== */
+
+.tower{
+
+    position:absolute;
+
+    bottom:92px;
+
+    width:116px;
+
+    height:145px;
+
+    border:
+        3px solid
+        rgba(235,247,255,.9);
+
+    border-radius:
+        22px
+        22px
+        9px
+        9px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #819aa9,
+            #334b59
+        );
+
+    box-shadow:
+        0 12px 28px
+        rgba(0,0,0,.4),
+
+        inset
+        0 2px 0
+        rgba(255,255,255,.32);
+
+    z-index:12;
+
+}
+
+
+/* mái */
+
+.tower::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:13%;
+
+    right:13%;
+
+    top:-35px;
+
+    height:46px;
+
+    border:
+        3px solid
+        rgba(235,247,255,.9);
+
+    border-radius:
+        18px
+        18px
+        7px
+        7px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #91aebb,
+            #425a68
+        );
+
+}
+
+
+/* cửa */
+
+.tower::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:0;
+
+    transform:
+        translateX(-50%);
+
+    width:38px;
+
+    height:58px;
+
+    border-radius:
+        18px
+        18px
+        0
+        0;
+
+    background:#15222b;
+
+}
+
+
+.tower-left{
+
+    left:120px;
+
+}
+
+
+.tower-right{
+
+    right:120px;
+
+}
+
+
+/* =====================================================
+   HP THÁP
+===================================================== */
+
+.tower-hp{
+
+    position:absolute;
+
+    left:50%;
+
+    top:-17px;
+
+    transform:
+        translateX(-50%);
+
+    width:150px;
+
+    height:11px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    background:#250d12;
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
+}
+
+
+.tower-hp-bar{
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #30da50,
+            #a3ff53
+        );
+
+    transition:
+        width .2s linear;
+
+}
+
+
+/* =====================================================
+   NHÂN VẬT
+===================================================== */
+
+.unit{
+
+    position:absolute;
+
+    width:384px;
+
+    height:939px;
+
+    z-index:25;
+
+    transform-origin:
+        center center;
+
+    pointer-events:none;
+
+}
+
+
+/* hình mặc định */
+
+.unit-image{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:384px;
+
+    height:939px;
+
+    background-repeat:no-repeat;
+
+    background-position:
+        0 0;
+
+}
+
+
+/* =====================================================
+   SUPERMAN
+===================================================== */
+
+.superman{
+
+    width:384px;
+
+    height:939px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.24);
+
+}
+
+
+.superman .unit-image{
+
+    width:384px;
+
+    height:939px;
+
+    background-image:
+        url(
+            "https://i.postimg.cc/VLTzTyt5/20260812-191849.png"
+        );
+
+    background-size:
+        1536px 939px;
+
+}
+
+
+/* =====================================================
+   BAY
+===================================================== */
+
+.superman.fly{
+
+    width:384px;
+
+    height:688px;
+
+}
+
+
+.superman.fly .unit-image{
+
+    width:384px;
+
+    height:688px;
+
+    background-image:
+        url(
+            "https://i.postimg.cc/7ZWX0Vpr/20260812-191835.png"
+        );
+
+    background-size:
+        1536px 688px;
+
+    animation:
+        supermanFly
+        .6s
+        steps(4)
+        infinite;
+
+}
+
+
+@keyframes supermanFly{
+
+    from{
+
+        background-position:
+            0 0;
+
+    }
+
+    to{
+
+        background-position:
+            -1536px 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   ĐẤM
+===================================================== */
+
+.superman.attack{
+
+    width:384px;
+
+    height:939px;
+
+}
+
+
+.superman.attack .unit-image{
+
+    width:384px;
+
+    height:939px;
+
+    background-image:
+        url(
+            "https://i.postimg.cc/VLTzTyt5/20260812-191849.png"
+        );
+
+    background-size:
+        1536px 939px;
+
+    animation:
+        supermanAttack
+        .42s
+        steps(4)
+        1;
+
+}
+
+
+@keyframes supermanAttack{
+
+    from{
+
+        background-position:
+            0 0;
+
+    }
+
+    to{
+
+        background-position:
+            -1536px 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   TÊN NHÂN VẬT
+===================================================== */
+
+.unit-name{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:-22px;
+
+    transform:
+        translateX(-50%)
+        scale(4.1);
+
+    white-space:nowrap;
+
+    color:#fff;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    text-shadow:
+        0 2px 5px #000;
+
+}
+
+
+/* =====================================================
+   HP NHÂN VẬT
+===================================================== */
+
+.unit-hp{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:-8px;
+
+    transform:
+        translateX(-50%)
+        scale(4.1);
+
+    width:72px;
+
+    height:6px;
+
+    overflow:hidden;
+
+    border-radius:8px;
+
+    background:#280b10;
+
+}
+
+
+.unit-hp-bar{
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        #3ee75c;
+
+}
+
+
+/* =====================================================
+   QUÁI
+===================================================== */
+
+.enemy{
+
+    position:absolute;
+
+    width:90px;
+
+    height:90px;
+
+    z-index:22;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:none;
+
+}
+
+
+.enemy img{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:contain;
+
+    display:block;
+
+}
+
+
+/* HP QUÁI */
+
+.enemy-hp{
+
+    position:absolute;
+
+    left:50%;
+
+    top:-12px;
+
+    transform:
+        translateX(-50%);
+
+    width:88px;
+
+    height:8px;
+
+    background:#2b0910;
+
+    border-radius:8px;
+
+    overflow:hidden;
+
+}
+
+
+.enemy-hp-bar{
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff3131,
+            #ff9b32
+        );
+
+    transition:
+        width .2s linear;
+
+}
+
+
+/* tên quái */
+
+.enemy-name{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:-18px;
+
+    transform:
+        translateX(-50%);
+
+    white-space:nowrap;
+
+    color:#fff;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    text-shadow:
+        0 2px 4px #000;
+
+}
+
+
+/* =====================================================
+   DAMAGE
+===================================================== */
+
+.damage{
+
+    position:absolute;
+
+    z-index:80;
+
+    pointer-events:none;
+
+    color:#ffd65a;
+
+    font-size:30px;
+
+    font-weight:1000;
+
+    text-shadow:
+        0 3px 7px #000;
+
+    animation:
+        damageFloat
+        .55s
+        ease-out
+        forwards;
+
+}
+
+
+@keyframes damageFloat{
+
+    from{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(.8);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:
+            translateY(-65px)
+            scale(1.1);
+
+    }
+
+}
+
+
+/* =====================================================
+   TRIỆU HỒI BAR
+===================================================== */
+
+#summonBar{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:180px;
+
+    z-index:100;
+
+    padding:
+        14px
+        20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.04),
+            rgba(0,0,0,.86)
+        );
+
+}
+
+
+/* năng lượng */
+
+.energy{
+
+    width:230px;
+
+    flex:0 0 230px;
+
+}
+
+
+.energy-label{
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    margin-bottom:5px;
+
+}
+
+
+.energy-bar{
+
+    width:100%;
+
+    height:14px;
+
+    border-radius:12px;
+
+    background:#151d27;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    overflow:hidden;
+
+}
+
+
+.energy-fill{
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5c7dff,
+            #8ad8ff
+        );
+
+    transition:
+        width .2s linear;
+
+}
+
+
+/* =====================================================
+   CARD TRIỆU HỒI
+===================================================== */
+
+.summon-card{
+
+    position:relative;
+
+    width:125px;
+
+    height:142px;
+
+    flex:0 0 125px;
+
+    border:
+        2px solid
+        rgba(255,214,90,.5);
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #865d1e,
+            #35230e
+        );
+
+    color:#fff;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 16px
+        rgba(0,0,0,.38);
+
+}
+
+
+.summon-card:active{
+
+    transform:
+        scale(.96);
+
+}
+
+
+.summon-card img{
+
+    width:100%;
+
+    height:100px;
+
+    display:block;
+
+    object-fit:contain;
+
+}
+
+
+.summon-name{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:4px;
+
+    text-align:center;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+.summon-cost{
+
+    position:absolute;
+
+    right:5px;
+    top:5px;
+
+    padding:
+        4px 7px;
+
+    border-radius:9px;
+
+    background:
+        rgba(0,0,0,.72);
+
+    color:#ffd65a;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+
+.lock-card{
+
+    opacity:.55;
+
+    filter:
+        grayscale(.7);
+
+    cursor:not-allowed;
+
+}
+
+
+/* =====================================================
+   THÔNG BÁO
+===================================================== */
+
+#message{
+
+    position:absolute;
+
+    left:50%;
+    top:45%;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:200;
+
+    min-width:260px;
+
+    padding:
+        15px
+        22px;
+
+    border:
+        1px solid
+        rgba(255,214,90,.35);
+
+    border-radius:14px;
+
+    background:
+        rgba(0,0,0,.82);
+
+    color:#ffd65a;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .2s;
+
+}
+
+
+#message.show{
+
+    opacity:1;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px){
+
+    #summonBar{
+
+        height:150px;
+
+        padding:
+            8px;
+
+        gap:7px;
+
+    }
+
+    .energy{
+
+        width:120px;
+
+        flex-basis:120px;
+
+    }
+
+    .summon-card{
+
+        width:88px;
+
+        height:112px;
+
+        flex-basis:88px;
+
+    }
+
+    .summon-card img{
+
+        height:78px;
+
+    }
+
+    .summon-name{
+
+        font-size:9px;
+
+    }
+
+    .tower{
+
+        transform:
+            scale(.75);
+
+        transform-origin:
+            bottom center;
+
+    }
+
+}
+
+
+/* =====================================================
+   PORTRAIT
+===================================================== */
+
+@media(orientation:portrait){
+
+    #gameFrame{
+
+        transform:
+            translate(-50%,-50%)
+            rotate(90deg);
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="game">
+
+
+<div id="gameFrame">
+
+
+<!-- ==================================================
+     BACKGROUND
+================================================== -->
+
+<img
+    id="battleBackground"
+    src="./tranchien.png"
+    alt="Trận chiến">
+
+
+<!-- ==================================================
+     TOP
+================================================== -->
+
+<div class="top-ui">
+
+
+    <div class="wave-box">
+
+        <div class="wave-small">
+            NORMAL
+        </div>
+
+        <div class="wave-main">
+            WAVE 1
+        </div>
+
+    </div>
+
+
+    <div
+        id="gold"
+        class="gold-box">
+
+        💰 500
+
+    </div>
+
+
+</div>
+
+
+<!-- ==================================================
+     BATTLE FIELD
+================================================== -->
+
+<div id="battleField">
+
+
+    <!-- THÁP 1 -->
+
+    <div class="tower tower-left">
+
+        <div class="tower-hp">
+
+            <div
+                id="towerHpLeft"
+                class="tower-hp-bar">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- THÁP 2 -->
+
+    <div class="tower tower-right">
+
+        <div class="tower-hp">
+
+            <div
+                id="towerHpRight"
+                class="tower-hp-bar">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NHÂN VẬT ĐƯỢC SINH RA Ở ĐÂY -->
+
+    <div id="units"></div>
+
+
+    <!-- QUÁI ĐƯỢC SINH RA Ở ĐÂY -->
+
+    <div
+        id="enemies">
+    </div>
+
+
+    <!-- DAMAGE -->
+
+    <div id="damageLayer"></div>
+
+
+</div>
+
+
+<!-- ==================================================
+     TRIỆU HỒI
+================================================== -->
+
+<div id="summonBar">
+
+
+    <div class="energy">
+
+        <div
+            id="energyLabel"
+            class="energy-label">
+
+            💧 NĂNG LƯỢNG 100 / 100
+
+        </div>
+
+
+        <div class="energy-bar">
+
+            <div
+                id="energyFill"
+                class="energy-fill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUPERMAN -->
+
+    <button
+        id="supermanCard"
+        class="summon-card">
+
+        <div class="summon-cost">
+            💧 50
+        </div>
+
+
+        <img
+            src="https://i.postimg.cc/VLTzTyt5/20260812-191849.png"
+            alt="Superman">
+
+
+        <div class="summon-name">
+            SUPERMAN
+        </div>
+
+    </button>
+
+
+    <!-- LUFFY -->
+
+    <button
+        class="summon-card lock-card"
+        onclick="showMessage('Luffy đang được làm')">
+
+        <img
+            src="https://via.placeholder.com/120x100/222222/ffffff?text=LUFFY"
+            alt="Luffy">
+
+        <div class="summon-name">
+            LUFFY
+        </div>
+
+    </button>
+
+
+    <!-- GOKU -->
+
+    <button
+        class="summon-card lock-card"
+        onclick="showMessage('Goku đang được làm')">
+
+        <img
+            src="https://via.placeholder.com/120x100/222222/ffffff?text=GOKU"
+            alt="Goku">
+
+        <div class="summon-name">
+            GOKU
+        </div>
+
+    </button>
+
+
+</div>
+
+
+<div
+    id="message">
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   CONFIG
+===================================================== */
+
+const CONFIG = {
+
+    ENERGY_MAX:100,
+
+    SUPERMAN_COST:50,
+
+    SUPERMAN_DAMAGE:120,
+
+    ENEMY_HP:500,
+
+    ENEMY_MOVE_SPEED:38,
+
+    ATTACK_DISTANCE:145,
+
+    ATTACK_INTERVAL:900,
+
+    ENEMY_SPAWN_DELAY:5000
+
+};
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const gameFrame =
+    document.getElementById(
+        "gameFrame"
+    );
+
+const battleField =
+    document.getElementById(
+        "battleField"
+    );
+
+const unitsLayer =
+    document.getElementById(
+        "units"
+    );
+
+const enemiesLayer =
+    document.getElementById(
+        "enemies"
+    );
+
+const goldElement =
+    document.getElementById(
+        "gold"
+    );
+
+const energyLabel =
+    document.getElementById(
+        "energyLabel"
+    );
+
+const energyFill =
+    document.getElementById(
+        "energyFill"
+    );
+
+const messageElement =
+    document.getElementById(
+        "message"
+    );
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let energy =
+    CONFIG.ENERGY_MAX;
+
+let gold = 500;
+
+let enemies = [];
+
+let units = [];
+
+let nextEnemyId = 1;
+
+let nextUnitId = 1;
+
+
+/* =====================================================
+   UPDATE UI
+===================================================== */
+
+function updateEnergy(){
+
+    energyLabel.textContent =
+        "💧 NĂNG LƯỢNG " +
+        Math.floor(energy) +
+        " / " +
+        CONFIG.ENERGY_MAX;
+
+
+    energyFill.style.width =
+        (
+            energy /
+            CONFIG.ENERGY_MAX *
+            100
+        ) + "%";
+
+}
+
+
+function updateGold(){
+
+    goldElement.textContent =
+        "💰 " +
+        gold;
+
+}
+
+
+function showMessage(text){
+
+    messageElement.textContent =
+        text;
+
+    messageElement.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        showMessage.timer
+    );
+
+
+    showMessage.timer =
+        setTimeout(
+            function(){
+
+                messageElement.classList.remove(
+                    "show"
+                );
+
+            },
+            1200
+        );
+
+}
+
+
+/* =====================================================
+   SCALE
+===================================================== */
+
+function scaleGame(){
+
+    const screenWidth =
+        window.innerWidth;
+
+    const screenHeight =
+        window.innerHeight;
+
+
+    let scale;
+
+
+    if(
+        screenWidth >=
+        screenHeight
+    ){
+
+        scale =
+            Math.min(
+                screenWidth / 1536,
+                screenHeight / 864
+            );
+
+
+        gameFrame.style.transform =
+            "translate(-50%,-50%) " +
+            "scale(" +
+            scale +
+            ")";
+
+    }
+    else{
+
+        scale =
+            Math.min(
+                screenWidth / 864,
+                screenHeight / 1536
+            );
+
+
+        gameFrame.style.transform =
+            "translate(-50%,-50%) " +
+            "rotate(90deg) " +
+            "scale(" +
+            scale +
+            ")";
+
+    }
+
+}
+
+
+window.addEventListener(
+    "resize",
+    scaleGame
+);
+
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        setTimeout(
+            scaleGame,
+            200
+        );
+
+    }
+);
+
+
+/* =====================================================
+   TẠO SUPERMAN
+===================================================== */
+
+function summonSuperman(){
+
+    if(
+        energy <
+        CONFIG.SUPERMAN_COST
+    ){
+
+        showMessage(
+            "Không đủ năng lượng!"
+        );
+
+        return;
+
+    }
+
+
+    energy -=
+        CONFIG.SUPERMAN_COST;
+
+    updateEnergy();
+
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "unit superman";
+
+
+    /*
+       Vị trí ban đầu
+       phía bên trái chiến trường.
+    */
+
+    element.style.left =
+        "27%";
+
+
+    element.style.top =
+        "58%";
+
+
+    element.innerHTML = `
+
+        <div class="unit-image"></div>
+
+        <div class="unit-hp">
+
+            <div
+                class="unit-hp-bar">
+            </div>
+
+        </div>
+
+        <div class="unit-name">
+            SUPERMAN
+        </div>
+
+    `;
+
+
+    unitsLayer.appendChild(
+        element
+    );
+
+
+    const unit = {
+
+        id:
+            nextUnitId++,
+
+        type:
+            "superman",
+
+        element:
+            element,
+
+        x:
+            battleField.clientWidth *
+            .27,
+
+        y:
+            battleField.clientHeight *
+            .58,
+
+        hp:
+            1000,
+
+        maxHp:
+            1000,
+
+        target:
+            null,
+
+        state:
+            "idle",
+
+        lastAttack:
+            0,
+
+        attackRunning:
+            false,
+
+        alive:
+            true
+
+    };
+
+
+    units.push(
+        unit
+    );
+
+
+    positionUnit(
+        unit
+    );
+
+
+    showMessage(
+        "SUPERMAN ĐÃ ĐƯỢC TRIỆU HỒI!"
+    );
+
+
+    /*
+       Nếu quái đã xuất hiện,
+       Superman lập tức tìm quái.
+    */
+
+    findTarget(
+        unit
+    );
+
+}
+
+
+/* =====================================================
+   ĐÚNG NÚT SUPERMAN
+===================================================== */
+
+document
+    .getElementById(
+        "supermanCard"
+    )
+    .addEventListener(
+        "click",
+        summonSuperman
+    );
+
+
+/* =====================================================
+   VỊ TRÍ SUPERMAN
+===================================================== */
+
+function positionUnit(
+    unit
+){
+
+    unit.element.style.left =
+        unit.x + "px";
+
+    unit.element.style.top =
+        unit.y + "px";
+
+}
+
+
+/* =====================================================
+   TÌM QUÁI GẦN NHẤT
+===================================================== */
+
+function findTarget(
+    unit
+){
+
+    if(
+        !unit.alive
+    ){
+
+        return;
+
+    }
+
+
+    let closest =
+        null;
+
+    let closestDistance =
+        Infinity;
+
+
+    enemies.forEach(
+        function(enemy){
+
+            if(
+                !enemy.alive
+            ){
+
+                return;
+
+            }
+
+
+            const dx =
+                enemy.x -
+                unit.x;
+
+            const dy =
+                enemy.y -
+                unit.y;
+
+
+            const distance =
+                Math.sqrt(
+                    dx * dx +
+                    dy * dy
+                );
+
+
+            if(
+                distance <
+                closestDistance
+            ){
+
+                closestDistance =
+                    distance;
+
+                closest =
+                    enemy;
+
+            }
+
+        }
+    );
+
+
+    unit.target =
+        closest;
+
+
+    if(
+        closest
+    ){
+
+        unit.state =
+            "fly";
+
+        unit.element.classList.remove(
+            "attack"
+        );
+
+        unit.element.classList.add(
+            "fly"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DI CHUYỂN SUPERMAN
+===================================================== */
+
+function updateUnits(
+    timestamp
+){
+
+    units.forEach(
+        function(unit){
+
+            if(
+                !unit.alive
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                !unit.target ||
+                !unit.target.alive
+            ){
+
+                findTarget(
+                    unit
+                );
+
+                return;
+
+            }
+
+
+            const target =
+                unit.target;
+
+
+            const dx =
+                target.x -
+                unit.x;
+
+            const dy =
+                target.y -
+                unit.y;
+
+
+            const distance =
+                Math.sqrt(
+                    dx * dx +
+                    dy * dy
+                );
+
+
+            /*
+               CÒN XA:
+               BAY TỚI.
+            */
+
+            if(
+                distance >
+                CONFIG.ATTACK_DISTANCE
+            ){
+
+                unit.state =
+                    "fly";
+
+
+                unit.element.classList.remove(
+                    "attack"
+                );
+
+                unit.element.classList.add(
+                    "fly"
+                );
+
+
+                const speed =
+                    2.4;
+
+
+                const moveX =
+                    dx /
+                    distance *
+                    speed;
+
+
+                const moveY =
+                    dy /
+                    distance *
+                    speed;
+
+
+                unit.x +=
+                    moveX;
+
+                unit.y +=
+                    moveY;
+
+
+                /*
+                   Không cho bay ra ngoài map.
+                */
+
+                unit.x =
+                    Math.max(
+                        35,
+                        Math.min(
+                            battleField.clientWidth - 35,
+                            unit.x
+                        )
+                    );
+
+
+                unit.y =
+                    Math.max(
+                        55,
+                        Math.min(
+                            battleField.clientHeight - 120,
+                            unit.y
+                        )
+                    );
+
+
+                positionUnit(
+                    unit
+                );
+
+                return;
+
+            }
+
+
+            /*
+               ĐÃ TỚI QUÁI:
+               ĐẤM.
+            */
+
+            unit.state =
+                "attack";
+
+
+            unit.element.classList.remove(
+                "fly"
+            );
+
+
+            if(
+                timestamp -
+                unit.lastAttack >=
+                CONFIG.ATTACK_INTERVAL
+            ){
+
+                attackEnemy(
+                    unit,
+                    target
+                );
+
+                unit.lastAttack =
+                    timestamp;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ĐÁNH QUÁI
+===================================================== */
+
+function attackEnemy(
+    unit,
+    enemy
+){
+
+    if(
+        !enemy.alive ||
+        unit.attackRunning
+    ){
+
+        return;
+
+    }
+
+
+    unit.attackRunning =
+        true;
+
+
+    /*
+       Xác định hướng.
+    */
+
+    if(
+        enemy.x <
+        unit.x
+    ){
+
+        unit.element.style.transform =
+            "translate(-50%,-50%) scale(-.24,.24)";
+
+    }
+    else{
+
+        unit.element.style.transform =
+            "translate(-50%,-50%) scale(.24,.24)";
+
+    }
+
+
+    unit.element.classList.remove(
+        "fly"
+    );
+
+
+    /*
+       Ép animation chạy lại
+    */
+
+    void unit.element.offsetWidth;
+
+
+    unit.element.classList.add(
+        "attack"
+    );
+
+
+    /*
+       Đợi 150ms rồi gây damage,
+       để damage rơi vào lúc Superman đấm.
+    */
+
+    setTimeout(
+        function(){
+
+            if(
+                enemy.alive
+            ){
+
+                damageEnemy(
+                    enemy,
+                    CONFIG.SUPERMAN_DAMAGE,
+                    unit
+                );
+
+            }
+
+        },
+        170
+    );
+
+
+    /*
+       Kết thúc animation
+    */
+
+    setTimeout(
+        function(){
+
+            unit.attackRunning =
+                false;
+
+
+            unit.element.classList.remove(
+                "attack"
+            );
+
+
+            unit.element.classList.add(
+                "fly"
+            );
+
+
+        },
+        440
+    );
+
+}
+
+
+/* =====================================================
+   DAMAGE QUÁI
+===================================================== */
+
+function damageEnemy(
+    enemy,
+    damage,
+    unit
+){
+
+    if(
+        !enemy.alive
+    ){
+
+        return;
+
+    }
+
+
+    enemy.hp -=
+        damage;
+
+
+    if(
+        enemy.hp <
+        0
+    ){
+
+        enemy.hp =
+            0;
+
+    }
+
+
+    const percent =
+        enemy.hp /
+        enemy.maxHp *
+        100;
+
+
+    enemy.hpBar.style.width =
+        percent + "%";
+
+
+    createDamage(
+        enemy.x,
+        enemy.y,
+        damage
+    );
+
+
+    if(
+        enemy.hp <= 0
+    ){
+
+        killEnemy(
+            enemy
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DAMAGE TEXT
+===================================================== */
+
+function createDamage(
+    x,
+    y,
+    damage
+){
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "damage";
+
+
+    element.textContent =
+        "-" +
+        damage;
+
+
+    element.style.left =
+        x + "px";
+
+    element.style.top =
+        y + "px";
+
+
+    damageLayer.appendChild(
+        element
+    );
+
+
+    setTimeout(
+        function(){
+
+            element.remove();
+
+        },
+        600
+    );
+
+}
+
+
+const damageLayer =
+    document.getElementById(
+        "damageLayer"
+    );
+
+
+/* =====================================================
+   TẠO QUÁI
+===================================================== */
+
+function spawnEnemy(){
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "enemy";
+
+
+    element.innerHTML = `
+
+        <div class="enemy-hp">
+
+            <div
+                class="enemy-hp-bar">
+            </div>
+
+        </div>
+
+        <img
+            src="./quai1.png"
+            alt="Quái">
+
+        <div class="enemy-name">
+            QUÁI
+        </div>
+
+    `;
+
+
+    enemiesLayer.appendChild(
+        element
+    );
+
+
+    const enemy = {
+
+        id:
+            nextEnemyId++,
+
+        element:
+            element,
+
+        hp:
+            CONFIG.ENEMY_HP,
+
+        maxHp:
+            CONFIG.ENEMY_HP,
+
+        x:
+            battleField.clientWidth -
+            140,
+
+        y:
+            battleField.clientHeight *
+            .52,
+
+        alive:
+            true,
+
+        hpBar:
+            element.querySelector(
+                ".enemy-hp-bar"
+            ),
+
+        state:
+            "moving"
+
+    };
+
+
+    enemies.push(
+        enemy
+    );
+
+
+    positionEnemy(
+        enemy
+    );
+
+
+    showMessage(
+        "QUÁI ĐÃ XUẤT HIỆN!"
+    );
+
+
+    /*
+       Superman đang có trên map
+       sẽ tìm mục tiêu.
+    */
+
+    units.forEach(
+        function(unit){
+
+            if(
+                unit.alive &&
+                !unit.target
+            ){
+
+                findTarget(
+                    unit
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   VỊ TRÍ QUÁI
+===================================================== */
+
+function positionEnemy(
+    enemy
+){
+
+    enemy.element.style.left =
+        enemy.x + "px";
+
+    enemy.element.style.top =
+        enemy.y + "px";
+
+}
+
+
+/* =====================================================
+   DI CHUYỂN QUÁI
+===================================================== */
+
+function updateEnemies(){
+
+    enemies.forEach(
+        function(enemy){
+
+            if(
+                !enemy.alive
+            ){
+
+                return;
+
+            }
+
+
+            /*
+               Nếu đang bị Superman áp sát,
+               đứng lại.
+            */
+
+            const attacker =
+                units.find(
+                    function(unit){
+
+                        return (
+                            unit.alive &&
+                            unit.target ===
+                            enemy
+                        );
+
+                    }
+                );
+
+
+            if(
+                attacker
+            ){
+
+                const dx =
+                    enemy.x -
+                    attacker.x;
+
+                const dy =
+                    enemy.y -
+                    attacker.y;
+
+                const distance =
+                    Math.sqrt(
+                        dx * dx +
+                        dy * dy
+                    );
+
+
+                if(
+                    distance <=
+                    CONFIG.ATTACK_DISTANCE + 25
+                ){
+
+                    return;
+
+                }
+
+            }
+
+
+            /*
+               Quái tiến về phía tháp phải.
+            */
+
+            enemy.x -=
+                0.75;
+
+
+            positionEnemy(
+                enemy
+            );
+
+
+            /*
+               Chạm vùng tháp:
+               làm tháp phải mất HP.
+            */
+
+            const towerPoint =
+                battleField.clientWidth -
+                150;
+
+
+            if(
+                enemy.x <=
+                towerPoint
+            ){
+
+                damageTower(
+                    "right",
+                    1
+                );
+
+                killEnemy(
+                    enemy
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   QUÁI CHẾT
+===================================================== */
+
+function killEnemy(
+    enemy
+){
+
+    if(
+        !enemy.alive
+    ){
+
+        return;
+
+    }
+
+
+    enemy.alive =
+        false;
+
+
+    enemy.element.remove();
+
+
+    gold += 50;
+
+    updateGold();
+
+
+    /*
+       Superman tìm mục tiêu mới.
+    */
+
+    units.forEach(
+        function(unit){
+
+            if(
+                unit.alive
+            ){
+
+                unit.target =
+                    null;
+
+                findTarget(
+                    unit
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   TOWER HP
+===================================================== */
+
+let towerLeftHP =
+    100;
+
+let towerRightHP =
+    100;
+
+
+function damageTower(
+    side,
+    amount
+){
+
+    if(
+        side ===
+        "right"
+    ){
+
+        towerRightHP -=
+            amount;
+
+
+        if(
+            towerRightHP <
+            0
+        ){
+
+            towerRightHP =
+                0;
+
+        }
+
+
+        document
+            .getElementById(
+                "towerHpRight"
+            )
+            .style.width =
+            towerRightHP +
+            "%";
+
+
+        if(
+            towerRightHP <=
+            0
+        ){
+
+            showMessage(
+                "THÁP 2 ĐÃ BỊ PHÁ!"
+            );
+
+        }
+
+    }
+
+    else{
+
+        towerLeftHP -=
+            amount;
+
+
+        if(
+            towerLeftHP <
+            0
+        ){
+
+            towerLeftHP =
+                0;
+
+        }
+
+
+        document
+            .getElementById(
+                "towerHpLeft"
+            )
+            .style.width =
+            towerLeftHP +
+            "%";
+
+    }
+
+}
+
+
+/* =====================================================
+   GAME LOOP
+===================================================== */
+
+let lastTime =
+    performance.now();
+
+
+function gameLoop(
+    timestamp
+){
+
+    updateUnits(
+        timestamp
+    );
+
+    updateEnemies();
+
+    /*
+       Năng lượng hồi chậm.
+    */
+
+    if(
+        energy <
+        CONFIG.ENERGY_MAX
+    ){
+
+        energy +=
+            0.025;
+
+        if(
+            energy >
+            CONFIG.ENERGY_MAX
+        ){
+
+            energy =
+                CONFIG.ENERGY_MAX;
+
+        }
+
+        updateEnergy();
+
+    }
+
+
+    lastTime =
+        timestamp;
+
+
+    requestAnimationFrame(
+        gameLoop
+    );
+
+}
+
+
+/* =====================================================
+   QUÁI XUẤT HIỆN SAU 5 GIÂY
+===================================================== */
+
+setTimeout(
+    function(){
+
+        spawnEnemy();
+
+    },
+    CONFIG.ENEMY_SPAWN_DELAY
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+updateEnergy();
+
+updateGold();
+
+scaleGame();
+
+requestAnimationFrame(
+    gameLoop
+);
+
+</script>
+
+</body>
+</html>
