@@ -1,1182 +1,445 @@
-ANIME DORADO — Giao diện Game Web
-
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
-
-<title>ANIME DORADO</title>
-
-<style>
-
-/* ==================================================
-   RESET
-================================================== */
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
-}
-
-html,
-body{
-
-    width:100%;
-    height:100%;
-
-    overflow:hidden;
-
-    background:#000;
-
-}
-
-body{
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    user-select:none;
-
-}
-
-
-/* ==================================================
-   APP
-================================================== */
-
-#app{
-
-    position:fixed;
-
-    inset:0;
-
-    overflow:hidden;
-
-    background:#000;
-
-}
-
-
-/* ==================================================
-   SCREEN
-================================================== */
-
-.screen{
-
-    position:absolute;
-
-    inset:0;
-
-    display:none;
-
-    overflow:hidden;
-
-}
-
-.screen.active{
-
-    display:block;
-
-}
-
-
-/* ==================================================
-   GAME FRAME
-================================================== */
-
-.game-frame{
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:1536px;
-    height:864px;
-
-    transform:
-        translate(-50%,-50%)
-        scale(1);
-
-    transform-origin:center center;
-
-}
-
-
-/* ==================================================
-   BACKGROUND
-================================================== */
-
-#gameBackground{
-
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:1536px;
-    height:864px;
-
-    display:block;
-
-    object-fit:fill;
-
-    user-select:none;
-
-    -webkit-user-drag:none;
-
-}
-
-
-/* ==================================================
-   BUTTON LAYER
-================================================== */
-
-#buttonLayer{
-
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:1536px;
-    height:864px;
-
-    pointer-events:none;
-
-}
-
-
-/* ==================================================
-   NÚT ẨN
-================================================== */
-
-.game-button{
-
-    position:absolute;
-
-    border:none;
-
-    background:transparent;
-
-    border-radius:18px;
-
-    outline:none;
-
-    cursor:pointer;
-
-    pointer-events:auto;
-
-    opacity:1;
-
-}
-
-
-/*
-   Không hiển thị màu khi chạm.
-   Nút hoàn toàn trong suốt.
-*/
-
-.game-button:active{
-
-    background:transparent;
-
-    box-shadow:none;
-
-}
-
-
-/* ==================================================
-   POSITIONS
-================================================== */
-
-/* Hồ sơ */
-
-.btn-profile{
-
-    left:18px;
-    top:15px;
-
-    width:430px;
-    height:130px;
-
-}
-
-
-/* Vàng */
-
-.btn-gold{
-
-    left:565px;
-    top:8px;
-
-    width:285px;
-    height:75px;
-
-}
-
-
-/* Ruby */
-
-.btn-ruby{
-
-    left:875px;
-    top:8px;
-
-    width:275px;
-    height:75px;
-
-}
-
-
-/* Lập nhóm */
-
-.btn-lapnhom{
-
-    left:35px;
-    bottom:8px;
-
-    width:145px;
-    height:125px;
-
-}
-
-
-/* Nâng cấp */
-
-.btn-nangcap{
-
-    left:245px;
-    bottom:8px;
-
-    width:145px;
-    height:125px;
-
-}
-
-
-/* Rút nhân vật */
-
-.btn-rutnhanvat{
-
-    left:450px;
-    bottom:8px;
-
-    width:160px;
-    height:125px;
-
-}
-
-
-/* Cửa hàng */
-
-.btn-cuahang{
-
-    left:650px;
-    bottom:8px;
-
-    width:160px;
-    height:125px;
-
-}
-
-
-/* Bắt đầu */
-
-.btn-batdau{
-
-    right:0;
-    bottom:0;
-
-    width:430px;
-    height:175px;
-
-    border-radius:
-        55px 0 0 0;
-
-}
-
-
-/* ==================================================
-   404
-================================================== */
-
-.error-screen{
-
-    position:absolute;
-
-    inset:0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #263b5c 0%,
-            #101827 55%,
-            #020408 100%
-        );
-
-    color:white;
-
-}
-
-
-.error-box{
-
-    width:min(
-        520px,
-        88vw
-    );
-
-    padding:32px;
-
-    border:
-        1px solid
-        rgba(255,215,100,.35);
-
-    border-radius:20px;
-
-    background:
-        rgba(0,0,0,.45);
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.55);
-
-}
-
-
-.error-box h1{
-
-    font-size:56px;
-
-    color:#ffd65a;
-
-    margin-bottom:8px;
-
-}
-
-
-.error-box h2{
-
-    font-size:20px;
-
-    color:white;
-
-    margin-bottom:12px;
-
-}
-
-
-.error-box p{
-
-    color:#bbc4d2;
-
-    line-height:1.5;
-
-}
-
-
-.back-button{
-
-    margin-top:22px;
-
-    width:180px;
-    height:48px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #b8790a,
-            #ffd65a
-        );
-
-    color:#1b1304;
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-}
-
-
-/* ==================================================
-   MOBILE SCALE
-================================================== */
-
-@media (orientation:landscape){
-
-    .game-frame{
-
-        transform:
-            translate(-50%,-50%)
-            scale(
-                min(
-                    100vw / 1536,
-                    100vh / 864
-                )
-            );
-
-    }
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ANIME DORADO</title>
+    <style>
+        /* ==================================================
+           RESET
+        ================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            user-select: none;
+        }
+
+        /* ==================================================
+           APP
+        ================================================== */
+        #app {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* ==================================================
+           SCREEN
+        ================================================== */
+        .screen {
+            position: absolute;
+            inset: 0;
+            display: none;
+            overflow: hidden;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* ==================================================
+           GAME FRAME
+        ================================================== */
+        .game-frame {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 1536px;
+            height: 864px;
+            transform: translate(-50%, -50%) scale(1);
+            transform-origin: center center;
+        }
+
+        /* ==================================================
+           BACKGROUND
+        ================================================== */
+        #gameBackground {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1536px;
+            height: 864px;
+            display: block;
+            object-fit: fill;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* ==================================================
+           BUTTON LAYER
+        ================================================== */
+        #buttonLayer {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1536px;
+            height: 864px;
+            pointer-events: none;
+        }
+
+        /* ==================================================
+           NÚT ẨN
+        ================================================== */
+        .game-button {
+            position: absolute;
+            border: none;
+            background: transparent;
+            border-radius: 18px;
+            outline: none;
+            cursor: pointer;
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .game-button:active {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        /* ==================================================
+           POSITIONS
+        ================================================== */
+        .btn-profile {
+            left: 18px;
+            top: 15px;
+            width: 430px;
+            height: 130px;
+        }
+
+        .btn-gold {
+            left: 565px;
+            top: 8px;
+            width: 285px;
+            height: 75px;
+        }
+
+        .btn-ruby {
+            left: 875px;
+            top: 8px;
+            width: 275px;
+            height: 75px;
+        }
+
+        .btn-lapnhom {
+            left: 35px;
+            bottom: 8px;
+            width: 145px;
+            height: 125px;
+        }
+
+        .btn-nangcap {
+            left: 245px;
+            bottom: 8px;
+            width: 145px;
+            height: 125px;
+        }
+
+        .btn-rutnhanvat {
+            left: 450px;
+            bottom: 8px;
+            width: 160px;
+            height: 125px;
+        }
+
+        .btn-cuahang {
+            left: 650px;
+            bottom: 8px;
+            width: 160px;
+            height: 125px;
+        }
+
+        .btn-batdau {
+            right: 0;
+            bottom: 0;
+            width: 430px;
+            height: 175px;
+            border-radius: 55px 0 0 0;
+        }
+
+        /* ==================================================
+           404
+        ================================================== */
+        .error-screen {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #263b5c 0%, #101827 55%, #020408 100%);
+            color: white;
+        }
+
+        .error-box {
+            width: min(520px, 88vw);
+            padding: 32px;
+            border: 1px solid rgba(255, 215, 100, 0.35);
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.45);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+        }
+
+        .error-box h1 {
+            font-size: 56px;
+            color: #ffd65a;
+            margin-bottom: 8px;
+        }
+
+        .error-box h2 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .error-box p {
+            color: #bbc4d2;
+            line-height: 1.5;
+        }
+
+        .back-button {
+            margin-top: 22px;
+            width: 180px;
+            height: 48px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #b8790a, #ffd65a);
+            color: #1b1304;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* ==================================================
+           MOBILE SCALE
+        ================================================== */
+        @media (orientation: landscape) {
+            .game-frame {
+                transform: translate(-50%, -50%) scale(min(100vw / 1536, 100vh / 864));
+            }
+        }
+    </style>
 </head>
-
-
 <body>
-
-
-<div id="app">
-
-
-    <!-- =================================================
-         HOME
-    ================================================= -->
-
-    <section
-        id="homeScreen"
-        class="screen active">
-
-
-        <div
-            id="gameFrame"
-            class="game-frame">
-
-
-            <!-- NỀN -->
-
-            <img
-                id="gameBackground"
-                src="./nengame.png"
-                alt="ANIME DORADO">
-
-
-            <!-- =================================================
-                 VÙNG NÚT ẨN
-            ================================================= -->
-
-            <div
-                id="buttonLayer">
-
-
-                <!-- HỒ SƠ -->
-
-                <button
-                    class="game-button btn-profile"
-                    data-route="profile"
-                    aria-label="Hồ sơ">
-                </button>
-
-
-                <!-- VÀNG -->
-
-                <button
-                    class="game-button btn-gold"
-                    data-route="gold"
-                    aria-label="Vàng">
-                </button>
-
-
-                <!-- RUBY -->
-
-                <button
-                    class="game-button btn-ruby"
-                    data-route="ruby"
-                    aria-label="Ruby">
-                </button>
-
-
-                <!-- LẬP NHÓM -->
-
-                <button
-                    class="game-button btn-lapnhom"
-                    data-route="lapnhom"
-                    aria-label="Lập nhóm">
-                </button>
-
-
-                <!-- NÂNG CẤP -->
-
-                <button
-                    class="game-button btn-nangcap"
-                    data-route="nangcap"
-                    aria-label="Nâng cấp">
-                </button>
-
-
-                <!-- RÚT NHÂN VẬT -->
-
-                <button
-                    class="game-button btn-rutnhanvat"
-                    data-route="rutnhanvat"
-                    aria-label="Rút nhân vật">
-                </button>
-
-
-                <!-- CỬA HÀNG -->
-
-                <button
-                    class="game-button btn-cuahang"
-                    data-route="cuahang"
-                    aria-label="Cửa hàng">
-                </button>
-
-
-                <!-- BẮT ĐẦU -->
-
-                <button
-                    class="game-button btn-batdau"
-                    data-route="batdau"
-                    aria-label="Bắt đầu">
-                </button>
-
-
+    <div id="app">
+        <section id="homeScreen" class="screen active">
+            <div id="gameFrame" class="game-frame">
+                <img id="gameBackground" src="./nengame.png" alt="ANIME DORADO">
+                <div id="buttonLayer">
+                    <button class="game-button btn-profile" data-route="profile" aria-label="Hồ sơ"></button>
+                    <button class="game-button btn-gold" data-route="gold" aria-label="Vàng"></button>
+                    <button class="game-button btn-ruby" data-route="ruby" aria-label="Ruby"></button>
+                    <button class="game-button btn-lapnhom" data-route="lapnhom" aria-label="Lập nhóm"></button>
+                    <button class="game-button btn-nangcap" data-route="nangcap" aria-label="Nâng cấp"></button>
+                    <button class="game-button btn-rutnhanvat" data-route="rutnhanvat" aria-label="Rút nhân vật"></button>
+                    <button class="game-button btn-cuahang" data-route="cuahang" aria-label="Cửa hàng"></button>
+                    <button class="game-button btn-batdau" data-route="batdau" aria-label="Bắt đầu"></button>
+                </div>
             </div>
+        </section>
+    </div>
 
-        </div>
+    <script>
+        const DESIGN_WIDTH = 1536;
+        const DESIGN_HEIGHT = 864;
 
-    </section>
+        function scaleGame() {
+            const frame = document.getElementById("gameFrame");
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            const scale = Math.min(screenWidth / DESIGN_WIDTH, screenHeight / DESIGN_HEIGHT);
+            frame.style.transform = "translate(-50%,-50%) scale(" + scale + ")";
+        }
 
+        // Lấy đường dẫn gốc (base path) tùy môi trường
+        function getBasePath() {
+            // Nếu mở trực tiếp bằng file:// thì dùng đường dẫn tương đối
+            if (window.location.protocol === 'file:') {
+                return './';
+            }
+            const path = window.location.pathname;
+            const parts = path.split('/').filter(p => p !== '');
+            // Giả sử repo nằm ở /tên-repo/
+            if (parts.length >= 1) {
+                return '/' + parts[0] + '/';
+            }
+            return '/';
+        }
 
-</div>
+        // Hiển thị trang 404 (nếu file không tồn tại)
+        function show404(route) {
+            // Ẩn tất cả các screen
+            document.querySelectorAll(".screen").forEach(function(screen) {
+                screen.classList.remove("active");
+            });
 
+            let old404 = document.getElementById("error404");
+            if (old404) old404.remove();
 
-<script>
+            const error = document.createElement("section");
+            error.id = "error404";
+            error.className = "screen active";
+            error.innerHTML = `
+                <div class="error-screen">
+                    <div class="error-box">
+                        <h1>404</h1>
+                        <h2>Không tìm thấy trang</h2>
+                        <p>Trang <b>/${route}</b> chưa được tạo.<br><br>
+                           Hãy tạo trang tương ứng để mở chức năng này.</p>
+                        <button class="back-button" id="backHomeButton">← QUAY LẠI</button>
+                    </div>
+                </div>
+            `;
 
-/* ==================================================
-   KÍCH THƯỚC THIẾT KẾ
-================================================== */
-
-const DESIGN_WIDTH = 1536;
-
-const DESIGN_HEIGHT = 864;
-
-
-/* ==================================================
-   SCALE
-================================================== */
-
-function scaleGame(){
-
-    const frame =
-        document.getElementById(
-            "gameFrame"
-        );
-
-
-    const screenWidth =
-        window.innerWidth;
-
-
-    const screenHeight =
-        window.innerHeight;
-
-
-    const scale =
-        Math.min(
-
-            screenWidth /
-            DESIGN_WIDTH,
-
-            screenHeight /
-            DESIGN_HEIGHT
-
-        );
-
-
-    frame.style.transform =
-        "translate(-50%,-50%) " +
-        "scale(" +
-        scale +
-        ")";
-
-}
-
-
-/* ==================================================
-   TẠO 404
-================================================== */
-
-function show404(route){
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(function(screen){
-
-            screen.classList.remove("active");
-
-        });
-
-
-    let old404 =
-        document.getElementById(
-            "error404"
-        );
-
-
-    if(old404){
-
-        old404.remove();
-
-    }
-
-
-    const error =
-        document.createElement(
-            "section"
-        );
-
-
-    error.id =
-        "error404";
-
-
-    error.className =
-        "screen active";
-
-
-    error.innerHTML = `
-
-        <div class="error-screen">
-
-            <div class="error-box">
-
-                <h1>404</h1>
-
-                <h2>
-                    Không tìm thấy trang
-                </h2>
-
-                <p>
-                    Trang
-                    <b>/${route}</b>
-                    chưa được tạo.
-                    <br><br>
-                    Hãy tạo trang tương ứng
-                    để mở chức năng này.
-                </p>
-
-                <button
-                    class="back-button"
-                    id="backHomeButton">
-
-                    ← QUAY LẠI
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    document
-        .getElementById("app")
-        .appendChild(error);
-
-
-    document
-        .getElementById("backHomeButton")
-        .addEventListener(
-            "click",
-            function(){
-
+            document.getElementById("app").appendChild(error);
+            document.getElementById("backHomeButton").addEventListener("click", function() {
                 goHome();
+            });
 
+            scaleGame();
+        }
+
+        // Quay về trang chủ
+        function goHome() {
+            history.pushState({}, "", getBasePath());
+            document.querySelectorAll(".screen").forEach(function(screen) {
+                screen.classList.remove("active");
+            });
+            const home = document.getElementById("homeScreen");
+            home.classList.add("active");
+            const error = document.getElementById("error404");
+            if (error) error.remove();
+            scaleGame();
+        }
+
+        // Mở route bằng fetch (không reload) hoặc fallback chuyển hướng
+        async function openRoute(route) {
+            const base = getBasePath();
+            const file = base + route + '.html';
+
+            // Thử tải nội dung bằng fetch
+            try {
+                const response = await fetch(file, { method: 'GET', cache: 'no-store' });
+
+                // Nếu file tồn tại (response.ok), nhúng nội dung vào dynamicPage
+                if (response.ok) {
+                    const html = await response.text();
+
+                    // Cập nhật URL mà không reload
+                    history.pushState({}, "", base + route);
+
+                    // Ẩn tất cả các screen
+                    document.querySelectorAll(".screen").forEach(function(screen) {
+                        screen.classList.remove("active");
+                    });
+
+                    // Tạo hoặc cập nhật dynamicPage
+                    let page = document.getElementById("dynamicPage");
+                    if (!page) {
+                        page = document.createElement("section");
+                        page.id = "dynamicPage";
+                        page.className = "screen";
+                        document.getElementById("app").appendChild(page);
+                    }
+                    page.innerHTML = html;
+                    page.classList.add("active");
+                    scaleGame();
+                } else {
+                    // Nếu file không tồn tại, hiển thị 404
+                    show404(route);
+                    history.pushState({}, "", base + route);
+                }
+            } catch (error) {
+                // Nếu fetch lỗi (do CORS hoặc file://), chuyển hướng trực tiếp
+                window.location.href = file;
             }
-        );
+        }
 
+        // Xử lý khi người dùng bấm nút Back/Forward
+        window.addEventListener("popstate", function() {
+            const base = getBasePath();
+            const current = window.location.pathname;
 
-    scaleGame();
+            // Nếu đang ở trang chủ
+            if (current === base || current === base.slice(0, -1)) {
+                goHome();
+                return;
+            }
 
-}
+            // Lấy route từ URL
+            let route = current.replace(base, '').replace(/^\/+/, '').replace(/\/+$/, '');
+            if (!route) {
+                goHome();
+                return;
+            }
 
-
-/* ==================================================
-   VỀ HOME
-================================================== */
-
-function goHome(){
-
-    history.pushState(
-        {},
-        "",
-        getBasePath()
-    );
-
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(function(screen){
-
-            screen.classList.remove("active");
-
+            // Mở route mà không thay đổi URL lần nữa
+            openRouteWithoutChangingURL(route);
         });
 
-
-    const home =
-        document.getElementById(
-            "homeScreen"
-        );
-
-
-    home.classList.add("active");
-
-
-    const error =
-        document.getElementById(
-            "error404"
-        );
-
-
-    if(error){
-
-        error.remove();
-
-    }
-
-
-    scaleGame();
-
-}
-
-
-/* ==================================================
-   BASE PATH GITHUB PAGES
-================================================== */
-
-function getBasePath(){
-
-    const path =
-        window.location.pathname;
-
-
-    const parts =
-        path.split("/");
-
-
-    /*
-       Ví dụ:
-
-       /AnimeDorado/
-       
-       sẽ giữ lại:
-       
-       /AnimeDorado/
-    */
-
-    if(
-        parts.length >= 3 &&
-        parts[1] !== ""
-    ){
-
-        return "/" + parts[1] + "/";
-
-    }
-
-
-    return "/";
-
-}
-
-
-/* ==================================================
-   TÌM TRANG
-================================================== */
-
-async function openRoute(route){
-
-    /*
-       Trang phải có dạng:
-
-       /lapnhom.html
-       /nangcap.html
-       /rutnhanvat.html
-       /cuahang.html
-       /batdau.html
-
-       Không cần sửa nút.
-    */
-
-
-    const base =
-        getBasePath();
-
-
-    const file =
-        base +
-        route +
-        ".html";
-
-
-    try{
-
-        const response =
-            await fetch(
-                file,
-                {
-                    method:"GET",
-                    cache:"no-store"
-                }
-            );
-
-
-        /*
-           Không tồn tại
-        */
-
-        if(!response.ok){
-
-            show404(route);
-
-            history.pushState(
-                {},
-                "",
-                base + route
-            );
-
-            return;
-
-        }
-
-
-        /*
-           Đọc HTML
-        */
-
-        const html =
-            await response.text();
-
-
-        /*
-           Đổi URL nhưng KHÔNG reload
-        */
-
-        history.pushState(
-            {},
-            "",
-            base + route
-        );
-
-
-        /*
-           Tạo màn hình trang
-        */
-
-        document
-            .querySelectorAll(".screen")
-            .forEach(function(screen){
-
-                screen.classList.remove(
-                    "active"
-                );
-
-            });
-
-
-        let page =
-            document.getElementById(
-                "dynamicPage"
-            );
-
-
-        if(!page){
-
-            page =
-                document.createElement(
-                    "section"
-                );
-
-            page.id =
-                "dynamicPage";
-
-            page.className =
-                "screen active";
-
-            document
-                .getElementById("app")
-                .appendChild(page);
-
-        }
-
-
-        page.classList.add(
-            "active"
-        );
-
-
-        page.innerHTML =
-            html;
-
-
-        scaleGame();
-
-
-    }catch(error){
-
-        /*
-           Nếu file chưa tồn tại
-           hoặc fetch lỗi thì 404.
-        */
-
-        show404(route);
-
-
-        history.pushState(
-            {},
-            "",
-            base + route
-        );
-
-    }
-
-}
-
-
-/* ==================================================
-   NÚT ẨN
-================================================== */
-
-document
-    .querySelectorAll(".game-button")
-    .forEach(function(button){
-
-        button.addEventListener(
-            "click",
-            function(){
-
-                const route =
-                    button.dataset.route;
-
-
-                if(!route){
-
+        // Hàm mở route khi back/forward, không pushState
+        async function openRouteWithoutChangingURL(route) {
+            const base = getBasePath();
+            const file = base + route + '.html';
+
+            try {
+                const response = await fetch(file, { method: 'GET', cache: 'no-store' });
+                if (!response.ok) {
+                    show404(route);
                     return;
-
                 }
+                const html = await response.text();
 
+                document.querySelectorAll(".screen").forEach(function(screen) {
+                    screen.classList.remove("active");
+                });
 
-                openRoute(route);
-
+                let page = document.getElementById("dynamicPage");
+                if (!page) {
+                    page = document.createElement("section");
+                    page.id = "dynamicPage";
+                    page.className = "screen";
+                    document.getElementById("app").appendChild(page);
+                }
+                page.innerHTML = html;
+                page.classList.add("active");
+                scaleGame();
+            } catch (error) {
+                // Nếu fetch lỗi, chuyển hướng (dù ít xảy ra)
+                window.location.href = file;
             }
-        );
-
-    });
-
-
-/* ==================================================
-   BACK / FORWARD
-================================================== */
-
-window.addEventListener(
-    "popstate",
-    function(){
-
-        const base =
-            getBasePath();
-
-
-        const current =
-            window.location.pathname;
-
-
-        if(
-            current === base ||
-            current === base.slice(0,-1)
-        ){
-
-            goHome();
-
-            return;
-
         }
 
-
-        let route =
-            current
-            .replace(base,"")
-            .replace(/^\/+/,"")
-            .replace(/\/+$/,"");
-
-
-        if(!route){
-
-            goHome();
-
-            return;
-
-        }
-
-
-        openRouteWithoutChangingURL(
-            route
-        );
-
-    }
-);
-
-
-/* ==================================================
-   MỞ TRANG KHI NHẤN BACK/FORWARD
-   Không push URL lần nữa
-================================================== */
-
-async function openRouteWithoutChangingURL(route){
-
-    const base =
-        getBasePath();
-
-
-    const file =
-        base +
-        route +
-        ".html";
-
-
-    try{
-
-        const response =
-            await fetch(
-                file,
-                {
-                    method:"GET",
-                    cache:"no-store"
-                }
-            );
-
-
-        if(!response.ok){
-
-            show404(route);
-
-            return;
-
-        }
-
-
-        const html =
-            await response.text();
-
-
-        document
-            .querySelectorAll(".screen")
-            .forEach(function(screen){
-
-                screen.classList.remove(
-                    "active"
-                );
-
+        // Gán sự kiện click cho tất cả các nút ẩn
+        document.querySelectorAll(".game-button").forEach(function(button) {
+            button.addEventListener("click", function() {
+                const route = button.dataset.route;
+                if (!route) return;
+                openRoute(route);
             });
+        });
 
+        // Scale khi resize hoặc xoay màn hình
+        window.addEventListener("resize", scaleGame);
+        window.addEventListener("orientationchange", function() {
+            setTimeout(scaleGame, 250);
+        });
 
-        let page =
-            document.getElementById(
-                "dynamicPage"
-            );
-
-
-        if(!page){
-
-            page =
-                document.createElement(
-                    "section"
-                );
-
-            page.id =
-                "dynamicPage";
-
-            page.className =
-                "screen";
-
-
-            document
-                .getElementById("app")
-                .appendChild(page);
-
-        }
-
-
-        page.classList.add(
-            "active"
-        );
-
-
-        page.innerHTML =
-            html;
-
-
+        // Khởi tạo lần đầu
         scaleGame();
-
-
-    }catch(error){
-
-        show404(route);
-
-    }
-
-}
-
-
-/* ==================================================
-   SCALE
-================================================== */
-
-window.addEventListener(
-    "resize",
-    scaleGame
-);
-
-
-window.addEventListener(
-    "orientationchange",
-    function(){
-
-        setTimeout(
-            scaleGame,
-            250
-        );
-
-    }
-);
-
-
-/* ==================================================
-   START
-================================================== */
-
-scaleGame();
-
-</script>
-
+    </script>
 </body>
-
 </html>
