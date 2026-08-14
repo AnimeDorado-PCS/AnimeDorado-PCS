@@ -1,956 +1,3967 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1,
+             maximum-scale=1,
+             user-scalable=no"
+>
+
 <title>ANIME DORADO - TRẬN CHIẾN</title>
+
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
 }
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #000;
-    font-family: Arial, Helvetica, sans-serif;
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
 }
-body {
-    user-select: none;
+
+body{
+    user-select:none;
 }
-button {
-    font: inherit;
-    border: 0;
-    outline: 0;
+
+button{
+    border:0;
+    outline:0;
+    font:inherit;
 }
-#game {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    background: #000;
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+#game{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
 }
-#frame {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 1536px;
-    height: 864px;
-    transform: translate(-50%, -50%) scale(1);
-    transform-origin: center center;
+
+
+/* =========================================================
+   DESIGN FRAME
+========================================================= */
+
+#frame{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:1536px;
+    height:864px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transform-origin:center center;
+
 }
-#battleBackground {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 1536px;
-    height: 864px;
-    display: block;
-    object-fit: fill;
-    z-index: 0;
-    user-select: none;
-    -webkit-user-drag: none;
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+#battleBackground{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:864px;
+
+    display:block;
+
+    object-fit:fill;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+    z-index:0;
+
 }
-#battleArea {
-    position: absolute;
-    left: 0;
-    top: 76px;
-    width: 1536px;
-    height: 606px;
-    overflow: hidden;
-    z-index: 5;
+
+
+/* =========================================================
+   TOP UI
+========================================================= */
+
+#topUI{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:78px;
+
+    z-index:100;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:
+        10px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.74),
+            rgba(0,0,0,0)
+        );
+
 }
-#topUI {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 1536px;
-    height: 76px;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    padding: 10px 18px;
-    background: linear-gradient(180deg, rgba(0,0,0,.74), rgba(0,0,0,0));
+
+
+.waveBox{
+
+    min-width:190px;
+
+    padding:
+        9px 17px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.22);
+
+    border-radius:16px;
+
+    background:
+        rgba(0,0,0,.52);
+
+    color:#fff;
+
 }
-.waveBox {
-    min-width: 190px;
-    padding: 9px 17px;
-    border: 1px solid rgba(255,255,255,.22);
-    border-radius: 16px;
-    background: rgba(0,0,0,.52);
-    color: #fff;
-    box-shadow: 0 6px 15px rgba(0,0,0,.25);
+
+
+.waveSmall{
+
+    font-size:11px;
+
+    color:#9fe0aa;
+
+    font-weight:900;
+
 }
-.waveSmall {
-    font-size: 11px;
-    font-weight: 900;
-    color: #9fe0aa;
+
+
+.waveMain{
+
+    margin-top:3px;
+
+    font-size:20px;
+
+    font-weight:1000;
+
 }
-.waveMain {
-    margin-top: 3px;
-    font-size: 20px;
-    font-weight: 1000;
+
+
+.stageLabel{
+
+    margin-left:12px;
+
+    padding:
+        10px 15px;
+
+    border-radius:15px;
+
+    background:
+        rgba(0,0,0,.48);
+
+    border:
+        1px solid
+        rgba(255,214,90,.24);
+
+    color:#ffd65a;
+
+    font-size:13px;
+
+    font-weight:900;
+
 }
-.energyTop {
-    width: 245px;
-    margin-left: 16px;
+
+
+.energyTop{
+
+    width:245px;
+
+    margin-left:16px;
+
 }
-.energyText {
-    margin-bottom: 5px;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 900;
+
+
+.energyText{
+
+    margin-bottom:5px;
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:900;
+
 }
-.energyBarTop {
-    width: 100%;
-    height: 13px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,.16);
-    border-radius: 10px;
-    background: #131a23;
+
+
+.energyBarTop{
+
+    width:100%;
+
+    height:13px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    border-radius:10px;
+
+    background:#131a23;
+
 }
-.energyFillTop {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #547eff, #8bdcff);
-    transition: width .2s linear;
+
+
+.energyFillTop{
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #547eff,
+            #8bdcff
+        );
+
+    transition:
+        width .2s linear;
+
 }
-.goldBox {
-    min-width: 150px;
-    margin-left: auto;
-    padding: 10px 16px;
-    border: 1px solid rgba(255,214,90,.3);
-    border-radius: 16px;
-    background: rgba(0,0,0,.52);
-    color: #ffd65a;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 1000;
+
+
+.goldBox{
+
+    min-width:150px;
+
+    margin-left:auto;
+
+    padding:
+        10px 16px;
+
+    border:
+        1px solid
+        rgba(255,214,90,.3);
+
+    border-radius:16px;
+
+    background:
+        rgba(0,0,0,.52);
+
+    color:#ffd65a;
+
+    text-align:center;
+
+    font-size:15px;
+
+    font-weight:1000;
+
 }
-#lane {
-    position: absolute;
-    left: 158px;
-    right: 158px;
-    top: 285px;
-    height: 170px;
-    border-radius: 90px;
-    background: rgba(80,57,38,.12);
-    pointer-events: none;
-    z-index: 2;
+
+
+/* =========================================================
+   BATTLE AREA
+========================================================= */
+
+#battleArea{
+
+    position:absolute;
+
+    left:0;
+    top:78px;
+
+    width:1536px;
+    height:606px;
+
+    overflow:hidden;
+
+    z-index:5;
+
 }
-.tower {
-    position: absolute;
-    bottom: 93px;
-    width: 120px;
-    height: 150px;
-    z-index: 10;
-    border: 3px solid rgba(235,247,255,.94);
-    border-radius: 22px 22px 9px 9px;
-    background: linear-gradient(180deg, #879eac, #344d5a);
-    box-shadow: 0 15px 30px rgba(0,0,0,.4), inset 0 2px 0 rgba(255,255,255,.32);
+
+
+#lane{
+
+    position:absolute;
+
+    left:158px;
+
+    right:158px;
+
+    top:285px;
+
+    height:170px;
+
+    border-radius:90px;
+
+    background:
+        rgba(80,57,38,.12);
+
+    pointer-events:none;
+
 }
-.tower::before {
-    content: "";
-    position: absolute;
-    left: 12%;
-    right: 12%;
-    top: -38px;
-    height: 50px;
-    border: 3px solid rgba(235,247,255,.94);
-    border-radius: 20px 20px 8px 8px;
-    background: linear-gradient(180deg, #95afbb, #435b68);
+
+
+/* =========================================================
+   TOWERS
+========================================================= */
+
+.tower{
+
+    position:absolute;
+
+    bottom:93px;
+
+    width:120px;
+
+    height:150px;
+
+    z-index:10;
+
+    border:
+        3px solid
+        rgba(235,247,255,.94);
+
+    border-radius:
+        22px
+        22px
+        9px
+        9px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #879eac,
+            #344d5a
+        );
+
+    box-shadow:
+        0 15px 30px
+        rgba(0,0,0,.4),
+
+        inset
+        0 2px 0
+        rgba(255,255,255,.32);
+
 }
-.tower::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 60px;
-    border-radius: 18px 18px 0 0;
-    background: #17252e;
+
+
+.tower::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:12%;
+    right:12%;
+
+    top:-38px;
+
+    height:50px;
+
+    border:
+        3px solid
+        rgba(235,247,255,.94);
+
+    border-radius:
+        20px
+        20px
+        8px
+        8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #95afbb,
+            #435b68
+        );
+
 }
-.playerTower { left: 105px; }
-.enemyTower { right: 105px; }
-.towerHpWrap {
-    position: absolute;
-    left: 50%;
-    top: -20px;
-    transform: translateX(-50%);
-    width: 155px;
-    height: 11px;
-    padding: 1px;
-    border-radius: 10px;
-    background: #22090d;
+
+
+.tower::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:0;
+
+    transform:
+        translateX(-50%);
+
+    width:40px;
+
+    height:60px;
+
+    border-radius:
+        18px
+        18px
+        0
+        0;
+
+    background:#17252e;
+
 }
-.towerHpFill {
-    width: 100%;
-    height: 100%;
-    border-radius: 9px;
-    background: linear-gradient(90deg, #2ed64e, #a8ff58);
-    transition: width .18s linear;
+
+
+.playerTower{
+
+    left:105px;
+
 }
-#playerUnits, #enemyUnits {
-    position: absolute;
-    inset: 0;
-    z-index: 30;
-    pointer-events: none;
+
+
+.enemyTower{
+
+    right:105px;
+
 }
-.playerUnit {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 108px;
-    height: 124px;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+
+
+/* =========================================================
+   TOWER HP
+========================================================= */
+
+.towerHpWrap{
+
+    position:absolute;
+
+    left:50%;
+
+    top:-20px;
+
+    transform:
+        translateX(-50%);
+
+    width:155px;
+
+    height:11px;
+
+    padding:1px;
+
+    border-radius:10px;
+
+    background:#22090d;
+
 }
-.supermanSprite {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 384px;
-    height: 939px;
-    transform: translate(-50%, -50%) scale(.22);
-    transform-origin: center center;
-    background-repeat: no-repeat;
-    background-position: 0 0;
+
+
+.towerHpFill{
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2ed64e,
+            #a8ff58
+        );
+
+    transition:
+        width .18s linear;
+
 }
-.supermanIdle {
-    background-image: url("https://i.postimg.cc/VLTzTyt5/20260812-191849.png");
-    background-size: 1536px 939px;
+
+
+/* =========================================================
+   UNIT LAYERS
+========================================================= */
+
+#playerUnits,
+#enemyUnits{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:30;
+
+    pointer-events:none;
+
 }
-.supermanFly {
-    width: 384px;
-    height: 688px;
-    background-image: url("https://i.postimg.cc/7ZWX0Vpr/20260812-191835.png");
-    background-size: 1536px 688px;
-    animation: supermanFlyAnimation .6s steps(4) infinite;
+
+
+/* =========================================================
+   SUPERMAN CONTAINER
+========================================================= */
+
+.playerUnit{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:110px;
+
+    height:124px;
+
+    transform:
+        translate(-50%,-50%);
+
+    pointer-events:none;
+
 }
-@keyframes supermanFlyAnimation {
-    from { background-position: 0 0; }
-    to { background-position: -1536px 0; }
+
+
+/* =========================================================
+   SUPERMAN SPRITE
+========================================================= */
+
+.supermanSprite{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:384px;
+
+    height:939px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.22);
+
+    transform-origin:center center;
+
+    background-repeat:no-repeat;
+
+    background-position:0 0;
+
 }
-.supermanAttack {
-    width: 384px;
-    height: 939px;
-    background-image: url("https://i.postimg.cc/VLTzTyt5/20260812-191849.png");
-    background-size: 1536px 939px;
-    animation: supermanAttackAnimation .42s steps(4) 1;
+
+
+/* IDLE */
+
+.supermanIdle{
+
+    background-image:
+        url(
+            "https://i.postimg.cc/VLTzTyt5/20260812-191849.png"
+        );
+
+    background-size:
+        1536px 939px;
+
 }
-@keyframes supermanAttackAnimation {
-    from { background-position: 0 0; }
-    to { background-position: -1536px 0; }
+
+
+/* FLY */
+
+.supermanFly{
+
+    width:384px;
+
+    height:688px;
+
+    background-image:
+        url(
+            "https://i.postimg.cc/7ZWX0Vpr/20260812-191835.png"
+        );
+
+    background-size:
+        1536px 688px;
+
+    animation:
+        supermanFlyAnimation
+        .6s
+        steps(4)
+        infinite;
+
 }
-.enemyUnit {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 88px;
-    height: 100px;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+
+
+@keyframes supermanFlyAnimation{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:-1536px 0;
+    }
+
 }
-.enemyImage {
-    width: 88px;
-    height: 88px;
-    display: block;
-    object-fit: contain;
+
+
+/* ATTACK */
+
+.supermanAttack{
+
+    width:384px;
+
+    height:939px;
+
+    background-image:
+        url(
+            "https://i.postimg.cc/VLTzTyt5/20260812-191849.png"
+        );
+
+    background-size:
+        1536px 939px;
+
+    animation:
+        supermanAttackAnimation
+        .4s
+        steps(4)
+        1;
+
 }
-.enemyHpWrap {
-    position: absolute;
-    left: 50%;
-    top: -11px;
-    transform: translateX(-50%);
-    width: 82px;
-    height: 8px;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #25080d;
+
+
+@keyframes supermanAttackAnimation{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:-1536px 0;
+    }
+
 }
-.enemyHpFill {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #ff3030, #ff9a32);
-    transition: width .18s linear;
+
+
+/* =========================================================
+   ENEMY
+========================================================= */
+
+.enemyUnit{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:145px;
+
+    height:155px;
+
+    transform:
+        translate(-50%,-50%);
+
+    pointer-events:none;
+
 }
-.damage {
-    position: absolute;
-    z-index: 300;
-    pointer-events: none;
-    color: #ffd65a;
-    font-size: 28px;
-    font-weight: 1000;
-    text-shadow: 0 3px 7px #000;
-    animation: damageAnimation .55s ease-out forwards;
+
+
+.enemyImage{
+
+    width:145px;
+
+    height:145px;
+
+    object-fit:contain;
+
+    display:block;
+
 }
-@keyframes damageAnimation {
-    from { opacity: 1; transform: translateY(0) scale(.8); }
-    to { opacity: 0; transform: translateY(-55px) scale(1.12); }
+
+
+.enemyHpWrap{
+
+    position:absolute;
+
+    left:50%;
+
+    top:-15px;
+
+    transform:
+        translateX(-50%);
+
+    width:125px;
+
+    height:11px;
+
+    border-radius:9px;
+
+    overflow:hidden;
+
+    background:#25080d;
+
 }
-#summonBar {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 1536px;
-    height: 182px;
-    z-index: 150;
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    padding: 11px 18px;
-    background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.91));
+
+
+.enemyHpFill{
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff3030,
+            #ff9a32
+        );
+
+    transition:
+        width .18s linear;
+
 }
-.summonInfo {
-    width: 230px;
-    flex: 0 0 230px;
+
+
+/* =========================================================
+   UNIT COUNT
+========================================================= */
+
+#countPanel{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:178px;
+
+    transform:
+        translateX(-50%);
+
+    z-index:170;
+
+    display:flex;
+
+    gap:9px;
+
 }
-.summonInfoTitle {
-    margin-bottom: 5px;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 900;
+
+
+.countBox{
+
+    min-width:145px;
+
+    padding:
+        7px 12px;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    background:
+        rgba(0,0,0,.68);
+
+    color:#fff;
+
+    text-align:center;
+
+    font-size:10px;
+
+    font-weight:900;
+
 }
-.summonInfoBar {
-    width: 100%;
-    height: 14px;
-    overflow: hidden;
-    border-radius: 10px;
-    background: #121a23;
+
+
+.countBox strong{
+
+    margin-left:6px;
+
+    color:#ffd65a;
+
+    font-size:14px;
+
 }
-.summonInfoFill {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #527bff, #8be0ff);
-    transition: width .2s linear;
+
+
+.enemyCount strong{
+
+    color:#ff7777;
+
 }
-.summonCard {
-    position: relative;
-    width: 120px;
-    height: 140px;
-    flex: 0 0 120px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid rgba(255,214,90,.6);
-    border-radius: 15px;
-    background: linear-gradient(180deg, #80591d, #30200b);
+
+
+/* =========================================================
+   DAMAGE
+========================================================= */
+
+.damage{
+
+    position:absolute;
+
+    z-index:300;
+
+    pointer-events:none;
+
+    color:#ffd65a;
+
+    font-size:27px;
+
+    font-weight:1000;
+
+    text-shadow:
+        0 3px 7px #000;
+
+    animation:
+        damageAnimation
+        .55s
+        ease-out
+        forwards;
+
 }
-.summonCard:active { transform: scale(.96); }
-.summonCard img {
-    width: 100%;
-    height: 102px;
-    display: block;
-    object-fit: contain;
+
+
+@keyframes damageAnimation{
+
+    from{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(.8);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:
+            translateY(-55px)
+            scale(1.12);
+
+    }
+
 }
-.summonCost {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    z-index: 5;
-    padding: 4px 6px;
-    border-radius: 8px;
-    background: rgba(0,0,0,.78);
-    color: #ffd65a;
-    font-size: 10px;
-    font-weight: 900;
+
+
+/* =========================================================
+   SUMMON BAR
+========================================================= */
+
+#summonBar{
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:1536px;
+
+    height:178px;
+
+    z-index:150;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    padding:
+        11px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.03),
+            rgba(0,0,0,.91)
+        );
+
 }
-.summonName {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 5px;
-    color: #fff;
-    text-align: center;
-    font-size: 10px;
-    font-weight: 900;
+
+
+.summonInfo{
+
+    width:230px;
+
+    flex:0 0 230px;
+
 }
-.lockedCard {
-    cursor: not-allowed;
-    opacity: .52;
+
+
+.summonInfoTitle{
+
+    margin-bottom:5px;
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:900;
+
 }
-#message {
-    position: absolute;
-    left: 50%;
-    top: 44%;
-    transform: translate(-50%, -50%);
-    z-index: 400;
-    padding: 14px 22px;
-    border: 1px solid rgba(255,214,90,.4);
-    border-radius: 14px;
-    background: rgba(0,0,0,.84);
-    color: #ffd65a;
-    font-size: 14px;
-    font-weight: 900;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .18s;
+
+
+.summonInfoBar{
+
+    width:100%;
+
+    height:14px;
+
+    overflow:hidden;
+
+    border-radius:10px;
+
+    background:#121a23;
+
 }
-#message.show { opacity: 1; }
-#result {
-    position: absolute;
-    inset: 0;
-    z-index: 600;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,.75);
-    backdrop-filter: blur(5px);
+
+
+.summonInfoFill{
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #527bff,
+            #8be0ff
+        );
+
+    transition:
+        width .2s linear;
+
 }
-.resultBox {
-    width: min(450px, 90vw);
-    padding: 32px 24px;
-    border: 2px solid #ffd65a;
-    border-radius: 24px;
-    background: linear-gradient(180deg, #263e56, #111a24);
-    text-align: center;
-    color: #fff;
-    box-shadow: 0 20px 80px rgba(0,0,0,.6);
+
+
+.summonCard{
+
+    position:relative;
+
+    width:120px;
+
+    height:140px;
+
+    flex:0 0 120px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    border:
+        2px solid
+        rgba(255,214,90,.6);
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #80591d,
+            #30200b
+        );
+
 }
-.resultTitle {
-    color: #ffd65a;
-    font-size: clamp(40px, 10vw, 62px);
-    font-weight: 1000;
+
+
+.summonCard:active{
+
+    transform:scale(.96);
+
 }
-.resultText {
-    margin-top: 9px;
-    color: #cbd4df;
-    font-size: 14px;
+
+
+.summonCard img{
+
+    width:100%;
+
+    height:102px;
+
+    display:block;
+
+    object-fit:contain;
+
 }
-.resultButton {
-    margin-top: 22px;
-    min-width: 180px;
-    height: 50px;
-    border: 0;
-    border-radius: 13px;
-    background: linear-gradient(135deg, #b8790a, #ffd65a);
-    color: #1b1304;
-    font-weight: 900;
+
+
+.summonCost{
+
+    position:absolute;
+
+    right:5px;
+    top:5px;
+
+    z-index:5;
+
+    padding:
+        4px 6px;
+
+    border-radius:8px;
+
+    background:
+        rgba(0,0,0,.78);
+
+    color:#ffd65a;
+
+    font-size:10px;
+
+    font-weight:900;
+
 }
-@media(max-width:700px) {
-    #summonBar { height: 145px; padding: 6px; gap: 6px; }
-    .summonInfo { width: 105px; flex-basis: 105px; }
-    .summonCard { width: 88px; height: 108px; flex-basis: 88px; }
-    .summonCard img { height: 77px; }
-    .summonName { font-size: 9px; }
+
+
+.summonName{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:5px;
+
+    color:#fff;
+
+    text-align:center;
+
+    font-size:10px;
+
+    font-weight:900;
+
 }
-@media(orientation:portrait) {
-    #frame { transform: translate(-50%,-50%) rotate(90deg); }
+
+
+.lockedCard{
+
+    cursor:not-allowed;
+
+    opacity:.52;
+
 }
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+#message{
+
+    position:absolute;
+
+    left:50%;
+    top:44%;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:400;
+
+    padding:
+        14px 22px;
+
+    border:
+        1px solid
+        rgba(255,214,90,.4);
+
+    border-radius:14px;
+
+    background:
+        rgba(0,0,0,.84);
+
+    color:#ffd65a;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .18s;
+
+}
+
+
+#message.show{
+
+    opacity:1;
+
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+#result{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:600;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(0,0,0,.75);
+
+    backdrop-filter:
+        blur(5px);
+
+}
+
+
+.resultBox{
+
+    width:min(
+        450px,
+        90vw
+    );
+
+    padding:
+        32px 24px;
+
+    border:
+        2px solid
+        #ffd65a;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #263e56,
+            #111a24
+        );
+
+    text-align:center;
+
+    color:#fff;
+
+}
+
+
+.resultTitle{
+
+    color:#ffd65a;
+
+    font-size:
+        clamp(
+            40px,
+            10vw,
+            62px
+        );
+
+    font-weight:1000;
+
+}
+
+
+.resultText{
+
+    margin-top:9px;
+
+    color:#cbd4df;
+
+    font-size:14px;
+
+}
+
+
+.resultButton{
+
+    margin-top:22px;
+
+    min-width:180px;
+
+    height:50px;
+
+    border:0;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b8790a,
+            #ffd65a
+        );
+
+    color:#1b1304;
+
+    font-weight:900;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    #countPanel{
+
+        bottom:145px;
+
+        transform:
+            translateX(-50%)
+            scale(.85);
+
+    }
+
+    #summonBar{
+
+        height:145px;
+
+        padding:6px;
+
+        gap:6px;
+
+    }
+
+    .summonInfo{
+
+        width:105px;
+
+        flex-basis:105px;
+
+    }
+
+    .summonCard{
+
+        width:88px;
+
+        height:108px;
+
+        flex-basis:88px;
+
+    }
+
+    .summonCard img{
+
+        height:77px;
+
+    }
+
+}
+
+
+/* =========================================================
+   PORTRAIT
+========================================================= */
+
+@media(orientation:portrait){
+
+    #frame{
+
+        transform:
+            translate(-50%,-50%)
+            rotate(90deg);
+
+    }
+
+}
+
 </style>
+
 </head>
+
+
 <body>
+
+
 <div id="game">
+
 <div id="frame">
-<img id="battleBackground" src="./tranchien.jpg" alt="ANIME DORADO">
+
+
+<!-- ======================================================
+     BACKGROUND
+====================================================== -->
+
+<img
+    id="battleBackground"
+    src="./tranchien.jpg"
+    alt="Trận chiến">
+
+
+<!-- ======================================================
+     TOP UI
+====================================================== -->
+
 <div id="topUI">
+
+
     <div class="waveBox">
-        <div class="waveSmall">NORMAL</div>
-        <div class="waveMain">WAVE 1</div>
+
+        <div class="waveSmall">
+            NORMAL
+        </div>
+
+        <div class="waveMain">
+            WAVE 1
+        </div>
+
     </div>
+
+
+    <div
+        id="stageLabel"
+        class="stageLabel">
+
+        MAP 1 • STAGE 1
+
+    </div>
+
+
     <div class="energyTop">
-        <div class="energyText">🔋 NĂNG LƯỢNG <span id="energyTopNumber">100</span>/100</div>
-        <div class="energyBarTop"><div id="energyTopFill" class="energyFillTop"></div></div>
+
+        <div class="energyText">
+
+            🔋 NĂNG LƯỢNG
+
+            <span id="energyTopNumber">
+                100
+            </span>
+            /100
+
+        </div>
+
+
+        <div class="energyBarTop">
+
+            <div
+                id="energyTopFill"
+                class="energyFillTop">
+            </div>
+
+        </div>
+
     </div>
-    <div id="gold" class="goldBox">💰 500</div>
+
+
+    <div
+        id="gold"
+        class="goldBox">
+
+        💰 500
+
+    </div>
+
+
 </div>
+
+
+<!-- ======================================================
+     BATTLE AREA
+====================================================== -->
+
 <div id="battleArea">
+
+
     <div id="lane"></div>
+
+
+    <!-- THÁP MÌNH -->
+
     <div class="tower playerTower">
-        <div class="towerHpWrap"><div id="playerTowerHp" class="towerHpFill"></div></div>
+
+        <div class="towerHpWrap">
+
+            <div
+                id="playerTowerHp"
+                class="towerHpFill">
+            </div>
+
+        </div>
+
     </div>
+
+
+    <!-- THÁP ĐỊCH -->
+
     <div class="tower enemyTower">
-        <div class="towerHpWrap"><div id="enemyTowerHp" class="towerHpFill"></div></div>
+
+        <div class="towerHpWrap">
+
+            <div
+                id="enemyTowerHp"
+                class="towerHpFill">
+            </div>
+
+        </div>
+
     </div>
+
+
     <div id="playerUnits"></div>
+
     <div id="enemyUnits"></div>
+
     <div id="damageLayer"></div>
+
+
 </div>
+
+
+<!-- ======================================================
+     UNIT COUNT
+====================================================== -->
+
+<div id="countPanel">
+
+
+    <div class="countBox">
+
+        🧙 NHÂN VẬT
+
+        <strong id="playerCount">
+            0/10
+        </strong>
+
+    </div>
+
+
+    <div class="countBox enemyCount">
+
+        👹 QUÁI
+
+        <strong id="enemyCount">
+            0/10
+        </strong>
+
+    </div>
+
+
+</div>
+
+
+<!-- ======================================================
+     SUMMON BAR
+====================================================== -->
+
 <div id="summonBar">
+
+
     <div class="summonInfo">
-        <div class="summonInfoTitle">🔋 NĂNG LƯỢNG <span id="energyNumber">100</span>/100</div>
-        <div class="summonInfoBar"><div id="energyFill" class="summonInfoFill"></div></div>
+
+        <div class="summonInfoTitle">
+
+            🔋 NĂNG LƯỢNG
+
+            <span id="energyNumber">
+                100
+            </span>
+            /100
+
+        </div>
+
+
+        <div class="summonInfoBar">
+
+            <div
+                id="energyFill"
+                class="summonInfoFill">
+            </div>
+
+        </div>
+
     </div>
-    <button id="supermanCard" class="summonCard">
-        <span class="summonCost">🔋 20</span>
-        <img src="https://i.postimg.cc/VLTzTyt5/20260812-191849.png" alt="Superman">
-        <span class="summonName">SUPERMAN</span>
+
+
+    <!-- SUPERMAN -->
+
+    <button
+        id="supermanCard"
+        class="summonCard">
+
+        <span class="summonCost">
+            🔋 20
+        </span>
+
+
+        <img
+            src="https://i.postimg.cc/VLTzTyt5/20260812-191849.png"
+            alt="Superman">
+
+
+        <span class="summonName">
+            SUPERMAN
+        </span>
+
     </button>
-    <button class="summonCard lockedCard" onclick="showMessage('Luffy sẽ được thêm sau')">
-        <span class="summonCost">🔒</span>
-        <span style="display:flex;align-items:center;justify-content:center;width:100%;height:102px;color:#8a96a5;font-size:13px;font-weight:900;">LUFFY</span>
-        <span class="summonName">LUFFY</span>
+
+
+    <!-- LUFFY -->
+
+    <button
+        class="summonCard lockedCard"
+        onclick="
+            showMessage(
+                'Luffy sẽ được thêm sau'
+            )
+        "
+    >
+
+        <span class="summonCost">
+            🔒
+        </span>
+
+
+        <span
+            style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:100%;
+                height:102px;
+                color:#8a96a5;
+                font-size:13px;
+                font-weight:900;
+            "
+        >
+            LUFFY
+        </span>
+
+
+        <span class="summonName">
+            LUFFY
+        </span>
+
     </button>
-    <button class="summonCard lockedCard" onclick="showMessage('Goku sẽ được thêm sau')">
-        <span class="summonCost">🔒</span>
-        <span style="display:flex;align-items:center;justify-content:center;width:100%;height:102px;color:#8a96a5;font-size:13px;font-weight:900;">GOKU</span>
-        <span class="summonName">GOKU</span>
+
+
+    <!-- GOKU -->
+
+    <button
+        class="summonCard lockedCard"
+        onclick="
+            showMessage(
+                'Goku sẽ được thêm sau'
+            )
+        "
+    >
+
+        <span class="summonCost">
+            🔒
+        </span>
+
+
+        <span
+            style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:100%;
+                height:102px;
+                color:#8a96a5;
+                font-size:13px;
+                font-weight:900;
+            "
+        >
+            GOKU
+        </span>
+
+
+        <span class="summonName">
+            GOKU
+        </span>
+
     </button>
+
+
 </div>
+
+
+<!-- ======================================================
+     MESSAGE
+====================================================== -->
+
 <div id="message"></div>
+
+
+<!-- ======================================================
+     RESULT
+====================================================== -->
+
 <div id="result">
+
+
     <div class="resultBox">
-        <div id="resultTitle" class="resultTitle">VICTORY</div>
-        <div id="resultText" class="resultText">Tháp địch đã bị phá hủy.</div>
-        <button class="resultButton" onclick="location.reload()">CHƠI LẠI</button>
+
+
+        <div
+            id="resultTitle"
+            class="resultTitle">
+
+            VICTORY
+
+        </div>
+
+
+        <div
+            id="resultText"
+            class="resultText">
+
+            Đã vượt qua Stage.
+
+        </div>
+
+
+        <button
+            id="resultButton"
+            class="resultButton">
+
+            QUAY LẠI CHỌN MÀN
+
+        </button>
+
+
     </div>
+
 </div>
+
+
 </div>
+
 </div>
+
+
 <script>
-(function() {
-    const CONFIG = {
-        MAX_ENERGY: 100,
-        ENERGY_START: 100,
-        ENERGY_REGEN_PER_SECOND: 5,
-        SUPERMAN_COST: 20,
-        SUPERMAN_HP: 600,
-        SUPERMAN_DAMAGE: 100,
-        SUPERMAN_MOVE_SPEED: 95,
-        SUPERMAN_ATTACK_RANGE: 105,
-        SUPERMAN_ATTACK_COOLDOWN: 0.4,
-        ENEMY_HP: 260,
-        ENEMY_DAMAGE: 35,
-        ENEMY_MOVE_SPEED: 58,
-        ENEMY_ATTACK_RANGE: 82,
-        ENEMY_ATTACK_COOLDOWN: 0.5,
-        ENEMY_SPAWN_INTERVAL: 3,
-        TOWER_HP: 1200,
-        LANE_Y: 385,
-        PLAYER_SPAWN_X: 215,
-        ENEMY_SPAWN_X: 1320,
-        PLAYER_TOWER_X: 155,
-        ENEMY_TOWER_X: 1381,
-        MAX_UNITS_PER_SIDE: 10,
-        MAX_PLAYER_UNITS: 10,
-        MAX_ENEMY_UNITS: 10
+
+/* =========================================================
+   URL MAP / STAGE
+========================================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const currentMap =
+    Math.max(
+        1,
+        Number(
+            params.get("map") ||
+            localStorage.getItem(
+                "currentMap"
+            ) ||
+            1
+        )
+    );
+
+
+const currentStage =
+    Math.max(
+        1,
+        Number(
+            params.get("stage") ||
+            localStorage.getItem(
+                "currentStage"
+            ) ||
+            1
+        )
+    );
+
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const CONFIG = {
+
+    MAX_ENERGY:100,
+
+    ENERGY_START:100,
+
+    ENERGY_REGEN_PER_SECOND:5,
+
+    SUPERMAN_COST:20,
+
+    SUPERMAN_HP:600,
+
+    SUPERMAN_DAMAGE:100,
+
+    SUPERMAN_ATTACK_COOLDOWN:.4,
+
+    SUPERMAN_ATTACK_RANGE:120,
+
+    SUPERMAN_MOVE_SPEED:95,
+
+    ENEMY_HP:260,
+
+    ENEMY_DAMAGE:35,
+
+    ENEMY_ATTACK_COOLDOWN:.5,
+
+    ENEMY_ATTACK_RANGE:95,
+
+    ENEMY_MOVE_SPEED:58,
+
+    ENEMY_SPAWN_INTERVAL:3,
+
+    MAX_PLAYER_UNITS:10,
+
+    MAX_ENEMY_UNITS:10,
+
+    TOWER_HP:1200,
+
+    LANE_Y:385,
+
+    PLAYER_SPAWN_X:215,
+
+    ENEMY_SPAWN_X:1320,
+
+    PLAYER_TOWER_X:155,
+
+    ENEMY_TOWER_X:1381
+
+};
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const frame =
+    document.getElementById(
+        "frame"
+    );
+
+const playerUnitsLayer =
+    document.getElementById(
+        "playerUnits"
+    );
+
+const enemyUnitsLayer =
+    document.getElementById(
+        "enemyUnits"
+    );
+
+const damageLayer =
+    document.getElementById(
+        "damageLayer"
+    );
+
+const energyNumber =
+    document.getElementById(
+        "energyNumber"
+    );
+
+const energyFill =
+    document.getElementById(
+        "energyFill"
+    );
+
+const energyTopNumber =
+    document.getElementById(
+        "energyTopNumber"
+    );
+
+const energyTopFill =
+    document.getElementById(
+        "energyTopFill"
+    );
+
+const goldElement =
+    document.getElementById(
+        "gold"
+    );
+
+const playerTowerHpElement =
+    document.getElementById(
+        "playerTowerHp"
+    );
+
+const enemyTowerHpElement =
+    document.getElementById(
+        "enemyTowerHp"
+    );
+
+const playerCountElement =
+    document.getElementById(
+        "playerCount"
+    );
+
+const enemyCountElement =
+    document.getElementById(
+        "enemyCount"
+    );
+
+const messageElement =
+    document.getElementById(
+        "message"
+    );
+
+const resultElement =
+    document.getElementById(
+        "result"
+    );
+
+const resultTitleElement =
+    document.getElementById(
+        "resultTitle"
+    );
+
+const resultTextElement =
+    document.getElementById(
+        "resultText"
+    );
+
+const resultButton =
+    document.getElementById(
+        "resultButton"
+    );
+
+const stageLabel =
+    document.getElementById(
+        "stageLabel"
+    );
+
+
+/* =========================================================
+   STAGE UI
+========================================================= */
+
+stageLabel.textContent =
+    "MAP " +
+    currentMap +
+    " • STAGE " +
+    currentStage;
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let energy =
+    CONFIG.ENERGY_START;
+
+let gold =
+    500;
+
+let playerTowerHp =
+    CONFIG.TOWER_HP;
+
+let enemyTowerHp =
+    CONFIG.TOWER_HP;
+
+let playerUnits =
+    [];
+
+let enemyUnits =
+    [];
+
+let nextPlayerId =
+    1;
+
+let nextEnemyId =
+    1;
+
+let battleFinished =
+    false;
+
+
+/* =========================================================
+   BASIC HELPERS
+========================================================= */
+
+function clamp(
+    value,
+    min,
+    max
+){
+
+    return Math.max(
+        min,
+        Math.min(
+            max,
+            value
+        )
+    );
+
+}
+
+
+function distance(
+    a,
+    b
+){
+
+    const dx =
+        b.x -
+        a.x;
+
+    const dy =
+        b.y -
+        a.y;
+
+    return Math.sqrt(
+        dx * dx +
+        dy * dy
+    );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+let messageTimer =
+    null;
+
+
+function showMessage(
+    text
+){
+
+    messageElement.textContent =
+        text;
+
+    messageElement.classList.add(
+        "show"
+    );
+
+    clearTimeout(
+        messageTimer
+    );
+
+
+    messageTimer =
+        setTimeout(
+            function(){
+
+                messageElement.classList.remove(
+                    "show"
+                );
+
+            },
+            1100
+        );
+
+}
+
+
+/* =========================================================
+   UI UPDATE
+========================================================= */
+
+function updateEnergyUi(){
+
+    const percent =
+        energy /
+        CONFIG.MAX_ENERGY *
+        100;
+
+
+    const number =
+        Math.floor(
+            energy
+        );
+
+
+    energyNumber.textContent =
+        number;
+
+
+    energyTopNumber.textContent =
+        number;
+
+
+    energyFill.style.width =
+        percent + "%";
+
+
+    energyTopFill.style.width =
+        percent + "%";
+
+}
+
+
+function updateGoldUi(){
+
+    goldElement.textContent =
+        "💰 " +
+        gold;
+
+}
+
+
+function updateTowerUi(){
+
+    playerTowerHpElement.style.width =
+        (
+            playerTowerHp /
+            CONFIG.TOWER_HP *
+            100
+        ) + "%";
+
+
+    enemyTowerHpElement.style.width =
+        (
+            enemyTowerHp /
+            CONFIG.TOWER_HP *
+            100
+        ) + "%";
+
+}
+
+
+/* =========================================================
+   COUNT
+========================================================= */
+
+function updateUnitCounts(){
+
+    const players =
+        playerUnits.filter(
+            function(unit){
+
+                return !unit.dead;
+
+            }
+        ).length;
+
+
+    const enemies =
+        enemyUnits.filter(
+            function(enemy){
+
+                return !enemy.dead;
+
+            }
+        ).length;
+
+
+    playerCountElement.textContent =
+        players +
+        "/" +
+        CONFIG.MAX_PLAYER_UNITS;
+
+
+    enemyCountElement.textContent =
+        enemies +
+        "/" +
+        CONFIG.MAX_ENEMY_UNITS;
+
+}
+
+
+/* =========================================================
+   SPRITES
+========================================================= */
+
+function createSuperman(){
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "playerUnit";
+
+
+    element.innerHTML = `
+        <div
+            class="supermanSprite supermanIdle">
+        </div>
+    `;
+
+
+    return element;
+
+}
+
+
+function setIdle(
+    unit
+){
+
+    unit.state =
+        "idle";
+
+
+    unit.sprite.className =
+        "supermanSprite supermanIdle";
+
+}
+
+
+function setFly(
+    unit
+){
+
+    unit.state =
+        "fly";
+
+
+    unit.sprite.className =
+        "supermanSprite supermanFly";
+
+}
+
+
+function setAttack(
+    unit
+){
+
+    unit.state =
+        "attack";
+
+
+    unit.sprite.className =
+        "supermanSprite supermanAttack";
+
+}
+
+
+/* =========================================================
+   POSITION
+========================================================= */
+
+function positionPlayer(
+    unit
+){
+
+    unit.element.style.left =
+        unit.x + "px";
+
+
+    unit.element.style.top =
+        unit.y + "px";
+
+}
+
+
+function positionEnemy(
+    enemy
+){
+
+    enemy.element.style.left =
+        enemy.x + "px";
+
+
+    enemy.element.style.top =
+        enemy.y + "px";
+
+}
+
+
+/* =========================================================
+   SUMMON SUPERMAN
+========================================================= */
+
+function summonSuperman(){
+
+    if(
+        battleFinished
+    ){
+
+        return;
+
+    }
+
+
+    const alivePlayers =
+        playerUnits.filter(
+            function(unit){
+
+                return !unit.dead;
+
+            }
+        ).length;
+
+
+    if(
+        alivePlayers >=
+        CONFIG.MAX_PLAYER_UNITS
+    ){
+
+        showMessage(
+            "ĐỘI HÌNH ĐÃ ĐẦY 10/10"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        energy <
+        CONFIG.SUPERMAN_COST
+    ){
+
+        showMessage(
+            "CHƯA ĐỦ NĂNG LƯỢNG!"
+        );
+
+        return;
+
+    }
+
+
+    energy -=
+        CONFIG.SUPERMAN_COST;
+
+
+    const element =
+        createSuperman();
+
+
+    playerUnitsLayer.appendChild(
+        element
+    );
+
+
+    const unit = {
+
+        id:
+            nextPlayerId++,
+
+        team:
+            "player",
+
+        element:
+            element,
+
+        sprite:
+            element.querySelector(
+                ".supermanSprite"
+            ),
+
+        x:
+            CONFIG.PLAYER_SPAWN_X,
+
+        y:
+            CONFIG.LANE_Y,
+
+        hp:
+            CONFIG.SUPERMAN_HP,
+
+        maxHp:
+            CONFIG.SUPERMAN_HP,
+
+        damage:
+            CONFIG.SUPERMAN_DAMAGE,
+
+        target:
+            null,
+
+        attackTimer:
+            0,
+
+        state:
+            "idle",
+
+        dead:
+            false
+
     };
 
-    const playerUnitsLayer = document.getElementById('playerUnits');
-    const enemyUnitsLayer = document.getElementById('enemyUnits');
-    const damageLayer = document.getElementById('damageLayer');
-    const energyNumber = document.getElementById('energyNumber');
-    const energyFill = document.getElementById('energyFill');
-    const energyTopNumber = document.getElementById('energyTopNumber');
-    const energyTopFill = document.getElementById('energyTopFill');
-    const goldElement = document.getElementById('gold');
-    const playerTowerHpElement = document.getElementById('playerTowerHp');
-    const enemyTowerHpElement = document.getElementById('enemyTowerHp');
-    const messageElement = document.getElementById('message');
-    const resultElement = document.getElementById('result');
-    const resultTitleElement = document.getElementById('resultTitle');
-    const resultTextElement = document.getElementById('resultText');
-    const frame = document.getElementById('frame');
-    const battleArea = document.getElementById('battleArea');
 
-    let energy = CONFIG.ENERGY_START;
-    let gold = 500;
-    let playerTowerHp = CONFIG.TOWER_HP;
-    let enemyTowerHp = CONFIG.TOWER_HP;
-    let playerUnits = [];
-    let enemyUnits = [];
-    let nextEnemyId = 1;
-    let nextPlayerId = 1;
-    let battleFinished = false;
-    let lastEnergyTime = performance.now();
+    positionPlayer(
+        unit
+    );
 
-    function clamp(value, min, max) {
-        return Math.max(min, Math.min(max, value));
-    }
-    function distance(a, b) {
-        const dx = b.x - a.x;
-        const dy = b.y - a.y;
-        return Math.sqrt(dx * dx + dy * dy);
-    }
-    function showMessage(text) {
-        messageElement.textContent = text;
-        messageElement.classList.add('show');
-        clearTimeout(showMessage.timer);
-        showMessage.timer = setTimeout(() => {
-            messageElement.classList.remove('show');
-        }, 1050);
-    }
-    function updateEnergyUi() {
-        const percent = (energy / CONFIG.MAX_ENERGY) * 100;
-        const rounded = Math.floor(energy);
-        energyNumber.textContent = rounded;
-        energyTopNumber.textContent = rounded;
-        energyFill.style.width = percent + '%';
-        energyTopFill.style.width = percent + '%';
-    }
-    function updateGoldUi() {
-        goldElement.textContent = '💰 ' + gold;
-    }
-    function updateTowerUi() {
-        playerTowerHpElement.style.width = (playerTowerHp / CONFIG.TOWER_HP * 100) + '%';
-        enemyTowerHpElement.style.width = (enemyTowerHp / CONFIG.TOWER_HP * 100) + '%';
-    }
-    function scaleGame() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const scale = Math.min(width / 1536, height / 864);
-        frame.style.transform = 'translate(-50%,-50%) scale(' + scale + ')';
-    }
-    window.addEventListener('resize', scaleGame);
-    window.addEventListener('orientationchange', () => {
-        setTimeout(scaleGame, 200);
-    });
 
-    function setSupermanIdle(unit) {
-        unit.state = 'idle';
-        unit.sprite.className = 'supermanSprite supermanIdle';
-    }
-    function setSupermanMove(unit) {
-        unit.state = 'move';
-        unit.sprite.className = 'supermanSprite supermanFly';
-    }
-    function setSupermanAttack(unit) {
-        unit.state = 'attack';
-        unit.sprite.className = 'supermanSprite supermanAttack';
-    }
+    playerUnits.push(
+        unit
+    );
 
-    function createSupermanElement() {
-        const element = document.createElement('div');
-        element.className = 'playerUnit';
-        element.innerHTML = '<div class="supermanSprite supermanIdle"></div>';
-        return element;
-    }
-
-    function summonSuperman() {
-        if (battleFinished) return;
-        const alivePlayerUnits = playerUnits.filter(u => !u.dead).length;
-        if (alivePlayerUnits >= CONFIG.MAX_PLAYER_UNITS) {
-            showMessage('ĐỘI HÌNH ĐÃ ĐẦY');
-            return;
-        }
-        if (energy < CONFIG.SUPERMAN_COST) {
-            showMessage('CHƯA ĐỦ NĂNG LƯỢNG');
-            return;
-        }
-        energy -= CONFIG.SUPERMAN_COST;
-        updateEnergyUi();
-        const element = createSupermanElement();
-        playerUnitsLayer.appendChild(element);
-        const unit = {
-            id: nextPlayerId++,
-            team: 'player',
-            element: element,
-            sprite: element.querySelector('.supermanSprite'),
-            x: CONFIG.PLAYER_SPAWN_X,
-            y: CONFIG.LANE_Y,
-            hp: CONFIG.SUPERMAN_HP,
-            maxHp: CONFIG.SUPERMAN_HP,
-            damage: CONFIG.SUPERMAN_DAMAGE,
-            target: null,
-            state: 'idle',
-            attackTimer: 0,
-            dead: false
-        };
-        positionPlayer(unit);
-        playerUnits.push(unit);
-        showMessage('SUPERMAN ĐÃ ĐƯỢC TRIỆU HỒI!');
-    }
-
-    document.getElementById('supermanCard').addEventListener('click', summonSuperman);
-
-    function createEnemyElement() {
-        const element = document.createElement('div');
-        element.className = 'enemyUnit';
-        element.innerHTML = `
-            <div class="enemyHpWrap"><div class="enemyHpFill"></div></div>
-            <img class="enemyImage" src="./quai1.png" alt="Quái">
-        `;
-        return element;
-    }
-
-    function spawnEnemy() {
-        if (battleFinished) return;
-        const aliveEnemyUnits = enemyUnits.filter(e => !e.dead).length;
-        if (aliveEnemyUnits >= CONFIG.MAX_ENEMY_UNITS) return;
-        const element = createEnemyElement();
-        enemyUnitsLayer.appendChild(element);
-        const enemy = {
-            id: nextEnemyId++,
-            team: 'enemy',
-            element: element,
-            x: CONFIG.ENEMY_SPAWN_X,
-            y: CONFIG.LANE_Y,
-            hp: CONFIG.ENEMY_HP,
-            maxHp: CONFIG.ENEMY_HP,
-            damage: CONFIG.ENEMY_DAMAGE,
-            target: null,
-            attackTimer: 0,
-            hpFill: element.querySelector('.enemyHpFill'),
-            dead: false
-        };
-        positionEnemy(enemy);
-        enemyUnits.push(enemy);
-        element.animate([
-            { opacity: 0, transform: 'translate(-50%,-50%) scale(.75)' },
-            { opacity: 1, transform: 'translate(-50%,-50%) scale(1)' }
-        ], { duration: 260, easing: 'ease-out' });
-    }
-
-    function positionPlayer(unit) {
-        unit.element.style.left = unit.x + 'px';
-        unit.element.style.top = unit.y + 'px';
-    }
-    function positionEnemy(enemy) {
-        enemy.element.style.left = enemy.x + 'px';
-        enemy.element.style.top = enemy.y + 'px';
-    }
-
-    function findEnemyTargetForPlayer(unit) {
-        let target = null;
-        let bestDistance = Infinity;
-        for (const enemy of enemyUnits) {
-            if (enemy.dead) continue;
-            if (enemy.x <= unit.x + 5) continue;
-            const d = distance(unit, enemy);
-            if (d < bestDistance) {
-                bestDistance = d;
-                target = enemy;
-            }
-        }
-        return target;
-    }
-    function findPlayerTargetForEnemy(enemy) {
-        let target = null;
-        let bestDistance = Infinity;
-        for (const unit of playerUnits) {
-            if (unit.dead) continue;
-            if (unit.x >= enemy.x - 5) continue;
-            const d = distance(enemy, unit);
-            if (d < bestDistance) {
-                bestDistance = d;
-                target = unit;
-            }
-        }
-        return target;
-    }
-
-    function moveTowards(object, target, speed, dt) {
-        const dx = target.x - object.x;
-        const dy = target.y - object.y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        if (len <= 0.001) return;
-        object.x += (dx / len) * speed * dt;
-        object.y = CONFIG.LANE_Y;
-        object.x = clamp(object.x, 195, 1340);
-        if (object.team === 'player') positionPlayer(object);
-        else positionEnemy(object);
-    }
-
-    function playerAttack(unit, enemy, dt) {
-        unit.attackTimer -= dt;
-        if (unit.attackTimer > 0) return;
-        unit.attackTimer = CONFIG.SUPERMAN_ATTACK_COOLDOWN;
-        setSupermanAttack(unit);
-        setTimeout(() => {
-            if (!unit.dead && !enemy.dead) {
-                damageEnemy(enemy, unit.damage);
-            }
-        }, 180);
-        setTimeout(() => {
-            if (!unit.dead) {
-                setSupermanIdle(unit);
-            }
-        }, 430);
-    }
-
-    function updatePlayerUnit(unit, dt) {
-        if (unit.dead) return;
-        if (!unit.target || unit.target.dead) {
-            unit.target = findEnemyTargetForPlayer(unit);
-        }
-        if (unit.target) {
-            const target = unit.target;
-            const d = distance(unit, target);
-            if (d <= CONFIG.SUPERMAN_ATTACK_RANGE) {
-                playerAttack(unit, target, dt);
-                return;
-            }
-            setSupermanMove(unit);
-            moveTowards(unit, target, CONFIG.SUPERMAN_MOVE_SPEED, dt);
-            return;
-        }
-        const towerTarget = { x: CONFIG.ENEMY_TOWER_X, y: CONFIG.LANE_Y };
-        const towerDistance = distance(unit, towerTarget);
-        if (towerDistance <= CONFIG.SUPERMAN_ATTACK_RANGE) {
-            attackEnemyTower(unit, dt);
-            return;
-        }
-        setSupermanMove(unit);
-        moveTowards(unit, towerTarget, CONFIG.SUPERMAN_MOVE_SPEED, dt);
-    }
-
-    function enemyAttackPlayer(enemy, player, dt) {
-        enemy.attackTimer -= dt;
-        if (enemy.attackTimer > 0) return;
-        enemy.attackTimer = CONFIG.ENEMY_ATTACK_COOLDOWN;
-        damagePlayer(player, enemy.damage);
-    }
-
-    function updateEnemyUnit(enemy, dt) {
-        if (enemy.dead) return;
-        if (!enemy.target || enemy.target.dead) {
-            enemy.target = findPlayerTargetForEnemy(enemy);
-        }
-        if (enemy.target) {
-            const target = enemy.target;
-            const d = distance(enemy, target);
-            if (d <= CONFIG.ENEMY_ATTACK_RANGE) {
-                enemyAttackPlayer(enemy, target, dt);
-                return;
-            }
-            moveTowards(enemy, target, CONFIG.ENEMY_MOVE_SPEED, dt);
-            return;
-        }
-        const towerTarget = { x: CONFIG.PLAYER_TOWER_X, y: CONFIG.LANE_Y };
-        const towerDistance = distance(enemy, towerTarget);
-        if (towerDistance <= CONFIG.ENEMY_ATTACK_RANGE) {
-            attackPlayerTower(enemy, dt);
-            return;
-        }
-        moveTowards(enemy, towerTarget, CONFIG.ENEMY_MOVE_SPEED, dt);
-    }
-
-    function damagePlayer(unit, damage) {
-        if (unit.dead) return;
-        unit.hp -= damage;
-        createDamage(unit.x, unit.y, damage);
-        if (unit.hp <= 0) {
-            unit.hp = 0;
-            killPlayerUnit(unit);
-        }
-    }
-    function killPlayerUnit(unit) {
-        if (unit.dead) return;
-        unit.dead = true;
-        unit.element.remove();
-        for (const enemy of enemyUnits) {
-            if (enemy.target === unit) enemy.target = null;
-        }
-    }
-    function damageEnemy(enemy, damage) {
-        if (enemy.dead) return;
-        enemy.hp -= damage;
-        enemy.hp = Math.max(0, enemy.hp);
-        enemy.hpFill.style.width = (enemy.hp / enemy.maxHp * 100) + '%';
-        createDamage(enemy.x, enemy.y, damage);
-        if (enemy.hp <= 0) {
-            killEnemy(enemy);
-        }
-    }
-    function killEnemy(enemy) {
-        if (enemy.dead) return;
-        enemy.dead = true;
-        enemy.element.remove();
-        gold += 50;
-        updateGoldUi();
-        for (const unit of playerUnits) {
-            if (unit.target === enemy) unit.target = null;
-        }
-    }
-    function attackEnemyTower(unit, dt) {
-        unit.attackTimer -= dt;
-        if (unit.attackTimer > 0) return;
-        unit.attackTimer = CONFIG.SUPERMAN_ATTACK_COOLDOWN;
-        setSupermanAttack(unit);
-        setTimeout(() => {
-            if (unit.dead || battleFinished) return;
-            damageEnemyTower(unit.damage);
-        }, 180);
-        setTimeout(() => {
-            if (!unit.dead) setSupermanIdle(unit);
-        }, 430);
-    }
-    function damageEnemyTower(damage) {
-        if (battleFinished) return;
-        enemyTowerHp -= damage;
-        enemyTowerHp = Math.max(0, enemyTowerHp);
-        updateTowerUi();
-        createDamage(CONFIG.ENEMY_TOWER_X, CONFIG.LANE_Y - 60, damage);
-        if (enemyTowerHp <= 0) finishBattle(true);
-    }
-    function attackPlayerTower(enemy, dt) {
-        enemy.attackTimer -= dt;
-        if (enemy.attackTimer > 0) return;
-        enemy.attackTimer = CONFIG.ENEMY_ATTACK_COOLDOWN;
-        playerTowerHp -= enemy.damage;
-        playerTowerHp = Math.max(0, playerTowerHp);
-        updateTowerUi();
-        createDamage(CONFIG.PLAYER_TOWER_X, CONFIG.LANE_Y - 60, enemy.damage);
-        if (playerTowerHp <= 0) finishBattle(false);
-    }
-    function createDamage(x, y, damage) {
-        const element = document.createElement('div');
-        element.className = 'damage';
-        element.textContent = '-' + damage;
-        element.style.left = x + 'px';
-        element.style.top = y + 'px';
-        damageLayer.appendChild(element);
-        setTimeout(() => element.remove(), 600);
-    }
-    function finishBattle(victory) {
-        if (battleFinished) return;
-        battleFinished = true;
-        resultElement.style.display = 'flex';
-        if (victory) {
-            resultTitleElement.textContent = 'VICTORY';
-            resultTextElement.textContent = 'THÁP ĐỊCH ĐÃ BỊ PHÁ HỦY';
-        } else {
-            resultTitleElement.textContent = 'DEFEAT';
-            resultTextElement.textContent = 'THÁP CỦA BẠN ĐÃ BỊ PHÁ HỦY';
-        }
-    }
-
-    function startEnemySpawner() {
-        setTimeout(() => {
-            spawnEnemy();
-            setInterval(() => {
-                spawnEnemy();
-            }, CONFIG.ENEMY_SPAWN_INTERVAL * 1000);
-        }, CONFIG.ENEMY_SPAWN_INTERVAL * 1000);
-    }
-
-    function cleanupArrays() {
-        playerUnits = playerUnits.filter(u => !u.dead);
-        enemyUnits = enemyUnits.filter(e => !e.dead);
-    }
-
-    function updateEnergy(now) {
-        const delta = (now - lastEnergyTime) / 1000;
-        lastEnergyTime = now;
-        if (energy < CONFIG.MAX_ENERGY) {
-            energy += CONFIG.ENERGY_REGEN_PER_SECOND * delta;
-            if (energy > CONFIG.MAX_ENERGY) energy = CONFIG.MAX_ENERGY;
-            updateEnergyUi();
-        }
-    }
-
-    let lastFrame = performance.now();
-    function gameLoop(now) {
-        const delta = Math.min((now - lastFrame) / 1000, .05);
-        lastFrame = now;
-        if (!battleFinished) {
-            updateEnergy(now);
-            for (const unit of playerUnits) updatePlayerUnit(unit, delta);
-            for (const enemy of enemyUnits) updateEnemyUnit(enemy, delta);
-            cleanupArrays();
-        }
-        requestAnimationFrame(gameLoop);
-    }
 
     updateEnergyUi();
-    updateGoldUi();
+
+    updateUnitCounts();
+
+
+    showMessage(
+        "SUPERMAN ĐÃ TRIỆU HỒI!"
+    );
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "supermanCard"
+    )
+    .addEventListener(
+        "click",
+        summonSuperman
+    );
+
+
+/* =========================================================
+   FIND ENEMY FOR PLAYER
+========================================================= */
+
+function findEnemyForPlayer(
+    unit
+){
+
+    let target =
+        null;
+
+    let best =
+        Infinity;
+
+
+    for(
+        const enemy of enemyUnits
+    ){
+
+        if(
+            enemy.dead
+        ){
+
+            continue;
+
+        }
+
+
+        if(
+            enemy.x <=
+            unit.x
+        ){
+
+            continue;
+
+        }
+
+
+        const d =
+            distance(
+                unit,
+                enemy
+            );
+
+
+        if(
+            d <
+            best
+        ){
+
+            best =
+                d;
+
+            target =
+                enemy;
+
+        }
+
+    }
+
+
+    return target;
+
+}
+
+
+/* =========================================================
+   FIND PLAYER FOR ENEMY
+========================================================= */
+
+function findPlayerForEnemy(
+    enemy
+){
+
+    let target =
+        null;
+
+    let best =
+        Infinity;
+
+
+    for(
+        const unit of playerUnits
+    ){
+
+        if(
+            unit.dead
+        ){
+
+            continue;
+
+        }
+
+
+        if(
+            unit.x >=
+            enemy.x
+        ){
+
+            continue;
+
+        }
+
+
+        const d =
+            distance(
+                enemy,
+                unit
+            );
+
+
+        if(
+            d <
+            best
+        ){
+
+            best =
+                d;
+
+            target =
+                unit;
+
+        }
+
+    }
+
+
+    return target;
+
+}
+
+
+/* =========================================================
+   MOVE
+========================================================= */
+
+function movePlayer(
+    unit,
+    target,
+    dt
+){
+
+    const dx =
+        target.x -
+        unit.x;
+
+
+    const direction =
+        dx >= 0
+            ? 1
+            : -1;
+
+
+    unit.x +=
+        CONFIG.SUPERMAN_MOVE_SPEED *
+        dt *
+        direction;
+
+
+    unit.y =
+        CONFIG.LANE_Y;
+
+
+    unit.x =
+        clamp(
+            unit.x,
+            195,
+            1340
+        );
+
+
+    positionPlayer(
+        unit
+    );
+
+}
+
+
+function moveEnemy(
+    enemy,
+    target,
+    dt
+){
+
+    const dx =
+        target.x -
+        enemy.x;
+
+
+    const direction =
+        dx >= 0
+            ? 1
+            : -1;
+
+
+    enemy.x +=
+        CONFIG.ENEMY_MOVE_SPEED *
+        dt *
+        direction;
+
+
+    enemy.y =
+        CONFIG.LANE_Y;
+
+
+    enemy.x =
+        clamp(
+            enemy.x,
+            120,
+            1380
+        );
+
+
+    positionEnemy(
+        enemy
+    );
+
+}
+
+
+/* =========================================================
+   PLAYER UPDATE
+========================================================= */
+
+function updatePlayer(
+    unit,
+    dt
+){
+
+    if(
+        unit.dead
+    ){
+
+        return;
+
+    }
+
+
+    /*
+       Mất mục tiêu.
+    */
+
+    if(
+        !unit.target ||
+        unit.target.dead
+    ){
+
+        unit.target =
+            findEnemyForPlayer(
+                unit
+            );
+
+    }
+
+
+    /*
+       Có quái → đi/đánh quái.
+    */
+
+    if(
+        unit.target
+    ){
+
+        const enemy =
+            unit.target;
+
+
+        const d =
+            distance(
+                unit,
+                enemy
+            );
+
+
+        if(
+            d <=
+            CONFIG.SUPERMAN_ATTACK_RANGE
+        ){
+
+            attackEnemyWithSuperman(
+                unit,
+                enemy,
+                dt
+            );
+
+        }
+        else{
+
+            setFly(
+                unit
+            );
+
+
+            movePlayer(
+                unit,
+                enemy,
+                dt
+            );
+
+        }
+
+
+        return;
+
+    }
+
+
+    /*
+       Không còn quái → đi tới tháp địch.
+    */
+
+    const towerTarget = {
+
+        x:
+            CONFIG.ENEMY_TOWER_X,
+
+        y:
+            CONFIG.LANE_Y
+
+    };
+
+
+    const towerDistance =
+        distance(
+            unit,
+            towerTarget
+        );
+
+
+    if(
+        towerDistance <=
+        CONFIG.SUPERMAN_ATTACK_RANGE
+    ){
+
+        attackEnemyTower(
+            unit,
+            dt
+        );
+
+    }
+    else{
+
+        setFly(
+            unit
+        );
+
+
+        movePlayer(
+            unit,
+            towerTarget,
+            dt
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SUPERMAN ATTACK
+========================================================= */
+
+function attackEnemyWithSuperman(
+    unit,
+    enemy,
+    dt
+){
+
+    unit.attackTimer -=
+        dt;
+
+
+    if(
+        unit.attackTimer >
+        0
+    ){
+
+        return;
+
+    }
+
+
+    unit.attackTimer =
+        CONFIG.SUPERMAN_ATTACK_COOLDOWN;
+
+
+    setAttack(
+        unit
+    );
+
+
+    setTimeout(
+        function(){
+
+            if(
+                !unit.dead &&
+                !enemy.dead
+            ){
+
+                damageEnemy(
+                    enemy,
+                    unit.damage
+                );
+
+            }
+
+        },
+        180
+    );
+
+
+    setTimeout(
+        function(){
+
+            if(
+                !unit.dead
+            ){
+
+                if(
+                    enemy.dead
+                ){
+
+                    unit.target =
+                        null;
+
+                    setIdle(
+                        unit
+                    );
+
+                }
+                else{
+
+                    setIdle(
+                        unit
+                    );
+
+                }
+
+            }
+
+        },
+        400
+    );
+
+}
+
+
+/* =========================================================
+   ATTACK ENEMY TOWER
+========================================================= */
+
+function attackEnemyTower(
+    unit,
+    dt
+){
+
+    unit.attackTimer -=
+        dt;
+
+
+    if(
+        unit.attackTimer >
+        0
+    ){
+
+        return;
+
+    }
+
+
+    unit.attackTimer =
+        CONFIG.SUPERMAN_ATTACK_COOLDOWN;
+
+
+    setAttack(
+        unit
+    );
+
+
+    setTimeout(
+        function(){
+
+            if(
+                !unit.dead &&
+                !battleFinished
+            ){
+
+                damageEnemyTower(
+                    unit.damage
+                );
+
+            }
+
+        },
+        180
+    );
+
+
+    setTimeout(
+        function(){
+
+            if(
+                !unit.dead
+            ){
+
+                setIdle(
+                    unit
+                );
+
+            }
+
+        },
+        400
+    );
+
+}
+
+
+/* =========================================================
+   SPAWN ENEMY
+========================================================= */
+
+function spawnEnemy(){
+
+    if(
+        battleFinished
+    ){
+
+        return;
+
+    }
+
+
+    const aliveEnemies =
+        enemyUnits.filter(
+            function(enemy){
+
+                return !enemy.dead;
+
+            }
+        ).length;
+
+
+    if(
+        aliveEnemies >=
+        CONFIG.MAX_ENEMY_UNITS
+    ){
+
+        return;
+
+    }
+
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "enemyUnit";
+
+
+    element.innerHTML = `
+
+        <div class="enemyHpWrap">
+
+            <div
+                class="enemyHpFill">
+            </div>
+
+        </div>
+
+        <img
+            class="enemyImage"
+            src="./quai1.png"
+            alt="Quái">
+
+    `;
+
+
+    enemyUnitsLayer.appendChild(
+        element
+    );
+
+
+    const enemy = {
+
+        id:
+            nextEnemyId++,
+
+        element:
+            element,
+
+        hpFill:
+            element.querySelector(
+                ".enemyHpFill"
+            ),
+
+        x:
+            CONFIG.ENEMY_SPAWN_X,
+
+        y:
+            CONFIG.LANE_Y,
+
+        hp:
+            CONFIG.ENEMY_HP,
+
+        maxHp:
+            CONFIG.ENEMY_HP,
+
+        damage:
+            CONFIG.ENEMY_DAMAGE,
+
+        target:
+            null,
+
+        attackTimer:
+            0,
+
+        dead:
+            false
+
+    };
+
+
+    positionEnemy(
+        enemy
+    );
+
+
+    enemyUnits.push(
+        enemy
+    );
+
+
+    updateUnitCounts();
+
+}
+
+
+/* =========================================================
+   ENEMY UPDATE
+========================================================= */
+
+function updateEnemy(
+    enemy,
+    dt
+){
+
+    if(
+        enemy.dead
+    ){
+
+        return;
+
+    }
+
+
+    /*
+       Tìm nhân vật.
+    */
+
+    if(
+        !enemy.target ||
+        enemy.target.dead
+    ){
+
+        enemy.target =
+            findPlayerForEnemy(
+                enemy
+            );
+
+    }
+
+
+    /*
+       Có nhân vật → đi/đánh.
+    */
+
+    if(
+        enemy.target
+    ){
+
+        const target =
+            enemy.target;
+
+
+        const d =
+            distance(
+                enemy,
+                target
+            );
+
+
+        if(
+            d <=
+            CONFIG.ENEMY_ATTACK_RANGE
+        ){
+
+            attackPlayerWithEnemy(
+                enemy,
+                target,
+                dt
+            );
+
+        }
+        else{
+
+            moveEnemy(
+                enemy,
+                target,
+                dt
+            );
+
+        }
+
+
+        return;
+
+    }
+
+
+    /*
+       Không có nhân vật → đi tới tháp mình.
+    */
+
+    const towerTarget = {
+
+        x:
+            CONFIG.PLAYER_TOWER_X,
+
+        y:
+            CONFIG.LANE_Y
+
+    };
+
+
+    const towerDistance =
+        distance(
+            enemy,
+            towerTarget
+        );
+
+
+    if(
+        towerDistance <=
+        CONFIG.ENEMY_ATTACK_RANGE
+    ){
+
+        attackPlayerTower(
+            enemy,
+            dt
+        );
+
+    }
+    else{
+
+        moveEnemy(
+            enemy,
+            towerTarget,
+            dt
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ENEMY ATTACK PLAYER
+========================================================= */
+
+function attackPlayerWithEnemy(
+    enemy,
+    player,
+    dt
+){
+
+    enemy.attackTimer -=
+        dt;
+
+
+    if(
+        enemy.attackTimer >
+        0
+    ){
+
+        return;
+
+    }
+
+
+    enemy.attackTimer =
+        CONFIG.ENEMY_ATTACK_COOLDOWN;
+
+
+    damagePlayer(
+        player,
+        enemy.damage
+    );
+
+}
+
+
+/* =========================================================
+   ENEMY ATTACK TOWER
+========================================================= */
+
+function attackPlayerTower(
+    enemy,
+    dt
+){
+
+    enemy.attackTimer -=
+        dt;
+
+
+    if(
+        enemy.attackTimer >
+        0
+    ){
+
+        return;
+
+    }
+
+
+    enemy.attackTimer =
+        CONFIG.ENEMY_ATTACK_COOLDOWN;
+
+
+    playerTowerHp -=
+        enemy.damage;
+
+
+    playerTowerHp =
+        Math.max(
+            0,
+            playerTowerHp
+        );
+
+
     updateTowerUi();
-    scaleGame();
-    startEnemySpawner();
-    requestAnimationFrame(gameLoop);
-})();
+
+
+    createDamage(
+        CONFIG.PLAYER_TOWER_X,
+        CONFIG.LANE_Y - 60,
+        enemy.damage
+    );
+
+
+    if(
+        playerTowerHp <=
+        0
+    ){
+
+        finishBattle(
+            false
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DAMAGE PLAYER
+========================================================= */
+
+function damagePlayer(
+    unit,
+    damage
+){
+
+    if(
+        unit.dead
+    ){
+
+        return;
+
+    }
+
+
+    unit.hp -=
+        damage;
+
+
+    createDamage(
+        unit.x,
+        unit.y,
+        damage
+    );
+
+
+    if(
+        unit.hp <=
+        0
+    ){
+
+        killPlayer(
+            unit
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   KILL PLAYER
+========================================================= */
+
+function killPlayer(
+    unit
+){
+
+    if(
+        unit.dead
+    ){
+
+        return;
+
+    }
+
+
+    unit.dead =
+        true;
+
+
+    unit.element.remove();
+
+
+    updateUnitCounts();
+
+
+    for(
+        const enemy of enemyUnits
+    ){
+
+        if(
+            enemy.target ===
+            unit
+        ){
+
+            enemy.target =
+                null;
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   DAMAGE ENEMY
+========================================================= */
+
+function damageEnemy(
+    enemy,
+    damage
+){
+
+    if(
+        enemy.dead
+    ){
+
+        return;
+
+    }
+
+
+    enemy.hp -=
+        damage;
+
+
+    enemy.hp =
+        Math.max(
+            0,
+            enemy.hp
+        );
+
+
+    enemy.hpFill.style.width =
+        (
+            enemy.hp /
+            enemy.maxHp *
+            100
+        ) + "%";
+
+
+    createDamage(
+        enemy.x,
+        enemy.y,
+        damage
+    );
+
+
+    if(
+        enemy.hp <=
+        0
+    ){
+
+        killEnemy(
+            enemy
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   KILL ENEMY
+========================================================= */
+
+function killEnemy(
+    enemy
+){
+
+    if(
+        enemy.dead
+    ){
+
+        return;
+
+    }
+
+
+    enemy.dead =
+        true;
+
+
+    enemy.element.remove();
+
+
+    gold +=
+        50;
+
+
+    updateGoldUi();
+
+
+    updateUnitCounts();
+
+
+    for(
+        const unit of playerUnits
+    ){
+
+        if(
+            unit.target ===
+            enemy
+        ){
+
+            unit.target =
+                null;
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   DAMAGE TOWER
+========================================================= */
+
+function damageEnemyTower(
+    damage
+){
+
+    if(
+        battleFinished
+    ){
+
+        return;
+
+    }
+
+
+    enemyTowerHp -=
+        damage;
+
+
+    enemyTowerHp =
+        Math.max(
+            0,
+            enemyTowerHp
+        );
+
+
+    updateTowerUi();
+
+
+    createDamage(
+        CONFIG.ENEMY_TOWER_X,
+        CONFIG.LANE_Y - 60,
+        damage
+    );
+
+
+    if(
+        enemyTowerHp <=
+        0
+    ){
+
+        finishBattle(
+            true
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DAMAGE TEXT
+========================================================= */
+
+function createDamage(
+    x,
+    y,
+    damage
+){
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "damage";
+
+
+    element.textContent =
+        "-" +
+        damage;
+
+
+    element.style.left =
+        x + "px";
+
+
+    element.style.top =
+        y + "px";
+
+
+    damageLayer.appendChild(
+        element
+    );
+
+
+    setTimeout(
+        function(){
+
+            element.remove();
+
+        },
+        600
+    );
+
+}
+
+
+/* =========================================================
+   SAVE PROGRESS
+========================================================= */
+
+function saveStageVictory(){
+
+    /*
+       Tiến độ unlock của Map hiện tại.
+    */
+
+    const unlockKey =
+        "map" +
+        currentMap +
+        "_unlocked_stage";
+
+
+    const currentUnlocked =
+        Number(
+            localStorage.getItem(
+                unlockKey
+            ) || 1
+        );
+
+
+    /*
+       Sau khi thắng Stage N:
+       mở Stage N+1.
+    */
+
+    const nextStage =
+        Math.min(
+            21,
+            currentStage + 1
+        );
+
+
+    if(
+        nextStage >
+        currentUnlocked
+    ){
+
+        localStorage.setItem(
+            unlockKey,
+            String(nextStage)
+        );
+
+    }
+
+
+    /*
+       Lưu progress để chonmap
+       có thể mở Map tiếp theo.
+    */
+
+    const progressKey =
+        "animeDorado_map" +
+        currentMap +
+        "_progress";
+
+
+    const currentProgress =
+        Number(
+            localStorage.getItem(
+                progressKey
+            ) || 0
+        );
+
+
+    if(
+        currentStage >
+        currentProgress
+    ){
+
+        localStorage.setItem(
+            progressKey,
+            String(
+                Math.min(
+                    20,
+                    currentStage
+                )
+            )
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+function finishBattle(
+    victory
+){
+
+    if(
+        battleFinished
+    ){
+
+        return;
+
+    }
+
+
+    battleFinished =
+        true;
+
+
+    if(
+        victory
+    ){
+
+        saveStageVictory();
+
+
+        resultTitleElement.textContent =
+            "VICTORY";
+
+
+        resultTextElement.textContent =
+            "Đã vượt qua MAP " +
+            currentMap +
+            " • STAGE " +
+            currentStage +
+            ".";
+
+
+        resultButton.textContent =
+            currentStage < 20
+                ? "SANG STAGE TIẾP"
+                : "QUAY LẠI CHỌN MÀN";
+
+    }
+    else{
+
+        resultTitleElement.textContent =
+            "DEFEAT";
+
+
+        resultTextElement.textContent =
+            "Bạn đã thua STAGE " +
+            currentStage +
+            ".";
+
+
+        resultButton.textContent =
+            "CHƠI LẠI";
+
+    }
+
+
+    resultElement.style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   RESULT BUTTON
+========================================================= */
+
+resultButton.addEventListener(
+    "click",
+    function(){
+
+        if(
+            resultTitleElement.textContent ===
+            "VICTORY"
+        ){
+
+            /*
+               Map 1 hiện tại.
+            */
+
+            if(
+                currentMap === 1
+            ){
+
+                window.location.href =
+                    "./chonmanmap1.html";
+
+                return;
+
+            }
+
+
+            /*
+               Dự phòng cho các map sau.
+            */
+
+            window.location.href =
+                "./chonmap.html";
+
+        }
+        else{
+
+            window.location.reload();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   START ENEMY SPAWN
+========================================================= */
+
+function startEnemySpawner(){
+
+    /*
+       Quái đầu tiên sau 3 giây.
+    */
+
+    setTimeout(
+        function(){
+
+            spawnEnemy();
+
+
+            /*
+               Sau đó cứ 3 giây
+               spawn một quái.
+            */
+
+            setInterval(
+                function(){
+
+                    spawnEnemy();
+
+                },
+                CONFIG.ENEMY_SPAWN_INTERVAL *
+                1000
+            );
+
+        },
+        CONFIG.ENEMY_SPAWN_INTERVAL *
+        1000
+    );
+
+}
+
+
+/* =========================================================
+   ENERGY REGEN
+========================================================= */
+
+let lastEnergyTime =
+    performance.now();
+
+
+function updateEnergy(
+    now
+){
+
+    /*
+       Cập nhật 5/giây.
+    */
+
+    const delta =
+        (
+            now -
+            lastEnergyTime
+        ) /
+        1000;
+
+
+    lastEnergyTime =
+        now;
+
+
+    if(
+        energy <
+        CONFIG.MAX_ENERGY
+    ){
+
+        energy +=
+            CONFIG.ENERGY_REGEN_PER_SECOND *
+            delta;
+
+
+        if(
+            energy >
+            CONFIG.MAX_ENERGY
+        ){
+
+            energy =
+                CONFIG.MAX_ENERGY;
+
+        }
+
+
+        updateEnergyUi();
+
+    }
+
+}
+
+
+/* =========================================================
+   MAIN LOOP
+========================================================= */
+
+let lastFrame =
+    performance.now();
+
+
+function gameLoop(
+    now
+){
+
+    const delta =
+        Math.min(
+            (
+                now -
+                lastFrame
+            ) /
+            1000,
+
+            .05
+        );
+
+
+    lastFrame =
+        now;
+
+
+    if(
+        !battleFinished
+    ){
+
+        updateEnergy(
+            now
+        );
+
+
+        for(
+            const unit of playerUnits
+        ){
+
+            updatePlayer(
+                unit,
+                delta
+            );
+
+        }
+
+
+        for(
+            const enemy of enemyUnits
+        ){
+
+            updateEnemy(
+                enemy,
+                delta
+            );
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        gameLoop
+    );
+
+}
+
+
+/* =========================================================
+   SCALE
+========================================================= */
+
+function scaleGame(){
+
+    const width =
+        window.innerWidth;
+
+    const height =
+        window.innerHeight;
+
+
+    const scale =
+        Math.min(
+            width / 1536,
+            height / 864
+        );
+
+
+    frame.style.transform =
+        "translate(-50%,-50%) " +
+        "scale(" +
+        scale +
+        ")";
+
+}
+
+
+window.addEventListener(
+    "resize",
+    scaleGame
+);
+
+
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        setTimeout(
+            scaleGame,
+            200
+        );
+
+    }
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+updateEnergyUi();
+
+updateGoldUi();
+
+updateTowerUi();
+
+updateUnitCounts();
+
+scaleGame();
+
+startEnemySpawner();
+
+requestAnimationFrame(
+    gameLoop
+);
+
 </script>
+
 </body>
+
 </html>
