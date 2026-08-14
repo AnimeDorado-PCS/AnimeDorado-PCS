@@ -1,72 +1,49 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
+               initial-scale=1,
+               maximum-scale=1,
                user-scalable=no">
 
 <title>ANIME DORADO - CHỌN MAP</title>
 
 <style>
 
-/* =========================================================
-   RESET
-========================================================= */
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-
     -webkit-tap-highlight-color:transparent;
 }
 
 html,
 body{
-
     width:100%;
     height:100%;
-
     overflow:hidden;
-
     background:#000;
-
 }
 
-
-/* =========================================================
-   APP
-========================================================= */
+body{
+    font-family:Arial,Helvetica,sans-serif;
+}
 
 #app{
-
     position:fixed;
-
     inset:0;
-
-    width:100%;
-    height:100%;
-
     overflow:hidden;
-
     background:#000;
-
 }
 
-
-/* =========================================================
-   GAME FRAME
-   Thiết kế đúng theo ảnh 1536x864
-========================================================= */
+/* ==================================================
+   KHUNG THIẾT KẾ
+================================================== */
 
 #gameFrame{
-
     position:absolute;
 
     left:50%;
@@ -80,16 +57,13 @@ body{
         scale(1);
 
     transform-origin:center center;
-
 }
 
-
-/* =========================================================
+/* ==================================================
    NỀN
-========================================================= */
+================================================== */
 
 #background{
-
     position:absolute;
 
     left:0;
@@ -98,282 +72,218 @@ body{
     width:1536px;
     height:864px;
 
-    display:block;
-
     object-fit:fill;
 
+    display:block;
+
     user-select:none;
-
     -webkit-user-drag:none;
-
 }
 
+/* ==================================================
+   NÚT QUAY LẠI
+================================================== */
 
-/* =========================================================
-   VÙNG BẤM ẨN
-========================================================= */
-
-.hit{
-
+.back-hit{
     position:absolute;
 
-    border:0;
+    left:18px;
+    top:18px;
 
-    outline:none;
+    width:70px;
+    height:65px;
+
+    border:0;
+    outline:0;
 
     background:transparent;
 
-    padding:0;
+    cursor:pointer;
 
-    margin:0;
+    z-index:20;
+}
+
+/* ==================================================
+   VÙNG MAP BẤM ẨN
+================================================== */
+
+.map-hit{
+    position:absolute;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
 
     cursor:pointer;
 
-    -webkit-tap-highlight-color:transparent;
+    z-index:10;
 
+    padding:0;
 }
 
-
-/* =========================================================
-   QUAY LẠI
-   Vùng trùng với nút ← trong ảnh
-========================================================= */
-
-#backHit{
-
-    left:20px;
-
-    top:15px;
-
-    width:68px;
-
-    height:68px;
-
-}
-
-
-/* =========================================================
-   MODE THƯỜNG
-========================================================= */
-
-#normalHit{
-
-    left:78px;
-
-    top:92px;
-
-    width:170px;
-
-    height:48px;
-
-}
-
-
-/* =========================================================
-   MODE KHÓ
-========================================================= */
-
-#hardModeHit{
-
-    left:245px;
-
-    top:92px;
-
-    width:150px;
-
-    height:48px;
-
-}
-
-
-/* =========================================================
-   MAP 1
-   VƯỜN MÊ CUNG
-
-   Đây là vùng bấm chính.
-   Không có khung đè lên ảnh.
-========================================================= */
-
-#map1Hit{
-
-    left:55px;
-
-    top:215px;
-
-    width:330px;
-
-    height:425px;
-
-}
-
-
-/* =========================================================
-   MAP 2 KHÓA
-========================================================= */
-
-#map2Hit{
-
-    left:350px;
-
-    top:205px;
-
-    width:330px;
-
-    height:280px;
-
-}
-
-
-/* =========================================================
-   MAP 3 KHÓA
-========================================================= */
-
-#map3Hit{
-
-    left:650px;
-
-    top:205px;
-
-    width:460px;
-
-    height:290px;
-
-}
-
-
-/* =========================================================
-   MAP 4 KHÓA
-========================================================= */
-
-#map4Hit{
-
-    left:1110px;
-
-    top:285px;
-
-    width:380px;
-
-    height:370px;
-
-}
-
-
-/* =========================================================
-   NÚT KHÓ Ở DƯỚI
-========================================================= */
-
-#hardButtonHit{
-
-    left:675px;
-
-    top:755px;
-
-    width:180px;
-
-    height:75px;
-
-}
-
-
-/* =========================================================
-   TOUCH EFFECT
-   Không làm thay đổi ảnh.
-========================================================= */
-
-.hit:active{
-
+.map-hit:active{
     background:
-        rgba(
-            255,
-            255,
-            255,
-            .03
-        );
-
+        rgba(255,255,255,.04);
 }
 
+/* ==================================================
+   MAP 1
+================================================== */
 
-/* =========================================================
-   TOAST
-========================================================= */
+#map1{
+    left:220px;
+    top:130px;
 
-#toast{
+    width:410px;
+    height:300px;
+}
+
+/* ==================================================
+   MAP 2
+================================================== */
+
+#map2{
+    left:865px;
+    top:120px;
+
+    width:390px;
+    height:310px;
+}
+
+/* ==================================================
+   MAP 3
+================================================== */
+
+#map3{
+    left:570px;
+    top:320px;
+
+    width:350px;
+    height:190px;
+}
+
+/* ==================================================
+   MAP 4
+================================================== */
+
+#map4{
+    left:230px;
+    top:455px;
+
+    width:390px;
+    height:300px;
+}
+
+/* ==================================================
+   MAP 5
+================================================== */
+
+#map5{
+    left:875px;
+    top:455px;
+
+    width:400px;
+    height:300px;
+}
+
+/* ==================================================
+   KHÓA MAP
+================================================== */
+
+.map-hit.locked{
+    cursor:not-allowed;
+}
+
+.map-hit.locked::after{
+
+    content:"🔒";
 
     position:absolute;
 
     left:50%;
+    top:50%;
 
+    transform:
+        translate(-50%,-50%);
+
+    width:65px;
+    height:65px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:
+        rgba(0,0,0,.58);
+
+    border:
+        2px solid
+        rgba(255,255,255,.55);
+
+    box-shadow:
+        0 7px 25px
+        rgba(0,0,0,.35);
+
+    font-size:32px;
+
+    pointer-events:none;
+}
+
+/* ==================================================
+   THÔNG BÁO
+================================================== */
+
+#message{
+
+    position:absolute;
+
+    left:50%;
     top:50%;
 
     transform:
         translate(-50%,-50%)
         scale(.92);
 
-    min-width:260px;
-
+    min-width:280px;
     max-width:80%;
 
     padding:
-        15px
-        20px;
+        16px
+        22px;
+
+    border-radius:15px;
 
     border:
         1px solid
-        rgba(
-            255,
-            214,
-            90,
-            .45
-        );
-
-    border-radius:14px;
+        rgba(255,214,90,.42);
 
     background:
-        rgba(
-            0,
-            0,
-            0,
-            .78
-        );
+        rgba(0,0,0,.82);
 
-    box-shadow:
-        0 15px 50px
-        rgba(
-            0,
-            0,
-            0,
-            .4
-        );
-
-    color:#fff;
+    color:#ffd65a;
 
     text-align:center;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
     font-size:15px;
 
-    font-weight:bold;
+    font-weight:900;
 
     opacity:0;
 
     pointer-events:none;
 
+    z-index:100;
+
     transition:
         opacity .18s ease,
         transform .18s ease;
-
-    z-index:100;
-
 }
 
-
-/* TOAST HIỆN */
-
-#toast.show{
+#message.show{
 
     opacity:1;
 
@@ -383,10 +293,43 @@ body{
 
 }
 
+/* ==================================================
+   PANEL TIẾN ĐỘ
+   Chỉ hiện rất nhỏ ở góc để không phá ảnh
+================================================== */
 
-/* =========================================================
-   LANDSCAPE MOBILE
-========================================================= */
+#progressPanel{
+
+    position:absolute;
+
+    right:18px;
+    bottom:16px;
+
+    z-index:30;
+
+    padding:
+        8px 12px;
+
+    border-radius:12px;
+
+    background:
+        rgba(0,0,0,.48);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    color:#fff;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+/* ==================================================
+   MOBILE / SCALE
+================================================== */
 
 @media (orientation:landscape){
 
@@ -405,166 +348,409 @@ body{
 
 }
 
-
-/* =========================================================
-   MÀN HÌNH DỌC
-   JS sẽ tự scale theo chiều nhỏ hơn.
-========================================================= */
-
 @media (orientation:portrait){
 
     #gameFrame{
 
         transform:
             translate(-50%,-50%)
-            rotate(90deg);
+            rotate(90deg)
+            scale(
+                min(
+                    100vw / 864,
+                    100vh / 1536
+                )
+            );
 
     }
 
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
 <div id="app">
-
-
-    <!-- =================================================
-         GAME
-    ================================================= -->
 
     <div id="gameFrame">
 
-
-        <!-- NỀN CHÍNH -->
-
+        <!-- NỀN BẠN ĐÃ UPLOAD -->
         <img
             id="background"
-            src="./nenchonmap.png"
-            alt="CHỌN BẢN ĐỒ">
+            src="./chonmap.png"
+            alt="Chọn bản đồ">
 
 
-        <!-- =================================================
-             HITBOX QUAY LẠI
-        ================================================= -->
-
+        <!-- QUAY LẠI -->
         <button
-            id="backHit"
-            class="hit"
-            aria-label="Quay lại">
+            class="back-hit"
+            aria-label="Quay lại"
+            onclick="goBack()">
         </button>
 
 
-        <!-- =================================================
-             THƯỜNG / KHÓ
-        ================================================= -->
-
+        <!-- MAP 1 -->
         <button
-            id="normalHit"
-            class="hit"
-            aria-label="Thường">
+            id="map1"
+            class="map-hit"
+            aria-label="Map 1"
+            onclick="selectMap(1)">
         </button>
 
 
+        <!-- MAP 2 -->
         <button
-            id="hardModeHit"
-            class="hit"
-            aria-label="Khó">
+            id="map2"
+            class="map-hit"
+            aria-label="Map 2"
+            onclick="selectMap(2)">
         </button>
 
 
-        <!-- =================================================
-             MAP 1
-        ================================================= -->
-
+        <!-- MAP 3 -->
         <button
-            id="map1Hit"
-            class="hit"
-            aria-label="Vườn mê cung">
+            id="map3"
+            class="map-hit"
+            aria-label="Map 3"
+            onclick="selectMap(3)">
         </button>
 
 
-        <!-- =================================================
-             MAP 2
-        ================================================= -->
-
+        <!-- MAP 4 -->
         <button
-            id="map2Hit"
-            class="hit"
-            aria-label="Bản đồ 2">
+            id="map4"
+            class="map-hit"
+            aria-label="Map 4"
+            onclick="selectMap(4)">
         </button>
 
 
-        <!-- =================================================
-             MAP 3
-        ================================================= -->
-
+        <!-- MAP 5 -->
         <button
-            id="map3Hit"
-            class="hit"
-            aria-label="Bản đồ 3">
+            id="map5"
+            class="map-hit"
+            aria-label="Map 5"
+            onclick="selectMap(5)">
         </button>
 
 
-        <!-- =================================================
-             MAP 4
-        ================================================= -->
-
-        <button
-            id="map4Hit"
-            class="hit"
-            aria-label="Bản đồ 4">
-        </button>
+        <!-- THÔNG BÁO -->
+        <div id="message"></div>
 
 
-        <!-- =================================================
-             HARD
-        ================================================= -->
-
-        <button
-            id="hardButtonHit"
-            class="hit"
-            aria-label="Khó">
-        </button>
-
-
-        <!-- =================================================
-             TOAST
-        ================================================= -->
-
-        <div id="toast">
-            Bản đồ này chưa được mở.
+        <!-- TIẾN ĐỘ -->
+        <div id="progressPanel">
+            MAP 1 • 0/20
         </div>
 
-
     </div>
-
 
 </div>
 
 
-
 <script>
 
-/* =========================================================
-   KÍCH THƯỚC THIẾT KẾ
-========================================================= */
+/* ==================================================
+   CẤU HÌNH
+================================================== */
 
-const DESIGN_WIDTH =
-    1536;
+const TOTAL_MAPS = 5;
 
-const DESIGN_HEIGHT =
-    864;
+const STAGES_PER_MAP = 20;
 
 
-/* =========================================================
+/* ==================================================
+   LOCAL STORAGE
+==================================================
+
+   map1Progress = số màn đã vượt
+   map2Progress = số màn đã vượt
+   ...
+================================================== */
+
+function getProgress(mapNumber){
+
+    return Number(
+        localStorage.getItem(
+            "animeDorado_map" +
+            mapNumber +
+            "_progress"
+        ) || 0
+    );
+
+}
+
+
+function setProgress(
+    mapNumber,
+    progress
+){
+
+    progress =
+        Math.max(
+            0,
+            Math.min(
+                STAGES_PER_MAP,
+                Number(progress) || 0
+            )
+        );
+
+    localStorage.setItem(
+        "animeDorado_map" +
+        mapNumber +
+        "_progress",
+        progress
+    );
+
+}
+
+
+/* ==================================================
+   KIỂM TRA MAP ĐÃ MỞ
+================================================== */
+
+function isMapUnlocked(
+    mapNumber
+){
+
+    /*
+       MAP 1 luôn mở.
+    */
+
+    if(
+        mapNumber === 1
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+       Map sau chỉ mở khi map trước
+       đã vượt đủ 20 màn.
+    */
+
+    return (
+        getProgress(
+            mapNumber - 1
+        ) >=
+        STAGES_PER_MAP
+    );
+
+}
+
+
+/* ==================================================
+   CẬP NHẬT KHÓA
+================================================== */
+
+function updateMapLocks(){
+
+    for(
+        let i = 1;
+        i <= TOTAL_MAPS;
+        i++
+    ){
+
+        const map =
+            document.getElementById(
+                "map" + i
+            );
+
+
+        if(
+            !map
+        ){
+
+            continue;
+
+        }
+
+
+        if(
+            isMapUnlocked(i)
+        ){
+
+            map.classList.remove(
+                "locked"
+            );
+
+            map.disabled =
+                false;
+
+        }
+        else{
+
+            map.classList.add(
+                "locked"
+            );
+
+            map.disabled =
+                true;
+
+        }
+
+    }
+
+}
+
+
+/* ==================================================
+   CHỌN MAP
+================================================== */
+
+function selectMap(
+    mapNumber
+){
+
+    if(
+        !isMapUnlocked(
+            mapNumber
+        )
+    ){
+
+        showMessage(
+            "MAP " +
+            mapNumber +
+            " CHƯA ĐƯỢC MỞ!"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Lưu map hiện tại
+    */
+
+    localStorage.setItem(
+        "animeDorado_currentMap",
+        mapNumber
+    );
+
+
+    /*
+       Luôn bắt đầu chọn stage
+       của map đã chọn.
+    */
+
+    window.location.href =
+        "./chonstage.html";
+
+}
+
+
+/* ==================================================
+   THÔNG BÁO
+================================================== */
+
+let messageTimer = null;
+
+function showMessage(
+    text
+){
+
+    const box =
+        document.getElementById(
+            "message"
+        );
+
+
+    box.textContent =
+        text;
+
+
+    box.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        messageTimer
+    );
+
+
+    messageTimer =
+        setTimeout(
+            function(){
+
+                box.classList.remove(
+                    "show"
+                );
+
+            },
+            1300
+        );
+
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+function goBack(){
+
+    window.location.href =
+        "./index.html";
+
+}
+
+
+/* ==================================================
+   HIỂN THỊ TIẾN ĐỘ
+================================================== */
+
+function updateProgressPanel(){
+
+    let currentMap =
+        Number(
+            localStorage.getItem(
+                "animeDorado_currentMap"
+            ) || 1
+        );
+
+
+    if(
+        !isMapUnlocked(
+            currentMap
+        )
+    ){
+
+        currentMap =
+            1;
+
+    }
+
+
+    const progress =
+        getProgress(
+            currentMap
+        );
+
+
+    document
+        .getElementById(
+            "progressPanel"
+        )
+        .textContent =
+
+        "MAP " +
+        currentMap +
+        " • " +
+        progress +
+        "/" +
+        STAGES_PER_MAP;
+
+}
+
+
+/* ==================================================
    SCALE
-========================================================= */
+================================================== */
 
 function scaleGame(){
 
@@ -574,38 +760,23 @@ function scaleGame(){
         );
 
 
-    const screenWidth =
+    const width =
         window.innerWidth;
 
-    const screenHeight =
+    const height =
         window.innerHeight;
 
 
-    /*
-       Với màn hình ngang:
-       vừa chính xác theo ảnh 1536x864.
-    */
-
-    const scale =
-        Math.min(
-
-            screenWidth /
-            DESIGN_WIDTH,
-
-            screenHeight /
-            DESIGN_HEIGHT
-
-        );
-
-
-    /*
-       Nếu ngang
-    */
-
     if(
-        screenWidth >=
-        screenHeight
+        width >= height
     ){
+
+        const scale =
+            Math.min(
+                width / 1536,
+                height / 864
+            );
+
 
         frame.style.transform =
             "translate(-50%,-50%) " +
@@ -614,24 +785,12 @@ function scaleGame(){
             ")";
 
     }
-
-
-    /*
-       Nếu dọc:
-       xoay toàn bộ màn hình game ngang.
-    */
-
     else{
 
-        const rotatedScale =
+        const scale =
             Math.min(
-
-                screenHeight /
-                DESIGN_WIDTH,
-
-                screenWidth /
-                DESIGN_HEIGHT
-
+                width / 864,
+                height / 1536
             );
 
 
@@ -639,7 +798,7 @@ function scaleGame(){
             "translate(-50%,-50%) " +
             "rotate(90deg) " +
             "scale(" +
-            rotatedScale +
+            scale +
             ")";
 
     }
@@ -647,233 +806,16 @@ function scaleGame(){
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* ==================================================
+   START
+================================================== */
 
-let toastTimer = null;
+updateMapLocks();
 
+updateProgressPanel();
 
-function showToast(
-    message
-){
+scaleGame();
 
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            function(){
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            1200
-        );
-
-}
-
-
-/* =========================================================
-   QUAY LẠI
-========================================================= */
-
-document
-    .getElementById(
-        "backHit"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            window.location.href =
-                "./index.html";
-
-        }
-    );
-
-
-/* =========================================================
-   NORMAL
-========================================================= */
-
-document
-    .getElementById(
-        "normalHit"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            showToast(
-                "Đang ở chế độ THƯỜNG"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   HARD MODE
-========================================================= */
-
-document
-    .getElementById(
-        "hardModeHit"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            showToast(
-                "Chế độ KHÓ chưa mở"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   MAP 1
-========================================================= */
-
-document
-    .getElementById(
-        "map1Hit"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            /*
-               Lưu map.
-            */
-
-            localStorage.setItem(
-                "mapDaChon",
-                "map1"
-            );
-
-
-            localStorage.setItem(
-                "tenMapDaChon",
-                "Vườn mê cung"
-            );
-
-
-            /*
-               Đi sang chọn stage.
-            */
-
-            window.location.href =
-                "./chonstage.html";
-
-        }
-    );
-
-
-/* =========================================================
-   MAP 2
-========================================================= */
-
-document
-    .getElementById(
-        "map2Hit"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            showToast(
-                "Map 2 chưa mở"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   MAP 3
-========================================================= */
-
-document
-    .getElementById(
-        "map3Hit"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            showToast(
-                "Map 3 chưa mở"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   MAP 4
-========================================================= */
-
-document
-    .getElementById(
-        "map4Hit"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            showToast(
-                "Map 4 chưa mở"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   NÚT KHÓ
-========================================================= */
-
-document
-    .getElementById(
-        "hardButtonHit"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            showToast(
-                "Chế độ khó chưa mở"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   RESIZE
-========================================================= */
 
 window.addEventListener(
     "resize",
@@ -887,22 +829,13 @@ window.addEventListener(
 
         setTimeout(
             scaleGame,
-            250
+            200
         );
 
     }
 );
 
-
-/* =========================================================
-   START
-========================================================= */
-
-scaleGame();
-
 </script>
 
-
 </body>
-
 </html>
