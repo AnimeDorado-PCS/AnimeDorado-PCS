@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -12,6 +14,10 @@
 <title>ANIME DORADO - CHỌN MAP</title>
 
 <style>
+
+/* ==================================================
+   RESET
+================================================== */
 
 *{
     box-sizing:border-box;
@@ -29,21 +35,38 @@ body{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    user-select:none;
 }
+
+
+/* ==================================================
+   APP
+================================================== */
 
 #app{
     position:fixed;
     inset:0;
+
+    width:100%;
+    height:100%;
+
     overflow:hidden;
+
     background:#000;
 }
 
+
 /* ==================================================
-   KHUNG THIẾT KẾ
+   GAME FRAME
 ================================================== */
 
 #gameFrame{
+
     position:absolute;
 
     left:50%;
@@ -57,13 +80,16 @@ body{
         scale(1);
 
     transform-origin:center center;
+
 }
 
+
 /* ==================================================
-   NỀN
+   NỀN CHỌN MAP
 ================================================== */
 
 #background{
+
     position:absolute;
 
     left:0;
@@ -72,23 +98,27 @@ body{
     width:1536px;
     height:864px;
 
-    object-fit:fill;
-
     display:block;
 
+    object-fit:fill;
+
     user-select:none;
+
     -webkit-user-drag:none;
+
 }
+
 
 /* ==================================================
    NÚT QUAY LẠI
 ================================================== */
 
-.back-hit{
+.back-button{
+
     position:absolute;
 
-    left:18px;
-    top:18px;
+    left:15px;
+    top:15px;
 
     width:70px;
     height:65px;
@@ -100,102 +130,125 @@ body{
 
     cursor:pointer;
 
-    z-index:20;
+    z-index:50;
+
 }
 
+
 /* ==================================================
-   VÙNG MAP BẤM ẨN
+   MAP HITBOX
 ================================================== */
 
-.map-hit{
+.map-button{
+
     position:absolute;
 
     border:0;
     outline:0;
 
+    padding:0;
+
     background:transparent;
 
     cursor:pointer;
 
-    z-index:10;
+    z-index:20;
 
-    padding:0;
 }
 
-.map-hit:active{
-    background:
-        rgba(255,255,255,.04);
-}
 
 /* ==================================================
    MAP 1
 ================================================== */
 
 #map1{
+
     left:220px;
     top:130px;
 
     width:410px;
     height:300px;
+
 }
+
 
 /* ==================================================
    MAP 2
 ================================================== */
 
 #map2{
+
     left:865px;
     top:120px;
 
     width:390px;
     height:310px;
+
 }
+
 
 /* ==================================================
    MAP 3
 ================================================== */
 
 #map3{
+
     left:570px;
     top:320px;
 
     width:350px;
     height:190px;
+
 }
+
 
 /* ==================================================
    MAP 4
 ================================================== */
 
 #map4{
+
     left:230px;
     top:455px;
 
     width:390px;
     height:300px;
+
 }
+
 
 /* ==================================================
    MAP 5
 ================================================== */
 
 #map5{
+
     left:875px;
     top:455px;
 
     width:400px;
     height:300px;
+
 }
+
 
 /* ==================================================
-   KHÓA MAP
+   MAP KHÓA
 ================================================== */
 
-.map-hit.locked{
+.map-button.locked{
+
     cursor:not-allowed;
+
 }
 
-.map-hit.locked::after{
+
+/*
+   Không phủ khóa lên Map 1.
+   Chỉ Map chưa mở mới có khóa.
+*/
+
+.map-button.locked::after{
 
     content:"🔒";
 
@@ -207,34 +260,36 @@ body{
     transform:
         translate(-50%,-50%);
 
-    width:65px;
-    height:65px;
+    width:64px;
+    height:64px;
 
     display:flex;
 
     align-items:center;
     justify-content:center;
 
-    border-radius:18px;
+    border-radius:17px;
 
     background:
         rgba(0,0,0,.58);
 
     border:
         2px solid
-        rgba(255,255,255,.55);
+        rgba(255,255,255,.5);
 
     box-shadow:
-        0 7px 25px
-        rgba(0,0,0,.35);
+        0 8px 24px
+        rgba(0,0,0,.4);
 
-    font-size:32px;
+    font-size:31px;
 
     pointer-events:none;
+
 }
 
+
 /* ==================================================
-   THÔNG BÁO
+   MESSAGE
 ================================================== */
 
 #message{
@@ -246,23 +301,24 @@ body{
 
     transform:
         translate(-50%,-50%)
-        scale(.92);
+        scale(.9);
 
     min-width:280px;
+
     max-width:80%;
 
     padding:
-        16px
+        15px
         22px;
 
     border-radius:15px;
 
+    background:
+        rgba(0,0,0,.84);
+
     border:
         1px solid
         rgba(255,214,90,.42);
-
-    background:
-        rgba(0,0,0,.82);
 
     color:#ffd65a;
 
@@ -281,6 +337,7 @@ body{
     transition:
         opacity .18s ease,
         transform .18s ease;
+
 }
 
 #message.show{
@@ -293,19 +350,19 @@ body{
 
 }
 
+
 /* ==================================================
-   PANEL TIẾN ĐỘ
-   Chỉ hiện rất nhỏ ở góc để không phá ảnh
+   TIẾN ĐỘ
 ================================================== */
 
-#progressPanel{
+#progress{
 
     position:absolute;
 
     right:18px;
     bottom:16px;
 
-    z-index:30;
+    z-index:40;
 
     padding:
         8px 12px;
@@ -327,122 +384,149 @@ body{
 
 }
 
+
 /* ==================================================
-   MOBILE / SCALE
+   CHẠM
 ================================================== */
 
-@media (orientation:landscape){
+.map-button:active{
 
-    #gameFrame{
-
-        transform:
-            translate(-50%,-50%)
-            scale(
-                min(
-                    100vw / 1536,
-                    100vh / 864
-                )
-            );
-
-    }
+    background:
+        rgba(255,255,255,.035);
 
 }
 
-@media (orientation:portrait){
 
-    #gameFrame{
+/* ==================================================
+   DESKTOP / MOBILE
+================================================== */
 
-        transform:
-            translate(-50%,-50%)
-            rotate(90deg)
-            scale(
-                min(
-                    100vw / 864,
-                    100vh / 1536
-                )
-            );
+@media(max-width:700px){
+
+    #progress{
+
+        right:8px;
+        bottom:8px;
+
+        font-size:9px;
+
+        padding:
+            7px 9px;
 
     }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <div id="app">
+
 
     <div id="gameFrame">
 
-        <!-- NỀN BẠN ĐÃ UPLOAD -->
+
+        <!-- ==========================================
+             NỀN
+        =========================================== -->
+
         <img
             id="background"
             src="./chonmap.png"
-            alt="Chọn bản đồ">
+            alt="ANIME DORADO - CHỌN MAP">
 
 
-        <!-- QUAY LẠI -->
+        <!-- ==========================================
+             QUAY LẠI
+        =========================================== -->
+
         <button
-            class="back-hit"
+            class="back-button"
             aria-label="Quay lại"
             onclick="goBack()">
         </button>
 
 
-        <!-- MAP 1 -->
+        <!-- ==========================================
+             MAP 1
+        =========================================== -->
+
         <button
             id="map1"
-            class="map-hit"
+            class="map-button"
             aria-label="Map 1"
             onclick="selectMap(1)">
         </button>
 
 
-        <!-- MAP 2 -->
+        <!-- ==========================================
+             MAP 2
+        =========================================== -->
+
         <button
             id="map2"
-            class="map-hit"
+            class="map-button"
             aria-label="Map 2"
             onclick="selectMap(2)">
         </button>
 
 
-        <!-- MAP 3 -->
+        <!-- ==========================================
+             MAP 3
+        =========================================== -->
+
         <button
             id="map3"
-            class="map-hit"
+            class="map-button"
             aria-label="Map 3"
             onclick="selectMap(3)">
         </button>
 
 
-        <!-- MAP 4 -->
+        <!-- ==========================================
+             MAP 4
+        =========================================== -->
+
         <button
             id="map4"
-            class="map-hit"
+            class="map-button"
             aria-label="Map 4"
             onclick="selectMap(4)">
         </button>
 
 
-        <!-- MAP 5 -->
+        <!-- ==========================================
+             MAP 5
+        =========================================== -->
+
         <button
             id="map5"
-            class="map-hit"
+            class="map-button"
             aria-label="Map 5"
             onclick="selectMap(5)">
         </button>
 
 
-        <!-- THÔNG BÁO -->
+        <!-- ==========================================
+             THÔNG BÁO
+        =========================================== -->
+
         <div id="message"></div>
 
 
-        <!-- TIẾN ĐỘ -->
-        <div id="progressPanel">
+        <!-- ==========================================
+             TIẾN ĐỘ
+        =========================================== -->
+
+        <div id="progress">
             MAP 1 • 0/20
         </div>
+
 
     </div>
 
@@ -452,62 +536,60 @@ body{
 <script>
 
 /* ==================================================
-   CẤU HÌNH
+   CONFIG
 ================================================== */
 
-const TOTAL_MAPS = 5;
+const TOTAL_MAPS =
+    5;
 
-const STAGES_PER_MAP = 20;
+const STAGES_PER_MAP =
+    20;
 
 
 /* ==================================================
    LOCAL STORAGE
-==================================================
-
-   map1Progress = số màn đã vượt
-   map2Progress = số màn đã vượt
-   ...
 ================================================== */
 
-function getProgress(mapNumber){
-
-    return Number(
-        localStorage.getItem(
-            "animeDorado_map" +
-            mapNumber +
-            "_progress"
-        ) || 0
-    );
-
-}
-
-
-function setProgress(
-    mapNumber,
-    progress
+function getMapProgress(
+    mapNumber
 ){
 
-    progress =
-        Math.max(
-            0,
-            Math.min(
-                STAGES_PER_MAP,
-                Number(progress) || 0
+    const key =
+        "animeDorado_map" +
+        mapNumber +
+        "_progress";
+
+
+    const value =
+        Number(
+            localStorage.getItem(
+                key
             )
         );
 
-    localStorage.setItem(
-        "animeDorado_map" +
-        mapNumber +
-        "_progress",
-        progress
+
+    if(
+        !Number.isFinite(value)
+    ){
+
+        return 0;
+
+    }
+
+
+    return Math.max(
+        0,
+        Math.min(
+            STAGES_PER_MAP,
+            value
+        )
     );
 
 }
 
 
 /* ==================================================
-   KIỂM TRA MAP ĐÃ MỞ
+   MAP UNLOCK
 ================================================== */
 
 function isMapUnlocked(
@@ -515,7 +597,7 @@ function isMapUnlocked(
 ){
 
     /*
-       MAP 1 luôn mở.
+       Map 1 luôn mở.
     */
 
     if(
@@ -528,12 +610,12 @@ function isMapUnlocked(
 
 
     /*
-       Map sau chỉ mở khi map trước
-       đã vượt đủ 20 màn.
+       Map N mở khi Map N-1
+       đã hoàn thành đủ 20 màn.
     */
 
     return (
-        getProgress(
+        getMapProgress(
             mapNumber - 1
         ) >=
         STAGES_PER_MAP
@@ -543,7 +625,7 @@ function isMapUnlocked(
 
 
 /* ==================================================
-   CẬP NHẬT KHÓA
+   UPDATE LOCK
 ================================================== */
 
 function updateMapLocks(){
@@ -554,14 +636,14 @@ function updateMapLocks(){
         i++
     ){
 
-        const map =
+        const button =
             document.getElementById(
                 "map" + i
             );
 
 
         if(
-            !map
+            !button
         ){
 
             continue;
@@ -569,25 +651,29 @@ function updateMapLocks(){
         }
 
 
+        const unlocked =
+            isMapUnlocked(i);
+
+
         if(
-            isMapUnlocked(i)
+            unlocked
         ){
 
-            map.classList.remove(
+            button.classList.remove(
                 "locked"
             );
 
-            map.disabled =
+            button.disabled =
                 false;
 
         }
         else{
 
-            map.classList.add(
+            button.classList.add(
                 "locked"
             );
 
-            map.disabled =
+            button.disabled =
                 true;
 
         }
@@ -598,12 +684,17 @@ function updateMapLocks(){
 
 
 /* ==================================================
-   CHỌN MAP
+   SELECT MAP
 ================================================== */
 
 function selectMap(
     mapNumber
 ){
+
+    /*
+       Kiểm tra khóa lần nữa
+       để tránh bấm bằng script.
+    */
 
     if(
         !isMapUnlocked(
@@ -623,31 +714,52 @@ function selectMap(
 
 
     /*
-       Lưu map hiện tại
+       Lưu map hiện tại.
     */
 
     localStorage.setItem(
         "animeDorado_currentMap",
-        mapNumber
+        String(mapNumber)
     );
 
 
     /*
-       Luôn bắt đầu chọn stage
-       của map đã chọn.
+       MAP 1 → CHONMANMAP1
     */
 
-    window.location.href =
-        "./chonstage.html";
+    if(
+        mapNumber === 1
+    ){
+
+        window.location.href =
+            "./chonmanmap1.html";
+
+        return;
+
+    }
+
+
+    /*
+       Các map khác chưa tạo.
+       Không 404, chỉ báo khóa/chưa có.
+    */
+
+    showMessage(
+        "MAP " +
+        mapNumber +
+        " CHƯA CÓ!"
+    );
 
 }
 
 
 /* ==================================================
-   THÔNG BÁO
+   MESSAGE
 ================================================== */
 
-let messageTimer = null;
+let messageTimer =
+    null;
+
 
 function showMessage(
     text
@@ -701,10 +813,10 @@ function goBack(){
 
 
 /* ==================================================
-   HIỂN THỊ TIẾN ĐỘ
+   PROGRESS PANEL
 ================================================== */
 
-function updateProgressPanel(){
+function updateProgress(){
 
     let currentMap =
         Number(
@@ -713,6 +825,22 @@ function updateProgressPanel(){
             ) || 1
         );
 
+
+    if(
+        currentMap < 1 ||
+        currentMap > TOTAL_MAPS
+    ){
+
+        currentMap =
+            1;
+
+    }
+
+
+    /*
+       Nếu map hiện tại chưa mở,
+       quay về Map 1.
+    */
 
     if(
         !isMapUnlocked(
@@ -727,14 +855,14 @@ function updateProgressPanel(){
 
 
     const progress =
-        getProgress(
+        getMapProgress(
             currentMap
         );
 
 
     document
         .getElementById(
-            "progressPanel"
+            "progress"
         )
         .textContent =
 
@@ -760,21 +888,29 @@ function scaleGame(){
         );
 
 
-    const width =
+    const screenWidth =
         window.innerWidth;
 
-    const height =
+    const screenHeight =
         window.innerHeight;
 
 
+    /*
+       MÀN HÌNH NGANG
+    */
+
     if(
-        width >= height
+        screenWidth >=
+        screenHeight
     ){
 
         const scale =
             Math.min(
-                width / 1536,
-                height / 864
+                screenWidth /
+                1536,
+
+                screenHeight /
+                864
             );
 
 
@@ -784,26 +920,54 @@ function scaleGame(){
             scale +
             ")";
 
-    }
-    else{
-
-        const scale =
-            Math.min(
-                width / 864,
-                height / 1536
-            );
-
-
-        frame.style.transform =
-            "translate(-50%,-50%) " +
-            "rotate(90deg) " +
-            "scale(" +
-            scale +
-            ")";
+        return;
 
     }
+
+
+    /*
+       MÀN HÌNH DỌC:
+       xoay game ngang.
+    */
+
+    const scale =
+        Math.min(
+            screenWidth /
+            864,
+
+            screenHeight /
+            1536
+        );
+
+
+    frame.style.transform =
+        "translate(-50%,-50%) " +
+        "rotate(90deg) " +
+        "scale(" +
+        scale +
+        ")";
 
 }
+
+
+/* ==================================================
+   IMAGE ERROR CHECK
+================================================== */
+
+document
+    .getElementById(
+        "background"
+    )
+    .addEventListener(
+        "error",
+        function(){
+
+            showMessage(
+                "Không tìm thấy chonmap.png"
+            );
+
+        }
+    );
 
 
 /* ==================================================
@@ -812,7 +976,7 @@ function scaleGame(){
 
 updateMapLocks();
 
-updateProgressPanel();
+updateProgress();
 
 scaleGame();
 
@@ -838,4 +1002,5 @@ window.addEventListener(
 </script>
 
 </body>
+
 </html>
