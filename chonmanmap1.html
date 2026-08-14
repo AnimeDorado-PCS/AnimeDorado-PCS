@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1,
+               maximum-scale=1,
+               user-scalable=no">
+
+<title>ANIME DORADO - MAP 1</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+#app{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    background:#000;
+}
+
+#gameFrame{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:1536px;
+    height:864px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    transform-origin:center center;
+
+}
+
+#background{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:1536px;
+    height:864px;
+
+    display:block;
+
+    object-fit:fill;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+.back-hit{
+
+    position:absolute;
+
+    left:15px;
+    top:15px;
+
+    width:70px;
+    height:65px;
+
+    background:transparent;
+
+    border:0;
+
+    cursor:pointer;
+
+    z-index:20;
+
+}
+
+
+/* ==================================================
+   STAGE BUTTON
+================================================== */
+
+.stage{
+
+    position:absolute;
+
+    width:145px;
+
+    height:145px;
+
+    border:0;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    z-index:10;
+
+}
+
+
+/* ==================================================
+   20 VỊ TRÍ
+   Theo ảnh 1536 x 864
+================================================== */
+
+/* hàng 1 */
+
+.stage1{
+    left:580px;
+    top:150px;
+}
+
+.stage2{
+    left:725px;
+    top:150px;
+}
+
+.stage3{
+    left:870px;
+    top:150px;
+}
+
+.stage4{
+    left:1015px;
+    top:150px;
+}
+
+.stage5{
+    left:1160px;
+    top:150px;
+}
+
+
+/* hàng 2 */
+
+.stage6{
+    left:580px;
+    top:300px;
+}
+
+.stage7{
+    left:725px;
+    top:300px;
+}
+
+.stage8{
+    left:870px;
+    top:300px;
+}
+
+.stage9{
+    left:1015px;
+    top:300px;
+}
+
+.stage10{
+    left:1160px;
+    top:300px;
+}
+
+
+/* hàng 3 */
+
+.stage11{
+    left:580px;
+    top:445px;
+}
+
+.stage12{
+    left:725px;
+    top:445px;
+}
+
+.stage13{
+    left:870px;
+    top:445px;
+}
+
+.stage14{
+    left:1015px;
+    top:445px;
+}
+
+.stage15{
+    left:1160px;
+    top:445px;
+}
+
+
+/* hàng 4 */
+
+.stage16{
+    left:580px;
+    top:590px;
+}
+
+.stage17{
+    left:725px;
+    top:590px;
+}
+
+.stage18{
+    left:870px;
+    top:590px;
+}
+
+.stage19{
+    left:1015px;
+    top:590px;
+}
+
+.stage20{
+    left:1160px;
+    top:590px;
+}
+
+
+/* ==================================================
+   KHÓA
+================================================== */
+
+.stage.locked{
+
+    cursor:not-allowed;
+
+}
+
+
+/* ==================================================
+   LOCK OVERLAY
+   Chỉ đặt icon nhỏ lên đúng ô khóa.
+================================================== */
+
+.stage.locked::after{
+
+    content:"🔒";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width:52px;
+    height:52px;
+
+    border-radius:14px;
+
+    background:
+        rgba(0,0,0,.48);
+
+    border:
+        2px solid
+        rgba(255,255,255,.48);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:27px;
+
+    pointer-events:none;
+
+}
+
+
+/* ==================================================
+   THÔNG BÁO
+================================================== */
+
+#message{
+
+    position:absolute;
+
+    left:50%;
+    top:48%;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:100;
+
+    min-width:270px;
+
+    padding:
+        14px
+        20px;
+
+    border-radius:14px;
+
+    background:
+        rgba(0,0,0,.82);
+
+    border:
+        1px solid
+        rgba(255,214,90,.4);
+
+    color:#ffd65a;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .18s;
+
+}
+
+#message.show{
+    opacity:1;
+}
+
+
+/* ==================================================
+   PORTRAIT
+================================================== */
+
+@media(orientation:portrait){
+
+    #gameFrame{
+
+        transform:
+            translate(-50%,-50%)
+            rotate(90deg)
+            scale(
+                min(
+                    100vw / 864,
+                    100vh / 1536
+                )
+            );
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="app">
+
+<div id="gameFrame">
+
+
+<!-- NỀN -->
+
+<img
+    id="background"
+    src="./chonmanmap1.png"
+    alt="Map 1">
+
+
+<!-- QUAY LẠI -->
+
+<button
+    class="back-hit"
+    onclick="quayLai()">
+</button>
+
+
+<!-- 20 STAGE -->
+
+<button class="stage stage1"
+        data-stage="1"
+        onclick="chonStage(1)">
+</button>
+
+<button class="stage stage2"
+        data-stage="2"
+        onclick="chonStage(2)">
+</button>
+
+<button class="stage stage3"
+        data-stage="3"
+        onclick="chonStage(3)">
+</button>
+
+<button class="stage stage4"
+        data-stage="4"
+        onclick="chonStage(4)">
+</button>
+
+<button class="stage stage5"
+        data-stage="5"
+        onclick="chonStage(5)">
+</button>
+
+<button class="stage stage6"
+        data-stage="6"
+        onclick="chonStage(6)">
+</button>
+
+<button class="stage stage7"
+        data-stage="7"
+        onclick="chonStage(7)">
+</button>
+
+<button class="stage stage8"
+        data-stage="8"
+        onclick="chonStage(8)">
+</button>
+
+<button class="stage stage9"
+        data-stage="9"
+        onclick="chonStage(9)">
+</button>
+
+<button class="stage stage10"
+        data-stage="10"
+        onclick="chonStage(10)">
+</button>
+
+<button class="stage stage11"
+        data-stage="11"
+        onclick="chonStage(11)">
+</button>
+
+<button class="stage stage12"
+        data-stage="12"
+        onclick="chonStage(12)">
+</button>
+
+<button class="stage stage13"
+        data-stage="13"
+        onclick="chonStage(13)">
+</button>
+
+<button class="stage stage14"
+        data-stage="14"
+        onclick="chonStage(14)">
+</button>
+
+<button class="stage stage15"
+        data-stage="15"
+        onclick="chonStage(15)">
+</button>
+
+<button class="stage stage16"
+        data-stage="16"
+        onclick="chonStage(16)">
+</button>
+
+<button class="stage stage17"
+        data-stage="17"
+        onclick="chonStage(17)">
+</button>
+
+<button class="stage stage18"
+        data-stage="18"
+        onclick="chonStage(18)">
+</button>
+
+<button class="stage stage19"
+        data-stage="19"
+        onclick="chonStage(19)">
+</button>
+
+<button class="stage stage20"
+        data-stage="20"
+        onclick="chonStage(20)">
+</button>
+
+
+<div id="message"></div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   TIẾN ĐỘ MAP 1
+==================================================
+
+   1 = Stage 1 đang mở
+   2 = Stage 2 đang mở
+   ...
+   20 = Stage 20 đang mở
+
+   21 = đã hoàn thành cả Map 1
+================================================== */
+
+function getUnlockedStage(){
+
+    return Number(
+        localStorage.getItem(
+            "map1_unlocked_stage"
+        ) || 1
+    );
+
+}
+
+
+/* ==================================================
+   CẬP NHẬT KHÓA
+================================================== */
+
+function updateStages(){
+
+    const unlocked =
+        Math.min(
+            20,
+            Math.max(
+                1,
+                getUnlockedStage()
+            )
+        );
+
+
+    document
+        .querySelectorAll(
+            ".stage"
+        )
+        .forEach(
+            function(button){
+
+                const stage =
+                    Number(
+                        button.dataset.stage
+                    );
+
+
+                if(
+                    stage <=
+                    unlocked
+                ){
+
+                    button.classList.remove(
+                        "locked"
+                    );
+
+                }
+                else{
+
+                    button.classList.add(
+                        "locked"
+                    );
+
+                }
+
+            }
+        );
+
+}
+
+
+/* ==================================================
+   CHỌN STAGE
+================================================== */
+
+function chonStage(
+    stage
+){
+
+    const unlocked =
+        getUnlockedStage();
+
+
+    if(
+        stage >
+        unlocked
+    ){
+
+        showMessage(
+            "Màn " +
+            stage +
+            " chưa mở!"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Lưu stage hiện tại
+    */
+
+    localStorage.setItem(
+        "currentMap",
+        "1"
+    );
+
+    localStorage.setItem(
+        "currentStage",
+        String(stage)
+    );
+
+
+    /*
+       Vào trận chiến
+    */
+
+    window.location.href =
+        "./tranchien.html" +
+        "?map=1" +
+        "&stage=" +
+        stage;
+
+}
+
+
+/* ==================================================
+   QUAY LẠI
+================================================== */
+
+function quayLai(){
+
+    window.location.href =
+        "./chonmap.html";
+
+}
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
+
+let messageTimer =
+    null;
+
+function showMessage(
+    text
+){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        messageTimer
+    );
+
+
+    messageTimer =
+        setTimeout(
+            function(){
+
+                message.classList.remove(
+                    "show"
+                );
+
+            },
+            1200
+        );
+
+}
+
+
+/* ==================================================
+   SCALE
+================================================== */
+
+function scaleGame(){
+
+    const frame =
+        document.getElementById(
+            "gameFrame"
+        );
+
+
+    const width =
+        window.innerWidth;
+
+    const height =
+        window.innerHeight;
+
+
+    if(
+        width >=
+        height
+    ){
+
+        const scale =
+            Math.min(
+                width / 1536,
+                height / 864
+            );
+
+
+        frame.style.transform =
+            "translate(-50%,-50%) " +
+            "scale(" +
+            scale +
+            ")";
+
+    }
+    else{
+
+        const scale =
+            Math.min(
+                width / 864,
+                height / 1536
+            );
+
+
+        frame.style.transform =
+            "translate(-50%,-50%) " +
+            "rotate(90deg) " +
+            "scale(" +
+            scale +
+            ")";
+
+    }
+
+}
+
+
+window.addEventListener(
+    "resize",
+    scaleGame
+);
+
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        setTimeout(
+            scaleGame,
+            200
+        );
+
+    }
+);
+
+
+/* ==================================================
+   START
+================================================== */
+
+updateStages();
+
+scaleGame();
+
+</script>
+
+</body>
+
+</html>
