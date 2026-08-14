@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 
 <meta charset="UTF-8">
@@ -43,9 +42,7 @@ body{
 }
 
 #gameFrame{
-
     position:absolute;
-
     left:50%;
     top:50%;
 
@@ -57,11 +54,9 @@ body{
         scale(1);
 
     transform-origin:center center;
-
 }
 
 #background{
-
     position:absolute;
 
     left:0;
@@ -74,19 +69,18 @@ body{
 
     object-fit:fill;
 
+    z-index:0;
+
     user-select:none;
-
     -webkit-user-drag:none;
-
 }
 
 
-/* ==================================================
+/* =========================================
    QUAY LẠI
-================================================== */
+========================================= */
 
 .back-hit{
-
     position:absolute;
 
     left:15px;
@@ -96,18 +90,19 @@ body{
     height:65px;
 
     border:0;
+    outline:0;
+
     background:transparent;
 
     cursor:pointer;
 
-    z-index:30;
-
+    z-index:100;
 }
 
 
-/* ==================================================
+/* =========================================
    STAGE
-================================================== */
+========================================= */
 
 .stage{
 
@@ -117,25 +112,30 @@ body{
     height:145px;
 
     border:0;
-
-    background:transparent;
+    outline:0;
 
     padding:0;
 
+    background:transparent;
+
     cursor:pointer;
 
-    z-index:20;
+    z-index:50;
 
     transition:
         transform .15s ease,
-        filter .15s ease;
+        filter .15s ease,
+        opacity .15s ease;
+}
 
+.stage:active{
+    transform:scale(.95);
 }
 
 
-/* ==================================================
+/* =========================================
    VỊ TRÍ 20 STAGE
-================================================== */
+========================================= */
 
 .stage1{
     left:580px;
@@ -241,23 +241,20 @@ body{
 }
 
 
-/* ==================================================
-   STAGE ĐÃ VƯỢT
-================================================== */
+/* =========================================
+   STAGE ĐÃ HOÀN THÀNH
+========================================= */
 
 .stage.completed{
 
     filter:
-        saturate(.45)
+        saturate(.55)
         brightness(.72);
 
 }
 
 
-/*
-   Viền xanh nhẹ để biết đã vượt.
-   Không che ảnh.
-*/
+/* viền hoàn thành */
 
 .stage.completed::before{
 
@@ -265,26 +262,23 @@ body{
 
     position:absolute;
 
-    inset:8px;
+    inset:7px;
 
     border:
         3px solid
-        rgba(80,255,130,.78);
+        rgba(50,240,100,.85);
 
     border-radius:22px;
 
     box-shadow:
-        0 0 16px
-        rgba(80,255,130,.32);
+        0 0 14px
+        rgba(50,240,100,.3);
 
     pointer-events:none;
-
 }
 
 
-/*
-   Dấu ✓ nhỏ.
-*/
+/* dấu tick */
 
 .stage.completed::after{
 
@@ -292,22 +286,22 @@ body{
 
     position:absolute;
 
-    right:10px;
-    top:8px;
+    right:7px;
+    top:6px;
 
-    width:30px;
-    height:30px;
+    width:31px;
+    height:31px;
+
+    border-radius:50%;
+
+    background:#22ce55;
+
+    color:#fff;
 
     display:flex;
 
     align-items:center;
     justify-content:center;
-
-    border-radius:50%;
-
-    background:#28ce58;
-
-    color:#fff;
 
     font-size:19px;
 
@@ -318,39 +312,40 @@ body{
         rgba(0,0,0,.35);
 
     pointer-events:none;
-
 }
 
 
-/* ==================================================
+/* =========================================
    STAGE ĐANG MỞ
-================================================== */
+========================================= */
 
 .stage.unlocked{
 
+    opacity:1;
+
+    filter:none;
+
     cursor:pointer;
-
-}
-
-.stage.unlocked:active{
-
-    transform:
-        scale(.95);
-
 }
 
 
-/* ==================================================
+/* =========================================
    STAGE KHÓA
-================================================== */
+========================================= */
 
 .stage.locked{
 
+    opacity:.62;
+
+    filter:
+        grayscale(.65)
+        brightness(.72);
+
     cursor:not-allowed;
-
-    opacity:.75;
-
 }
+
+
+/* khóa */
 
 .stage.locked::after{
 
@@ -384,13 +379,45 @@ body{
     font-size:28px;
 
     pointer-events:none;
-
 }
 
 
-/* ==================================================
-   THÔNG BÁO
-================================================== */
+/* =========================================
+   PANEL TIẾN ĐỘ
+========================================= */
+
+#progress{
+
+    position:absolute;
+
+    right:18px;
+    bottom:16px;
+
+    z-index:100;
+
+    padding:
+        8px 12px;
+
+    border-radius:12px;
+
+    background:
+        rgba(0,0,0,.52);
+
+    border:
+        1px solid
+        rgba(255,255,255,.17);
+
+    color:#fff;
+
+    font-size:10px;
+
+    font-weight:900;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
 
 #message{
 
@@ -401,14 +428,12 @@ body{
 
     transform:
         translate(-50%,-50%)
-        scale(.92);
+        scale(.94);
 
     min-width:280px;
-    max-width:80%;
 
     padding:
-        15px
-        22px;
+        15px 22px;
 
     border-radius:15px;
 
@@ -431,12 +456,11 @@ body{
 
     pointer-events:none;
 
-    z-index:100;
+    z-index:200;
 
     transition:
         opacity .18s ease,
         transform .18s ease;
-
 }
 
 #message.show{
@@ -446,48 +470,12 @@ body{
     transform:
         translate(-50%,-50%)
         scale(1);
-
 }
 
 
-/* ==================================================
-   TIẾN ĐỘ
-================================================== */
-
-#progress{
-
-    position:absolute;
-
-    right:18px;
-    bottom:16px;
-
-    z-index:40;
-
-    padding:
-        8px
-        12px;
-
-    border-radius:12px;
-
-    background:
-        rgba(0,0,0,.48);
-
-    border:
-        1px solid
-        rgba(255,255,255,.16);
-
-    color:#fff;
-
-    font-size:10px;
-
-    font-weight:900;
-
-}
-
-
-/* ==================================================
+/* =========================================
    SCALE
-================================================== */
+========================================= */
 
 @media(max-width:700px){
 
@@ -498,14 +486,14 @@ body{
 
         font-size:9px;
 
+        padding:
+            7px 9px;
     }
-
 }
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -514,7 +502,9 @@ body{
 <div id="gameFrame">
 
 
-<!-- NỀN -->
+<!-- =========================================
+     NỀN
+========================================= -->
 
 <img
     id="background"
@@ -522,7 +512,9 @@ body{
     alt="MAP 1">
 
 
-<!-- QUAY LẠI -->
+<!-- =========================================
+     QUAY LẠI
+========================================= -->
 
 <button
     class="back-hit"
@@ -531,18 +523,20 @@ body{
 </button>
 
 
-<!-- 20 STAGE -->
+<!-- =========================================
+     20 STAGE
+========================================= -->
 
-<button class="stage stage1"  data-stage="1"></button>
-<button class="stage stage2"  data-stage="2"></button>
-<button class="stage stage3"  data-stage="3"></button>
-<button class="stage stage4"  data-stage="4"></button>
-<button class="stage stage5"  data-stage="5"></button>
+<button class="stage stage1" data-stage="1"></button>
+<button class="stage stage2" data-stage="2"></button>
+<button class="stage stage3" data-stage="3"></button>
+<button class="stage stage4" data-stage="4"></button>
+<button class="stage stage5" data-stage="5"></button>
 
-<button class="stage stage6"  data-stage="6"></button>
-<button class="stage stage7"  data-stage="7"></button>
-<button class="stage stage8"  data-stage="8"></button>
-<button class="stage stage9"  data-stage="9"></button>
+<button class="stage stage6" data-stage="6"></button>
+<button class="stage stage7" data-stage="7"></button>
+<button class="stage stage8" data-stage="8"></button>
+<button class="stage stage9" data-stage="9"></button>
 <button class="stage stage10" data-stage="10"></button>
 
 <button class="stage stage11" data-stage="11"></button>
@@ -558,16 +552,20 @@ body{
 <button class="stage stage20" data-stage="20"></button>
 
 
-<!-- THÔNG BÁO -->
-
-<div id="message"></div>
-
-
-<!-- TIẾN ĐỘ -->
+<!-- =========================================
+     TIẾN ĐỘ
+========================================= -->
 
 <div id="progress">
-    STAGE 1/20
+    MAP 1 • 0/20
 </div>
+
+
+<!-- =========================================
+     THÔNG BÁO
+========================================= -->
+
+<div id="message"></div>
 
 
 </div>
@@ -577,48 +575,79 @@ body{
 
 <script>
 
-/* ==================================================
-   CẤU HÌNH
-================================================== */
+/* =========================================================
+   MAP 1 PROGRESS
+========================================================= */
 
-const TOTAL_STAGES = 20;
-
-
-/* ==================================================
-   KEY TIẾN ĐỘ MAP 1
-================================================== */
-
-const UNLOCK_KEY =
-    "map1_unlocked_stage";
-
-const COMPLETE_KEY =
+const COMPLETED_KEY =
     "map1_completed_stage";
 
+const UNLOCKED_KEY =
+    "map1_unlocked_stage";
 
-/* ==================================================
-   STAGE ĐANG MỞ
-==================================================
 
-   1 = chỉ Stage 1 mở
+/* =========================================================
+   ĐỌC SỐ STAGE ĐÃ VƯỢT
+========================================================= */
 
-   2 = Stage 1 + 2 mở
+function getCompletedStage(){
 
-   3 = Stage 1 + 2 + 3 mở
+    let value =
+        Number(
+            localStorage.getItem(
+                COMPLETED_KEY
+            ) || 0
+        );
 
-   ...
 
-   21 = toàn bộ 20 Stage đã vượt
-================================================== */
+    if(
+        !Number.isFinite(value)
+    ){
+
+        value = 0;
+
+    }
+
+
+    return Math.max(
+        0,
+        Math.min(
+            20,
+            value
+        )
+    );
+
+}
+
+
+/* =========================================================
+   ĐỌC STAGE ĐÃ MỞ
+========================================================= */
 
 function getUnlockedStage(){
 
-    const value =
+    let value =
         Number(
             localStorage.getItem(
-                UNLOCK_KEY
+                UNLOCKED_KEY
             ) || 1
         );
 
+
+    if(
+        !Number.isFinite(value)
+    ){
+
+        value = 1;
+
+    }
+
+
+    /*
+       Ít nhất Stage 1.
+       Tối đa 21:
+       21 = đã hoàn thành Stage 20.
+    */
 
     return Math.max(
         1,
@@ -631,166 +660,175 @@ function getUnlockedStage(){
 }
 
 
-/* ==================================================
-   STAGE ĐÃ HOÀN THÀNH
-================================================== */
+/* =========================================================
+   ĐỒNG BỘ TIẾN ĐỘ
+========================================================= */
 
-function getCompletedStage(){
+function normalizeProgress(){
 
-    const value =
-        Number(
-            localStorage.getItem(
-                COMPLETE_KEY
-            ) || 0
+    const completed =
+        getCompletedStage();
+
+    let unlocked =
+        getUnlockedStage();
+
+
+    /*
+       Nếu đã hoàn thành Stage N
+       thì ít nhất phải mở Stage N+1.
+    */
+
+    const requiredUnlocked =
+        Math.min(
+            21,
+            completed + 1
         );
 
 
-    return Math.max(
-        0,
-        Math.min(
-            TOTAL_STAGES,
-            value
-        )
+    if(
+        unlocked <
+        requiredUnlocked
+    ){
+
+        unlocked =
+            requiredUnlocked;
+
+
+        localStorage.setItem(
+            UNLOCKED_KEY,
+            String(unlocked)
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE 20 STAGE
+========================================================= */
+
+function updateStages(){
+
+    normalizeProgress();
+
+
+    const completed =
+        getCompletedStage();
+
+    const unlocked =
+        getUnlockedStage();
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".stage"
+        );
+
+
+    buttons.forEach(
+        function(button){
+
+            const stage =
+                Number(
+                    button.dataset.stage
+                );
+
+
+            /*
+               RESET
+            */
+
+            button.classList.remove(
+                "completed"
+            );
+
+            button.classList.remove(
+                "unlocked"
+            );
+
+            button.classList.remove(
+                "locked"
+            );
+
+
+            /*
+               =========================
+               ĐÃ VƯỢT
+               =========================
+            */
+
+            if(
+                stage <=
+                completed
+            ){
+
+                button.classList.add(
+                    "completed"
+                );
+
+                button.disabled =
+                    false;
+
+                return;
+
+            }
+
+
+            /*
+               =========================
+               ĐÃ MỞ
+               =========================
+            */
+
+            if(
+                stage <=
+                unlocked
+            ){
+
+                button.classList.add(
+                    "unlocked"
+                );
+
+                button.disabled =
+                    false;
+
+                return;
+
+            }
+
+
+            /*
+               =========================
+               KHÓA
+               =========================
+            */
+
+            button.classList.add(
+                "locked"
+            );
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+
+    updateProgress(
+        completed
     );
 
 }
 
 
-/* ==================================================
-   CẬP NHẬT 20 Ô
-================================================== */
+/* =========================================================
+   UPDATE PROGRESS PANEL
+========================================================= */
 
-function updateStages(){
-
-    const unlocked =
-        getUnlockedStage();
-
-    const completed =
-        getCompletedStage();
-
-
-    document
-        .querySelectorAll(
-            ".stage"
-        )
-        .forEach(
-            function(button){
-
-                const stage =
-                    Number(
-                        button.dataset.stage
-                    );
-
-
-                /*
-                   Xóa trạng thái cũ.
-                */
-
-                button.classList.remove(
-                    "locked"
-                );
-
-                button.classList.remove(
-                    "unlocked"
-                );
-
-                button.classList.remove(
-                    "completed"
-                );
-
-
-                /*
-                   ĐÃ VƯỢT
-                */
-
-                if(
-                    stage <=
-                    completed
-                ){
-
-                    button.classList.add(
-                        "completed"
-                    );
-
-                    button.classList.add(
-                        "unlocked"
-                    );
-
-                    button.disabled =
-                        false;
-
-                    return;
-
-                }
-
-
-                /*
-                   ĐÃ MỞ NHƯNG CHƯA VƯỢT
-                */
-
-                if(
-                    stage <
-                    unlocked
-                ){
-
-                    button.classList.add(
-                        "unlocked"
-                    );
-
-                    button.disabled =
-                        false;
-
-                    return;
-
-                }
-
-
-                /*
-                   ĐANG LÀ STAGE TIẾP THEO
-                */
-
-                if(
-                    stage ===
-                    unlocked
-                ){
-
-                    button.classList.add(
-                        "unlocked"
-                    );
-
-                    button.disabled =
-                        false;
-
-                    return;
-
-                }
-
-
-                /*
-                   CHƯA MỞ
-                */
-
-                button.classList.add(
-                    "locked"
-                );
-
-                button.disabled =
-                    true;
-
-            }
-        );
-
-
-    /*
-       Tiến độ hiển thị.
-    */
-
-    const shownCompleted =
-        Math.min(
-            completed,
-            TOTAL_STAGES
-        );
-
+function updateProgress(
+    completed
+){
 
     document
         .getElementById(
@@ -799,16 +837,15 @@ function updateStages(){
         .textContent =
 
         "MAP 1 • " +
-        shownCompleted +
-        "/" +
-        TOTAL_STAGES;
+        completed +
+        "/20";
 
 }
 
 
-/* ==================================================
-   BẤM STAGE
-================================================== */
+/* =========================================================
+   CLICK STAGE
+========================================================= */
 
 document
     .querySelectorAll(
@@ -832,7 +869,7 @@ document
 
 
                     /*
-                       Chưa mở.
+                       CHƯA MỞ
                     */
 
                     if(
@@ -852,13 +889,18 @@ document
 
 
                     /*
-                       Lưu Stage đang chơi.
+                       LƯU MAP
                     */
 
                     localStorage.setItem(
                         "currentMap",
                         "1"
                     );
+
+
+                    /*
+                       LƯU STAGE ĐANG CHƠI
+                    */
 
                     localStorage.setItem(
                         "currentStage",
@@ -867,7 +909,7 @@ document
 
 
                     /*
-                       Vào trận.
+                       VÀO TRẬN
                     */
 
                     window.location.href =
@@ -883,9 +925,9 @@ document
     );
 
 
-/* ==================================================
+/* =========================================================
    QUAY LẠI
-================================================== */
+========================================================= */
 
 function goBack(){
 
@@ -895,9 +937,9 @@ function goBack(){
 }
 
 
-/* ==================================================
+/* =========================================================
    MESSAGE
-================================================== */
+========================================================= */
 
 let messageTimer = null;
 
@@ -941,9 +983,9 @@ function showMessage(
 }
 
 
-/* ==================================================
+/* =========================================================
    SCALE
-================================================== */
+========================================================= */
 
 function scaleGame(){
 
@@ -978,26 +1020,55 @@ function scaleGame(){
             scale +
             ")";
 
-    }
-    else{
-
-        const scale =
-            Math.min(
-                width / 864,
-                height / 1536
-            );
-
-
-        frame.style.transform =
-            "translate(-50%,-50%) " +
-            "rotate(90deg) " +
-            "scale(" +
-            scale +
-            ")";
+        return;
 
     }
+
+
+    const scale =
+        Math.min(
+            width / 864,
+            height / 1536
+        );
+
+
+    frame.style.transform =
+        "translate(-50%,-50%) " +
+        "rotate(90deg) " +
+        "scale(" +
+        scale +
+        ")";
 
 }
+
+
+/* =========================================================
+   IMAGE ERROR
+========================================================= */
+
+document
+    .getElementById(
+        "background"
+    )
+    .addEventListener(
+        "error",
+        function(){
+
+            showMessage(
+                "Không tìm thấy chonmanmap1.png"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   START
+========================================================= */
+
+updateStages();
+
+scaleGame();
 
 
 window.addEventListener(
@@ -1018,17 +1089,7 @@ window.addEventListener(
     }
 );
 
-
-/* ==================================================
-   START
-================================================== */
-
-updateStages();
-
-scaleGame();
-
 </script>
 
 </body>
-
 </html>
