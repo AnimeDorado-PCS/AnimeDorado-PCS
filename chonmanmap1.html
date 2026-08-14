@@ -32,6 +32,7 @@ body{
 
 body{
     font-family:Arial,Helvetica,sans-serif;
+    user-select:none;
 }
 
 #app{
@@ -76,11 +77,12 @@ body{
     user-select:none;
 
     -webkit-user-drag:none;
+
 }
 
 
 /* ==================================================
-   BACK
+   QUAY LẠI
 ================================================== */
 
 .back-hit{
@@ -93,19 +95,18 @@ body{
     width:70px;
     height:65px;
 
-    background:transparent;
-
     border:0;
+    background:transparent;
 
     cursor:pointer;
 
-    z-index:20;
+    z-index:30;
 
 }
 
 
 /* ==================================================
-   STAGE BUTTON
+   STAGE
 ================================================== */
 
 .stage{
@@ -113,26 +114,28 @@ body{
     position:absolute;
 
     width:145px;
-
     height:145px;
 
     border:0;
 
     background:transparent;
 
+    padding:0;
+
     cursor:pointer;
 
-    z-index:10;
+    z-index:20;
+
+    transition:
+        transform .15s ease,
+        filter .15s ease;
 
 }
 
 
 /* ==================================================
-   20 VỊ TRÍ
-   Theo ảnh 1536 x 864
+   VỊ TRÍ 20 STAGE
 ================================================== */
-
-/* hàng 1 */
 
 .stage1{
     left:580px;
@@ -160,8 +163,6 @@ body{
 }
 
 
-/* hàng 2 */
-
 .stage6{
     left:580px;
     top:300px;
@@ -188,8 +189,6 @@ body{
 }
 
 
-/* hàng 3 */
-
 .stage11{
     left:580px;
     top:445px;
@@ -215,8 +214,6 @@ body{
     top:445px;
 }
 
-
-/* hàng 4 */
 
 .stage16{
     left:580px;
@@ -245,20 +242,115 @@ body{
 
 
 /* ==================================================
-   KHÓA
+   STAGE ĐÃ VƯỢT
+================================================== */
+
+.stage.completed{
+
+    filter:
+        saturate(.45)
+        brightness(.72);
+
+}
+
+
+/*
+   Viền xanh nhẹ để biết đã vượt.
+   Không che ảnh.
+*/
+
+.stage.completed::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:8px;
+
+    border:
+        3px solid
+        rgba(80,255,130,.78);
+
+    border-radius:22px;
+
+    box-shadow:
+        0 0 16px
+        rgba(80,255,130,.32);
+
+    pointer-events:none;
+
+}
+
+
+/*
+   Dấu ✓ nhỏ.
+*/
+
+.stage.completed::after{
+
+    content:"✓";
+
+    position:absolute;
+
+    right:10px;
+    top:8px;
+
+    width:30px;
+    height:30px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#28ce58;
+
+    color:#fff;
+
+    font-size:19px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 3px 10px
+        rgba(0,0,0,.35);
+
+    pointer-events:none;
+
+}
+
+
+/* ==================================================
+   STAGE ĐANG MỞ
+================================================== */
+
+.stage.unlocked{
+
+    cursor:pointer;
+
+}
+
+.stage.unlocked:active{
+
+    transform:
+        scale(.95);
+
+}
+
+
+/* ==================================================
+   STAGE KHÓA
 ================================================== */
 
 .stage.locked{
 
     cursor:not-allowed;
 
+    opacity:.75;
+
 }
-
-
-/* ==================================================
-   LOCK OVERLAY
-   Chỉ đặt icon nhỏ lên đúng ô khóa.
-================================================== */
 
 .stage.locked::after{
 
@@ -272,24 +364,24 @@ body{
     transform:
         translate(-50%,-50%);
 
-    width:52px;
-    height:52px;
-
-    border-radius:14px;
-
-    background:
-        rgba(0,0,0,.48);
-
-    border:
-        2px solid
-        rgba(255,255,255,.48);
+    width:55px;
+    height:55px;
 
     display:flex;
 
     align-items:center;
     justify-content:center;
 
-    font-size:27px;
+    border-radius:15px;
+
+    background:
+        rgba(0,0,0,.58);
+
+    border:
+        2px solid
+        rgba(255,255,255,.5);
+
+    font-size:28px;
 
     pointer-events:none;
 
@@ -305,23 +397,23 @@ body{
     position:absolute;
 
     left:50%;
-    top:48%;
+    top:50%;
 
     transform:
-        translate(-50%,-50%);
+        translate(-50%,-50%)
+        scale(.92);
 
-    z-index:100;
-
-    min-width:270px;
+    min-width:280px;
+    max-width:80%;
 
     padding:
-        14px
-        20px;
+        15px
+        22px;
 
-    border-radius:14px;
+    border-radius:15px;
 
     background:
-        rgba(0,0,0,.82);
+        rgba(0,0,0,.84);
 
     border:
         1px solid
@@ -339,33 +431,72 @@ body{
 
     pointer-events:none;
 
+    z-index:100;
+
     transition:
-        opacity .18s;
+        opacity .18s ease,
+        transform .18s ease;
 
 }
 
 #message.show{
+
     opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
 }
 
 
 /* ==================================================
-   PORTRAIT
+   TIẾN ĐỘ
 ================================================== */
 
-@media(orientation:portrait){
+#progress{
 
-    #gameFrame{
+    position:absolute;
 
-        transform:
-            translate(-50%,-50%)
-            rotate(90deg)
-            scale(
-                min(
-                    100vw / 864,
-                    100vh / 1536
-                )
-            );
+    right:18px;
+    bottom:16px;
+
+    z-index:40;
+
+    padding:
+        8px
+        12px;
+
+    border-radius:12px;
+
+    background:
+        rgba(0,0,0,.48);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    color:#fff;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+
+/* ==================================================
+   SCALE
+================================================== */
+
+@media(max-width:700px){
+
+    #progress{
+
+        right:8px;
+        bottom:8px;
+
+        font-size:9px;
 
     }
 
@@ -378,7 +509,6 @@ body{
 
 <body>
 
-
 <div id="app">
 
 <div id="gameFrame">
@@ -389,121 +519,55 @@ body{
 <img
     id="background"
     src="./chonmanmap1.png"
-    alt="Map 1">
+    alt="MAP 1">
 
 
 <!-- QUAY LẠI -->
 
 <button
     class="back-hit"
-    onclick="quayLai()">
+    aria-label="Quay lại"
+    onclick="goBack()">
 </button>
 
 
 <!-- 20 STAGE -->
 
-<button class="stage stage1"
-        data-stage="1"
-        onclick="chonStage(1)">
-</button>
+<button class="stage stage1"  data-stage="1"></button>
+<button class="stage stage2"  data-stage="2"></button>
+<button class="stage stage3"  data-stage="3"></button>
+<button class="stage stage4"  data-stage="4"></button>
+<button class="stage stage5"  data-stage="5"></button>
 
-<button class="stage stage2"
-        data-stage="2"
-        onclick="chonStage(2)">
-</button>
+<button class="stage stage6"  data-stage="6"></button>
+<button class="stage stage7"  data-stage="7"></button>
+<button class="stage stage8"  data-stage="8"></button>
+<button class="stage stage9"  data-stage="9"></button>
+<button class="stage stage10" data-stage="10"></button>
 
-<button class="stage stage3"
-        data-stage="3"
-        onclick="chonStage(3)">
-</button>
+<button class="stage stage11" data-stage="11"></button>
+<button class="stage stage12" data-stage="12"></button>
+<button class="stage stage13" data-stage="13"></button>
+<button class="stage stage14" data-stage="14"></button>
+<button class="stage stage15" data-stage="15"></button>
 
-<button class="stage stage4"
-        data-stage="4"
-        onclick="chonStage(4)">
-</button>
+<button class="stage stage16" data-stage="16"></button>
+<button class="stage stage17" data-stage="17"></button>
+<button class="stage stage18" data-stage="18"></button>
+<button class="stage stage19" data-stage="19"></button>
+<button class="stage stage20" data-stage="20"></button>
 
-<button class="stage stage5"
-        data-stage="5"
-        onclick="chonStage(5)">
-</button>
 
-<button class="stage stage6"
-        data-stage="6"
-        onclick="chonStage(6)">
-</button>
-
-<button class="stage stage7"
-        data-stage="7"
-        onclick="chonStage(7)">
-</button>
-
-<button class="stage stage8"
-        data-stage="8"
-        onclick="chonStage(8)">
-</button>
-
-<button class="stage stage9"
-        data-stage="9"
-        onclick="chonStage(9)">
-</button>
-
-<button class="stage stage10"
-        data-stage="10"
-        onclick="chonStage(10)">
-</button>
-
-<button class="stage stage11"
-        data-stage="11"
-        onclick="chonStage(11)">
-</button>
-
-<button class="stage stage12"
-        data-stage="12"
-        onclick="chonStage(12)">
-</button>
-
-<button class="stage stage13"
-        data-stage="13"
-        onclick="chonStage(13)">
-</button>
-
-<button class="stage stage14"
-        data-stage="14"
-        onclick="chonStage(14)">
-</button>
-
-<button class="stage stage15"
-        data-stage="15"
-        onclick="chonStage(15)">
-</button>
-
-<button class="stage stage16"
-        data-stage="16"
-        onclick="chonStage(16)">
-</button>
-
-<button class="stage stage17"
-        data-stage="17"
-        onclick="chonStage(17)">
-</button>
-
-<button class="stage stage18"
-        data-stage="18"
-        onclick="chonStage(18)">
-</button>
-
-<button class="stage stage19"
-        data-stage="19"
-        onclick="chonStage(19)">
-</button>
-
-<button class="stage stage20"
-        data-stage="20"
-        onclick="chonStage(20)">
-</button>
-
+<!-- THÔNG BÁO -->
 
 <div id="message"></div>
+
+
+<!-- TIẾN ĐỘ -->
+
+<div id="progress">
+    STAGE 1/20
+</div>
 
 
 </div>
@@ -514,42 +578,95 @@ body{
 <script>
 
 /* ==================================================
-   TIẾN ĐỘ MAP 1
+   CẤU HÌNH
+================================================== */
+
+const TOTAL_STAGES = 20;
+
+
+/* ==================================================
+   KEY TIẾN ĐỘ MAP 1
+================================================== */
+
+const UNLOCK_KEY =
+    "map1_unlocked_stage";
+
+const COMPLETE_KEY =
+    "map1_completed_stage";
+
+
+/* ==================================================
+   STAGE ĐANG MỞ
 ==================================================
 
-   1 = Stage 1 đang mở
-   2 = Stage 2 đang mở
-   ...
-   20 = Stage 20 đang mở
+   1 = chỉ Stage 1 mở
 
-   21 = đã hoàn thành cả Map 1
+   2 = Stage 1 + 2 mở
+
+   3 = Stage 1 + 2 + 3 mở
+
+   ...
+
+   21 = toàn bộ 20 Stage đã vượt
 ================================================== */
 
 function getUnlockedStage(){
 
-    return Number(
-        localStorage.getItem(
-            "map1_unlocked_stage"
-        ) || 1
+    const value =
+        Number(
+            localStorage.getItem(
+                UNLOCK_KEY
+            ) || 1
+        );
+
+
+    return Math.max(
+        1,
+        Math.min(
+            21,
+            value
+        )
     );
 
 }
 
 
 /* ==================================================
-   CẬP NHẬT KHÓA
+   STAGE ĐÃ HOÀN THÀNH
+================================================== */
+
+function getCompletedStage(){
+
+    const value =
+        Number(
+            localStorage.getItem(
+                COMPLETE_KEY
+            ) || 0
+        );
+
+
+    return Math.max(
+        0,
+        Math.min(
+            TOTAL_STAGES,
+            value
+        )
+    );
+
+}
+
+
+/* ==================================================
+   CẬP NHẬT 20 Ô
 ================================================== */
 
 function updateStages(){
 
     const unlocked =
-        Math.min(
-            20,
-            Math.max(
-                1,
-                getUnlockedStage()
-            )
-        );
+        getUnlockedStage();
+
+    const completed =
+        getCompletedStage();
 
 
     document
@@ -565,91 +682,212 @@ function updateStages(){
                     );
 
 
+                /*
+                   Xóa trạng thái cũ.
+                */
+
+                button.classList.remove(
+                    "locked"
+                );
+
+                button.classList.remove(
+                    "unlocked"
+                );
+
+                button.classList.remove(
+                    "completed"
+                );
+
+
+                /*
+                   ĐÃ VƯỢT
+                */
+
                 if(
                     stage <=
+                    completed
+                ){
+
+                    button.classList.add(
+                        "completed"
+                    );
+
+                    button.classList.add(
+                        "unlocked"
+                    );
+
+                    button.disabled =
+                        false;
+
+                    return;
+
+                }
+
+
+                /*
+                   ĐÃ MỞ NHƯNG CHƯA VƯỢT
+                */
+
+                if(
+                    stage <
                     unlocked
                 ){
 
-                    button.classList.remove(
-                        "locked"
+                    button.classList.add(
+                        "unlocked"
                     );
 
+                    button.disabled =
+                        false;
+
+                    return;
+
                 }
-                else{
+
+
+                /*
+                   ĐANG LÀ STAGE TIẾP THEO
+                */
+
+                if(
+                    stage ===
+                    unlocked
+                ){
 
                     button.classList.add(
-                        "locked"
+                        "unlocked"
                     );
 
+                    button.disabled =
+                        false;
+
+                    return;
+
                 }
+
+
+                /*
+                   CHƯA MỞ
+                */
+
+                button.classList.add(
+                    "locked"
+                );
+
+                button.disabled =
+                    true;
 
             }
         );
+
+
+    /*
+       Tiến độ hiển thị.
+    */
+
+    const shownCompleted =
+        Math.min(
+            completed,
+            TOTAL_STAGES
+        );
+
+
+    document
+        .getElementById(
+            "progress"
+        )
+        .textContent =
+
+        "MAP 1 • " +
+        shownCompleted +
+        "/" +
+        TOTAL_STAGES;
 
 }
 
 
 /* ==================================================
-   CHỌN STAGE
+   BẤM STAGE
 ================================================== */
 
-function chonStage(
-    stage
-){
+document
+    .querySelectorAll(
+        ".stage"
+    )
+    .forEach(
+        function(button){
 
-    const unlocked =
-        getUnlockedStage();
+            button.addEventListener(
+                "click",
+                function(){
 
-
-    if(
-        stage >
-        unlocked
-    ){
-
-        showMessage(
-            "Màn " +
-            stage +
-            " chưa mở!"
-        );
-
-        return;
-
-    }
+                    const stage =
+                        Number(
+                            button.dataset.stage
+                        );
 
 
-    /*
-       Lưu stage hiện tại
-    */
+                    const unlocked =
+                        getUnlockedStage();
 
-    localStorage.setItem(
-        "currentMap",
-        "1"
+
+                    /*
+                       Chưa mở.
+                    */
+
+                    if(
+                        stage >
+                        unlocked
+                    ){
+
+                        showMessage(
+                            "STAGE " +
+                            stage +
+                            " CHƯA MỞ!"
+                        );
+
+                        return;
+
+                    }
+
+
+                    /*
+                       Lưu Stage đang chơi.
+                    */
+
+                    localStorage.setItem(
+                        "currentMap",
+                        "1"
+                    );
+
+                    localStorage.setItem(
+                        "currentStage",
+                        String(stage)
+                    );
+
+
+                    /*
+                       Vào trận.
+                    */
+
+                    window.location.href =
+                        "./tranchien.html" +
+                        "?map=1" +
+                        "&stage=" +
+                        stage;
+
+                }
+            );
+
+        }
     );
-
-    localStorage.setItem(
-        "currentStage",
-        String(stage)
-    );
-
-
-    /*
-       Vào trận chiến
-    */
-
-    window.location.href =
-        "./tranchien.html" +
-        "?map=1" +
-        "&stage=" +
-        stage;
-
-}
 
 
 /* ==================================================
    QUAY LẠI
 ================================================== */
 
-function quayLai(){
+function goBack(){
 
     window.location.href =
         "./chonmap.html";
@@ -661,24 +899,24 @@ function quayLai(){
    MESSAGE
 ================================================== */
 
-let messageTimer =
-    null;
+let messageTimer = null;
+
 
 function showMessage(
     text
 ){
 
-    const message =
+    const box =
         document.getElementById(
             "message"
         );
 
 
-    message.textContent =
+    box.textContent =
         text;
 
 
-    message.classList.add(
+    box.classList.add(
         "show"
     );
 
@@ -692,7 +930,7 @@ function showMessage(
         setTimeout(
             function(){
 
-                message.classList.remove(
+                box.classList.remove(
                     "show"
                 );
 
@@ -766,6 +1004,7 @@ window.addEventListener(
     "resize",
     scaleGame
 );
+
 
 window.addEventListener(
     "orientationchange",
