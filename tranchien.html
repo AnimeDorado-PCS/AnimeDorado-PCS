@@ -23,24 +23,16 @@ user-scalable=no">
     box-sizing:border-box;
     margin:0;
     padding:0;
-
     -webkit-tap-highlight-color:transparent;
 }
 
 html,
 body{
-
     width:100%;
     height:100%;
-
     overflow:hidden;
-
     background:#000;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
@@ -59,28 +51,21 @@ button{
 ========================================================= */
 
 #game{
-
     position:fixed;
-
     inset:0;
-
     width:100%;
     height:100%;
-
     overflow:hidden;
-
     background:#000;
 }
 
 
 /* =========================================================
-   1536 x 864
+   GAME FRAME
 ========================================================= */
 
 #frame{
-
     position:absolute;
-
     left:50%;
     top:50%;
 
@@ -92,7 +77,6 @@ button{
         scale(1);
 
     transform-origin:center center;
-
 }
 
 
@@ -101,7 +85,6 @@ button{
 ========================================================= */
 
 #battleBackground{
-
     position:absolute;
 
     left:0;
@@ -111,11 +94,9 @@ button{
     height:864px;
 
     display:block;
-
     object-fit:fill;
 
     user-select:none;
-
     -webkit-user-drag:none;
 
     z-index:0;
@@ -123,11 +104,10 @@ button{
 
 
 /* =========================================================
-   TOP
+   TOP UI
 ========================================================= */
 
 #topUI{
-
     position:absolute;
 
     left:0;
@@ -139,11 +119,9 @@ button{
     z-index:100;
 
     display:flex;
-
     align-items:center;
 
-    padding:
-        10px 18px;
+    padding:10px 18px;
 
     background:
         linear-gradient(
@@ -151,15 +129,12 @@ button{
             rgba(0,0,0,.74),
             rgba(0,0,0,0)
         );
-
 }
 
 .waveBox{
-
     min-width:185px;
 
-    padding:
-        9px 17px;
+    padding:9px 17px;
 
     border-radius:16px;
 
@@ -174,29 +149,21 @@ button{
 }
 
 .waveSmall{
-
     color:#9fe0aa;
-
     font-size:11px;
-
     font-weight:900;
 }
 
 .waveMain{
-
     margin-top:3px;
-
     font-size:20px;
-
     font-weight:1000;
 }
 
 .stageLabel{
-
     margin-left:12px;
 
-    padding:
-        10px 15px;
+    padding:10px 15px;
 
     border-radius:15px;
 
@@ -210,32 +177,25 @@ button{
     color:#ffd65a;
 
     font-size:13px;
-
     font-weight:900;
 }
 
 .energyTop{
-
     width:245px;
-
     margin-left:16px;
 }
 
 .energyText{
-
     margin-bottom:5px;
 
     color:#fff;
 
     font-size:11px;
-
     font-weight:900;
 }
 
 .energyBarTop{
-
     width:100%;
-
     height:13px;
 
     overflow:hidden;
@@ -250,9 +210,7 @@ button{
 }
 
 .energyFillTop{
-
     width:100%;
-
     height:100%;
 
     background:
@@ -267,13 +225,10 @@ button{
 }
 
 .goldBox{
-
     min-width:150px;
-
     margin-left:auto;
 
-    padding:
-        10px 16px;
+    padding:10px 16px;
 
     border-radius:16px;
 
@@ -289,7 +244,6 @@ button{
     text-align:center;
 
     font-size:15px;
-
     font-weight:1000;
 }
 
@@ -299,7 +253,6 @@ button{
 ========================================================= */
 
 #battleArea{
-
     position:absolute;
 
     left:0;
@@ -314,7 +267,6 @@ button{
 }
 
 #lane{
-
     position:absolute;
 
     left:158px;
@@ -334,81 +286,29 @@ button{
 
 
 /* =========================================================
-   THÁP
+   THÁP - DÙNG ẢNH RIÊNG
 ========================================================= */
 
 .tower{
-
     position:absolute;
 
-    bottom:93px;
+    bottom:78px;
 
-    width:120px;
-    height:150px;
+    width:150px;
+    height:180px;
 
-    z-index:10;
+    z-index:20;
 
-    border:
-        3px solid
-        rgba(235,247,255,.94);
+    background:transparent;
 
-    border-radius:
-        22px
-        22px
-        9px
-        9px;
+    border:0;
 
-    background:
-        linear-gradient(
-            180deg,
-            #879eac,
-            #344d5a
-        );
+    box-shadow:none;
 
-    box-shadow:
-        0 15px 30px
-        rgba(0,0,0,.4),
-
-        inset
-        0 2px 0
-        rgba(255,255,255,.32);
+    overflow:visible;
 }
 
-.tower::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:12%;
-    right:12%;
-
-    top:-38px;
-
-    height:50px;
-
-    border:
-        3px solid
-        rgba(235,247,255,.94);
-
-    border-radius:
-        20px
-        20px
-        8px
-        8px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #95afbb,
-            #435b68
-        );
-}
-
-.tower::after{
-
-    content:"";
-
+.tower img{
     position:absolute;
 
     left:50%;
@@ -417,24 +317,35 @@ button{
     transform:
         translateX(-50%);
 
-    width:40px;
-    height:60px;
+    width:150px;
+    height:180px;
 
-    border-radius:
-        18px
-        18px
-        0
-        0;
+    object-fit:contain;
 
-    background:#17252e;
+    display:block;
+
+    user-select:none;
+    -webkit-user-drag:none;
+
+    pointer-events:none;
 }
+
+
+/* =========================================================
+   THÁP MÌNH
+========================================================= */
 
 .playerTower{
-    left:105px;
+    left:75px;
 }
 
+
+/* =========================================================
+   THÁP ĐỊCH
+========================================================= */
+
 .enemyTower{
-    right:105px;
+    right:75px;
 }
 
 
@@ -443,27 +354,29 @@ button{
 ========================================================= */
 
 .towerHpWrap{
-
     position:absolute;
 
     left:50%;
-    top:-20px;
+    top:-18px;
 
     transform:
         translateX(-50%);
 
-    width:155px;
-    height:11px;
+    width:160px;
+    height:12px;
 
     padding:1px;
 
     border-radius:10px;
 
     background:#22090d;
+
+    overflow:hidden;
+
+    z-index:40;
 }
 
 .towerHpFill{
-
     width:100%;
     height:100%;
 
@@ -482,12 +395,11 @@ button{
 
 
 /* =========================================================
-   UNITS
+   UNIT LAYERS
 ========================================================= */
 
 #playerUnits,
 #enemyUnits{
-
     position:absolute;
 
     inset:0;
@@ -503,7 +415,6 @@ button{
 ========================================================= */
 
 .playerUnit{
-
     position:absolute;
 
     width:110px;
@@ -516,7 +427,6 @@ button{
 }
 
 .supermanSprite{
-
     position:absolute;
 
     left:50%;
@@ -536,7 +446,6 @@ button{
 }
 
 .supermanIdle{
-
     background-image:
         url(
             "https://i.postimg.cc/VLTzTyt5/20260812-191849.png"
@@ -547,7 +456,6 @@ button{
 }
 
 .supermanFly{
-
     width:384px;
     height:688px;
 
@@ -575,11 +483,9 @@ button{
     to{
         background-position:-1536px 0;
     }
-
 }
 
 .supermanAttack{
-
     width:384px;
     height:939px;
 
@@ -607,7 +513,6 @@ button{
     to{
         background-position:-1536px 0;
     }
-
 }
 
 
@@ -616,7 +521,6 @@ button{
 ========================================================= */
 
 .enemyUnit{
-
     position:absolute;
 
     width:145px;
@@ -629,7 +533,6 @@ button{
 }
 
 .enemyImage{
-
     width:145px;
     height:145px;
 
@@ -639,7 +542,6 @@ button{
 }
 
 .enemyHpWrap{
-
     position:absolute;
 
     left:50%;
@@ -659,7 +561,6 @@ button{
 }
 
 .enemyHpFill{
-
     width:100%;
     height:100%;
 
@@ -680,7 +581,6 @@ button{
 ========================================================= */
 
 #countPanel{
-
     position:absolute;
 
     left:50%;
@@ -697,7 +597,6 @@ button{
 }
 
 .countBox{
-
     min-width:145px;
 
     padding:
@@ -717,12 +616,10 @@ button{
     text-align:center;
 
     font-size:10px;
-
     font-weight:900;
 }
 
 .countBox strong{
-
     margin-left:6px;
 
     color:#ffd65a;
@@ -740,7 +637,6 @@ button{
 ========================================================= */
 
 .damage{
-
     position:absolute;
 
     z-index:300;
@@ -766,25 +662,20 @@ button{
 @keyframes damageAnimation{
 
     from{
-
         opacity:1;
 
         transform:
             translateY(0)
             scale(.8);
-
     }
 
     to{
-
         opacity:0;
 
         transform:
             translateY(-55px)
             scale(1.12);
-
     }
-
 }
 
 
@@ -793,7 +684,6 @@ button{
 ========================================================= */
 
 #summonBar{
-
     position:absolute;
 
     left:0;
@@ -822,27 +712,21 @@ button{
 }
 
 .summonInfo{
-
     width:230px;
-
     flex:0 0 230px;
 }
 
 .summonInfoTitle{
-
     margin-bottom:5px;
 
     color:#fff;
 
     font-size:11px;
-
     font-weight:900;
 }
 
 .summonInfoBar{
-
     width:100%;
-
     height:14px;
 
     overflow:hidden;
@@ -853,9 +737,7 @@ button{
 }
 
 .summonInfoFill{
-
     width:100%;
-
     height:100%;
 
     background:
@@ -870,7 +752,6 @@ button{
 }
 
 .summonCard{
-
     position:relative;
 
     width:120px;
@@ -901,7 +782,6 @@ button{
 }
 
 .summonCard img{
-
     width:100%;
     height:102px;
 
@@ -911,7 +791,6 @@ button{
 }
 
 .summonCost{
-
     position:absolute;
 
     right:5px;
@@ -930,12 +809,10 @@ button{
     color:#ffd65a;
 
     font-size:10px;
-
     font-weight:900;
 }
 
 .summonName{
-
     position:absolute;
 
     left:0;
@@ -947,14 +824,11 @@ button{
     text-align:center;
 
     font-size:10px;
-
     font-weight:900;
 }
 
 .lockedCard{
-
     cursor:not-allowed;
-
     opacity:.52;
 }
 
@@ -964,7 +838,6 @@ button{
 ========================================================= */
 
 #message{
-
     position:absolute;
 
     left:50%;
@@ -990,7 +863,6 @@ button{
     color:#ffd65a;
 
     font-size:14px;
-
     font-weight:900;
 
     opacity:0;
@@ -1011,7 +883,6 @@ button{
 ========================================================= */
 
 #result{
-
     position:absolute;
 
     inset:0;
@@ -1021,7 +892,6 @@ button{
     display:none;
 
     align-items:center;
-
     justify-content:center;
 
     background:
@@ -1032,7 +902,6 @@ button{
 }
 
 .resultBox{
-
     width:min(
         450px,
         90vw
@@ -1060,7 +929,6 @@ button{
 }
 
 .resultTitle{
-
     color:#ffd65a;
 
     font-size:
@@ -1074,7 +942,6 @@ button{
 }
 
 .resultText{
-
     margin-top:9px;
 
     color:#cbd4df;
@@ -1083,7 +950,6 @@ button{
 }
 
 .resultButton{
-
     margin-top:22px;
 
     min-width:185px;
@@ -1104,7 +970,6 @@ button{
     color:#1b1304;
 
     font-weight:900;
-
 }
 
 
@@ -1121,7 +986,6 @@ button{
         transform:
             translateX(-50%)
             scale(.85);
-
     }
 
     #summonBar{
@@ -1131,31 +995,24 @@ button{
         padding:6px;
 
         gap:6px;
-
     }
 
     .summonInfo{
 
         width:105px;
-
         flex-basis:105px;
-
     }
 
     .summonCard{
 
         width:88px;
-
         height:108px;
-
         flex-basis:88px;
-
     }
 
     .summonCard img{
 
         height:77px;
-
     }
 
 }
@@ -1172,7 +1029,6 @@ button{
         transform:
             translate(-50%,-50%)
             rotate(90deg);
-
     }
 
 }
@@ -1184,13 +1040,14 @@ button{
 
 <body>
 
+
 <div id="game">
 
 <div id="frame">
 
 
 <!-- =========================================================
-     NỀN
+     NỀN TRẬN CHIẾN
 ========================================================= -->
 
 <img
@@ -1204,7 +1061,6 @@ button{
 ========================================================= -->
 
 <div id="topUI">
-
 
     <div class="waveBox">
 
@@ -1222,9 +1078,7 @@ button{
     <div
         id="stageLabel"
         class="stageLabel">
-
         MAP 1 • STAGE 1
-
     </div>
 
 
@@ -1237,6 +1091,7 @@ button{
             <span id="energyTopNumber">
                 100
             </span>
+
             /100
 
         </div>
@@ -1262,7 +1117,6 @@ button{
 
     </div>
 
-
 </div>
 
 
@@ -1272,13 +1126,17 @@ button{
 
 <div id="battleArea">
 
-
     <div id="lane"></div>
 
 
     <!-- THÁP MÌNH -->
 
     <div class="tower playerTower">
+
+        <img
+            src="./thapminh.png"
+            alt="Tháp của mình">
+
 
         <div class="towerHpWrap">
 
@@ -1296,6 +1154,11 @@ button{
 
     <div class="tower enemyTower">
 
+        <img
+            src="./thapdich.png"
+            alt="Tháp địch">
+
+
         <div class="towerHpWrap">
 
             <div
@@ -1308,12 +1171,19 @@ button{
     </div>
 
 
+    <!-- QUÂN MÌNH -->
+
     <div id="playerUnits"></div>
+
+
+    <!-- QUÂN ĐỊCH -->
 
     <div id="enemyUnits"></div>
 
-    <div id="damageLayer"></div>
 
+    <!-- DAMAGE -->
+
+    <div id="damageLayer"></div>
 
 </div>
 
@@ -1364,6 +1234,7 @@ button{
             <span id="energyNumber">
                 100
             </span>
+
             /100
 
         </div>
@@ -1409,9 +1280,7 @@ button{
     <button
         class="summonCard lockedCard"
         onclick="
-            showMessage(
-                'Luffy sẽ được thêm sau'
-            )
+            showMessage('Luffy sẽ được thêm sau')
         "
     >
 
@@ -1448,9 +1317,7 @@ button{
     <button
         class="summonCard lockedCard"
         onclick="
-            showMessage(
-                'Goku sẽ được thêm sau'
-            )
+            showMessage('Goku sẽ được thêm sau')
         "
     >
 
@@ -1503,27 +1370,21 @@ button{
         <div
             id="resultTitle"
             class="resultTitle">
-
             VICTORY
-
         </div>
 
 
         <div
             id="resultText"
             class="resultText">
-
             Đã vượt qua Stage.
-
         </div>
 
 
         <button
             id="resultButton"
             class="resultButton">
-
             QUAY LẠI CHỌN MÀN
-
         </button>
 
     </div>
@@ -1539,7 +1400,7 @@ button{
 <script>
 
 /* =========================================================
-   ĐỌC MAP / STAGE TỪ URL
+   MAP / STAGE
 ========================================================= */
 
 const urlParams =
@@ -1628,7 +1489,6 @@ const CONFIG = {
     PLAYER_TOWER_X:155,
 
     ENEMY_TOWER_X:1381
-
 };
 
 
@@ -1637,103 +1497,65 @@ const CONFIG = {
 ========================================================= */
 
 const frame =
-    document.getElementById(
-        "frame"
-    );
+    document.getElementById("frame");
 
 const playerUnitsLayer =
-    document.getElementById(
-        "playerUnits"
-    );
+    document.getElementById("playerUnits");
 
 const enemyUnitsLayer =
-    document.getElementById(
-        "enemyUnits"
-    );
+    document.getElementById("enemyUnits");
 
 const damageLayer =
-    document.getElementById(
-        "damageLayer"
-    );
+    document.getElementById("damageLayer");
 
 const energyNumber =
-    document.getElementById(
-        "energyNumber"
-    );
+    document.getElementById("energyNumber");
 
 const energyFill =
-    document.getElementById(
-        "energyFill"
-    );
+    document.getElementById("energyFill");
 
 const energyTopNumber =
-    document.getElementById(
-        "energyTopNumber"
-    );
+    document.getElementById("energyTopNumber");
 
 const energyTopFill =
-    document.getElementById(
-        "energyTopFill"
-    );
+    document.getElementById("energyTopFill");
 
 const goldElement =
-    document.getElementById(
-        "gold"
-    );
+    document.getElementById("gold");
 
 const playerTowerHpElement =
-    document.getElementById(
-        "playerTowerHp"
-    );
+    document.getElementById("playerTowerHp");
 
 const enemyTowerHpElement =
-    document.getElementById(
-        "enemyTowerHp"
-    );
+    document.getElementById("enemyTowerHp");
 
 const playerCountElement =
-    document.getElementById(
-        "playerCount"
-    );
+    document.getElementById("playerCount");
 
 const enemyCountElement =
-    document.getElementById(
-        "enemyCount"
-    );
+    document.getElementById("enemyCount");
 
 const messageElement =
-    document.getElementById(
-        "message"
-    );
+    document.getElementById("message");
 
 const resultElement =
-    document.getElementById(
-        "result"
-    );
+    document.getElementById("result");
 
 const resultTitleElement =
-    document.getElementById(
-        "resultTitle"
-    );
+    document.getElementById("resultTitle");
 
 const resultTextElement =
-    document.getElementById(
-        "resultText"
-    );
+    document.getElementById("resultText");
 
 const resultButton =
-    document.getElementById(
-        "resultButton"
-    );
+    document.getElementById("resultButton");
 
 const stageLabel =
-    document.getElementById(
-        "stageLabel"
-    );
+    document.getElementById("stageLabel");
 
 
 /* =========================================================
-   STAGE LABEL
+   LABEL
 ========================================================= */
 
 stageLabel.textContent =
@@ -1795,7 +1617,6 @@ function clamp(
             value
         )
     );
-
 }
 
 
@@ -1805,18 +1626,15 @@ function distance(
 ){
 
     const dx =
-        b.x -
-        a.x;
+        b.x - a.x;
 
     const dy =
-        b.y -
-        a.y;
+        b.y - a.y;
 
     return Math.sqrt(
         dx * dx +
         dy * dy
     );
-
 }
 
 
@@ -1843,7 +1661,6 @@ function showMessage(
         messageTimer
     );
 
-
     messageTimer =
         setTimeout(
             function(){
@@ -1855,7 +1672,6 @@ function showMessage(
             },
             1100
         );
-
 }
 
 
@@ -1870,12 +1686,10 @@ function updateEnergyUi(){
         CONFIG.MAX_ENERGY *
         100;
 
-
     const value =
         Math.floor(
             energy
         );
-
 
     energyNumber.textContent =
         value;
@@ -1888,16 +1702,13 @@ function updateEnergyUi(){
 
     energyTopFill.style.width =
         percent + "%";
-
 }
 
 
 function updateGoldUi(){
 
     goldElement.textContent =
-        "💰 " +
-        gold;
-
+        "💰 " + gold;
 }
 
 
@@ -1910,14 +1721,12 @@ function updateTowerUi(){
             100
         ) + "%";
 
-
     enemyTowerHpElement.style.width =
         (
             enemyTowerHp /
             CONFIG.TOWER_HP *
             100
         ) + "%";
-
 }
 
 
@@ -1925,29 +1734,19 @@ function updateUnitCounts(){
 
     const playerAlive =
         playerUnits.filter(
-            function(unit){
-                return !unit.dead;
-            }
+            unit => !unit.dead
         ).length;
-
 
     const enemyAlive =
         enemyUnits.filter(
-            function(enemy){
-                return !enemy.dead;
-            }
+            enemy => !enemy.dead
         ).length;
 
-
     playerCountElement.textContent =
-        playerAlive +
-        "/10";
-
+        playerAlive + "/10";
 
     enemyCountElement.textContent =
-        enemyAlive +
-        "/10";
-
+        enemyAlive + "/10";
 }
 
 
@@ -1958,26 +1757,19 @@ function updateUnitCounts(){
 function createSupermanElement(){
 
     const element =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     element.className =
         "playerUnit";
 
-
     element.innerHTML = `
-
-        <div
-            class="supermanSprite supermanIdle">
-        </div>
-
+        <div class="
+            supermanSprite
+            supermanIdle
+        "></div>
     `;
 
-
     return element;
-
 }
 
 
@@ -1985,18 +1777,12 @@ function setIdle(
     unit
 ){
 
-    if(
-        unit.dead
-    ){
-
+    if(unit.dead){
         return;
-
     }
-
 
     unit.sprite.className =
         "supermanSprite supermanIdle";
-
 }
 
 
@@ -2008,15 +1794,11 @@ function setFly(
         unit.dead ||
         unit.attacking
     ){
-
         return;
-
     }
-
 
     unit.sprite.className =
         "supermanSprite supermanFly";
-
 }
 
 
@@ -2024,18 +1806,12 @@ function setAttack(
     unit
 ){
 
-    if(
-        unit.dead
-    ){
-
+    if(unit.dead){
         return;
-
     }
-
 
     unit.sprite.className =
         "supermanSprite supermanAttack";
-
 }
 
 
@@ -2050,10 +1826,8 @@ function positionPlayer(
     unit.element.style.left =
         unit.x + "px";
 
-
     unit.element.style.top =
         unit.y + "px";
-
 }
 
 
@@ -2064,10 +1838,8 @@ function positionEnemy(
     enemy.element.style.left =
         enemy.x + "px";
 
-
     enemy.element.style.top =
         enemy.y + "px";
-
 }
 
 
@@ -2077,20 +1849,14 @@ function positionEnemy(
 
 function summonSuperman(){
 
-    if(
-        battleFinished
-    ){
-
+    if(battleFinished){
         return;
-
     }
 
 
     const alivePlayers =
         playerUnits.filter(
-            function(unit){
-                return !unit.dead;
-            }
+            unit => !unit.dead
         ).length;
 
 
@@ -2104,7 +1870,6 @@ function summonSuperman(){
         );
 
         return;
-
     }
 
 
@@ -2118,7 +1883,6 @@ function summonSuperman(){
         );
 
         return;
-
     }
 
 
@@ -2137,14 +1901,11 @@ function summonSuperman(){
 
     const unit = {
 
-        id:
-            nextPlayerId++,
+        id:nextPlayerId++,
 
-        team:
-            "player",
+        team:"player",
 
-        element:
-            element,
+        element:element,
 
         sprite:
             element.querySelector(
@@ -2163,18 +1924,13 @@ function summonSuperman(){
         damage:
             CONFIG.SUPERMAN_DAMAGE,
 
-        target:
-            null,
+        target:null,
 
-        attackTimer:
-            0,
+        attackTimer:0,
 
-        attacking:
-            false,
+        attacking:false,
 
-        dead:
-            false
-
+        dead:false
     };
 
 
@@ -2192,17 +1948,11 @@ function summonSuperman(){
 
     updateUnitCounts();
 
-
     showMessage(
         "SUPERMAN ĐÃ TRIỆU HỒI!"
     );
-
 }
 
-
-/* =========================================================
-   BUTTON
-========================================================= */
 
 document
     .getElementById(
@@ -2215,42 +1965,32 @@ document
 
 
 /* =========================================================
-   FIND ENEMY
+   FIND TARGET
 ========================================================= */
 
 function findEnemyForPlayer(
     unit
 ){
 
-    let target =
-        null;
+    let target = null;
 
-    let best =
-        Infinity;
+    let best = Infinity;
 
 
     for(
         const enemy of enemyUnits
     ){
 
-        if(
-            enemy.dead
-        ){
-
+        if(enemy.dead){
             continue;
-
         }
-
 
         if(
             enemy.x <=
             unit.x
         ){
-
             continue;
-
         }
-
 
         const d =
             distance(
@@ -2259,64 +1999,42 @@ function findEnemyForPlayer(
             );
 
 
-        if(
-            d <
-            best
-        ){
+        if(d < best){
 
-            best =
-                d;
+            best = d;
 
-            target =
-                enemy;
-
+            target = enemy;
         }
 
     }
 
-
     return target;
-
 }
 
-
-/* =========================================================
-   FIND PLAYER
-========================================================= */
 
 function findPlayerForEnemy(
     enemy
 ){
 
-    let target =
-        null;
+    let target = null;
 
-    let best =
-        Infinity;
+    let best = Infinity;
 
 
     for(
         const unit of playerUnits
     ){
 
-        if(
-            unit.dead
-        ){
-
+        if(unit.dead){
             continue;
-
         }
-
 
         if(
             unit.x >=
             enemy.x
         ){
-
             continue;
-
         }
-
 
         const d =
             distance(
@@ -2325,29 +2043,21 @@ function findPlayerForEnemy(
             );
 
 
-        if(
-            d <
-            best
-        ){
+        if(d < best){
 
-            best =
-                d;
+            best = d;
 
-            target =
-                unit;
-
+            target = unit;
         }
 
     }
 
-
     return target;
-
 }
 
 
 /* =========================================================
-   MOVE PLAYER
+   MOVEMENT
 ========================================================= */
 
 function movePlayer(
@@ -2362,12 +2072,9 @@ function movePlayer(
 
 
     if(
-        Math.abs(dx) <
-        1
+        Math.abs(dx) < 1
     ){
-
         return;
-
     }
 
 
@@ -2392,13 +2099,8 @@ function movePlayer(
     positionPlayer(
         unit
     );
-
 }
 
-
-/* =========================================================
-   MOVE ENEMY
-========================================================= */
 
 function moveEnemy(
     enemy,
@@ -2412,12 +2114,9 @@ function moveEnemy(
 
 
     if(
-        Math.abs(dx) <
-        1
+        Math.abs(dx) < 1
     ){
-
         return;
-
     }
 
 
@@ -2442,7 +2141,6 @@ function moveEnemy(
     positionEnemy(
         enemy
     );
-
 }
 
 
@@ -2455,12 +2153,8 @@ function updatePlayer(
     dt
 ){
 
-    if(
-        unit.dead
-    ){
-
+    if(unit.dead){
         return;
-
     }
 
 
@@ -2473,17 +2167,10 @@ function updatePlayer(
             findEnemyForPlayer(
                 unit
             );
-
     }
 
 
-    /*
-       Có quân địch.
-    */
-
-    if(
-        unit.target
-    ){
+    if(unit.target){
 
         const enemy =
             unit.target;
@@ -2520,17 +2207,15 @@ function updatePlayer(
                 enemy,
                 dt
             );
-
         }
 
 
         return;
-
     }
 
 
     /*
-       Không có quái:
+       Không còn quái:
        đi tới tháp địch.
     */
 
@@ -2541,7 +2226,6 @@ function updatePlayer(
 
         y:
             CONFIG.LANE_Y
-
     };
 
 
@@ -2575,9 +2259,7 @@ function updatePlayer(
             tower,
             dt
         );
-
     }
-
 }
 
 
@@ -2599,9 +2281,7 @@ function attackEnemyWithSuperman(
         unit.attackTimer >
         0
     ){
-
         return;
-
     }
 
 
@@ -2618,10 +2298,6 @@ function attackEnemyWithSuperman(
     );
 
 
-    /*
-       Damage giữa animation.
-    */
-
     setTimeout(
         function(){
 
@@ -2634,17 +2310,12 @@ function attackEnemyWithSuperman(
                     enemy,
                     unit.damage
                 );
-
             }
 
         },
         160
     );
 
-
-    /*
-       Xong 0.4 giây.
-    */
 
     setTimeout(
         function(){
@@ -2653,25 +2324,12 @@ function attackEnemyWithSuperman(
                 false;
 
 
-            if(
-                unit.dead
-            ){
-
+            if(unit.dead){
                 return;
-
             }
 
 
-            if(
-                !enemy.dead
-            ){
-
-                setIdle(
-                    unit
-                );
-
-            }
-            else{
+            if(enemy.dead){
 
                 unit.target =
                     null;
@@ -2681,11 +2339,16 @@ function attackEnemyWithSuperman(
                 );
 
             }
+            else{
+
+                setIdle(
+                    unit
+                );
+            }
 
         },
         400
     );
-
 }
 
 
@@ -2706,9 +2369,7 @@ function attackEnemyTower(
         unit.attackTimer >
         0
     ){
-
         return;
-
     }
 
 
@@ -2736,7 +2397,6 @@ function attackEnemyTower(
                 damageEnemyTower(
                     unit.damage
                 );
-
             }
 
         },
@@ -2758,18 +2418,16 @@ function attackEnemyTower(
                 setIdle(
                     unit
                 );
-
             }
 
         },
         400
     );
-
 }
 
 
 /* =========================================================
-   CREATE ENEMY
+   ENEMY
 ========================================================= */
 
 function createEnemyElement(){
@@ -2803,32 +2461,19 @@ function createEnemyElement(){
 
 
     return element;
-
 }
 
 
-/* =========================================================
-   SPAWN ENEMY
-========================================================= */
-
 function spawnEnemy(){
 
-    if(
-        battleFinished
-    ){
-
+    if(battleFinished){
         return;
-
     }
 
 
     const aliveEnemies =
         enemyUnits.filter(
-            function(enemy){
-
-                return !enemy.dead;
-
-            }
+            enemy => !enemy.dead
         ).length;
 
 
@@ -2836,9 +2481,7 @@ function spawnEnemy(){
         aliveEnemies >=
         CONFIG.MAX_ENEMY_UNITS
     ){
-
         return;
-
     }
 
 
@@ -2876,15 +2519,11 @@ function spawnEnemy(){
         damage:
             CONFIG.ENEMY_DAMAGE,
 
-        target:
-            null,
+        target:null,
 
-        attackTimer:
-            0,
+        attackTimer:0,
 
-        dead:
-            false
-
+        dead:false
     };
 
 
@@ -2899,7 +2538,6 @@ function spawnEnemy(){
 
 
     updateUnitCounts();
-
 }
 
 
@@ -2912,12 +2550,8 @@ function updateEnemy(
     dt
 ){
 
-    if(
-        enemy.dead
-    ){
-
+    if(enemy.dead){
         return;
-
     }
 
 
@@ -2930,17 +2564,10 @@ function updateEnemy(
             findPlayerForEnemy(
                 enemy
             );
-
     }
 
 
-    /*
-       Có Superman.
-    */
-
-    if(
-        enemy.target
-    ){
+    if(enemy.target){
 
         const player =
             enemy.target;
@@ -2972,18 +2599,16 @@ function updateEnemy(
                 player,
                 dt
             );
-
         }
 
 
         return;
-
     }
 
 
     /*
-       Không có Superman:
-       tới tháp mình.
+       Không có quân mình:
+       đi tới tháp.
     */
 
     const tower = {
@@ -2993,7 +2618,6 @@ function updateEnemy(
 
         y:
             CONFIG.LANE_Y
-
     };
 
 
@@ -3022,9 +2646,7 @@ function updateEnemy(
             tower,
             dt
         );
-
     }
-
 }
 
 
@@ -3046,9 +2668,7 @@ function attackPlayerWithEnemy(
         enemy.attackTimer >
         0
     ){
-
         return;
-
     }
 
 
@@ -3060,12 +2680,11 @@ function attackPlayerWithEnemy(
         player,
         enemy.damage
     );
-
 }
 
 
 /* =========================================================
-   DAMAGE PLAYER
+   PLAYER DAMAGE
 ========================================================= */
 
 function damagePlayer(
@@ -3073,12 +2692,8 @@ function damagePlayer(
     damage
 ){
 
-    if(
-        unit.dead
-    ){
-
+    if(unit.dead){
         return;
-
     }
 
 
@@ -3101,26 +2716,16 @@ function damagePlayer(
         killPlayer(
             unit
         );
-
     }
-
 }
 
-
-/* =========================================================
-   KILL PLAYER
-========================================================= */
 
 function killPlayer(
     unit
 ){
 
-    if(
-        unit.dead
-    ){
-
+    if(unit.dead){
         return;
-
     }
 
 
@@ -3145,16 +2750,13 @@ function killPlayer(
 
             enemy.target =
                 null;
-
         }
-
     }
-
 }
 
 
 /* =========================================================
-   DAMAGE ENEMY
+   ENEMY DAMAGE
 ========================================================= */
 
 function damageEnemy(
@@ -3162,12 +2764,8 @@ function damageEnemy(
     damage
 ){
 
-    if(
-        enemy.dead
-    ){
-
+    if(enemy.dead){
         return;
-
     }
 
 
@@ -3205,26 +2803,16 @@ function damageEnemy(
         killEnemy(
             enemy
         );
-
     }
-
 }
 
-
-/* =========================================================
-   KILL ENEMY
-========================================================= */
 
 function killEnemy(
     enemy
 ){
 
-    if(
-        enemy.dead
-    ){
-
+    if(enemy.dead){
         return;
-
     }
 
 
@@ -3241,7 +2829,6 @@ function killEnemy(
 
     updateGoldUi();
 
-
     updateUnitCounts();
 
 
@@ -3256,16 +2843,13 @@ function killEnemy(
 
             unit.target =
                 null;
-
         }
-
     }
-
 }
 
 
 /* =========================================================
-   ATTACK PLAYER TOWER
+   ENEMY ATTACK OUR TOWER
 ========================================================= */
 
 function attackPlayerTower(
@@ -3281,9 +2865,7 @@ function attackPlayerTower(
         enemy.attackTimer >
         0
     ){
-
         return;
-
     }
 
 
@@ -3320,26 +2902,20 @@ function attackPlayerTower(
         finishBattle(
             false
         );
-
     }
-
 }
 
 
 /* =========================================================
-   DAMAGE ENEMY TOWER
+   OUR ATTACK ENEMY TOWER
 ========================================================= */
 
 function damageEnemyTower(
     damage
 ){
 
-    if(
-        battleFinished
-    ){
-
+    if(battleFinished){
         return;
-
     }
 
 
@@ -3372,14 +2948,12 @@ function damageEnemyTower(
         finishBattle(
             true
         );
-
     }
-
 }
 
 
 /* =========================================================
-   DAMAGE NUMBER
+   DAMAGE TEXT
 ========================================================= */
 
 function createDamage(
@@ -3424,19 +2998,17 @@ function createDamage(
         },
         600
     );
-
 }
 
 
 /* =========================================================
-   LƯU TIẾN ĐỘ SAU KHI THẮNG
+   SAVE STAGE
 ========================================================= */
 
 function saveStageVictory(){
 
     /*
-       Stage hoàn thành cao nhất
-       của Map hiện tại.
+       Đã hoàn thành.
     */
 
     const completedKey =
@@ -3467,12 +3039,11 @@ function saveStageVictory(){
                 )
             )
         );
-
     }
 
 
     /*
-       Stage tiếp theo được mở.
+       Mở stage tiếp theo.
     */
 
     const unlockedKey =
@@ -3507,16 +3078,14 @@ function saveStageVictory(){
                 nextStage
             )
         );
-
     }
 
 
     /*
-       Progress của Map.
-       Dùng để mở Map tiếp theo.
+       Progress map.
     */
 
-    const mapProgressKey =
+    const progressKey =
         "animeDorado_map" +
         currentMap +
         "_progress";
@@ -3525,7 +3094,7 @@ function saveStageVictory(){
     const oldProgress =
         Number(
             localStorage.getItem(
-                mapProgressKey
+                progressKey
             ) || 0
         );
 
@@ -3536,7 +3105,7 @@ function saveStageVictory(){
     ){
 
         localStorage.setItem(
-            mapProgressKey,
+            progressKey,
             String(
                 Math.min(
                     20,
@@ -3544,26 +3113,21 @@ function saveStageVictory(){
                 )
             )
         );
-
     }
 
 }
 
 
 /* =========================================================
-   KẾT THÚC TRẬN
+   FINISH BATTLE
 ========================================================= */
 
 function finishBattle(
     victory
 ){
 
-    if(
-        battleFinished
-    ){
-
+    if(battleFinished){
         return;
-
     }
 
 
@@ -3571,14 +3135,7 @@ function finishBattle(
         true;
 
 
-    if(
-        victory
-    ){
-
-        /*
-           LƯU STAGE TRƯỚC KHI
-           HIỆN MÀN HÌNH THẮNG.
-        */
+    if(victory){
 
         saveStageVictory();
 
@@ -3588,19 +3145,14 @@ function finishBattle(
 
 
         resultTextElement.textContent =
-            "Đã vượt qua MAP " +
+            "Bạn đã vượt qua MAP " +
             currentMap +
             " • STAGE " +
-            currentStage +
-            ".";
+            currentStage;
 
 
         resultButton.textContent =
-            currentStage <
-            20
-                ? "QUAY LẠI CHỌN MÀN"
-                : "HOÀN THÀNH MAP";
-
+            "QUAY LẠI CHỌN MÀN";
 
     }
     else{
@@ -3613,19 +3165,16 @@ function finishBattle(
             "Bạn đã thua MAP " +
             currentMap +
             " • STAGE " +
-            currentStage +
-            ".";
+            currentStage;
 
 
         resultButton.textContent =
             "CHƠI LẠI";
-
     }
 
 
     resultElement.style.display =
         "flex";
-
 }
 
 
@@ -3637,18 +3186,10 @@ resultButton.addEventListener(
     "click",
     function(){
 
-        /*
-           THẮNG
-        */
-
         if(
             resultTitleElement.textContent ===
             "VICTORY"
         ){
-
-            /*
-               Hiện tại Map 1.
-            */
 
             if(
                 currentMap === 1
@@ -3658,25 +3199,15 @@ resultButton.addEventListener(
                     "./chonmanmap1.html";
 
                 return;
-
             }
 
-
-            /*
-               Map khác sau này.
-            */
 
             window.location.href =
                 "./chonmap.html";
 
             return;
-
         }
 
-
-        /*
-           THUA → chơi lại
-        */
 
         window.location.reload();
 
@@ -3685,26 +3216,16 @@ resultButton.addEventListener(
 
 
 /* =========================================================
-   SPAWN QUÁI
+   SPAWN QUÁI MỖI 3 GIÂY
 ========================================================= */
 
 function startEnemySpawner(){
-
-    /*
-       Con đầu tiên:
-       sau 3 giây.
-    */
 
     setTimeout(
         function(){
 
             spawnEnemy();
 
-
-            /*
-               Sau đó:
-               mỗi 3 giây.
-            */
 
             setInterval(
                 function(){
@@ -3725,7 +3246,7 @@ function startEnemySpawner(){
 
 
 /* =========================================================
-   ENERGY REGEN
+   ENERGY
 ========================================================= */
 
 function updateEnergy(
@@ -3748,9 +3269,7 @@ function updateEnergy(
         seconds <=
         0
     ){
-
         return;
-
     }
 
 
@@ -3767,7 +3286,6 @@ function updateEnergy(
 
 
     updateEnergyUi();
-
 }
 
 
@@ -3798,9 +3316,7 @@ function gameLoop(
         now;
 
 
-    if(
-        !battleFinished
-    ){
+    if(!battleFinished){
 
         updateEnergy(
             now
@@ -3815,7 +3331,6 @@ function gameLoop(
                 unit,
                 dt
             );
-
         }
 
 
@@ -3827,7 +3342,6 @@ function gameLoop(
                 enemy,
                 dt
             );
-
         }
 
     }
@@ -3836,7 +3350,6 @@ function gameLoop(
     requestAnimationFrame(
         gameLoop
     );
-
 }
 
 
@@ -3853,15 +3366,38 @@ function scaleGame(){
         window.innerHeight;
 
 
+    if(
+        width >=
+        height
+    ){
+
+        const scale =
+            Math.min(
+                width / 1536,
+                height / 864
+            );
+
+
+        frame.style.transform =
+            "translate(-50%,-50%) " +
+            "scale(" +
+            scale +
+            ")";
+
+        return;
+    }
+
+
     const scale =
         Math.min(
-            width / 1536,
-            height / 864
+            width / 864,
+            height / 1536
         );
 
 
     frame.style.transform =
         "translate(-50%,-50%) " +
+        "rotate(90deg) " +
         "scale(" +
         scale +
         ")";
@@ -3869,23 +3405,24 @@ function scaleGame(){
 }
 
 
-window.addEventListener(
-    "resize",
-    scaleGame
-);
+/* =========================================================
+   IMAGE ERROR
+========================================================= */
 
+document
+    .getElementById(
+        "battleBackground"
+    )
+    .addEventListener(
+        "error",
+        function(){
 
-window.addEventListener(
-    "orientationchange",
-    function(){
+            showMessage(
+                "Không tìm thấy tranchien.jpg"
+            );
 
-        setTimeout(
-            scaleGame,
-            200
-        );
-
-    }
-);
+        }
+    );
 
 
 /* =========================================================
@@ -3906,6 +3443,25 @@ startEnemySpawner();
 
 requestAnimationFrame(
     gameLoop
+);
+
+
+window.addEventListener(
+    "resize",
+    scaleGame
+);
+
+
+window.addEventListener(
+    "orientationchange",
+    function(){
+
+        setTimeout(
+            scaleGame,
+            200
+        );
+
+    }
 );
 
 </script>
