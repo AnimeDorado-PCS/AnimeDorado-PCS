@@ -11,17 +11,23 @@ initial-scale=1,
 maximum-scale=1,
 user-scalable=no">
 
-<title>Anime Dorado - Test</title>
+<title>Anime Dorado - Test Battle</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
+    -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
     overflow:hidden;
@@ -30,9 +36,15 @@ html,body{
 
 body{
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
+    font-family:Arial,sans-serif;
 }
+
+
+/* =========================================================
+   GAME
+========================================================= */
 
 #game{
 
@@ -46,19 +58,17 @@ body{
 
     overflow:hidden;
 
-    /* ĐÚNG FILE NỀN */
     background-image:url("nentest.jpg");
 
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
-
 }
 
 
-/* ==============================
+/* =========================================================
    HERO
-============================== */
+========================================================= */
 
 #hero{
 
@@ -70,10 +80,18 @@ body{
     width:190px;
     height:220px;
 
-    z-index:20;
+    z-index:30;
 
+    overflow:hidden;
 }
 
+
+/*
+    Đây là ô hiển thị 1 frame.
+
+    Ảnh thật nằm trong background.
+    Không dùng img di chuyển nữa.
+*/
 
 #heroSprite{
 
@@ -82,19 +100,18 @@ body{
     width:100%;
     height:100%;
 
-    left:0;
-    top:0;
+    background-repeat:no-repeat;
 
-    object-fit:contain;
+    background-position:0% 50%;
 
-    pointer-events:none;
+    background-size:1000% 100%;
 
 }
 
 
-/* ==============================
+/* =========================================================
    BOSS
-============================== */
+========================================================= */
 
 #boss{
 
@@ -106,10 +123,8 @@ body{
     width:220px;
     height:270px;
 
-    z-index:15;
-
+    z-index:20;
 }
-
 
 #boss img{
 
@@ -118,27 +133,28 @@ body{
 
     object-fit:contain;
 
+    display:block;
+
 }
 
 
-/* ==============================
-   HP
-============================== */
+/* =========================================================
+   BOSS HP
+========================================================= */
 
 #bossHP{
 
     position:absolute;
 
-    top:-15px;
-
+    top:-16px;
     left:50%;
 
     transform:translateX(-50%);
 
     width:180px;
 
+    z-index:50;
 }
-
 
 #hpBack{
 
@@ -152,42 +168,37 @@ body{
     border-radius:20px;
 
     overflow:hidden;
-
 }
 
-
-#hp{
+#hpBar{
 
     width:100%;
     height:100%;
 
     background:#e53935;
 
-    transition:
-    width .2s;
-
+    transition:width .2s;
 }
 
+#bossName{
 
-#bossText{
-
-    color:white;
+    margin-top:3px;
 
     text-align:center;
 
-    font:bold 13px Arial;
+    color:white;
 
-    margin-top:4px;
+    font-size:13px;
+    font-weight:bold;
 
     text-shadow:
-    0 2px 4px #000;
-
+        0 2px 4px #000;
 }
 
 
-/* ==============================
+/* =========================================================
    STATUS
-============================== */
+========================================================= */
 
 #status{
 
@@ -196,39 +207,43 @@ body{
     top:15px;
     left:50%;
 
-    transform:
-    translateX(-50%);
-
-    color:white;
-
-    background:
-    rgba(0,0,0,.55);
+    transform:translateX(-50%);
 
     padding:8px 15px;
 
     border-radius:12px;
 
-    font:bold 14px Arial;
+    background:
+        rgba(0,0,0,.55);
+
+    color:white;
+
+    font-size:14px;
+    font-weight:bold;
+
+    text-shadow:
+        0 2px 4px #000;
 
     z-index:100;
 
+    white-space:nowrap;
 }
 
 
-/* ==============================
-   HIT
-============================== */
+/* =========================================================
+   HIT EFFECT
+========================================================= */
 
-#hit{
+#hitEffect{
 
     position:absolute;
 
-    width:150px;
-    height:150px;
+    width:140px;
+    height:140px;
 
     border:
-    7px solid
-    rgba(150,230,255,.9);
+        7px solid
+        rgba(170,240,255,.9);
 
     border-radius:50%;
 
@@ -236,31 +251,32 @@ body{
 
     pointer-events:none;
 
-    z-index:50;
-
+    z-index:70;
 }
 
-
-#hit.show{
+#hitEffect.show{
 
     animation:
-    hitAnimation
-    .45s
-    ease-out;
+        hitAnimation
+        .45s
+        ease-out;
 
 }
-
 
 @keyframes hitAnimation{
 
     0%{
 
-        opacity:1;
+        opacity:0;
 
         transform:
-        translate(-50%,-50%)
-        scale:.2);
+            translate(-50%,-50%)
+            scale:.25;
 
+    }
+
+    20%{
+        opacity:1;
     }
 
     100%{
@@ -268,72 +284,168 @@ body{
         opacity:0;
 
         transform:
-        translate(-50%,-50%)
-        scale:1.5);
+            translate(-50%,-50%)
+            scale:1.5;
 
     }
 
 }
 
 
-/* ==============================
-   BUTTON
-============================== */
+/* =========================================================
+   SCREEN FLASH
+========================================================= */
 
-#buttons{
+#flash{
 
     position:absolute;
 
-    bottom:12px;
+    inset:0;
+
+    background:white;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:90;
+}
+
+#flash.show{
+
+    animation:
+        flashAnimation
+        .15s
+        ease-out;
+
+}
+
+@keyframes flashAnimation{
+
+    0%{
+        opacity:.55;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+#controls{
+
+    position:absolute;
 
     left:50%;
+    bottom:12px;
 
-    transform:
-    translateX(-50%);
+    transform:translateX(-50%);
 
     display:flex;
 
     gap:8px;
 
+    padding:8px;
+
+    border-radius:14px;
+
+    background:
+        rgba(0,0,0,.55);
+
     z-index:100;
-
 }
-
 
 button{
 
     border:0;
 
-    padding:10px 15px;
-
     border-radius:10px;
 
-    background:#246bdb;
+    padding:10px 14px;
 
     color:white;
 
+    background:#2563eb;
+
+    font-size:13px;
     font-weight:bold;
+
+    cursor:pointer;
+}
+
+button:active{
+
+    transform:scale(.95);
 
 }
 
+button:disabled{
+
+    opacity:.4;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:600px){
 
     #hero{
 
-        width:145px;
-        height:170px;
-
         left:20px;
+
+        width:150px;
+        height:180px;
 
     }
 
     #boss{
 
-        width:165px;
-        height:205px;
-
         right:15px;
+
+        width:170px;
+        height:210px;
+
+    }
+
+    #bossHP{
+
+        width:135px;
+
+    }
+
+    #status{
+
+        top:8px;
+
+        font-size:11px;
+
+        padding:7px 10px;
+
+    }
+
+    #controls{
+
+        width:96%;
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+    button{
+
+        padding:9px 10px;
+
+        font-size:11px;
 
     }
 
@@ -343,30 +455,35 @@ button{
 
 </head>
 
-
 <body>
 
 
 <div id="game">
 
 
+    <!-- =====================================================
+         STATUS
+    ====================================================== -->
+
     <div id="status">
-        🪽 Chuẩn bị bay...
+        🪽 Nhân vật chuẩn bị bay...
     </div>
 
 
-    <!-- NHÂN VẬT -->
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
     <div id="hero">
 
-        <img
-        id="heroSprite"
-        src="">
+        <div id="heroSprite"></div>
 
     </div>
 
 
-    <!-- BOSS -->
+    <!-- =====================================================
+         BOSS
+    ====================================================== -->
 
     <div id="boss">
 
@@ -374,40 +491,52 @@ button{
 
             <div id="hpBack">
 
-                <div id="hp"></div>
+                <div id="hpBar"></div>
 
             </div>
 
-            <div id="bossText">
+            <div id="bossName">
                 BOSS
             </div>
 
         </div>
 
         <img
-        src="boss.png">
+            src="boss.png"
+            alt="Boss">
 
     </div>
 
 
-    <div id="hit"></div>
+    <!-- HIT -->
+
+    <div id="hitEffect"></div>
 
 
-    <div id="buttons">
+    <!-- FLASH -->
 
-        <button onclick="startBattle()">
+    <div id="flash"></div>
+
+
+    <!-- =====================================================
+         CONTROLS
+    ====================================================== -->
+
+    <div id="controls">
+
+        <button id="startButton">
             ▶ BẮT ĐẦU
         </button>
 
-        <button onclick="playSkill1()">
+        <button id="skill1Button">
             ❄️ SKILL 1
         </button>
 
-        <button onclick="playSkill2()">
+        <button id="skill2Button">
             💥 SKILL 2
         </button>
 
-        <button onclick="location.reload()">
+        <button id="resetButton">
             🔄 RESET
         </button>
 
@@ -419,41 +548,23 @@ button{
 
 <script>
 
-/* ========================================================
+/* =========================================================
    ẢNH CỦA BẠN
-======================================================== */
+========================================================= */
 
-
-/*
-    BAY
-    10 KEYFRAME
-*/
-
-const FLY =
+const FLY_IMAGE =
 "https://i.postimg.cc/KjqDWPRR/20260818-141757-removebg-preview.png";
 
-
-/*
-    SKILL 1
-    5 KEYFRAME
-*/
-
-const SKILL1 =
+const SKILL1_IMAGE =
 "https://i.postimg.cc/j5R6dgf9/20260818-142613.png";
 
-
-/*
-    SKILL 2
-    5 KEYFRAME
-*/
-
-const SKILL2 =
+const SKILL2_IMAGE =
 "https://i.postimg.cc/jdBzJdNY/20260818-142454-removebg-preview.png";
 
 
-/* ========================================================
-   CẤU HÌNH
-======================================================== */
+/* =========================================================
+   SỐ KEYFRAME
+========================================================= */
 
 const FLY_FRAMES = 10;
 
@@ -462,142 +573,194 @@ const SKILL1_FRAMES = 5;
 const SKILL2_FRAMES = 5;
 
 
-/*
-    Mỗi keyframe xuất hiện 1 lần trong animation.
-*/
+/* =========================================================
+   THỜI GIAN
+========================================================= */
 
-const FLY_TIME = 90;
+const FLY_FRAME_TIME = 90;
 
-const SKILL1_TIME = 130;
+const SKILL1_FRAME_TIME = 130;
 
-const SKILL2_TIME = 130;
+const SKILL2_FRAME_TIME = 130;
 
 
-/* ========================================================
-   BIẾN
-======================================================== */
+/* =========================================================
+   DAMAGE
+========================================================= */
+
+const SKILL1_DAMAGE = 20;
+
+const SKILL2_DAMAGE = 30;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const game =
+    document.getElementById("game");
 
 const hero =
-document.getElementById("hero");
+    document.getElementById("hero");
 
-const sprite =
-document.getElementById("heroSprite");
+const heroSprite =
+    document.getElementById("heroSprite");
 
 const boss =
-document.getElementById("boss");
+    document.getElementById("boss");
 
-const hp =
-document.getElementById("hp");
+const hpBar =
+    document.getElementById("hpBar");
 
 const status =
-document.getElementById("status");
+    document.getElementById("status");
 
-const hit =
-document.getElementById("hit");
+const hitEffect =
+    document.getElementById("hitEffect");
 
+const flash =
+    document.getElementById("flash");
+
+const startButton =
+    document.getElementById("startButton");
+
+const skill1Button =
+    document.getElementById("skill1Button");
+
+const skill2Button =
+    document.getElementById("skill2Button");
+
+const resetButton =
+    document.getElementById("resetButton");
+
+
+/* =========================================================
+   BIẾN
+========================================================= */
 
 let heroX = 70;
 
 let bossHP = 100;
 
-let attacking = false;
+let busy = false;
+
+let battleStarted = false;
+
+let battleRunning = false;
 
 
-/* ========================================================
-   HIỂN THỊ 1 KEYFRAME
-========================================================
-   QUAN TRỌNG:
+/* =========================================================
+   WAIT
+========================================================= */
 
-   Nếu ảnh của bạn là sprite-sheet ngang:
+function wait(ms){
 
-   | 1 | 2 | 3 | 4 | 5 |
+    return new Promise(
+        resolve =>
+            setTimeout(resolve,ms)
+    );
 
-   thì hàm này chỉ hiển thị ĐÚNG 1 frame.
-======================================================== */
+}
 
-function showFrame(
+
+/* =========================================================
+   SET SPRITE
+=========================================================
+
+   Đây là phần sửa quan trọng.
+
+   Với sprite 10 frame:
+
+       [1][2][3][4][5][6][7][8][9][10]
+
+   background-size = 1000%
+
+   Mỗi frame được chọn bằng background-position.
+
+========================================================= */
+
+function setSprite(
     image,
     frame,
     totalFrames
 ){
 
-    const frameWidth =
-        100 / totalFrames;
+    const safeFrame =
+        Math.max(
+            0,
+            Math.min(
+                frame,
+                totalFrames - 1
+            )
+        );
 
 
     /*
-       Đặt ảnh lớn đúng số lần
-       để chỉ có 1 frame lọt vào ô nhân vật.
+       Tạo khoảng cách chính xác
+       cho từng frame.
     */
 
-    sprite.src = image;
+    let positionX = 0;
 
 
-    sprite.style.width =
-        totalFrames * 100 + "%";
+    if(totalFrames > 1){
+
+        positionX =
+            (safeFrame /
+             (totalFrames - 1))
+            * 100;
+
+    }
 
 
-    sprite.style.height =
-        "100%";
+    heroSprite.style.backgroundImage =
+        "url('" + image + "')";
 
 
-    sprite.style.maxWidth =
-        "none";
+    heroSprite.style.backgroundSize =
+        (totalFrames * 100) + "% 100%";
 
 
-    sprite.style.objectFit =
-        "fill";
-
-
-    /*
-       Dịch chính xác tới frame.
-    */
-
-    sprite.style.left =
-        -(frame * frameWidth) + "%";
-
-
-    sprite.style.top =
-        "0";
-
-
-    sprite.style.transform =
-        "none";
+    heroSprite.style.backgroundPosition =
+        positionX + "% 50%";
 
 }
 
 
-/* ========================================================
-   CHẠY BAY 10 FRAME
-======================================================== */
+/* =========================================================
+   ANIMATION TỪNG FRAME
+=========================================================
 
-async function playFly(){
+   Không bỏ qua frame.
+   Không hiện tất cả frame cùng lúc.
+
+========================================================= */
+
+async function playFrames(
+    image,
+    totalFrames,
+    frameTime
+){
 
     for(
         let frame = 0;
-        frame < FLY_FRAMES;
+        frame < totalFrames;
         frame++
     ){
 
         /*
-           Frame:
-
-           1
+           Chỉ hiển thị đúng 1 frame.
         */
 
-        showFrame(
-            FLY,
+        setSprite(
+            image,
             frame,
-            FLY_FRAMES
+            totalFrames
         );
 
 
-        /*
-           Chỉ chạy frame này 1 lần.
-        */
-
         await wait(
-            FLY_TIME
+            frameTime
         );
 
     }
@@ -605,9 +768,24 @@ async function playFly(){
 }
 
 
-/* ========================================================
-   BAY LIÊN TỤC TỚI BOSS
-======================================================== */
+/* =========================================================
+   ANIMATION BAY LẶP
+========================================================= */
+
+function setFlyFrame(frame){
+
+    setSprite(
+        FLY_IMAGE,
+        frame,
+        FLY_FRAMES
+    );
+
+}
+
+
+/* =========================================================
+   BAY TỚI BOSS
+========================================================= */
 
 async function flyToBoss(){
 
@@ -615,7 +793,7 @@ async function flyToBoss(){
         "🪽 Nhân vật đang bay tới Boss...";
 
 
-    const target =
+    const targetX =
         game.clientWidth
         - 90
         - 220
@@ -626,11 +804,11 @@ async function flyToBoss(){
 
 
     while(
-        heroX < target
+        heroX < targetX
     ){
 
         /*
-           Di chuyển
+           Di chuyển nhân vật.
         */
 
         heroX += 3;
@@ -641,21 +819,26 @@ async function flyToBoss(){
 
 
         /*
-           MỖI LẦN CHỈ HIỆN 1 FRAME
+           Frame bay:
+
+           1
+           ↓
+           2
+           ↓
+           3
+           ↓
+           ...
+           ↓
+           10
+           ↓
+           1
         */
 
-        showFrame(
-            FLY,
-            frame,
-            FLY_FRAMES
-        );
+        setFlyFrame(frame);
 
-
-        /*
-           Sang frame kế tiếp
-        */
 
         frame++;
+
 
         if(
             frame >= FLY_FRAMES
@@ -667,261 +850,95 @@ async function flyToBoss(){
 
 
         await wait(
-            FLY_TIME
+            FLY_FRAME_TIME
         );
 
     }
 
 
     /*
-       Giữ frame cuối khi tới boss.
+       Khi tới boss giữ frame cuối.
     */
 
-    showFrame(
-        FLY,
-        9,
-        FLY_FRAMES
-    );
+    setFlyFrame(FLY_FRAMES - 1);
 
 
     status.textContent =
-        "⚔️ Đã đến gần Boss!";
+        "⚔️ Đã tới gần Boss!";
 
 
-    await wait(400);
+    await wait(350);
 
 }
 
 
-/* ========================================================
-   SKILL 1 — CHÍNH XÁC 5 FRAME
-======================================================== */
+/* =========================================================
+   HIỆU ỨNG TRÚNG BOSS
+========================================================= */
 
-async function playSkill1(){
+function bossHit(){
 
-    if(attacking)
-        return;
+    const bossRect =
+        boss.getBoundingClientRect();
 
-
-    if(bossHP <= 0)
-        return;
-
-
-    attacking = true;
+    const gameRect =
+        game.getBoundingClientRect();
 
 
-    status.textContent =
-        "❄️ SKILL 1";
+    hitEffect.style.left =
+        (
+            bossRect.left -
+            gameRect.left +
+            bossRect.width / 2
+        ) + "px";
 
 
-    /*
-       FRAME 1
-    */
+    hitEffect.style.top =
+        (
+            bossRect.top -
+            gameRect.top +
+            bossRect.height / 2
+        ) + "px";
 
-    showFrame(
-        SKILL1,
-        0,
-        SKILL1_FRAMES
+
+    hitEffect.classList.remove(
+        "show"
     );
 
-    await wait(
-        SKILL1_TIME
-    );
+    void hitEffect.offsetWidth;
 
-
-    /*
-       FRAME 2
-    */
-
-    showFrame(
-        SKILL1,
-        1,
-        SKILL1_FRAMES
-    );
-
-    await wait(
-        SKILL1_TIME
+    hitEffect.classList.add(
+        "show"
     );
 
 
-    /*
-       FRAME 3
-    */
-
-    showFrame(
-        SKILL1,
-        2,
-        SKILL1_FRAMES
+    flash.classList.remove(
+        "show"
     );
 
-    await wait(
-        SKILL1_TIME
+    void flash.offsetWidth;
+
+    flash.classList.add(
+        "show"
     );
-
-
-    /*
-       FRAME 4
-    */
-
-    showFrame(
-        SKILL1,
-        3,
-        SKILL1_FRAMES
-    );
-
-    await wait(
-        SKILL1_TIME
-    );
-
-
-    /*
-       FRAME 5
-       CHỈ XUẤT HIỆN 1 LẦN
-    */
-
-    showFrame(
-        SKILL1,
-        4,
-        SKILL1_FRAMES
-    );
-
-    await wait(
-        SKILL1_TIME
-    );
-
-
-    /*
-       ĐÚNG LÚC FRAME 5 XONG
-       → ĐÁNH TRÚNG BOSS
-    */
-
-    damageBoss(20);
-
-
-    attacking = false;
 
 }
 
 
-/* ========================================================
-   SKILL 2 — CHÍNH XÁC 5 FRAME
-======================================================== */
-
-async function playSkill2(){
-
-    if(attacking)
-        return;
-
-
-    if(bossHP <= 0)
-        return;
-
-
-    attacking = true;
-
-
-    status.textContent =
-        "💥 SKILL 2";
-
-
-    /*
-       FRAME 1
-    */
-
-    showFrame(
-        SKILL2,
-        0,
-        SKILL2_FRAMES
-    );
-
-    await wait(
-        SKILL2_TIME
-    );
-
-
-    /*
-       FRAME 2
-    */
-
-    showFrame(
-        SKILL2,
-        1,
-        SKILL2_FRAMES
-    );
-
-    await wait(
-        SKILL2_TIME
-    );
-
-
-    /*
-       FRAME 3
-    */
-
-    showFrame(
-        SKILL2,
-        2,
-        SKILL2_FRAMES
-    );
-
-    await wait(
-        SKILL2_TIME
-    );
-
-
-    /*
-       FRAME 4
-    */
-
-    showFrame(
-        SKILL2,
-        3,
-        SKILL2_FRAMES
-    );
-
-    await wait(
-        SKILL2_TIME
-    );
-
-
-    /*
-       FRAME 5
-       CHỈ XUẤT HIỆN 1 LẦN
-    */
-
-    showFrame(
-        SKILL2,
-        4,
-        SKILL2_FRAMES
-    );
-
-    await wait(
-        SKILL2_TIME
-    );
-
-
-    /*
-       FRAME 5 KẾT THÚC
-       → DAMAGE BOSS
-    */
-
-    damageBoss(30);
-
-
-    attacking = false;
-
-}
-
-
-/* ========================================================
+/* =========================================================
    DAMAGE
-======================================================== */
+========================================================= */
 
-function damageBoss(
-    damage
-){
+function damageBoss(amount){
 
-    bossHP -= damage;
+    if(
+        bossHP <= 0
+    ){
+        return;
+    }
+
+
+    bossHP -= amount;
 
 
     if(
@@ -933,89 +950,232 @@ function damageBoss(
     }
 
 
-    hp.style.width =
+    hpBar.style.width =
         bossHP + "%";
 
 
-    /*
-       Hiệu ứng trúng Boss
-    */
-
-    const br =
-        boss.getBoundingClientRect();
-
-    const gr =
-        game.getBoundingClientRect();
-
-
-    hit.style.left =
-        (
-            br.left -
-            gr.left +
-            br.width / 2
-        ) + "px";
-
-
-    hit.style.top =
-        (
-            br.top -
-            gr.top +
-            br.height / 2
-        ) + "px";
-
-
-    hit.classList.remove(
-        "show"
-    );
-
-
-    void hit.offsetWidth;
-
-
-    hit.classList.add(
-        "show"
-    );
+    bossHit();
 
 
     if(
         bossHP <= 0
     ){
 
+        battleRunning = false;
+
         status.textContent =
-            "💀 BOSS BỊ HẠ!";
+            "💀 BOSS ĐÃ BỊ HẠ!";
+
+
+        skill1Button.disabled =
+            true;
+
+        skill2Button.disabled =
+            true;
 
     }
 
 }
 
 
-/* ========================================================
-   ĐỢI
-======================================================== */
+/* =========================================================
+   SKILL 1
+========================================================= */
 
-function wait(ms){
+async function playSkill1(){
 
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                ms
-            )
+    if(
+        busy ||
+        bossHP <= 0
+    ){
+
+        return;
+
+    }
+
+
+    busy = true;
+
+
+    skill1Button.disabled =
+        true;
+
+    skill2Button.disabled =
+        true;
+
+
+    status.textContent =
+        "❄️ SKILL 1";
+
+
+    /*
+       CHÍNH XÁC:
+
+       FRAME 1
+       ↓
+       FRAME 2
+       ↓
+       FRAME 3
+       ↓
+       FRAME 4
+       ↓
+       FRAME 5
+
+       Sau đó kết thúc.
+    */
+
+    await playFrames(
+        SKILL1_IMAGE,
+        SKILL1_FRAMES,
+        SKILL1_FRAME_TIME
     );
+
+
+    /*
+       Đòn đánh xảy ra
+       SAU frame 5.
+    */
+
+    damageBoss(
+        SKILL1_DAMAGE
+    );
+
+
+    if(
+        bossHP > 0
+    ){
+
+        status.textContent =
+            "✅ Skill 1 trúng Boss!";
+
+    }
+
+
+    busy = false;
+
+
+    if(
+        bossHP > 0
+    ){
+
+        skill1Button.disabled =
+            false;
+
+        skill2Button.disabled =
+            false;
+
+    }
 
 }
 
 
-/* ========================================================
-   TẤN CÔNG HẾT SKILL
-======================================================== */
+/* =========================================================
+   SKILL 2
+========================================================= */
+
+async function playSkill2(){
+
+    if(
+        busy ||
+        bossHP <= 0
+    ){
+
+        return;
+
+    }
+
+
+    busy = true;
+
+
+    skill1Button.disabled =
+        true;
+
+    skill2Button.disabled =
+        true;
+
+
+    status.textContent =
+        "💥 SKILL 2";
+
+
+    /*
+       CHÍNH XÁC:
+
+       FRAME 1
+       ↓
+       FRAME 2
+       ↓
+       FRAME 3
+       ↓
+       FRAME 4
+       ↓
+       FRAME 5
+
+       Sau đó kết thúc.
+    */
+
+    await playFrames(
+        SKILL2_IMAGE,
+        SKILL2_FRAMES,
+        SKILL2_FRAME_TIME
+    );
+
+
+    /*
+       Damage tại frame cuối.
+    */
+
+    damageBoss(
+        SKILL2_DAMAGE
+    );
+
+
+    if(
+        bossHP > 0
+    ){
+
+        status.textContent =
+            "✅ Skill 2 trúng Boss!";
+
+    }
+
+
+    busy = false;
+
+
+    if(
+        bossHP > 0
+    ){
+
+        skill1Button.disabled =
+            false;
+
+        skill2Button.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =========================================================
+   TUNG HẾT SKILL
+========================================================= */
 
 async function attackAllSkills(){
 
+    if(
+        battleRunning === false
+    ){
+
+        return;
+
+    }
+
+
     /*
        SKILL 1
-       5 FRAME
-       MỖI FRAME 1 LẦN
     */
 
     await playSkill1();
@@ -1030,13 +1190,15 @@ async function attackAllSkills(){
     }
 
 
+    /*
+       Cho nhân vật nghỉ một chút.
+    */
+
     await wait(400);
 
 
     /*
        SKILL 2
-       5 FRAME
-       MỖI FRAME 1 LẦN
     */
 
     await playSkill2();
@@ -1052,27 +1214,30 @@ async function attackAllSkills(){
 
 
     /*
-       Nếu boss chưa chết,
-       tiếp tục lại chu kỳ.
+       Lặp lại chu kỳ
+       cho tới khi Boss chết.
     */
 
-    await wait(500);
+    await wait(600);
 
 
-    await attackAllSkills();
+    attackAllSkills();
 
 }
 
 
-/* ========================================================
-   BẮT ĐẦU
-======================================================== */
+/* =========================================================
+   RESET
+========================================================= */
 
-async function startBattle(){
+function resetGame(){
 
-    /*
-       Vị trí ban đầu
-    */
+    battleRunning = false;
+
+    busy = false;
+
+    bossHP = 100;
+
 
     heroX =
         game.clientWidth * 0.06;
@@ -1082,41 +1247,125 @@ async function startBattle(){
         heroX + "px";
 
 
-    bossHP = 100;
-
-    hp.style.width =
+    hpBar.style.width =
         "100%";
 
 
+    skill1Button.disabled =
+        false;
+
+    skill2Button.disabled =
+        false;
+
+
     /*
-       BAY
-       10 → 1 → 2 → ... → 10
-       cho tới khi tới Boss
+       Frame bay đầu tiên.
+    */
+
+    setFlyFrame(0);
+
+
+    status.textContent =
+        "🪽 Chuẩn bị bay tới Boss...";
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+async function startBattle(){
+
+    if(
+        battleStarted &&
+        battleRunning
+    ){
+
+        return;
+
+    }
+
+
+    battleStarted = true;
+
+    battleRunning = true;
+
+
+    resetGame();
+
+
+    battleRunning = true;
+
+
+    /*
+       BAY TỚI BOSS
     */
 
     await flyToBoss();
 
 
+    if(
+        battleRunning === false
+    ){
+
+        return;
+
+    }
+
+
     /*
-       TỚI BOSS
-       → SKILL 1
-       → SKILL 2
+       TỚI GẦN BOSS
+       → TUNG TẤT CẢ SKILL
     */
 
-    await attackAllSkills();
+    await wait(300);
+
+
+    attackAllSkills();
 
 }
 
 
-/* ========================================================
-   FRAME BAN ĐẦU
-======================================================== */
+/* =========================================================
+   NÚT
+========================================================= */
 
-showFrame(
-    FLY,
-    0,
-    FLY_FRAMES
+startButton.addEventListener(
+    "click",
+    startBattle
 );
+
+
+skill1Button.addEventListener(
+    "click",
+    playSkill1
+);
+
+
+skill2Button.addEventListener(
+    "click",
+    playSkill2
+);
+
+
+resetButton.addEventListener(
+    "click",
+    () => {
+
+        battleStarted = false;
+
+        resetGame();
+
+    }
+);
+
+
+/* =========================================================
+   KHỞI TẠO
+========================================================= */
+
+resetGame();
 
 </script>
 
