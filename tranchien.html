@@ -266,15 +266,20 @@ button{
     z-index:5;
 }
 
+
+/* =========================================================
+   TẤM SỎI / ĐƯỜNG ĐI
+========================================================= */
+
 #lane{
     position:absolute;
 
     left:158px;
     right:158px;
 
-    top:285px;
+    top:445px;
 
-    height:170px;
+    height:150px;
 
     border-radius:90px;
 
@@ -286,16 +291,22 @@ button{
 
 
 /* =========================================================
-   THÁP - DÙNG ẢNH RIÊNG
+   THÁP
+   2 THÁP CÙNG KÍCH THƯỚC
 ========================================================= */
 
 .tower{
     position:absolute;
 
-    bottom:78px;
+    /*
+       Đáy battleArea = 606px.
+       bottom:15px giúp chân tháp nằm sát
+       phần sỏi phía dưới.
+    */
+    bottom:15px;
 
-    width:150px;
-    height:180px;
+    width:180px;
+    height:220px;
 
     z-index:20;
 
@@ -317,10 +328,14 @@ button{
     transform:
         translateX(-50%);
 
-    width:150px;
-    height:180px;
+    width:180px;
+    height:220px;
 
-    object-fit:contain;
+    /*
+       Dùng fill để 2 ảnh luôn nằm trong
+       cùng một kích thước hiển thị.
+    */
+    object-fit:fill;
 
     display:block;
 
@@ -336,7 +351,7 @@ button{
 ========================================================= */
 
 .playerTower{
-    left:75px;
+    left:65px;
 }
 
 
@@ -345,7 +360,7 @@ button{
 ========================================================= */
 
 .enemyTower{
-    right:75px;
+    right:65px;
 }
 
 
@@ -1040,7 +1055,6 @@ button{
 
 <body>
 
-
 <div id="game">
 
 <div id="frame">
@@ -1137,7 +1151,6 @@ button{
             src="./thapminh.png"
             alt="Tháp của mình">
 
-
         <div class="towerHpWrap">
 
             <div
@@ -1157,7 +1170,6 @@ button{
         <img
             src="./thapdich.png"
             alt="Tháp địch">
-
 
         <div class="towerHpWrap">
 
@@ -1223,7 +1235,6 @@ button{
 ========================================================= -->
 
 <div id="summonBar">
-
 
     <div class="summonInfo">
 
@@ -1480,12 +1491,22 @@ const CONFIG = {
 
     TOWER_HP:1200,
 
-    LANE_Y:385,
+    /*
+       Mặt đất mới.
+       Cả nhân vật và quái đều dùng cùng Y này.
+    */
+    LANE_Y:530,
 
+    /*
+       Vị trí sinh quân gần tháp.
+    */
     PLAYER_SPAWN_X:215,
 
     ENEMY_SPAWN_X:1320,
 
+    /*
+       Tâm của 2 tháp.
+    */
     PLAYER_TOWER_X:155,
 
     ENEMY_TOWER_X:1381
@@ -2084,6 +2105,9 @@ function movePlayer(
         dt;
 
 
+    /*
+       Luôn giữ nhân vật trên mặt sỏi.
+    */
     unit.y =
         CONFIG.LANE_Y;
 
@@ -2126,6 +2150,9 @@ function moveEnemy(
         dt;
 
 
+    /*
+       Luôn giữ quái trên mặt sỏi.
+    */
     enemy.y =
         CONFIG.LANE_Y;
 
@@ -3007,10 +3034,6 @@ function createDamage(
 
 function saveStageVictory(){
 
-    /*
-       Đã hoàn thành.
-    */
-
     const completedKey =
         "map" +
         currentMap +
@@ -3041,10 +3064,6 @@ function saveStageVictory(){
         );
     }
 
-
-    /*
-       Mở stage tiếp theo.
-    */
 
     const unlockedKey =
         "map" +
@@ -3080,10 +3099,6 @@ function saveStageVictory(){
         );
     }
 
-
-    /*
-       Progress map.
-    */
 
     const progressKey =
         "animeDorado_map" +
