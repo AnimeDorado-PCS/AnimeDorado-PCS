@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+user-scalable=no">
+
+<title>Anime Dorado - Test Battle</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+#game{
+
+    position:relative;
+
+    width:100vw;
+    height:100vh;
+
+    max-width:1280px;
+    max-height:720px;
+
+    overflow:hidden;
+
+    background-image:url("nentest.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+
+/* =========================================================
+   BOSS
+========================================================= */
+
+#boss{
+
+    position:absolute;
+
+    right:8%;
+
+    bottom:17%;
+
+    width:220px;
+    height:270px;
+
+    z-index:20;
+}
+
+#boss img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   BOSS HP
+========================================================= */
+
+#bossHP{
+
+    position:absolute;
+
+    top:-15px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:180px;
+
+    z-index:50;
+}
+
+#hpBackground{
+
+    width:100%;
+    height:18px;
+
+    background:#222;
+
+    border:2px solid #000;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+#hpBar{
+
+    width:100%;
+    height:100%;
+
+    background:#e53935;
+
+    transition:
+        width .25s ease;
+}
+
+#bossName{
+
+    color:white;
+
+    text-align:center;
+
+    margin-top:4px;
+
+    font-size:13px;
+    font-weight:bold;
+
+    text-shadow:
+        0 2px 4px #000;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+#hero{
+
+    position:absolute;
+
+    left:6%;
+
+    bottom:18%;
+
+    width:190px;
+    height:220px;
+
+    z-index:30;
+
+    transition:
+        left .05s linear;
+}
+
+
+#heroSprite{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:100%;
+    height:100%;
+
+    max-width:none;
+
+    object-fit:fill;
+
+    transform:
+        translate(-50%,-50%);
+
+    pointer-events:none;
+
+    user-select:none;
+}
+
+
+/* =========================================================
+   HIT EFFECT
+========================================================= */
+
+#hitEffect{
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    border:
+        7px solid
+        rgba(180,240,255,.95);
+
+    box-shadow:
+        0 0 25px
+        rgba(100,220,255,.9);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:60;
+}
+
+#hitEffect.show{
+
+    animation:
+        hitAnimation
+        .5s
+        ease-out;
+}
+
+@keyframes hitAnimation{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.2)
+            rotate(0deg);
+
+    }
+
+    20%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.5)
+            rotate(100deg);
+
+    }
+}
+
+
+/* =========================================================
+   FLASH
+========================================================= */
+
+#screenFlash{
+
+    position:absolute;
+
+    inset:0;
+
+    background:white;
+
+    opacity:0;
+
+    z-index:80;
+
+    pointer-events:none;
+}
+
+#screenFlash.show{
+
+    animation:
+        flashAnimation
+        .15s
+        ease-out;
+}
+
+@keyframes flashAnimation{
+
+    0%{
+        opacity:.65;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+#status{
+
+    position:absolute;
+
+    top:18px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+        9px 18px;
+
+    border-radius:15px;
+
+    background:
+        rgba(0,0,0,.5);
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    text-shadow:
+        0 2px 4px #000;
+
+    z-index:100;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+#controls{
+
+    position:absolute;
+
+    left:50%;
+    bottom:12px;
+
+    transform:
+        translateX(-50%);
+
+    display:flex;
+
+    gap:8px;
+
+    padding:8px;
+
+    border-radius:15px;
+
+    background:
+        rgba(0,0,0,.5);
+
+    z-index:100;
+}
+
+button{
+
+    border:0;
+
+    border-radius:10px;
+
+    padding:
+        10px 14px;
+
+    color:white;
+
+    background:#2563eb;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+button:active{
+
+    transform:scale(.95);
+
+}
+
+button:disabled{
+
+    opacity:.4;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    #hero{
+
+        width:145px;
+        height:175px;
+
+        left:4%;
+    }
+
+    #boss{
+
+        width:165px;
+        height:205px;
+
+        right:3%;
+    }
+
+    #bossHP{
+
+        width:135px;
+    }
+
+    #status{
+
+        top:8px;
+
+        font-size:11px;
+
+        padding:
+            7px 10px;
+    }
+
+    #controls{
+
+        width:96%;
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+    }
+
+    button{
+
+        padding:
+            9px 10px;
+
+        font-size:11px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div id="game">
+
+
+    <!-- =====================================================
+         STATUS
+    ====================================================== -->
+
+    <div id="status">
+        🪽 Nhân vật đang bay tới Boss...
+    </div>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <div id="hero">
+
+        <img
+            id="heroSprite"
+            src=""
+            alt="Hero">
+
+    </div>
+
+
+    <!-- =====================================================
+         BOSS
+    ====================================================== -->
+
+    <div id="boss">
+
+        <div id="bossHP">
+
+            <div id="hpBackground">
+
+                <div id="hpBar"></div>
+
+            </div>
+
+            <div id="bossName">
+                BOSS
+            </div>
+
+        </div>
+
+
+        <img
+            src="boss.png"
+            alt="Boss">
+
+    </div>
+
+
+    <!-- HIT -->
+
+    <div id="hitEffect"></div>
+
+
+    <!-- FLASH -->
+
+    <div id="screenFlash"></div>
+
+
+    <!-- =====================================================
+         BUTTON
+    ====================================================== -->
+
+    <div id="controls">
+
+        <button id="skill1Button">
+            ❄️ SKILL 1
+        </button>
+
+        <button id="skill2Button">
+            💥 SKILL 2
+        </button>
+
+        <button id="resetButton">
+            🔄 RESET
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   LINK ẢNH NHÂN VẬT
+========================================================= */
+
+
+/*
+    BAY:
+    10 KEYFRAME
+*/
+
+const FLY_IMAGE =
+"https://i.postimg.cc/KjqDWPRR/20260818-141757-removebg-preview.png";
+
+
+/*
+    SKILL 1:
+    5 KEYFRAME
+*/
+
+const SKILL1_IMAGE =
+"https://i.postimg.cc/j5R6dgf9/20260818-142613.png";
+
+
+/*
+    SKILL 2:
+    5 KEYFRAME
+*/
+
+const SKILL2_IMAGE =
+"https://i.postimg.cc/jdBzJdNY/20260818-142454-removebg-preview.png";
+
+
+/* =========================================================
+   CẤU HÌNH
+========================================================= */
+
+const CONFIG = {
+
+    /*
+        BAY = 10 FRAME
+    */
+
+    flyFrames:10,
+
+
+    /*
+        SKILL 1 = 5 FRAME
+    */
+
+    skill1Frames:5,
+
+
+    /*
+        SKILL 2 = 5 FRAME
+    */
+
+    skill2Frames:5,
+
+
+    /*
+        Tốc độ bay
+    */
+
+    flySpeed:3.2,
+
+
+    /*
+        Thời gian mỗi frame bay
+    */
+
+    flyFrameTime:80,
+
+
+    /*
+        Thời gian mỗi frame Skill 1
+    */
+
+    skill1FrameTime:110,
+
+
+    /*
+        Thời gian mỗi frame Skill 2
+    */
+
+    skill2FrameTime:110,
+
+
+    /*
+        Damage
+    */
+
+    skill1Damage:20,
+
+    skill2Damage:30,
+
+
+    /*
+        Thời gian giữa các lần tấn công
+    */
+
+    attackDelay:500
+
+};
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const game =
+document.getElementById(
+    "game"
+);
+
+const hero =
+document.getElementById(
+    "hero"
+);
+
+const heroSprite =
+document.getElementById(
+    "heroSprite"
+);
+
+const boss =
+document.getElementById(
+    "boss"
+);
+
+const hpBar =
+document.getElementById(
+    "hpBar"
+);
+
+const hitEffect =
+document.getElementById(
+    "hitEffect"
+);
+
+const screenFlash =
+document.getElementById(
+    "screenFlash"
+);
+
+const status =
+document.getElementById(
+    "status"
+);
+
+const skill1Button =
+document.getElementById(
+    "skill1Button"
+);
+
+const skill2Button =
+document.getElementById(
+    "skill2Button"
+);
+
+const resetButton =
+document.getElementById(
+    "resetButton"
+);
+
+
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
+
+let heroX = 0;
+
+let bossHP = 100;
+
+let attacking = false;
+
+let gameFinished = false;
+
+
+/* =========================================================
+   WAIT
+========================================================= */
+
+function wait(ms){
+
+    return new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                ms
+            )
+    );
+
+}
+
+
+/* =========================================================
+   HIỂN THỊ KEYFRAME
+========================================================= */
+
+
+/*
+    Ảnh được coi là một sprite sheet
+    nằm ngang.
+
+    Ví dụ BAY có 10 frame:
+
+    [1][2][3][4][5][6][7][8][9][10]
+
+    Skill có:
+
+    [1][2][3][4][5]
+*/
+
+
+function showFrame(
+    image,
+    frame,
+    frameCount
+){
+
+    const count =
+        Math.max(
+            1,
+            frameCount
+        );
+
+
+    const current =
+        Math.max(
+            0,
+            Math.min(
+                frame,
+                count - 1
+            )
+        );
+
+
+    const percent =
+        count === 1
+        ? 50
+        : (
+            current /
+            (count - 1)
+          ) * 100;
+
+
+    heroSprite.src =
+        image;
+
+
+    heroSprite.style.width =
+        (count * 100) +
+        "%";
+
+
+    heroSprite.style.height =
+        "100%";
+
+
+    heroSprite.style.maxWidth =
+        "none";
+
+
+    heroSprite.style.objectFit =
+        "fill";
+
+
+    heroSprite.style.left =
+        percent + "%";
+
+
+    heroSprite.style.transform =
+        "translate(-" +
+        percent +
+        "%,-50%)";
+
+}
+
+
+/* =========================================================
+   CHẠY TOÀN BỘ ANIMATION
+========================================================= */
+
+async function playAnimation(
+    image,
+    frames,
+    frameTime
+){
+
+    for(
+        let frame = 0;
+        frame < frames;
+        frame++
+    ){
+
+        showFrame(
+            image,
+            frame,
+            frames
+        );
+
+
+        await wait(
+            frameTime
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   BAY TỚI BOSS
+========================================================= */
+
+async function flyToBoss(){
+
+    status.textContent =
+        "🪽 Nhân vật đang bay tới Boss...";
+
+
+    /*
+        Lấy chiều rộng game
+    */
+
+    const gameWidth =
+        game.clientWidth;
+
+
+    /*
+        Vị trí boss
+    */
+
+    const bossTarget =
+        gameWidth
+        - 100
+        - 220;
+
+
+    /*
+        Nhân vật dừng
+        cách boss một khoảng
+    */
+
+    const target =
+        bossTarget
+        - 170;
+
+
+    /*
+        BAY
+    */
+
+    while(
+        heroX < target
+    ){
+
+        heroX +=
+            CONFIG.flySpeed;
+
+
+        hero.style.left =
+            heroX + "px";
+
+
+        /*
+            Animation 10 frame
+        */
+
+        const frame =
+            Math.floor(
+                Date.now()
+                /
+                CONFIG.flyFrameTime
+            )
+            %
+            CONFIG.flyFrames;
+
+
+        showFrame(
+            FLY_IMAGE,
+            frame,
+            CONFIG.flyFrames
+        );
+
+
+        await wait(16);
+
+    }
+
+
+    status.textContent =
+        "⚔️ Đã tới gần Boss!";
+
+
+    await wait(300);
+
+}
+
+
+/* =========================================================
+   HIT EFFECT
+========================================================= */
+
+function hitBossEffect(){
+
+    const bossRect =
+        boss.getBoundingClientRect();
+
+    const gameRect =
+        game.getBoundingClientRect();
+
+
+    const x =
+        bossRect.left
+        -
+        gameRect.left
+        +
+        bossRect.width / 2;
+
+
+    const y =
+        bossRect.top
+        -
+        gameRect.top
+        +
+        bossRect.height / 2;
+
+
+    hitEffect.style.left =
+        x + "px";
+
+
+    hitEffect.style.top =
+        y + "px";
+
+
+    hitEffect.classList.remove(
+        "show"
+    );
+
+
+    void hitEffect.offsetWidth;
+
+
+    hitEffect.classList.add(
+        "show"
+    );
+
+
+    screenFlash.classList.remove(
+        "show"
+    );
+
+
+    void screenFlash.offsetWidth;
+
+
+    screenFlash.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   DAMAGE BOSS
+========================================================= */
+
+function damageBoss(
+    damage
+){
+
+    if(
+        bossHP <= 0
+    ){
+        return;
+    }
+
+
+    bossHP -=
+        damage;
+
+
+    if(
+        bossHP < 0
+    ){
+        bossHP = 0;
+    }
+
+
+    hpBar.style.width =
+        bossHP + "%";
+
+
+    hitBossEffect();
+
+
+    if(
+        bossHP <= 0
+    ){
+
+        gameFinished =
+            true;
+
+
+        status.textContent =
+            "💀 BOSS ĐÃ BỊ HẠ!";
+
+
+        skill1Button.disabled =
+            true;
+
+
+        skill2Button.disabled =
+            true;
+
+    }
+
+}
+
+
+/* =========================================================
+   SKILL 1
+========================================================= */
+
+async function skill1(){
+
+    if(
+        attacking ||
+        gameFinished
+    ){
+        return;
+    }
+
+
+    attacking =
+        true;
+
+
+    skill1Button.disabled =
+        true;
+
+
+    skill2Button.disabled =
+        true;
+
+
+    status.textContent =
+        "❄️ NHÂN VẬT TUNG SKILL 1!";
+
+
+    /*
+        Skill 1:
+
+        5 KEYFRAME
+    */
+
+    await playAnimation(
+        SKILL1_IMAGE,
+        5,
+        CONFIG.skill1FrameTime
+    );
+
+
+    /*
+        Đòn đánh trúng boss
+    */
+
+    damageBoss(
+        CONFIG.skill1Damage
+    );
+
+
+    if(
+        !gameFinished
+    ){
+
+        status.textContent =
+            "✅ SKILL 1 ĐÁNH TRÚNG BOSS!";
+
+    }
+
+
+    /*
+        Quay lại frame bay
+    */
+
+    showFrame(
+        FLY_IMAGE,
+        0,
+        10
+    );
+
+
+    await wait(
+        CONFIG.attackDelay
+    );
+
+
+    skill1Button.disabled =
+        false;
+
+
+    skill2Button.disabled =
+        false;
+
+
+    attacking =
+        false;
+
+}
+
+
+/* =========================================================
+   SKILL 2
+========================================================= */
+
+async function skill2(){
+
+    if(
+        attacking ||
+        gameFinished
+    ){
+        return;
+    }
+
+
+    attacking =
+        true;
+
+
+    skill1Button.disabled =
+        true;
+
+
+    skill2Button.disabled =
+        true;
+
+
+    status.textContent =
+        "💥 NHÂN VẬT TUNG SKILL 2!";
+
+
+    /*
+        Skill 2:
+
+        5 KEYFRAME
+    */
+
+    await playAnimation(
+        SKILL2_IMAGE,
+        5,
+        CONFIG.skill2FrameTime
+    );
+
+
+    /*
+        Trúng boss
+    */
+
+    damageBoss(
+        CONFIG.skill2Damage
+    );
+
+
+    if(
+        !gameFinished
+    ){
+
+        status.textContent =
+            "💥 SKILL 2 ĐÁNH TRÚNG BOSS!";
+
+    }
+
+
+    /*
+        Trở về bay
+    */
+
+    showFrame(
+        FLY_IMAGE,
+        0,
+        10
+    );
+
+
+    await wait(
+        CONFIG.attackDelay
+    );
+
+
+    skill1Button.disabled =
+        false;
+
+
+    skill2Button.disabled =
+        false;
+
+
+    attacking =
+        false;
+
+}
+
+
+/* =========================================================
+   TỰ ĐỘNG TUNG HẾT SKILL
+========================================================= */
+
+async function attackAllSkills(){
+
+    /*
+        Skill 1
+    */
+
+    await skill1();
+
+
+    if(
+        gameFinished
+    ){
+        return;
+    }
+
+
+    await wait(
+        400
+    );
+
+
+    /*
+        Skill 2
+    */
+
+    await skill2();
+
+
+    if(
+        gameFinished
+    ){
+        return;
+    }
+
+
+    /*
+        Nếu Boss chưa chết
+        tiếp tục Skill 1
+    */
+
+    await wait(
+        700
+    );
+
+
+    attackAllSkills();
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetGame(){
+
+    heroX =
+        game.clientWidth *
+        0.06;
+
+
+    bossHP =
+        100;
+
+
+    attacking =
+        false;
+
+
+    gameFinished =
+        false;
+
+
+    hpBar.style.width =
+        "100%";
+
+
+    hero.style.left =
+        heroX + "px";
+
+
+    skill1Button.disabled =
+        false;
+
+
+    skill2Button.disabled =
+        false;
+
+
+    status.textContent =
+        "🪽 Nhân vật đang chuẩn bị bay...";
+
+
+    showFrame(
+        FLY_IMAGE,
+        0,
+        10
+    );
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+skill1Button.addEventListener(
+    "click",
+    skill1
+);
+
+
+skill2Button.addEventListener(
+    "click",
+    skill2
+);
+
+
+resetButton.addEventListener(
+    "click",
+    () => {
+
+        resetGame();
+
+        startBattle();
+
+    }
+);
+
+
+/* =========================================================
+   START BATTLE
+========================================================= */
+
+async function startBattle(){
+
+    resetGame();
+
+
+    /*
+        Nhân vật bay tới boss
+    */
+
+    await flyToBoss();
+
+
+    /*
+        Sau khi tới boss:
+
+        tung HẾT skill
+    */
+
+    await wait(
+        300
+    );
+
+
+    attackAllSkills();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+startBattle();
+
+</script>
+
+</body>
+</html>
